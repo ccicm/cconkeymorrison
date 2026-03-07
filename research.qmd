@@ -52,3 +52,36 @@ My work draws on:
 - network analysis
 - large-scale administrative and cohort data
 - applied and practice-informed perspectives
+
+---
+title: "Publications"
+---
+
+## Peer-reviewed publications
+
+### 2025
+
+**Conkey-Morrison, C.**, Zarate, D., March, E., Hunt, B., & Stavropoulos, V.  
+[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://www.sciencedirect.com/science/article/pii/S2451958825002635)  
+*Computers in Human Behavior Reports*.
+
+**Gomez, R., Hunt, B., & Conkey-Morrison, C.**  
+[Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults](https://link.springer.com/article/10.1007/s10862-025-10252-6)  
+*Journal of Psychopathology and Behavioral Assessment*.
+
+**Burleigh, T; Footitt, T; Colder Carras, M; Conkey-Morrison, C; Poulus, D; Stavropoulos, R**
+[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606)
+*Addictive Behaviors Reports*.
+
+
+### 2024
+
+**Hein, K., Conkey-Morrison, C.**, Burleigh, T. L., Poulus, D., & Stavropoulos, V.  
+[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://pubmed.ncbi.nlm.nih.gov/38701623/)  
+*Acta Psychologica*.
+
+## Research profiles
+
+- [ORCID](https://orcid.org/0009-0000-1020-2333)
+- [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
+- [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
