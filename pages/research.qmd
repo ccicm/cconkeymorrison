@@ -49,26 +49,43 @@ Exploring system-level patterns in school attendance and non-attendance using na
 
 ## Publications
 
-[2025]{.pub-year}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
-**Conkey-Morrison, C.**, Zarate, D., March, E., Hunt, B., & Stavropoulos, V.\
-[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://www.sciencedirect.com/science/article/pii/S2451958825002635)\
-*Computers in Human Behavior Reports.*
+library(rorcid)
+library(dplyr)
+library(glue)
 
-**Gomez, R., Hunt, B., & Conkey-Morrison, C.**\
-[Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults](https://link.springer.com/article/10.1007/s10862-025-10252-6)\
-*Journal of Psychopathology and Behavioral Assessment.*
+works <- orcid_works("0009-0000-1020-2333")[[1]]$works
 
-**Burleigh, T., Footitt, T., Colder Carras, M., Conkey-Morrison, C., Poulus, D., & Stavropoulos, V.**\
-[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606)\
-*Addictive Behaviors Reports.*
+pubs <- works |>
+  transmute(
+    year  = `publication-date.year.value`,
+    title = `title.title.value`,
+    journal = `journal-title.value`,
+    url   = map_chr(`external-ids.external-id`, \(x) {
+      doi <- x$`external-id-value`[x$`external-id-type` == "doi"][1]
+      if (!is.na(doi)) paste0("https://doi.org/", doi) else NA_character_
+    })
+  ) |>
+  arrange(desc(year))
 
-[2024]{.pub-year}
-
-**Hein, K., Conkey-Morrison, C.**, Burleigh, T. L., Poulus, D., & Stavropoulos, V.\
-[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://pubmed.ncbi.nlm.nih.gov/38701623/)\
-*Acta Psychologica.*
-
+# Print by year
+for (yr in unique(pubs$year)) {
+  cat(glue("\n\n[{yr}]{{.pub-year}}\n\n"))
+  yr_pubs <- filter(pubs, year == yr)
+  for (i in seq_len(nrow(yr_pubs))) {
+    p <- yr_pubs[i, ]
+    if (!is.na(p$url)) {
+      cat(glue("[{p$title}]({p$url})  \n*{p$journal}*\n\n"))
+    } else {
+      cat(glue("{p$title}  \n*{p$journal}*\n\n"))
+    }
+  }
+}
+```
 ---
 
 ## Peer review
