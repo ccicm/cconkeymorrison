@@ -450,3 +450,184 @@ hr {
   .role-section { padding: 0.25rem 1.25rem; }
   .role-header { flex-direction: column; gap: 0.1rem; }
 }
+
+/* ============================================
+   RESEARCH PAGE — PAGE HEADER
+   ============================================ */
+.page-header {
+  padding: 3rem 0 0.5rem 0;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
+}
+
+/* ============================================
+   RESEARCH PAGE — PhD STATUS STRIP
+   ============================================ */
+.phd-status-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+  margin: 1.5rem 0 2rem 0;
+}
+
+.phd-status-item {
+  padding: 1.1rem 1.1rem 1rem 1.1rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.phd-status-item:last-child {
+  border-right: none;
+}
+
+.status-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+}
+
+.status-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.35;
+  display: block;
+}
+
+.status-value.status-ok {
+  color: #2d7a4f;
+}
+
+/* ============================================
+   RESEARCH PAGE — SUPERVISOR ROW
+   ============================================ */
+.supervisor-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0.5rem 0;
+}
+
+.supervisor-link {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--navy) !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none !important;
+  border: 1px solid var(--border);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.supervisor-link:hover {
+  background: var(--navy);
+  color: #fff !important;
+  border-color: var(--navy);
+}
+
+/* ============================================
+   RESEARCH PAGE — PUBLICATION ENTRIES
+   ============================================ */
+.pub-entry {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pub-entry:last-of-type {
+  border-bottom: none;
+}
+
+.pub-title {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--navy) !important;
+  text-decoration: none !important;
+  line-height: 1.55;
+  display: inline;
+  transition: color 0.15s;
+}
+
+.pub-title:hover {
+  color: var(--accent) !important;
+}
+
+.pub-journal {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.25rem;
+  font-weight: 400;
+}
+
+/* ============================================
+   RESEARCH PAGE — PROFILE LINKS ROW
+   ============================================ */
+.profile-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.profile-link {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.profile-link:hover {
+  color: var(--navy) !important;
+  border-color: var(--navy);
+}
+
+/* ============================================
+   RESPONSIVE — RESEARCH PAGE
+   ============================================ */
+@media (max-width: 900px) {
+  .phd-status-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .phd-status-item:nth-child(3) {
+    border-right: none;
+  }
+  .phd-status-item:nth-child(n+4) {
+    border-top: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 600px) {
+  .phd-status-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .phd-status-item:nth-child(2n) {
+    border-right: none;
+  }
+  .phd-status-item:nth-child(3) {
+    border-right: 1px solid var(--border);
+  }
+  .phd-status-item:nth-child(n+3) {
+    border-top: 1px solid var(--border);
+  }
+}

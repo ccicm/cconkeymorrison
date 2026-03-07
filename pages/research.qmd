@@ -1,71 +1,112 @@
 ---
-title: "Research & Publications"
+title: ""
+page-layout: full
 ---
 
-## Research focus
+::: page-header
+# Research & Publications
+:::
 
-My research centres on school attendance problems and emotionally based school avoidance (EBSA) --- the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. I am interested in how EBSA is defined and measured, how it develops across childhood and adolescence, and what interventions are supported by the evidence.
+---
 
-A parallel strand of my work engages with digital mental health: how individuals cope with stress through social media use and online behaviour, examined through network analytic approaches.
+## Current research focus
 
-------------------------------------------------------------------------
+My present research centres on school attendance problems and emotionally based school avoidance (EBSA) --- the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
 
-## PhD Research
-
-My PhD by publication comprises three interlinked empirical papers on EBSA.
+::: phd-status-strip
+::: phd-status-item
+[Estimated completion]{.status-label}
+[2027]{.status-value}
+:::
+::: phd-status-item
+[Ethics]{.status-label}
+[Approved]{.status-value .status-ok}
+:::
+::: phd-status-item
+[Data access]{.status-label}
+[Granted]{.status-value .status-ok}
+:::
+::: phd-status-item
+[Paper 1]{.status-label}
+[Manuscript in progress]{.status-value}
+:::
+::: phd-status-item
+[Paper 2]{.status-label}
+[Variable selection & methods]{.status-value}
+:::
+::: phd-status-item
+[Paper 3]{.status-label}
+[Data granted; pending]{.status-value}
+:::
+:::
 
 ::: paper-grid
-::: {.paper-card style="color:green"}
-#### [**Paper 1**]{.paper-label}**:** Systematic review
+::: paper-card
+[Paper 1]{.paper-label}
+### Systematic review
 
 A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918) systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
 :::
 
-::: {.paper-card style="color:brown"}
-**Paper 2:** Longitudinal modelling
+::: paper-card
+[Paper 2]{.paper-label}
+### Longitudinal modelling
 
 Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
 :::
 
-::: {.paper-card style="color:crimson"}
-[**Paper 3**]{.paper-label}**:** Population-level attendance
+::: paper-card
+[Paper 3]{.paper-label}
+### Population-level attendance
 
 Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
 :::
 :::
 
+---
 
-**Supervisory team**
+## Supervisory team
 
--   [Dr Daniel Zarate](https://orcid.org/0000-0002-1508-8637)
--   [A/Prof Vasileios Stavropoulos](https://orcid.org/0000-0001-6964-4662)
--   [Dr Taylor Brown](https://orcid.org/0000-0001-9814-3832)
+::: supervisor-row
+[Dr Daniel Zarate](https://orcid.org/0000-0002-1508-8637){.supervisor-link} [A/Prof Vasileios Stavropoulos](https://orcid.org/0000-0001-6964-4662){.supervisor-link} [Dr Taylor Brown](https://orcid.org/0000-0001-9814-3832){.supervisor-link}
+:::
 
-
-------------------------------------------------------------------------
+---
 
 ## Publications
 
 [2025]{.pub-year}
 
-[Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults](https://doi.org/10.1007/s10862-025-10252-6)\
-*Journal of Psychopathology and Behavioral Assessment*
+::: pub-entry
+[Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults](https://doi.org/10.1007/s10862-025-10252-6){.pub-title}\
+[Journal of Psychopathology and Behavioral Assessment]{.pub-journal}
+:::
 
-[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://doi.org/10.1016/j.chbr.2025.100848)\
-*Computers in Human Behavior Reports*
+::: pub-entry
+[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://doi.org/10.1016/j.chbr.2025.100848){.pub-title}\
+[Computers in Human Behavior Reports]{.pub-journal}
+:::
 
-[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606)\
-*Addictive Behaviors Reports*
+::: pub-entry
+[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606){.pub-title}\
+[Addictive Behaviors Reports]{.pub-journal}
+:::
 
 [2024]{.pub-year}
 
-[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://doi.org/10.1016/j.actpsy.2024.104298)\
-*Acta Psychologica*
+::: pub-entry
+[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://doi.org/10.1016/j.actpsy.2024.104298){.pub-title}\
+[Acta Psychologica]{.pub-journal}
+:::
+
+---
 
 ## Peer review
 
 I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Behaviour & Information Technology* and *Scientific Reports*.
 
-------------------------------------------------------------------------
+---
 
-#### [ORCID](https://orcid.org/0009-0000-1020-2333) \| [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en) \| [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
+::: profile-links-row
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link} [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link} [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+:::
