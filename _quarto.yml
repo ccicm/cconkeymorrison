@@ -8,11 +8,11 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: pages/research/research.qmd
+      - href: pages/research.qmd
         text: Research
-      - href: pages/teaching/teaching.qmd
+      - href: pages/history.qmd
         text: Teaching
-      - href: pages/contact/contact.qmd
+      - href: pages/contact.qmd
         text: Contact
     right:
       - text: ORCID

@@ -6,7 +6,7 @@ title: "Contact"
 
 You can download my current CV below.
 
-[Download CV (PDF)](Profile.pdf)
+##### [Download CV (PDF)](Profile.pdf)
 
 ## Education
 
@@ -27,7 +27,7 @@ You can download my current CV below.
 - Sessional Academic
 
 ---
-title: "Contact"
+title: "Get in touch"
 ---
 
 ## Contact
