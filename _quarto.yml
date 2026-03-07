@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "My Quarto Website"
+  description: "A simple website created using Quarto"
+  src: 
+    - index.qmd
+    - research.qmd
+    - publications.qmd
+    - teaching.qmd
+    - contact.qmd
+    - cv.qmd
+  css: styles.css
