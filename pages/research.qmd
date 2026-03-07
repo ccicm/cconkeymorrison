@@ -7,8 +7,6 @@ page-layout: full
 # Research & Publications
 :::
 
-------------------------------------------------------------------------
-
 ::: profile-links-row
 [ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link} [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link} [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
 :::
