@@ -2,8 +2,6 @@ project:
   type: website
   output-dir: _site
 
-execute:
-  freeze: auto
 
 website:
   title: "Connor Conkey-Morrison"

@@ -48,59 +48,21 @@ Dr Daniel Zarate, A/Prof Vasileios Stavropoulos, Dr Taylor Brown, Vince Rizzo
 
 ## [Publications](https://orcid.org/0009-0000-1020-2333)
 
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| output: asis
+[2025]{.pub-year}
 
-pkgs <- c("rorcid", "dplyr", "glue", "purrr")
-missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
-if (length(missing) > 0) {
-  install.packages(missing, repos = "https://cloud.r-project.org", quiet = TRUE)
-}
+[Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults](https://doi.org/10.1007/s10862-025-10252-6)\
+*Journal of Psychopathology and Behavioral Assessment*
 
-library(rorcid)
-library(dplyr)
-library(glue)
-library(purrr)
+[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://doi.org/10.1016/j.chbr.2025.100848)\
+*Computers in Human Behavior Reports*
 
-works <- orcid_works("0009-0000-1020-2333")[[1]]$works
+[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606)\
+*Addictive Behaviors Reports*
 
-pubs <- works |>
-  transmute(
-    year    = `publication-date.year.value`,
-    title   = `title.title.value`,
-    journal = `journal-title.value`,
-    url     = map_chr(`external-ids.external-id`, \(x) {
-      dois <- x$`external-id-value`[x$`external-id-type` == "doi"]
-      # Take first DOI, strip any malformed https://doi.org/ prefix
-      doi <- dois[1]
-      if (!is.na(doi)) {
-        doi <- gsub("^https?://doi\\.org/", "", doi)
-        paste0("https://doi.org/", doi)
-      } else {
-        NA_character_
-      }
-    })
-  ) |>
-  # Deduplicate by title, keeping first occurrence
-  distinct(title, .keep_all = TRUE) |>
-  arrange(desc(year))
+[2024]{.pub-year}
 
-for (yr in unique(pubs$year)) {
-  cat(glue("\n\n[{yr}]{{.pub-year}}\n\n"))
-  yr_pubs <- filter(pubs, year == yr)
-  for (i in seq_len(nrow(yr_pubs))) {
-    p <- yr_pubs[i, ]
-    if (!is.na(p$url)) {
-      cat(glue("[{p$title}]({p$url})  \n*{p$journal}*\n\n"))
-    } else {
-      cat(glue("{p$title}  \n*{p$journal}*\n\n"))
-    }
-  }
-}
-```
+[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://doi.org/10.1016/j.actpsy.2024.104298)\
+*Acta Psychologica*
 
 ---
 
