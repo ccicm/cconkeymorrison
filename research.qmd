@@ -1,0 +1,54 @@
+---
+title: "Research"
+---
+
+## Research focus
+
+My research centres on school attendance problems and emotionally based school avoidance, with a broader interest in adolescent mental health, intervention evidence, and system-level measurement.
+
+I am particularly interested in how school disengagement develops across time, how it is defined and measured, and what kinds of interventions appear most effective for students, families, and schools.
+
+## Current research areas
+
+### School attendance problems and emotionally based school avoidance
+
+This work focuses on conceptual clarity, intervention evidence, developmental trajectories, and the institutional representation of attendance difficulties.
+
+### Intervention evidence
+
+A major strand of my current research examines the evidence base for interventions targeting school refusal and emotionally based school avoidance.
+
+**Registered protocol:**  
+[PROSPERO CRD420251089918](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918)
+
+### Longitudinal and population-level analysis
+
+I am also interested in how school disengagement unfolds across childhood and adolescence, including the role of emotional, behavioural, and contextual risk factors in large-scale longitudinal and administrative datasets.
+
+### Digital mental health and behavioural coping
+
+My broader research interests include problematic social media use, coping processes, and network analytic approaches to psychological phenomena.
+
+## Current projects
+
+### Systematic review of interventions for emotionally based school avoidance
+
+A registered review of intervention approaches for school refusal and emotionally based school avoidance.
+
+### Longitudinal modelling of school disengagement
+
+Work examining developmental patterns of school disengagement using longitudinal cohort data.
+
+### Population-level attendance patterns
+
+Research exploring attendance, non-attendance, and system-level reporting using large education datasets.
+
+## Research approach
+
+My work draws on:
+
+- systematic review methods
+- longitudinal modelling
+- network analysis
+- large-scale administrative and cohort data
+- applied and practice-informed perspectives
