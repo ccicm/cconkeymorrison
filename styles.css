@@ -104,10 +104,10 @@ hr {
 .hero-photo { flex-shrink: 0; }
 
 .profile-img {
-  width: 210px;
-  height: 210px;
+  width: 310px;
+  height: 310px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 20%;
   border: 3px solid var(--border);
   box-shadow: 0 4px 24px rgba(26,46,74,0.10);
   display: block;
