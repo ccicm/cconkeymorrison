@@ -49,49 +49,32 @@ peer-reviewed publications
 ::: stat-item
 **↗️**\
 **2024--2026**\
-active publication period 
+active publication period
 :::
 
 ::: stat-item
 **✅**\
 **PROSPERO**\
-systematic review registered 
+systematic review registered
 :::
 :::
 
-::: cards-grid 
-::: card 
-::: card-icon 
-📄 
-:::
-
+::: card
 ### Research & Publications
 
 Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
 
-[Read more →](pages/research.qmd){.card-link} :::
-
-::: card
-::: card-icon
-🎓
-:::
+[Read more →](pages/research.qmd){.card-link}
 
 ### Education & Experience
 
 Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full academic, clinical, and professional history.
 
 [Where have I been? →](pages/history.qmd){.card-link}
-:::
-
-::: card
-::: card-icon
-✉️
-:::
 
 ### Contact
 
 Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
 
 [Get in touch →](pages/contact.qmd){.card-link}
-:::
 :::
