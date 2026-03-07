@@ -4,52 +4,101 @@ title: "Education & Experience"
 
 ## Education
 
-**Doctor of Philosophy (Psychology)**\
-RMIT University, 2025 -- present\
-*School of Health and Biomedical Sciences*\
-Supervisors: Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, Dr Vince Rizzo\
-Research focus: Emotionally based school avoidance, EBSA interventions, longitudinal modelling, population-level attendance data
+::: role-section
+::: role-block
+::: role-header
+[Doctor of Philosophy (Psychology)]{.role-title} [2025 -- present]{.role-date}
+:::
+[RMIT University — School of Health and Biomedical Sciences]{.role-org}
+[Supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, and Dr Vince Rizzo. Research focus on emotionally based school avoidance, intervention evidence, longitudinal modelling, and population-level attendance data.]{.role-desc}
+:::
 
-**Master of Professional Psychology**\
-Victoria University, 2022 -- present\
-*Provisional registration with the Psychology Board of Australia*
+::: role-block
+::: role-header
+[Master of Professional Psychology]{.role-title} [2024 -- 2025]{.role-date}
+:::
+[Victoria University]{.role-org}
+[Provisional registration with the Psychology Board of Australia.]{.role-desc}
+:::
 
-**Bachelor of Psychology (Honours)**\
-Victoria University\
-*First Class Honours*
+::: role-block
+::: role-header
+[Bachelor of Psychology (Honours)]{.role-title} [2020 -- 2023]{.role-date}
+:::
+[Victoria University]{.role-org}
+[First Class Honours.]{.role-desc}
+:::
+:::
 
 ---
 
 ## Academic appointments
 
-### RMIT University
-**Sessional Academic** | 2024 -- present\
-Teaching and tutoring across undergraduate and postgraduate psychology units. Roles have included tutorial delivery, online student support, marking, and EDA tutorial development for research methods and statistics coursework.
+::: role-section
+::: role-block
+::: role-header
+[Sessional Academic]{.role-title} [2024 -- present]{.role-date}
+:::
+[RMIT University]{.role-org}
+[Tutorial delivery, marking, and student support across undergraduate and postgraduate psychology units. Units have included Counselling and Virtual Care, Psychological Assessment and Individual Differences, Philosophy and Methodology of Psychology, Organisational and Motivational Psychology, and Counselling and Professional Practices.]{.role-desc}
+:::
 
-### Cairnmillar Institute
-**Associate Lecturer** | 2024 -- present\
-Sessional teaching support at honours level, including marking, student feedback, and research methods learning.
+::: role-block
+::: role-header
+[Associate Lecturer]{.role-title} [Feb -- Dec 2025]{.role-date}
+:::
+[Cairnmillar Institute]{.role-org}
+[Honours-level tutorial support and marking for Research Methods and Ethical Practice units. Assistance with statistical analysis in Jamovi, conceptual clarification, and assessment support.]{.role-desc}
+:::
+:::
 
 ---
 
 ## Clinical and school-based roles
 
-### CatholicCare Victoria — Industry PhD Partner
-**Provisional Psychologist & School Counsellor** | 2024 -- present\
-CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling roles in Catholic primary schools, with a current placement at Sacred Heart Primary School, Kew (2026). Previous placement at St. Mark's Catholic Parish Primary School, Fawkner (2025). Work spans student wellbeing, emotional regulation support, attendance concerns, and family liaison, alongside supervised practice toward general registration.
+::: role-section
+::: role-block
+::: role-header
+[Industry PhD Partner & School Counsellor]{.role-title} [2024 -- present]{.role-date}
+:::
+[CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
+[CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools — currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
+:::
+:::
 
 ---
 
-## Professional memberships and registrations
+## Professional memberships
 
-- Psychology Board of Australia (provisional registration)
-- Australian Psychological Society (APS)
+::: role-section
+::: role-block
+[Psychology Board of Australia]{.role-title}
+[Provisional registration]{.role-desc}
+:::
+
+::: role-block
+[Australian Psychological Society (APS)]{.role-title}
+[Student member]{.role-desc}
+:::
+:::
 
 ---
 
 ## Skills and tools
 
-**Statistical and research software:** R (RStudio), Jamovi, SPSS, Excel, Quarto\
-**Methods:** Systematic review, meta-analysis (including meta-MASEM), network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage\
-**Other:** Academic peer review, research supervision support, curriculum and assessment design
+::: role-section
+::: role-block
+[Research software]{.role-title}
+[R (RStudio), Jamovi, SPSS, Excel, Quarto]{.role-desc}
+:::
 
+::: role-block
+[Methods]{.role-title}
+[Systematic review, meta-analysis (including meta-MASEM), network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage]{.role-desc}
+:::
+
+::: role-block
+[Other]{.role-title}
+[Academic peer review, curriculum and assessment design, research supervision support]{.role-desc}
+:::
+:::
