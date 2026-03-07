@@ -12,7 +12,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute. 
+I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute.
 :::
 
 ::: hero-links
@@ -29,49 +29,38 @@ I am a PhD candidate at RMIT University (School of Health and Biomedical Science
 
 ::: about-section
 ## Current focus
+
 I research school attendance problems and emotionally based school avoidance (EBSA) --- why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
-
-
 :::
 
 ::: stats-strip
 ::: stat-item
 **4**\
-peer-reviewed publications 
-🔰
+peer-reviewed publications \| 🔰
 :::
 
 ::: stat-item
 **2024--2025**\
-active publication period 
-↗️
+active publication period \| ↗️
 :::
 
 ::: stat-item
 **3**\
-PhD papers in progress 
-🔄️
+PhD papers in progress 🔄️
 :::
 
 ::: stat-item
 **PROSPERO**\
-review registered 
-✅
+review registered ✅
 :::
 :::
 
-::: cards-grid
-::: card
-::: card-icon
-📄
-:::
 
 ### Research & Publications
 
 Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
 
-[Read more →](pages/research.qmd){.card-link}
-:::
+[Read more →](pages/research.qmd){.card-link} :::
 
 ::: card
 ::: card-icon
