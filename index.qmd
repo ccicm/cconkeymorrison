@@ -3,7 +3,7 @@ title: "Home"
 page-layout: full
 ---
 
-:::::: home-hero
+::: home-hero
 # Connor Conkey-Morrison
 
 ::: home-subtitle
@@ -17,7 +17,9 @@ Research on school attendance problems, emotionally based school avoidance, and 
 ::: home-buttons
 [Research & publications](research.qmd){.hero-btn} [Teaching & Roles](teaching.qmd){.hero-btn} [CV & Contact](contact.qmd){.hero-btn}
 :::
-::::::
+:::
+
+![](images/crop_27A5334.jpg){width="307"}
 
 ::: home-section
 ## Profile
@@ -27,7 +29,7 @@ I am a PhD candidate at RMIT University and a provisional psychologist. My resea
 Alongside research, I work across teaching, student support, and school-based practice.
 :::
 
-::::::: home-grid
+::: home-grid
 ::: home-card
 ### Research & Publications
 
@@ -51,4 +53,4 @@ Current appointments, education, and a downloadable CV.
 
 [View Contact information →](contact.qmd)
 :::
-:::::::
+:::
