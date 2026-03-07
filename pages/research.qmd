@@ -34,15 +34,13 @@ Exploring system-level patterns in school attendance and non-attendance using na
 :::
 :::
 
-::: paper-grid
-::: paper-card
+
 **Supervisory team**
 
 -   [Dr Daniel Zarate](https://orcid.org/0000-0002-1508-8637)
 -   [A/Prof Vasileios Stavropoulos](https://orcid.org/0000-0001-6964-4662)
 -   [Dr Taylor Brown](https://orcid.org/0000-0001-9814-3832)
-:::
-:::
+
 
 ------------------------------------------------------------------------
 
