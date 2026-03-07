@@ -2,26 +2,35 @@ project:
   type: website
   output-dir: _site
   
+project:
+  type: website
+  output-dir: _site
+
 website:
   title: "Connor Conkey-Morrison"
+  navbar:
     left:
       - href: index.qmd
         text: Home
-      - href: research/index.qmd
-        text: Research & Publications
-      - href: teaching/index.qmd
+      - href: pages/research/index.qmd
+        text: Research
+      - href: pages/teaching/index.qmd
         text: Teaching
-      - href: cv/index.qmd
-        text: CV
-      - href: contact/index.qmd
+      - href: pages/contact/index.qmd
         text: Contact
     right:
       - text: ORCID
         href: https://orcid.org/0009-0000-1020-2333
       - text: Scholar
-        href: https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en
+        href: https://scholar.google.com/citations?user=ZEvUL_kAAAAJ
       - text: LinkedIn
         href: https://www.linkedin.com/in/connorconkeymorrison
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
 
 format:
   html:
