@@ -1,56 +1,62 @@
 ---
-title: "Home"
+title: ""
 page-layout: full
 ---
 
-::: home-hero
+::: hero-wrapper
+::: hero-text
 # Connor Conkey-Morrison
 
-::: home-subtitle
-PhD Candidate \| Provisional Psychologist \| Sessional Academic
+::: hero-tags
+[PhD Candidate]{.tag} [Provisional Psychologist]{.tag} [Sessional Academic]{.tag}
 :::
 
-::: home-intro
+::: hero-bio
 Research on school attendance problems, emotionally based school avoidance, and adolescent mental health. My work draws on intervention evidence, longitudinal modelling, and population-level education data.
 :::
 
-::: home-buttons
-[Research & publications](research.qmd){.hero-btn} [Teaching & Roles](teaching.qmd){.hero-btn} [CV & Contact](contact.qmd){.hero-btn}
+::: hero-links
+[Research →](pages/research/research.qmd){.hero-btn .btn-primary} [Teaching & Roles →](pages/teaching/teaching.qmd){.hero-btn .btn-secondary} [Contact →](pages/contact/contact.qmd){.hero-btn .btn-secondary}
 :::
 :::
 
-![](images/crop_27A5334.jpg){width="307"}
+::: hero-photo
+![Connor Conkey-Morrison](images/crop_27A5334.jpg){.profile-img}
+:::
+:::
 
-::: home-section
-## Profile
+------------------------------------------------------------------------
 
-I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, emotionally based school avoidance, and adolescent mental health, with particular interests in intervention evidence, developmental patterns of disengagement, and the use of large-scale administrative and longitudinal data.
+::: about-section
+## About
+
+I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, emotionally based school avoidance, and adolescent mental health --- with particular interests in intervention evidence, developmental patterns of disengagement, and the use of large-scale administrative and longitudinal data.
 
 Alongside research, I work across teaching, student support, and school-based practice.
 :::
 
-::: home-grid
-::: home-card
+::: cards-grid
+::: card
 ### Research & Publications
 
-Current work on school attendance problems, intervention evidence, and developmental trajectories; see peer-reviewed publications.
+Current work on school attendance problems, intervention evidence, and developmental trajectories. Includes peer-reviewed publications from 2024--2025.
 
-[View research →](research.qmd)
+[View research →](research/research.qmd)
 :::
 
-::: home-card
+::: card
 ### Teaching & Roles
 
-Teaching, counselling, and broader academic and professional roles.
+Teaching across undergraduate and postgraduate psychology at RMIT and Cairnmillar, alongside clinical and school-based practice.
 
-[View teaching & roles →](teaching.qmd)
+[View teaching & roles →](teaching/teaching.qmd)
 :::
 
-::: home-card
-### Contact information
+::: card
+### CV & Contact
 
-Current appointments, education, and a downloadable CV!
+Current appointments, education history, and contact details.
 
-[View Contact information →](contact.qmd)
+[View CV & contact →](contact/contact.qmd)
 :::
 :::
