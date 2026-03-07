@@ -35,32 +35,37 @@ I research school attendance problems and emotionally based school avoidance (EB
 
 ::: stats-strip
 ::: stat-item
-**3**\
-PhD papers in progress 🔄️
+**6**\
+Current papers in progress 🔄️
 :::
 
 ::: stat-item
 **4**\
-peer-reviewed publications \| 🔰
+peer-reviewed publications 🔰
 :::
 
 ::: stat-item
-**2024--2025**\
-active publication period \| ↗️
+**2024--2026**\
+active publication period ↗️
 :::
 
 ::: stat-item
 **PROSPERO**\
-review registered ✅
+systematic review registered ✅
 :::
 :::
 
-
+::: cards-grid 
+::: card 
+::: card-icon 
+📄 
+::: 
 ### Research & Publications
 
 Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
 
-[Read more →](pages/research.qmd){.card-link} :::
+[Read more →](pages/research.qmd){.card-link} 
+:::
 
 ::: card
 ::: card-icon
