@@ -35,8 +35,9 @@ I research school attendance problems and emotionally based school avoidance (EB
 
 ::: stats-strip
 ::: stat-item
+**🔄**\
 **6**\
-Current papers in progress 🔄️
+Current papers in progress ️
 :::
 
 ::: stat-item
