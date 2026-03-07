@@ -28,3 +28,6 @@ format:
     css: styles.css
     toc: false
     smooth-scroll: true
+    include-in-header:
+      text: |
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
