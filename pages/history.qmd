@@ -1,5 +1,12 @@
 ---
-title: "Education & Experience"
+title: ""
+page-layout: full
+---
+
+::: page-header
+# Education & Experience
+:::
+
 ---
 
 ## Education
@@ -70,12 +77,15 @@ title: "Education & Experience"
 [Industry PhD Partner & School Counsellor]{.role-title} [2024 -- present]{.role-date}
 :::
 [CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
-[CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools — currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
+[CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools --- currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
 :::
 :::
 
 ---
 
+::: history-two-col
+
+::: history-col
 ## Professional memberships
 
 ::: role-section
@@ -83,15 +93,14 @@ title: "Education & Experience"
 [Psychology Board of Australia]{.role-title}
 [Provisional registration]{.role-desc}
 :::
-
 ::: role-block
 [Australian Psychological Society (APS)]{.role-title}
 [Student member]{.role-desc}
 :::
 :::
+:::
 
----
-
+::: history-col
 ## Skills and tools
 
 ::: role-section
@@ -99,16 +108,17 @@ title: "Education & Experience"
 [Research software]{.role-title}
 [R (RStudio), Jamovi, SPSS, Excel, Quarto]{.role-desc}
 :::
-
 ::: role-block
 [Methods]{.role-title}
 [Systematic review, network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage]{.role-desc}
 :::
-
 ::: role-block
 [Other]{.role-title}
 [Academic peer review, curriculum and assessment design, research supervision support]{.role-desc}
 :::
+:::
+:::
+
 :::
 
 ---
