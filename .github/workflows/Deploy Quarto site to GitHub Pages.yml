@@ -29,7 +29,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          install.packages(c("rorcid", "dplyr", "glue"), repos = "https://cloud.r-project.org")
+          install.packages(c("knitr", "rmarkdown", "rorcid", "dplyr", "glue"), repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
       - name: Render Quarto site
