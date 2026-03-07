@@ -3,13 +3,34 @@ project:
   output-dir: docs
 
 website:
-  title: "My Quarto Website"
-  description: "A simple website created using Quarto"
-  src: 
-    - index.qmd
-    - research.qmd
-    - publications.qmd
-    - teaching.qmd
-    - contact.qmd
-    - cv.qmd
-  css: styles.css
+  title: "Connor Conkey-Morrison"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: research.qmd
+        text: Research
+      - href: publications.qmd
+        text: Publications
+      - href: teaching.qmd
+        text: Teaching & Roles
+      - href: cv.qmd
+        text: CV
+      - href: contact.qmd
+        text: Contact
+    right:
+      - text: ORCID
+        href: https://orcid.org/0009-0000-1020-2333
+      - text: Scholar
+        href: https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en
+      - text: LinkedIn
+        href: https://www.linkedin.com/in/connorconkeymorrison
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    smooth-scroll: true
+
+editor: visual
