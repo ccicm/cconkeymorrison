@@ -16,7 +16,7 @@ Research on school attendance problems, emotionally based school avoidance, and 
 :::
 
 ::: hero-links
-[Research →](pages/research.qmd){.hero-btn .btn-primary} [Academic snapshot →](pages/academic.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
+[Research →](pages/research.qmd){.hero-btn .btn-primary} [Professional snapshot →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
 :::
 :::
 
@@ -45,18 +45,18 @@ Current work on school attendance problems, intervention evidence, and developme
 :::
 
 ::: card
-### Teaching & Roles
+### Professional snapshot
 
-Teaching across undergraduate and postgraduate psychology at RMIT and Cairnmillar, alongside clinical and school-based practice.
+Teaching across undergraduate and postgraduate psychology at RMIT and Cairnmillar, alongside clinical and school-based practice. Education history.
 
-[View teaching & roles →](pages/teaching.qmd)
+[Education & experience →](pages/history.qmd)
 :::
 
 ::: card
-### CV & Contact
+### Where are you now?
 
-Current appointments, education history, and contact details.
+Current appointments and contact details.
 
-[View CV & contact →](pages/contact.qmd)
+[Get in touch →](pages/contact.qmd)
 :::
 :::
