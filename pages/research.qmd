@@ -52,6 +52,7 @@ Dr Daniel Zarate, A/Prof Vasileios Stavropoulos, Dr Taylor Brown, Vince Rizzo
 #| echo: false
 #| message: false
 #| warning: false
+#| output: asis
 
 pkgs <- c("rorcid", "dplyr", "glue", "purrr")
 missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
