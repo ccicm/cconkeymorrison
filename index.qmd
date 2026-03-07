@@ -16,7 +16,7 @@ Research on school attendance problems, emotionally based school avoidance, and 
 :::
 
 ::: hero-links
-[Research →](pages/research.qmd){.hero-btn .btn-primary} [Teaching & Roles →](pages/teaching.qmd){.hero-btn .btn-secondary} [Contact →](pages/contact.qmd){.hero-btn .btn-secondary}
+[Research →](pages/research.qmd){.hero-btn .btn-primary} [Academic snapshot →](pages/academic.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
 :::
 :::
 
