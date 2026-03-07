@@ -49,7 +49,7 @@ Teaching, counselling, and broader academic and professional roles.
 ::: home-card
 ### Contact information
 
-Current appointments, education, and a downloadable CV.
+Current appointments, education, and a downloadable CV!
 
 [View Contact information →](contact.qmd)
 :::
