@@ -3,109 +3,110 @@ title: ""
 page-layout: full
 ---
 
-::: hero-wrapper
-::: hero-text
-# Connor Conkey-Morrison
-
-::: hero-tags
-[PhD Candidate]{.tag} [Provisional Psychologist]{.tag} [Sessional Academic]{.tag}
+::: page-header
+# Research & Publications
 :::
 
-::: hero-bio
-I research school attendance problems and emotionally based school avoidance (EBSA) --- why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
+---
+
+## Current research focus
+
+My present research centres on school attendance problems and emotionally based school avoidance (EBSA) --- the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
+
+::: phd-status-strip
+::: phd-status-item
+[Estimated completion]{.status-label}
+[2027]{.status-value}
+:::
+::: phd-status-item
+[Ethics]{.status-label}
+[Approved]{.status-value .status-ok}
+:::
+::: phd-status-item
+[Data access]{.status-label}
+[Granted]{.status-value .status-ok}
+:::
+::: phd-status-item
+[Paper 1]{.status-label}
+[Manuscript in progress]{.status-value}
+:::
+::: phd-status-item
+[Paper 2]{.status-label}
+[Variable selection & methods]{.status-value}
+:::
+::: phd-status-item
+[Paper 3]{.status-label}
+[Data granted; pending]{.status-value}
+:::
 :::
 
-::: hero-links
-[Research →](pages/research.qmd){.hero-btn .btn-primary} [Education & Experience →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
-:::
+::: paper-grid
+::: paper-card
+[Paper 1]{.paper-label}
+### Systematic review
+
+A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918) systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
 :::
 
-::: hero-photo
-![Connor Conkey-Morrison](images/crop_27A5334.jpg){.profile-img}
+::: paper-card
+[Paper 2]{.paper-label}
+### Longitudinal modelling
+
+Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
+:::
+
+::: paper-card
+[Paper 3]{.paper-label}
+### Population-level attendance
+
+Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
 :::
 :::
 
 ---
 
-::: about-section
-## About
+## Supervisory team
 
-I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences), supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, and Dr Vince Rizzo. My dissertation is structured around three interlinked papers: a systematic review and meta-analysis of EBSA interventions (PROSPERO registered), a longitudinal trajectory analysis using the Longitudinal Study of Australian Children (LSAC, Wave 10 restricted access), and a population-level analysis linking ACARA attendance data.
-
-Alongside the PhD, I work as a provisional psychologist at CatholicCare Victoria, a school counsellor at Sacred Heart Primary School (Kew), and a sessional academic at RMIT University and the Cairnmillar Institute. I am also completing a Masters systematic review on CBT adaptations for autistic adolescents.
-
-My broader research interests include problematic social media use, coping processes, and network analytic methods.
+::: supervisor-row
+[Dr Daniel Zarate](https://orcid.org/0000-0002-1508-8637){.supervisor-link} [A/Prof Vasileios Stavropoulos](https://orcid.org/0000-0001-6964-4662){.supervisor-link} [Dr Taylor Brown](https://orcid.org/0000-0001-9814-3832){.supervisor-link}
 :::
 
-::: stats-strip
-::: stat-item
-**4**\
-peer-reviewed publications
-:::
-::: stat-item
-**2024--2025**\
-active publication period
-:::
-::: stat-item
-**3**\
-PhD papers in progress
-:::
-::: stat-item
-**PROSPERO**\
-registered review
-:::
+---
+
+## Publications
+
+[2025]{.pub-year}
+
+::: pub-entry
+[Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults](https://doi.org/10.1007/s10862-025-10252-6){.pub-title}\
+[Journal of Psychopathology and Behavioral Assessment]{.pub-journal}
 :::
 
-::: cards-grid
-::: card
-::: card-icon
-📄
-:::
-### Research & Publications
-
-Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
-
-[Read more →](pages/research.qmd){.card-link}
+::: pub-entry
+[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://doi.org/10.1016/j.chbr.2025.100848){.pub-title}\
+[Computers in Human Behavior Reports]{.pub-journal}
 :::
 
-::: card
-::: card-icon
-🎓
-:::
-### Education & Experience
-
-Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full academic, clinical, and professional history.
-
-[Where have I been? →](pages/history.qmd){.card-link}
+::: pub-entry
+[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606){.pub-title}\
+[Addictive Behaviors Reports]{.pub-journal}
 :::
 
-::: card
-::: card-icon
-✉️
-:::
-### Contact
+[2024]{.pub-year}
 
-Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
-
-[Get in touch →](pages/contact.qmd){.card-link}
-:::
+::: pub-entry
+[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://doi.org/10.1016/j.actpsy.2024.104298){.pub-title}\
+[Acta Psychologica]{.pub-journal}
 :::
 
-::: affiliation-strip
-::: affiliation-item
-[RMIT University]{.affil-name}
-[PhD Candidate · Sessional Academic]{.affil-role}
-:::
-::: affiliation-item
-[CatholicCare Victoria]{.affil-name}
-[Industry PhD Partner · Provisional Psychologist]{.affil-role}
-:::
-::: affiliation-item
-[Sacred Heart Primary School]{.affil-name}
-[School Counsellor]{.affil-role}
-:::
-::: affiliation-item
-[Cairnmillar Institute]{.affil-name}
-[Associate Lecturer]{.affil-role}
-:::
+---
+
+## Peer review
+
+I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Behaviour & Information Technology* and *Scientific Reports*.
+
+---
+
+::: profile-links-row
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link} [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link} [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
 :::

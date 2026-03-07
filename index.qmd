@@ -25,7 +25,7 @@ I research school attendance problems and emotionally based school avoidance (EB
 :::
 :::
 
-------------------------------------------------------------------------
+---
 
 ::: about-section
 ## About
@@ -42,45 +42,70 @@ My broader research interests include problematic social media use, coping proce
 **4**\
 peer-reviewed publications
 :::
-
 ::: stat-item
 **2024--2025**\
 active publication period
 :::
-
 ::: stat-item
 **3**\
 PhD papers in progress
 :::
-
 ::: stat-item
 **PROSPERO**\
-review registered
+registered review
 :::
 :::
 
 ::: cards-grid
 ::: card
+::: card-icon
+📄
+:::
 ### Research & Publications
 
-Published work: social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, population-level attendance analysis.
+Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
 
-[Read more →](pages/research.qmd)
+[Read more →](pages/research.qmd){.card-link}
 :::
 
 ::: card
+::: card-icon
+🎓
+:::
 ### Education & Experience
 
-Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full education history.
+Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full academic, clinical, and professional history.
 
-[Where have I been? →](pages/history.qmd)
+[Where have I been? →](pages/history.qmd){.card-link}
 :::
 
 ::: card
+::: card-icon
+✉️
+:::
 ### Contact
 
-Current appointments, academic profiles, and contact details.
+Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
 
-[Get in touch →](pages/contact.qmd)
+[Get in touch →](pages/contact.qmd){.card-link}
+:::
+:::
+
+::: affiliation-strip
+::: affiliation-item
+[RMIT University]{.affil-name}
+[PhD Candidate · Sessional Academic]{.affil-role}
+:::
+::: affiliation-item
+[CatholicCare Victoria]{.affil-name}
+[Industry PhD Partner · Provisional Psychologist]{.affil-role}
+:::
+::: affiliation-item
+[Sacred Heart Primary School]{.affil-name}
+[School Counsellor]{.affil-role}
+:::
+::: affiliation-item
+[Cairnmillar Institute]{.affil-name}
+[Associate Lecturer]{.affil-role}
 :::
 :::
