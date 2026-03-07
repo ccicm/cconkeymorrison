@@ -8,7 +8,7 @@ My research centres on school attendance problems and emotionally based school a
 
 A parallel strand of my work engages with digital mental health: how individuals cope with stress through social media use and online behaviour, examined through network analytic approaches.
 
-------------------------------------------------------------------------
+---
 
 ## PhD Research
 
@@ -16,59 +16,69 @@ My PhD by publication comprises three interlinked empirical papers on EBSA.
 
 ::: paper-grid
 ::: paper-card
-[Paper 1]{.paper-label} \### Systematic review
+[Paper 1]{.paper-label}
+### Systematic review
 
 A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918) systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
-
 :::
 
 ::: paper-card
-[Paper 2]{.paper-label} \### Longitudinal modelling
+[Paper 2]{.paper-label}
+### Longitudinal modelling
 
 Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
 :::
 
 ::: paper-card
-[Paper 3]{.paper-label} \### Population-level attendance
+[Paper 3]{.paper-label}
+### Population-level attendance
 
 Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
 :::
 
-:::paper-card:::
-[Collaborators]{.paper-label}\### Supervisors
+::: paper-card
+[Collaborators]{.paper-label}
+### Supervisors
 
-Dr Daniel Zarate, A/Prof Vasilieos Stavropoulos, Dr Taylor Brown, Vince Rizzo
+Dr Daniel Zarate, A/Prof Vasileios Stavropoulos, Dr Taylor Brown, Vince Rizzo
 :::
 :::
 
-------------------------------------------------------------------------
+---
 
-## [Publications] (https://orcid.org/0009-0000-1020-2333)
+## [Publications](https://orcid.org/0009-0000-1020-2333)
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 
+# Install if not available (handles CI environment)
+pkgs <- c("rorcid", "dplyr", "glue", "purrr")
+missing <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+if (length(missing) > 0) {
+  install.packages(missing, repos = "https://cloud.r-project.org", quiet = TRUE)
+}
+
 library(rorcid)
 library(dplyr)
 library(glue)
+library(purrr)
 
 works <- orcid_works("0009-0000-1020-2333")[[1]]$works
 
 pubs <- works |>
   transmute(
-    year  = `publication-date.year.value`,
-    title = `title.title.value`,
+    year    = `publication-date.year.value`,
+    title   = `title.title.value`,
     journal = `journal-title.value`,
-    url   = map_chr(`external-ids.external-id`, \(x) {
+    url     = map_chr(`external-ids.external-id`, \(x) {
       doi <- x$`external-id-value`[x$`external-id-type` == "doi"][1]
       if (!is.na(doi)) paste0("https://doi.org/", doi) else NA_character_
     })
   ) |>
   arrange(desc(year))
 
-# Print by year
 for (yr in unique(pubs$year)) {
   cat(glue("\n\n[{yr}]{{.pub-year}}\n\n"))
   yr_pubs <- filter(pubs, year == yr)
@@ -83,7 +93,7 @@ for (yr in unique(pubs$year)) {
 }
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Peer review
 
@@ -91,5 +101,5 @@ I contribute to peer review for journals in psychology, behavioural science, and
 
 ## Other research profiles
 
--   [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
--   [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
+- [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
+- [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
