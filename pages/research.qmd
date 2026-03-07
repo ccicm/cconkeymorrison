@@ -8,46 +8,42 @@ My research centres on school attendance problems and emotionally based school a
 
 A parallel strand of my work engages with digital mental health: how individuals cope with stress through social media use and online behaviour, examined through network analytic approaches.
 
-## Research profiles
-
-- [ORCID](https://orcid.org/0009-0000-1020-2333)
-- [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
-- [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
-
----
+------------------------------------------------------------------------
 
 ## PhD Research
 
-My dissertation (RMIT University, supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, and Dr Vince Rizzo) comprises three interlinked empirical papers on EBSA.
+My PhD by publication comprises three interlinked empirical papers on EBSA.
 
 ::: paper-grid
 ::: paper-card
-[Paper 1]{.paper-label}
-### Systematic review & meta-analysis
+[Paper 1]{.paper-label} \### Systematic review
 
-A PROSPERO-registered synthesis of interventions for school refusal and emotionally based school avoidance, examining effectiveness across intervention type, population, and outcome.
+A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918) systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
 
-[PROSPERO CRD420251089918](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918)
 :::
 
 ::: paper-card
-[Paper 2]{.paper-label}
-### Longitudinal modelling
+[Paper 2]{.paper-label} \### Longitudinal modelling
 
-Examining how patterns of school disengagement develop across childhood and early adolescence using large-scale Australian longitudinal cohort data.
+Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
 :::
 
 ::: paper-card
-[Paper 3]{.paper-label}
-### Population-level attendance
+[Paper 3]{.paper-label} \### Population-level attendance
 
 Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
 :::
+
+:::paper-card:::
+[Collaborators]{.paper-label}\### Supervisors
+
+Dr Daniel Zarate, A/Prof Vasilieos Stavropoulos, Dr Taylor Brown, Vince Rizzo
+:::
 :::
 
----
+------------------------------------------------------------------------
 
-## Publications
+## [Publications] (https://orcid.org/0009-0000-1020-2333)
 
 ```{r}
 #| echo: false
@@ -86,8 +82,14 @@ for (yr in unique(pubs$year)) {
   }
 }
 ```
----
+
+------------------------------------------------------------------------
 
 ## Peer review
 
-I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Scientific Reports*.
+I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Behaviour & Information Technology* and *Scientific Reports*.
+
+## Other research profiles
+
+-   [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
+-   [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)

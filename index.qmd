@@ -60,24 +60,24 @@ registered review
 ::: card
 ### Research & Publications
 
-Systematic review and meta-analysis of EBSA interventions, longitudinal trajectory modelling with LSAC, population-level attendance analysis, and published work on social media, coping, and gaming.
+Published work: social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, population-level attendance analysis.
 
-[View research →](pages/research.qmd)
+[Read more →](pages/research.qmd)
 :::
 
 ::: card
 ### Education & Experience
 
-Sessional teaching at RMIT and Cairnmillar Institute. Clinical practice at CatholicCare Victoria. School counselling at Sacred Heart Primary School, Kew. Full education history.
+Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full education history.
 
-[Education & experience →](pages/history.qmd)
+[Where have I been? →](pages/history.qmd)
 :::
 
 ::: card
-### Get in touch
+### Contact
 
 Current appointments, academic profiles, and contact details.
 
-[Contact →](pages/contact.qmd)
+[Get in touch →](pages/contact.qmd)
 :::
 :::
