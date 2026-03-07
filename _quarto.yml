@@ -4,17 +4,16 @@ project:
   
 website:
   title: "Connor Conkey-Morrison"
-  navbar:
     left:
       - href: index.qmd
         text: Home
-      - href: research.qmd
+      - href: research/index.qmd
         text: Research & Publications
-      - href: teaching.qmd
-        text: Teaching & Roles
-      - href: cv.qmd
+      - href: teaching/index.qmd
+        text: Teaching
+      - href: cv/index.qmd
         text: CV
-      - href: contact.qmd
+      - href: contact/index.qmd
         text: Contact
     right:
       - text: ORCID
