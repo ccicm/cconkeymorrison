@@ -8,6 +8,16 @@ page-layout: full
 :::
 
 ---
+## Current appointments
+
+| Role | Organisation | Days |
+|---|---|---|
+| PhD Candidate | RMIT University | 24/7, 365 |
+| Industry Partner (PhD) & School Counsellor | CatholicCare Victoria / Sacred Heart Primary School, Kew | Tuesdays/flexible |
+| Sessional Academic | RMIT University | Fridays |
+| Associate Lecturer | Cairnmillar Institute | Mondays |
+
+---
 
 ## Education
 
