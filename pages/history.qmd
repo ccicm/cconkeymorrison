@@ -2,28 +2,58 @@
 title: "Education & Experience"
 ---
 
-## Education & Experience
+## Education
 
-I teach across undergraduate and postgraduate psychology, with experience in research methods, assessment, counselling-related content, and professional practice.
+**Doctor of Philosophy (Psychology)**\
+RMIT University, 2023 -- present\
+*School of Health and Biomedical Sciences*\
+Supervisors: Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, Dr Vince Rizzo\
+Research focus: Emotionally based school avoidance, EBSA interventions, longitudinal modelling, population-level attendance data
 
-My teaching focuses on helping students engage critically with psychological theory, research, and applied practice.
+**Master of Professional Psychology**\
+Victoria University, 2022 -- present\
+*Provisional registration with the Psychology Board of Australia*
 
-## Recent teaching and academic roles
+**Bachelor of Psychology (Honours)**\
+Victoria University\
+*First Class Honours*
+
+---
+
+## Academic appointments
 
 ### RMIT University
-Sessional tutor and academic support across undergraduate and postgraduate psychology units.
+**Sessional Academic** | 2023 -- present\
+Teaching and tutoring across undergraduate and postgraduate psychology units. Roles have included tutorial delivery, online student support, marking, and EDA tutorial development for research methods and statistics coursework.
 
 ### Cairnmillar Institute
-Associate Lecturer supporting honours-level teaching, marking, and research methods learning.
+**Associate Lecturer** | 2024 -- present\
+Sessional teaching support at honours level, including marking, student feedback, and research methods learning.
 
-## Practice and school-based roles
+---
+
+## Clinical and school-based roles
 
 ### CatholicCare Victoria
-Provisional Psychologist in an industry-linked context connected to school attendance and student wellbeing.
+**Provisional Psychologist** | 2023 -- present\
+Practice in an industry-linked context connected to school attendance, student wellbeing, and child and family services. Supervised practice toward general registration.
 
 ### Sacred Heart Primary School, Kew
-School Counsellor.
+**School Counsellor** | 2024 -- present\
+School-based counselling and student wellbeing support at primary level, with a focus on emotional regulation, attendance concerns, and family liaison.
 
-## Broader professional experience
+---
 
-My background also includes work in accessibility, education support, health and safety, and student-facing service roles. These experiences continue to shape how I think about systems, communication, and applied psychological work.
+## Professional memberships and registrations
+
+- Psychology Board of Australia (provisional registration)
+- Australian Psychological Society (APS)
+
+---
+
+## Skills and tools
+
+**Statistical and research software:** R (RStudio), Jamovi, SPSS, Excel, Quarto\
+**Methods:** Systematic review, meta-analysis (including meta-MASEM), network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage\
+**Other:** Academic peer review, research supervision support, curriculum and assessment design
+

@@ -257,6 +257,56 @@ hr {
 }
 
 /* ============================================
+   STATS STRIP
+   ============================================ */
+.stats-strip {
+  display: flex;
+  gap: 0;
+  margin: 0 0 2.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.stat-item {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-item strong {
+  display: block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+@media (max-width: 680px) {
+  .stats-strip {
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    flex: 1 1 50%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+/* ============================================
    INNER PAGES
    ============================================ */
 .quarto-title-block {

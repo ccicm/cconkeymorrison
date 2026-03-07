@@ -4,9 +4,9 @@ title: "Research & Publications"
 
 ## Research focus
 
-My research centres on school attendance problems and emotionally based school avoidance, with a broader interest in adolescent mental health, intervention evidence, and system-level measurement.
+My research centres on school attendance problems and emotionally based school avoidance (EBSA) --- the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. I am interested in how EBSA is defined and measured, how it develops across childhood and adolescence, and what interventions are supported by the evidence.
 
-I am particularly interested in how school disengagement develops across time, how it is defined and measured, and what kinds of interventions appear most effective for students, families, and schools.
+A parallel strand of my work engages with digital mental health: specifically, how individuals cope with stress through social media use and online behaviour, examined through network analytic approaches.
 
 ## Research profiles
 
@@ -14,75 +14,66 @@ I am particularly interested in how school disengagement develops across time, h
 - [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
 - [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
 
-## Current research areas
-
-### School attendance problems and emotionally based school avoidance
-
-This work focuses on conceptual clarity, intervention evidence, developmental trajectories, and the institutional representation of attendance difficulties.
-
-### Intervention evidence
-
-A major strand of my current research examines the evidence base for interventions targeting school refusal and emotionally based school avoidance.
-
-**Registered protocol:**  
-[PROSPERO CRD420251089918](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918)
-
-### Longitudinal and population-level analysis
-
-I am also interested in how school disengagement unfolds across childhood and adolescence, including the role of emotional, behavioural, and contextual risk factors in large-scale longitudinal and administrative datasets.
-
-### Digital mental health and behavioural coping
-
-My broader research interests include problematic social media use, coping processes, and network analytic approaches to psychological phenomena.
-
-## Current projects
-
-### Systematic review of interventions for emotionally based school avoidance
-
-A registered review of intervention approaches for school refusal and emotionally based school avoidance.
-
-### Longitudinal modelling of school disengagement
-
-Work examining developmental patterns of school disengagement using longitudinal cohort data.
-
-### Population-level attendance patterns
-
-Research exploring attendance, non-attendance, and system-level reporting using large education datasets.
-
-## Research approach
-
-My work draws on:
-
-- systematic review methods
-- longitudinal modelling
-- network analysis
-- large-scale administrative and cohort data
-- applied and practice-informed perspectives
-
----
-title: "Publications"
 ---
 
-## Peer-reviewed publications
+## PhD Research
+
+My dissertation (RMIT University, supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, and Dr Vince Rizzo) comprises three interlinked empirical papers on EBSA.
+
+### Paper 1 — Systematic review and meta-analysis of EBSA interventions
+
+A PROSPERO-registered systematic review and meta-analytic synthesis examining the effectiveness of interventions for school refusal and emotionally based school avoidance across children and adolescents. The review addresses intervention type, population characteristics, and outcome measurement practices.
+
+**Registered protocol:** [PROSPERO CRD420251089918](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918)
+
+### Paper 2 — Longitudinal trajectory modelling of school disengagement
+
+Using restricted Wave 10 data from the Longitudinal Study of Australian Children (LSAC), this paper models developmental trajectories of school disengagement across childhood and early adolescence. The analysis examines emotional, behavioural, and contextual predictors of trajectory group membership.
+
+### Paper 3 — Population-level attendance patterns
+
+This paper uses ACARA national attendance data (licence NF-P-03851) to examine system-level patterns in school attendance and non-attendance, with a focus on how administrative data represent and potentially obscure EBSA.
+
+---
+
+## Masters Research
+
+Alongside the PhD, I am completing a systematic review as part of my Masters of Professional Psychology. The review examines adaptations to cognitive behavioural therapy (CBT) for autistic adolescents presenting with internalising symptoms, with a specific focus on parent and carer involvement in treatment.
+
+---
+
+## Research methods
+
+My work draws on systematic review methods (including meta-analysis and meta-analytic structural equation modelling), longitudinal trajectory modelling (growth mixture modelling, latent growth curve analysis), network analysis, and large-scale administrative and cohort data. I work primarily in R (RStudio), with supplementary analyses in Jamovi and SPSS.
+
+---
+
+## Publications
 
 ### 2025
 
-**Conkey-Morrison, C.**, Zarate, D., March, E., Hunt, B., & Stavropoulos, V.  
-[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://www.sciencedirect.com/science/article/pii/S2451958825002635)  
-*Computers in Human Behavior Reports*.
+**Conkey-Morrison, C.**, Zarate, D., March, E., Hunt, B., & Stavropoulos, V.\
+[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://www.sciencedirect.com/science/article/pii/S2451958825002635)\
+*Computers in Human Behavior Reports.*
 
-**Gomez, R., Hunt, B., & Conkey-Morrison, C.**  
-[Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults](https://link.springer.com/article/10.1007/s10862-025-10252-6)  
-*Journal of Psychopathology and Behavioral Assessment*.
+**Gomez, R., Hunt, B., & Conkey-Morrison, C.**\
+[Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults](https://link.springer.com/article/10.1007/s10862-025-10252-6)\
+*Journal of Psychopathology and Behavioral Assessment.*
 
-**Burleigh, T; Footitt, T; Colder Carras, M; Conkey-Morrison, C; Poulus, D; Stavropoulos, R**
-[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606)
-*Addictive Behaviors Reports*.
-
+**Burleigh, T., Footitt, T., Colder Carras, M., Conkey-Morrison, C., Poulus, D., & Stavropoulos, V.**\
+[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606)\
+*Addictive Behaviors Reports.*
 
 ### 2024
 
-**Hein, K., Conkey-Morrison, C.**, Burleigh, T. L., Poulus, D., & Stavropoulos, V.  
-[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://pubmed.ncbi.nlm.nih.gov/38701623/)  
-*Acta Psychologica*.
+**Hein, K., Conkey-Morrison, C.**, Burleigh, T. L., Poulus, D., & Stavropoulos, V.\
+[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://pubmed.ncbi.nlm.nih.gov/38701623/)\
+*Acta Psychologica.*
+
+---
+
+## Peer review
+
+I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Scientific Reports*.
+
 

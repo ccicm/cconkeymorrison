@@ -8,15 +8,15 @@ page-layout: full
 # Connor Conkey-Morrison
 
 ::: hero-tags
-[PhD Candidate]{.tag} [Provisional Psychologist]{.tag} [Sessional Academic]{.tag}
+[PhD Candidate]{.tag} [Provisional Psychologist]{.tag} [Sessional Academic]{.tag} [School Counsellor]{.tag}
 :::
 
 ::: hero-bio
-Research on school attendance problems, emotionally based school avoidance, and adolescent mental health. My work draws on intervention evidence, longitudinal modelling, and population-level education data.
+I research school attendance problems and emotionally based school avoidance (EBSA) --- why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
 :::
 
 ::: hero-links
-[Research →](pages/research.qmd){.hero-btn .btn-primary} [Professional snapshot →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
+[Research →](pages/research.qmd){.hero-btn .btn-primary} [Education & Experience →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
 :::
 :::
 
@@ -30,33 +30,54 @@ Research on school attendance problems, emotionally based school avoidance, and 
 ::: about-section
 ## About
 
-I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, emotionally based school avoidance, and adolescent mental health --- with particular interests in intervention evidence, developmental patterns of disengagement, and the use of large-scale administrative and longitudinal data.
+I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences), supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, and Dr Vince Rizzo. My dissertation is structured around three interlinked papers: a systematic review and meta-analysis of EBSA interventions (PROSPERO registered), a longitudinal trajectory analysis using the Longitudinal Study of Australian Children (LSAC, Wave 10 restricted access), and a population-level analysis linking ACARA attendance data.
 
-Alongside research, I work across teaching, student support, and school-based practice.
+Alongside the PhD, I work as a provisional psychologist at CatholicCare Victoria, a school counsellor at Sacred Heart Primary School (Kew), and a sessional academic at RMIT University and the Cairnmillar Institute. I am also completing a Masters systematic review on CBT adaptations for autistic adolescents.
+
+My broader research interests include problematic social media use, coping processes, and network analytic methods.
+:::
+
+::: stats-strip
+::: stat-item
+**4**\
+peer-reviewed publications
+:::
+::: stat-item
+**2024--2025**\
+active publication period
+:::
+::: stat-item
+**3**\
+PhD papers in progress
+:::
+::: stat-item
+**PROSPERO**\
+registered review
+:::
 :::
 
 ::: cards-grid
 ::: card
 ### Research & Publications
 
-Current work on school attendance problems, intervention evidence, and developmental trajectories. Includes peer-reviewed publications from 2024--2025.
+Systematic review and meta-analysis of EBSA interventions, longitudinal trajectory modelling with LSAC, population-level attendance analysis, and published work on social media, coping, and gaming.
 
 [View research →](pages/research.qmd)
 :::
 
 ::: card
-### Professional snapshot
+### Education & Experience
 
-Teaching across undergraduate and postgraduate psychology at RMIT and Cairnmillar, alongside clinical and school-based practice. Education history.
+Sessional teaching at RMIT and Cairnmillar Institute. Clinical practice at CatholicCare Victoria. School counselling at Sacred Heart Primary School, Kew. Full education history.
 
 [Education & experience →](pages/history.qmd)
 :::
 
 ::: card
-### Where are you now?
+### Get in touch
 
-Current appointments and contact details.
+Current appointments, academic profiles, and contact details.
 
-[Get in touch →](pages/contact.qmd)
+[Contact →](pages/contact.qmd)
 :::
 :::
