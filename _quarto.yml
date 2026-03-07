@@ -8,12 +8,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: pages/research/index.qmd
+      - href: pages/research/research.qmd
         text: Research
-      - href: pages/teaching/index.qmd
+      - href: pages/teaching/teaching.qmd
         text: Teaching
-      - href: pages/cv/index.qmd
-        text: CV
+      - href: pages/contact/contact.qmd
+        text: Contact
     right:
       - text: ORCID
         href: https://orcid.org/0009-0000-1020-2333
@@ -27,11 +27,4 @@ format:
     theme: cosmo
     css: styles.css
     toc: false
-
-format:
-  html:
-    theme: cosmo
-    css: styles.css
-    toc: false
     smooth-scroll: true
-
