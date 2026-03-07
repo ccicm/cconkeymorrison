@@ -1,10 +1,6 @@
 project:
   type: website
   output-dir: _site
-  
-project:
-  type: website
-  output-dir: _site
 
 website:
   title: "Connor Conkey-Morrison"
@@ -16,8 +12,8 @@ website:
         text: Research
       - href: pages/teaching/index.qmd
         text: Teaching
-      - href: pages/contact/index.qmd
-        text: Contact
+      - href: pages/cv/index.qmd
+        text: CV
     right:
       - text: ORCID
         href: https://orcid.org/0009-0000-1020-2333
@@ -39,4 +35,3 @@ format:
     toc: false
     smooth-scroll: true
 
-editor: visual

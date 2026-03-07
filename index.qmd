@@ -31,7 +31,7 @@ Alongside research, I work across teaching, student support, and school-based pr
 ::: home-card
 ### Research & Publications
 
-Current work on school attendance problems, intervention evidence, and developmental trajectories; peer-reviewed publications.
+Current work on school attendance problems, intervention evidence, and developmental trajectories; see peer-reviewed publications.
 
 [View research →](research.qmd)
 :::

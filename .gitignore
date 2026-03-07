@@ -1,2 +1,5 @@
-/.quarto/
-**/*.quarto_ipynb
+.Rhistory
+.RData
+.Rproj.user/
+.quarto/
+_site/
