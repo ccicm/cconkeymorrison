@@ -25,34 +25,34 @@ I research school attendance problems and emotionally based school avoidance (EB
 :::
 :::
 
----
+------------------------------------------------------------------------
 
 ::: about-section
 ## About
 
-I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences), supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, Dr Taylor Brown, and Dr Vince Rizzo. My dissertation is structured around three interlinked papers: a systematic review and meta-analysis of EBSA interventions (PROSPERO registered), a longitudinal trajectory analysis using the Longitudinal Study of Australian Children (LSAC, Wave 10 restricted access), and a population-level analysis linking ACARA attendance data.
+I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist via  at CatholicCare Victoria, and am a sessional academic at RMIT University and the Cairnmillar Institute. 
 
-Alongside the PhD, I work as a provisional psychologist at CatholicCare Victoria, a school counsellor at Sacred Heart Primary School (Kew), and a sessional academic at RMIT University and the Cairnmillar Institute. I am also completing a Masters systematic review on CBT adaptations for autistic adolescents.
-
-My broader research interests include problematic social media use, coping processes, and network analytic methods.
 :::
 
 ::: stats-strip
 ::: stat-item
 **4**\
-peer-reviewed publications
+peer-reviewed publications 🔰
 :::
+
 ::: stat-item
 **2024--2025**\
-active publication period
+active publication period ↗️
 :::
+
 ::: stat-item
 **3**\
-PhD papers in progress
+PhD papers in progress 🔄️
 :::
+
 ::: stat-item
 **PROSPERO**\
-registered review
+review: registered ✅
 :::
 :::
 
@@ -61,6 +61,7 @@ registered review
 ::: card-icon
 📄
 :::
+
 ### Research & Publications
 
 Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
@@ -72,6 +73,7 @@ Published work spanning social media, coping, and gaming. Works in progress: sys
 ::: card-icon
 🎓
 :::
+
 ### Education & Experience
 
 Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full academic, clinical, and professional history.
@@ -83,6 +85,7 @@ Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacr
 ::: card-icon
 ✉️
 :::
+
 ### Contact
 
 Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
@@ -93,19 +96,18 @@ Current appointments, academic profiles, and the best way to get in touch for re
 
 ::: affiliation-strip
 ::: affiliation-item
-[RMIT University]{.affil-name}
-[PhD Candidate · Sessional Academic]{.affil-role}
+[RMIT University]{.affil-name} [PhD Candidate · Sessional Academic]{.affil-role}
 :::
+
 ::: affiliation-item
-[CatholicCare Victoria]{.affil-name}
-[Industry PhD Partner · Provisional Psychologist]{.affil-role}
+[CatholicCare Victoria]{.affil-name} [Industry PhD Partner · Provisional Psychologist]{.affil-role}
 :::
+
 ::: affiliation-item
-[Sacred Heart Primary School]{.affil-name}
-[School Counsellor]{.affil-role}
+[Sacred Heart Primary School]{.affil-name} [School Counsellor]{.affil-role}
 :::
+
 ::: affiliation-item
-[Cairnmillar Institute]{.affil-name}
-[Associate Lecturer]{.affil-role}
+[Cairnmillar Institute]{.affil-name} [Associate Lecturer]{.affil-role}
 :::
 :::
