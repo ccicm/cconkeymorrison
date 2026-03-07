@@ -63,7 +63,8 @@ systematic review registered
 ::: card 
 ::: card-icon 
 📄 
-::: \
+:::
+
 ### Research & Publications
 
 Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
