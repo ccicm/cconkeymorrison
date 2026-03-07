@@ -429,8 +429,8 @@ hr {
   }
   .hero-tags { justify-content: center; }
   .hero-links { justify-content: center; }
-  .profile-img { width: 150px; height: 150px; }
-  h1 { font-size: 2.4rem; }
+  .profile-img { width: 200px; height: 200px; }
+  h1 { font-size: 2.6rem; }
   .cards-grid { grid-template-columns: 1fr; }
   .paper-grid { grid-template-columns: 1fr; }
 }
