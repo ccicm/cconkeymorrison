@@ -59,7 +59,12 @@ systematic review registered
 :::
 :::
 
-::: cards-grid ::: card ::: card-icon 📄 ::: \### Research & Publications
+::: cards-grid 
+::: card 
+::: card-icon 
+📄 
+::: \
+### Research & Publications
 
 Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
 
@@ -87,4 +92,5 @@ Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacr
 Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
 
 [Get in touch →](pages/contact.qmd){.card-link}
+:::
 :::
