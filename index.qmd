@@ -1,0 +1,43 @@
+---
+title: "Home"
+---
+
+::: {.hero-block}
+# Connor Conkey-Morrison
+
+**PhD Candidate | Provisional Psychologist | Sessional Academic**
+
+Research on school attendance problems, emotionally based school avoidance, and adolescent mental health. My work brings together intervention evidence, longitudinal modelling, and population-level education data to better understand why students disengage from school and what responses are most effective.
+:::
+
+::: {.button-row}
+[Research](research.qmd){.btn-link}
+[Publications](publications.qmd){.btn-link}
+[Teaching & Roles](teaching.qmd){.btn-link}
+[CV](cv.qmd){.btn-link}
+[Contact](contact.qmd){.btn-link}
+:::
+
+## Profile
+
+I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, with a particular interest in emotionally based school avoidance, intervention evidence, developmental patterns of disengagement, and the ways attendance is represented in large-scale administrative data.
+
+Alongside research, I work across teaching, student support, and school-based practice.
+
+## Current affiliations
+
+- **RMIT University**  
+  PhD Candidate, School of Health and Biomedical Sciences
+
+- **CatholicCare Victoria**  
+  Provisional Psychologist / Industry partnership
+
+- **RMIT University and Cairnmillar Institute**  
+  Sessional teaching and academic support
+
+## Selected links
+
+- [ORCID](https://orcid.org/0009-0000-1020-2333)
+- [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
+- [LinkedIn](https://www.linkedin.com/in/connorconkeymorrison)
+- [PROSPERO protocol](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918)
