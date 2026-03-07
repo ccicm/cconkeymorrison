@@ -1,43 +1,66 @@
 ---
 title: "Home"
+page-layout: full
 ---
 
-::: {.hero-block}
+::: {.home-hero}
 # Connor Conkey-Morrison
 
-**PhD Candidate | Provisional Psychologist | Sessional Academic**
-
-Research on school attendance problems, emotionally based school avoidance, and adolescent mental health. My work brings together intervention evidence, longitudinal modelling, and population-level education data to better understand why students disengage from school and what responses are most effective.
+::: {.home-subtitle}
+PhD Candidate | Provisional Psychologist | Sessional Academic
 :::
 
-::: {.button-row}
-[Research](research.qmd){.btn-link}
-[Publications](publications.qmd){.btn-link}
-[Teaching & Roles](teaching.qmd){.btn-link}
-[CV](cv.qmd){.btn-link}
-[Contact](contact.qmd){.btn-link}
+::: {.home-intro}
+Research on school attendance problems, emotionally based school avoidance, and adolescent mental health. My work draws on intervention evidence, longitudinal modelling, and population-level education data.
 :::
 
+::: {.home-buttons}
+[Research](research.qmd){.hero-btn}
+[Publications](publications.qmd){.hero-btn}
+[Teaching & Roles](teaching.qmd){.hero-btn}
+[CV](cv.qmd){.hero-btn}
+[Contact](contact.qmd){.hero-btn}
+:::
+:::
+
+::: {.home-section}
 ## Profile
 
-I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, with a particular interest in emotionally based school avoidance, intervention evidence, developmental patterns of disengagement, and the ways attendance is represented in large-scale administrative data.
+I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, emotionally based school avoidance, and adolescent mental health, with particular interests in intervention evidence, developmental patterns of disengagement, and the use of large-scale administrative and longitudinal data.
 
 Alongside research, I work across teaching, student support, and school-based practice.
+:::
 
-## Current affiliations
+::: {.home-grid}
+::: {.home-card}
+### Research
 
-- **RMIT University**  
-  PhD Candidate, School of Health and Biomedical Sciences
+Current work on school attendance problems, intervention evidence, and developmental trajectories.
 
-- **CatholicCare Victoria**  
-  Provisional Psychologist / Industry partnership
+[View research →](research.qmd)
+:::
 
-- **RMIT University and Cairnmillar Institute**  
-  Sessional teaching and academic support
+::: {.home-card}
+### Publications
 
-## Selected links
+Peer-reviewed publications and academic profiles.
 
-- [ORCID](https://orcid.org/0009-0000-1020-2333)
-- [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
-- [LinkedIn](https://www.linkedin.com/in/connorconkeymorrison)
-- [PROSPERO protocol](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918)
+[View publications →](publications.qmd)
+:::
+
+::: {.home-card}
+### Teaching & Roles
+
+Teaching, counselling, and broader academic and professional roles.
+
+[View teaching & roles →](teaching.qmd)
+:::
+
+::: {.home-card}
+### CV
+
+A concise overview of appointments, education, and a downloadable CV.
+
+[View CV →](cv.qmd)
+:::
+:::
