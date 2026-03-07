@@ -46,7 +46,7 @@ Dr Daniel Zarate, A/Prof Vasileios Stavropoulos, Dr Taylor Brown, Vince Rizzo
 
 ---
 
-## [Publications](https://orcid.org/0009-0000-1020-2333)
+## Publications
 
 [2025]{.pub-year}
 
@@ -66,11 +66,10 @@ Dr Daniel Zarate, A/Prof Vasileios Stavropoulos, Dr Taylor Brown, Vince Rizzo
 
 ---
 
+[ORCID](https://orcid.org/0009-0000-1020-2333) | [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en) | [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
+---
+
 ## Peer review
 
 I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Behaviour & Information Technology* and *Scientific Reports*.
 
-## Other research profiles
-
-- [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en)
-- [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison)
