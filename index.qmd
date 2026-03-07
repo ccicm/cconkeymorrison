@@ -12,7 +12,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I research school attendance problems and emotionally based school avoidance (EBSA) --- why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
+I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute. 
 :::
 
 ::: hero-links
@@ -29,30 +29,34 @@ I research school attendance problems and emotionally based school avoidance (EB
 
 ::: about-section
 ## About
+I research school attendance problems and emotionally based school avoidance (EBSA) --- why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
 
-I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist via  at CatholicCare Victoria, and am a sessional academic at RMIT University and the Cairnmillar Institute. 
 
 :::
 
 ::: stats-strip
 ::: stat-item
 **4**\
-peer-reviewed publications 🔰
+peer-reviewed publications 
+🔰
 :::
 
 ::: stat-item
 **2024--2025**\
-active publication period ↗️
+active publication period 
+↗️
 :::
 
 ::: stat-item
 **3**\
-PhD papers in progress 🔄️
+PhD papers in progress 
+🔄️
 :::
 
 ::: stat-item
 **PROSPERO**\
-review: registered ✅
+review registered 
+✅
 :::
 :::
 
@@ -91,23 +95,4 @@ Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacr
 Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
 
 [Get in touch →](pages/contact.qmd){.card-link}
-:::
-:::
-
-::: affiliation-strip
-::: affiliation-item
-[RMIT University]{.affil-name} [PhD Candidate · Sessional Academic]{.affil-role}
-:::
-
-::: affiliation-item
-[CatholicCare Victoria]{.affil-name} [Industry PhD Partner · Provisional Psychologist]{.affil-role}
-:::
-
-::: affiliation-item
-[Sacred Heart Primary School]{.affil-name} [School Counsellor]{.affil-role}
-:::
-
-::: affiliation-item
-[Cairnmillar Institute]{.affil-name} [Associate Lecturer]{.affil-role}
-:::
 :::
