@@ -507,9 +507,10 @@ hr {
   display: block;
 }
 
-.status-value{.status-good {
-  color: #2d7a4f; .status-goal {
-  color: #2d7aee;
+.status-value{
+  [status-good] color: #2d7a4f; 
+  [status-goal] color: #2d7aee;
+  [status-WIP] color: #aabb0e;
 }
 
 /* ============================================
