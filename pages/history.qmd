@@ -50,6 +50,14 @@ title: "Education & Experience"
 [Cairnmillar Institute]{.role-org}
 [Honours-level tutorial support and marking for Research Methods and Ethical Practice units. Assistance with statistical analysis in Jamovi, conceptual clarification, and assessment support.]{.role-desc}
 :::
+
+::: role-block
+::: role-header
+[Research Assistant — Cyberpsychology]{.role-title} [Oct 2023 -- Jan 2024]{.role-date}
+:::
+[RMIT University]{.role-org}
+[Research support within the cyberpsychology research group, contributing to data management and research activities.]{.role-desc}
+:::
 :::
 
 ---
@@ -94,11 +102,33 @@ title: "Education & Experience"
 
 ::: role-block
 [Methods]{.role-title}
-[Systematic review, meta-analysis (including meta-MASEM), network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage]{.role-desc}
+[Systematic review, network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage]{.role-desc}
 :::
 
 ::: role-block
 [Other]{.role-title}
 [Academic peer review, curriculum and assessment design, research supervision support]{.role-desc}
+:::
+:::
+
+---
+
+## Prior experience
+
+::: role-section
+::: role-block
+::: role-header
+[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 -- 2025]{.role-date}
+:::
+[State Library Victoria]{.role-org}
+[Worked within the People & Partnerships team on HSW policy, incident investigation, psychosocial risk, and the implementation of a new health and safety management system aligned to ISO 45001.]{.role-desc}
+:::
+
+::: role-block
+::: role-header
+[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 -- 2021]{.role-date}
+:::
+[Ai-Media]{.role-org}
+[Provided live verbatim captioning for broadcast, government, and education clients globally, including major Australian TV networks, federal royal commissions, and Ivy League institutions. Progressed to supervisory and operations coordination roles, managing teams of 100+ casual and freelance staff during the 2020 transition to online learning.]{.role-desc}
 :::
 :::

@@ -2,7 +2,10 @@ project:
   type: website
   output-dir: _site
 
-website:
+execute:
+  freeze: auto
+
+website:_wu
   title: "Connor Conkey-Morrison"
   navbar:
     left:
