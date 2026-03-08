@@ -30,51 +30,53 @@ I am a PhD candidate at RMIT University (School of Health and Biomedical Science
 ::: about-section
 ## Current focus
 
-I research school attendance problems and emotionally based school avoidance (EBSA) --- why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
+I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
 :::
 
 ::: stats-strip
 ::: stat-item
-**🔄**\
 **6**\
-Current papers in progress ️
+Papers in progress
 :::
 
 ::: stat-item
-**🔰**\
 **4**\
-peer-reviewed publications
+Peer-reviewed publications
 :::
 
 ::: stat-item
-**↗️**\
-**2024--2026**\
-active publication period
+**2024–2027**\
+Active PhD period
 :::
 
 ::: stat-item
-**✅**\
 **PROSPERO**\
-systematic review registered
+Systematic review registered
 :::
 :::
 
+::: cards-grid
 ::: card
 ### Research & Publications
 
-Published work spanning social media, coping, and gaming. Works in progress: systematic review of EBSA interventions, longitudinal trajectory modelling with LSAC, and population-level attendance analysis.
+Published work spanning social media, coping, and gaming. Current projects include a systematic review of EBSA interventions, longitudinal trajectory modelling, and population-level attendance analysis.
 
-[Read more →](pages/research.qmd){.card-link}
+[Read more](pages/research.qmd){.card-link}
+:::
 
+::: card
 ### Education & Experience
 
 Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full academic, clinical, and professional history.
 
-[Where have I been? →](pages/history.qmd){.card-link}
+[Where have I been?](pages/history.qmd){.card-link}
+:::
 
-### Contact
+::: card
+### Projects
 
-Current appointments, academic profiles, and the best way to get in touch for research, teaching, or clinical inquiries.
+Side projects and tools: this website's open-source template, a Colab data pipeline, and other work in progress.
 
-[Get in touch →](pages/contact.qmd){.card-link}
+[See projects](pages/projects.qmd){.card-link}
+:::
 :::

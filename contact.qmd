@@ -1,0 +1,60 @@
+---
+title: ""
+page-layout: full
+---
+
+::: page-header
+# Get in touch
+:::
+
+------------------------------------------------------------------------
+
+::: contact-card
+## Email
+
+::: email-block
+[connorconkeymorrison\@gmail.com](mailto:connorconkeymorrison@gmail.com){.email-address}
+<button class="copy-btn" onclick="copyEmail(this)">Copy address</button>
+:::
+
+For research, teaching, clinical, or professional inquiries, email is the best point of contact. I aim to respond within a few business days.
+:::
+
+::: contact-card
+## Academic profiles
+
+::: profiles-grid
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
+[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
+[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+[LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
+[GitHub](https://github.com/ccicm){.profile-link}
+:::
+:::
+
+::: cv-placeholder
+**Curriculum Vitae**
+
+A downloadable CV will be available here shortly.
+:::
+
+------------------------------------------------------------------------
+
+::: about-section
+This site was built with an open-source Quarto template. View the [setup guide](template.qmd) or grab the [template on GitHub](https://github.com/ccicm/academic-website-template).
+:::
+
+```{=html}
+<script>
+function copyEmail(btn) {
+  navigator.clipboard.writeText('connorconkeymorrison@gmail.com').then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy address';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+```

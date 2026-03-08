@@ -9,6 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - text: Research
+        href: pages/research.qmd
         menu:
           - text: "Research overview"
             href: pages/research.qmd
@@ -17,8 +18,9 @@ website:
           - text: "Publications"
             href: pages/research.qmd#publications
           - text: "PhD papers"
-            href: pages/research.qmd#supervisory-team
+            href: pages/research.qmd#current-research-focus
       - text: Education & Experience
+        href: pages/history.qmd
         menu:
           - text: "Current appointments"
             href: pages/history.qmd#current-appointments
@@ -28,6 +30,8 @@ website:
             href: pages/history.qmd#academic-appointments
           - text: "Clinical roles"
             href: pages/history.qmd#clinical-and-school-based-roles
+      - href: pages/projects.qmd
+        text: Projects
       - href: pages/contact.qmd
         text: Contact
     right:
