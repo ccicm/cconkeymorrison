@@ -188,6 +188,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 .hero-text { flex: 1; max-width: 600px; }
 .hero-photo { flex-shrink: 0; margin-top: 0; }
 .hero-photo figcaption { display: none; }
+.hero-photo .quarto-figure { margin: 0 !important; padding: 0 !important; }
 .hero-photo figure { margin: 0 !important; padding: 0 !important; }
 .hero-photo p { margin: 0 !important; padding: 0 !important; line-height: 0; }
 .hero-photo img { display: block; }
