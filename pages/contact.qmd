@@ -20,6 +20,144 @@ page-layout: full
 For research, teaching, clinical, or professional inquiries, email is the best point of contact. I aim to respond within a few business days.
 :::
 
+```{=html}
+<style>
+.ccm-form-card {
+  background: #ffffff;
+  border: 1px solid #e4e1da;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  margin-top: 1rem;
+}
+.ccm-form-group {
+  margin-bottom: 1.25rem;
+}
+.ccm-label {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a2e4a;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.01em;
+}
+.ccm-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.92rem;
+  color: #1a1a1a;
+  background: #f8f7f5;
+  border: 1px solid #e4e1da;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.ccm-input:focus {
+  border-color: #1a2e4a;
+  box-shadow: 0 0 0 3px rgba(26,46,74,0.08);
+  background: #fff;
+}
+.ccm-textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.65;
+}
+.ccm-submit {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: #1a2e4a;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 2px solid #1a2e4a;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.18s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(26,46,74,0.18);
+}
+.ccm-submit:hover {
+  background: #2a4268;
+  border-color: #2a4268;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26,46,74,0.28);
+}
+.ccm-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.ccm-status {
+  margin-top: 0.75rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-height: 1.2em;
+}
+.ccm-status.success { color: #2d7a4f; }
+.ccm-status.error   { color: #c0392b; }
+</style>
+
+<div class="ccm-form-card">
+  <form id="contact-form" onsubmit="handleSubmit(event)">
+    <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
+    <div class="ccm-form-group">
+      <label class="ccm-label" for="name">Name</label>
+      <input type="text" id="name" name="name" class="ccm-input" placeholder="Your name" required>
+    </div>
+    <div class="ccm-form-group">
+      <label class="ccm-label" for="email">Email</label>
+      <input type="email" id="email" name="email" class="ccm-input" placeholder="your@email.com" required>
+    </div>
+    <div class="ccm-form-group">
+      <label class="ccm-label" for="message">Message</label>
+      <textarea id="message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
+    </div>
+    <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
+    <p id="ccm-status" class="ccm-status"></p>
+  </form>
+</div>
+
+<script>
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('ccm-status');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  status.textContent = '';
+  status.className = 'ccm-status';
+
+  const form = document.getElementById('contact-form');
+  const data = new FormData(form);
+  data.append('subject', 'Message from connorconkeymorrison.com');
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+    const result = await res.json();
+    if (result.success) {
+      status.textContent = 'Message sent — thanks!';
+      status.className = 'ccm-status success';
+      form.reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    status.textContent = 'Something went wrong. Try emailing directly.';
+    status.className = 'ccm-status error';
+  }
+
+  btn.textContent = 'Send message';
+  btn.disabled = false;
+}
+</script>
+```
+
+------------------------------------------------------------------------
+
 ::: contact-card
 ## Academic profiles
 
@@ -37,71 +175,6 @@ For research, teaching, clinical, or professional inquiries, email is the best p
 
 A downloadable CV will be available here shortly.
 :::
-
-------------------------------------------------------------------------
-
-## Send a message
-
-```{=html}
-<div class="contact-card">
-  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-    <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
-    <input type="hidden" name="subject" value="Message from connorconkeymorrison.com">
-    <input type="hidden" name="redirect" value="false">
-
-    <div class="form-group">
-      <label class="form-label" for="name">Name</label>
-      <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label" for="email">Email</label>
-      <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label" for="message">Message</label>
-      <textarea id="message" name="message" class="form-input form-textarea" placeholder="Your message..." required></textarea>
-    </div>
-
-    <button type="submit" class="form-submit" id="submit-btn">Send message</button>
-    <p id="form-status" class="form-status"></p>
-  </form>
-</div>
-
-<script>
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
-  const btn = document.getElementById('submit-btn');
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    const data = new FormData(form);
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: data
-    });
-    const result = await response.json();
-
-    if (result.success) {
-      status.textContent = 'Message sent — thanks!';
-      status.className = 'form-status success';
-      form.reset();
-    } else {
-      status.textContent = 'Something went wrong. Try emailing directly.';
-      status.className = 'form-status error';
-    }
-
-    btn.textContent = 'Send message';
-    btn.disabled = false;
-  });
-</script>
-```
-
-------------------------------------------------------------------------
 
 ::: about-section
 This site was built with an open-source Quarto template. View the [setup guide](template.qmd) or grab the [template on GitHub](https://github.com/ccicm/academic-website-template).
