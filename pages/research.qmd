@@ -84,20 +84,22 @@ Exploring system-level patterns in school attendance and non-attendance using na
 <style>
 .pub-layout {
   display: grid;
-  grid-template-columns: 1fr 180px;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: 2.5rem;
   align-items: start;
+  max-width: 1020px;
 }
 .pub-main { min-width: 0; }
 .pub-sidebar {
   position: sticky;
   top: 80px;
+  width: 160px;
 }
 .sidebar-section {
   background: #ffffff;
   border: 1px solid #e4e1da;
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 1.1rem;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .sidebar-label {
@@ -117,16 +119,19 @@ Exploring system-level patterns in school attendance and non-attendance using na
 }
 .sidebar-link {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #1a2e4a !important;
   text-decoration: none !important;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 6px;
   border: 1px solid #e4e1da;
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
   display: block;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sidebar-link:hover {
   background: #eef2f8;
