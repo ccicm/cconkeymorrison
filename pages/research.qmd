@@ -152,8 +152,43 @@ Exploring system-level patterns in school attendance and non-attendance using na
 .pub-entry-block {
   padding: 1rem 0;
   border-bottom: 1px solid #e4e1da;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
 }
 .pub-entry-block:last-of-type { border-bottom: none; }
+.pub-favicon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #e4e1da;
+  background: #f8f7f5;
+  flex-shrink: 0;
+  object-fit: contain;
+  padding: 3px;
+  margin-top: 2px;
+}
+.pub-favicon-fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #e4e1da;
+  background: #eef2f8;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+.pub-entry-text {
+  flex: 1;
+  min-width: 0;
+}
 .pub-title-link {
   font-size: 0.97rem;
   font-weight: 600;
@@ -240,7 +275,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
         <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
         <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
-        <a href="https://digitalminds.au/connor-conkey-morrison/" class="sidebar-link" target="_blank">DigitalMinds</a>
+        <a href="https://www.linkedin.com/in/connorconkeymorrison" class="sidebar-link" target="_blank">LinkedIn</a>
         <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
       </div>
     </div>
@@ -249,6 +284,103 @@ Exploring system-level patterns in school attendance and non-attendance using na
 </div>
 
 <script>
+// DOI prefix → journal domain lookup
+// Covers major publishers in psychology, behavioural science, and health
+const DOI_DOMAINS = {
+  // Elsevier
+  '10.1016': 'elsevier.com',
+  // Springer / Springer Nature
+  '10.1007': 'springer.com',
+  '10.1038': 'nature.com',
+  '10.1186': 'biomedcentral.com',
+  // Wiley
+  '10.1002': 'wiley.com',
+  '10.1111': 'wiley.com',
+  // Taylor & Francis / Routledge
+  '10.1080': 'tandfonline.com',
+  '10.4324': 'routledge.com',
+  // APA
+  '10.1037': 'apa.org',
+  '10.1027': 'hogrefe.com',
+  // SAGE
+  '10.1177': 'sagepub.com',
+  // Oxford University Press
+  '10.1093': 'oup.com',
+  // Cambridge University Press
+  '10.1017': 'cambridge.org',
+  // PLOS
+  '10.1371': 'plos.org',
+  // BMJ
+  '10.1136': 'bmj.com',
+  // Frontiers
+  '10.3389': 'frontiersin.org',
+  // MDPI
+  '10.3390': 'mdpi.com',
+  // American Psychological Association (alt)
+  '10.1521': 'guilford.com',
+  // Karger
+  '10.1159': 'karger.com',
+  // Informa / Psychology Press
+  '10.1080': 'tandfonline.com',
+  // De Gruyter
+  '10.1515': 'degruyter.com',
+  // Emerald
+  '10.1108': 'emerald.com',
+};
+
+function getDomainForDoi(doi) {
+  if (!doi) return null;
+  const prefix = doi.split('/')[0];
+  return DOI_DOMAINS[prefix] || null;
+}
+
+function faviconUrl(domain) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+}
+
+function pubIconHtml(doi) {
+  const domain = getDomainForDoi(doi);
+  if (domain) {
+    // Use img with onerror fallback to initials icon
+    const initials = domain.split('.')[0].slice(0, 2).toUpperCase();
+    return `<img
+      class="pub-favicon"
+      src="${faviconUrl(domain)}"
+      alt="${domain}"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    /><div class="pub-favicon-fallback" style="display:none;">${initials}</div>`;
+  }
+  // No domain known — show neutral icon
+  return `<div class="pub-favicon-fallback">📄</div>`;
+}
+
+function renderWorks(works) {
+  const byYear = {};
+  for (const w of works) {
+    const y = w.year || 'n.d.';
+    if (!byYear[y]) byYear[y] = [];
+    byYear[y].push(w);
+  }
+
+  let html = '';
+  for (const year of Object.keys(byYear).sort((a, b) => b - a)) {
+    html += `<span class="pub-year-head">${year}</span>`;
+    for (const w of byYear[year]) {
+      const href = w.doi ? `https://doi.org/${w.doi}` : '#';
+      const target = w.doi ? ' target="_blank"' : '';
+      html += `
+        <div class="pub-entry-block">
+          ${pubIconHtml(w.doi)}
+          <div class="pub-entry-text">
+            <a href="${href}"${target} class="pub-title-link">${w.title}</a>
+            ${w.journal ? `<span class="pub-journal-name">${w.journal}</span>` : ''}
+          </div>
+        </div>`;
+    }
+  }
+  return html;
+}
+
 async function loadOrcidPublications() {
   const container = document.getElementById('orcid-pubs');
   try {
@@ -258,7 +390,6 @@ async function loadOrcidPublications() {
     if (!res.ok) throw new Error();
     const data = await res.json();
 
-    // Collect works with details
     const works = [];
     for (const group of data.group || []) {
       const summary = group['work-summary']?.[0];
@@ -267,9 +398,7 @@ async function loadOrcidPublications() {
       const title = summary.title?.title?.value || 'Untitled';
       const year = summary['publication-date']?.year?.value || 'n.d.';
       const journal = summary['journal-title']?.value || '';
-      const putCode = summary['put-code'];
 
-      // Get DOI from external-ids
       let doi = null;
       for (const eid of summary['external-ids']?.['external-id'] || []) {
         if (eid['external-id-type'] === 'doi') {
@@ -286,57 +415,23 @@ async function loadOrcidPublications() {
       return;
     }
 
-    // Sort by year descending
     works.sort((a, b) => b.year - a.year);
 
-    // Group by year
-    const byYear = {};
-    for (const w of works) {
-      const y = w.year || 'n.d.';
-      if (!byYear[y]) byYear[y] = [];
-      byYear[y].push(w);
-    }
-
-    // Render
-    let html = '';
-    for (const year of Object.keys(byYear).sort((a, b) => b - a)) {
-      html += `<span class="pub-year-head">${year}</span>`;
-      for (const w of byYear[year]) {
-        const href = w.doi ? `https://doi.org/${w.doi}` : '#';
-        const target = w.doi ? ' target="_blank"' : '';
-        html += `
-          <div class="pub-entry-block">
-            <a href="${href}"${target} class="pub-title-link">${w.title}</a>
-            ${w.journal ? `<span class="pub-journal-name">${w.journal}</span>` : ''}
-          </div>`;
-      }
-    }
+    let html = renderWorks(works);
     const now = new Date();
     const synced = now.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
     html += `<p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;margin-top:1.5rem;letter-spacing:0.02em;">Synced from <a href="https://orcid.org/0009-0000-1020-2333" target="_blank" style="color:#5c5c5c;text-decoration:underline;">ORCID</a> · ${synced}</p>`;
     container.innerHTML = html;
 
   } catch (e) {
-    // Fallback to static content if API fails
-    container.innerHTML = `
-      <span class="pub-year-head">2025</span>
-      <div class="pub-entry-block">
-        <a href="https://doi.org/10.1007/s10862-025-10252-6" target="_blank" class="pub-title-link">Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults</a>
-        <span class="pub-journal-name">Journal of Psychopathology and Behavioral Assessment</span>
-      </div>
-      <div class="pub-entry-block">
-        <a href="https://doi.org/10.1016/j.chbr.2025.100848" target="_blank" class="pub-title-link">Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women</a>
-        <span class="pub-journal-name">Computers in Human Behavior Reports</span>
-      </div>
-      <div class="pub-entry-block">
-        <a href="https://doi.org/10.1016/j.abrep.2025.100606" target="_blank" class="pub-title-link">Flowing in the net of disordered gaming: A network analysis approach</a>
-        <span class="pub-journal-name">Addictive Behaviors Reports</span>
-      </div>
-      <span class="pub-year-head">2024</span>
-      <div class="pub-entry-block">
-        <a href="https://doi.org/10.1016/j.actpsy.2024.104298" target="_blank" class="pub-title-link">Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach</a>
-        <span class="pub-journal-name">Acta Psychologica</span>
-      </div>`;
+    // Fallback — static list with favicons still applied
+    const fallback = [
+      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6' },
+      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848' },
+      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606' },
+      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298' },
+    ];
+    container.innerHTML = renderWorks(fallback);
   }
 }
 
