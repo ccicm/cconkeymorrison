@@ -17,7 +17,7 @@ editor:
 | Role                                       | Organisation                                             | Days              |
 |------------------------|------------------------|------------------------|
 | PhD Candidate                              | RMIT University                                          | 24/7, 365         |
-| Industry Partner (PhD) & School Counsellor | CatholicCare Victoria / Sacred Heart Primary School, Kew | Tuesdays/flexible |
+| School Counsellor                          | CatholicCare Victoria                                    | Tuesdays/flexible |
 | Sessional Academic                         | RMIT University                                          | Fridays           |
 | Associate Lecturer                         | Cairnmillar Institute                                    | Mondays           |
 
