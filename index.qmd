@@ -14,21 +14,11 @@ page-layout: full
 ::: hero-bio
 I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute.
 :::
-
-::: hero-links
-[Research →](pages/research.qmd){.hero-btn .btn-primary} [Education & Experience →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
-:::
 :::
 
 ::: hero-photo
 ![Connor Conkey-Morrison](images/crop_27A5334.jpg){.profile-img}
 :::
-:::
-
-::: about-section
-## Current focus
-
-I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
 :::
 
 ---
@@ -52,5 +42,15 @@ Active PhD period
 ::: stat-item
 **PROSPERO**\
 Systematic review registered
+:::
+:::
+
+::: about-section
+## Current focus
+
+I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
+
+::: hero-links
+[Research →](pages/research.qmd){.hero-btn .btn-primary} [Education & Experience →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
 :::
 :::
