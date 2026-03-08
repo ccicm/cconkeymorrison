@@ -226,5 +226,5 @@ DNS propagation takes up to 30–60 minutes.
 ------------------------------------------------------------------------
 
 ::: about-section
-Questions or issues? Feel free to [get in touch](contact.qmd).
+Questions or issues with the template? Feel free to [get in touch](contact.qmd) or [Open an issue on GitHub](https://github.com/ccicm/academic-website-template/issues/new) and I'll get back to you.
 :::
