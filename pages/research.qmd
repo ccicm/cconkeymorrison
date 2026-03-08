@@ -173,17 +173,13 @@ Exploring system-level patterns in school attendance and non-attendance using na
   height: 32px;
   border-radius: 6px;
   border: 1px solid #e4e1da;
-  background: #eef2f8;
+  background: #f8f7f5;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 2px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #1a2e4a;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  letter-spacing: -0.02em;
+  color: #c8922a;
 }
 .pub-entry-text {
   flex: 1;
@@ -207,14 +203,49 @@ Exploring system-level patterns in school attendance and non-attendance using na
   color: #c8922a !important;
   background-size: 100% 1px;
 }
-.pub-journal-name {
-  display: block;
+.pub-journal-link {
+  display: inline;
   font-size: 0.82rem;
-  color: #5c5c5c;
+  color: #5c5c5c !important;
   font-style: italic;
-  margin-top: 0.25rem;
   font-weight: 400;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  text-decoration: none !important;
+  transition: color 0.15s;
+}
+.pub-journal-link:hover { color: #c8922a !important; }
+.pub-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+}
+.pub-cite-btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #5c5c5c;
+  background: #f8f7f5;
+  border: 1px solid #e4e1da;
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+.pub-cite-btn:hover {
+  background: #eef2f8;
+  border-color: #1a2e4a;
+  color: #1a2e4a;
+  transform: translateY(-1px);
+}
+.pub-cite-btn.copied {
+  background: #e8f5ee;
+  border-color: #2d7a4f;
+  color: #2d7a4f;
 }
 .pub-loading {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -275,7 +306,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
         <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
         <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
-        <a href="https://digitalminds.au/connor-conkey-morrison/" class="sidebar-link" target="_blank">DigitalMinds</a>
+        <a href="https://www.linkedin.com/in/connorconkeymorrison" class="sidebar-link" target="_blank">LinkedIn</a>
         <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
       </div>
     </div>
@@ -284,154 +315,260 @@ Exploring system-level patterns in school attendance and non-attendance using na
 </div>
 
 <script>
-// DOI prefix → journal domain lookup
-// Covers major publishers in psychology, behavioural science, and health
+const ORCID_ID = '0009-0000-1020-2333';
+const SCHOLAR_URL = 'https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en';
+const MAX_PUBS = 6;
+
+// ─── Publisher lookups ────────────────────────────────────────────────────────
 const DOI_DOMAINS = {
-  // Elsevier
-  '10.1016': 'elsevier.com',
-  // Springer / Springer Nature
-  '10.1007': 'springer.com',
-  '10.1038': 'nature.com',
-  '10.1186': 'biomedcentral.com',
-  // Wiley
-  '10.1002': 'wiley.com',
-  '10.1111': 'wiley.com',
-  // Taylor & Francis / Routledge
-  '10.1080': 'tandfonline.com',
-  '10.4324': 'routledge.com',
-  // APA
-  '10.1037': 'apa.org',
-  '10.1027': 'hogrefe.com',
-  // SAGE
-  '10.1177': 'sagepub.com',
-  // Oxford University Press
-  '10.1093': 'oup.com',
-  // Cambridge University Press
-  '10.1017': 'cambridge.org',
-  // PLOS
-  '10.1371': 'plos.org',
-  // BMJ
-  '10.1136': 'bmj.com',
-  // Frontiers
-  '10.3389': 'frontiersin.org',
-  // MDPI
-  '10.3390': 'mdpi.com',
-  // American Psychological Association (alt)
-  '10.1521': 'guilford.com',
-  // Karger
-  '10.1159': 'karger.com',
-  // Informa / Psychology Press
-  '10.1080': 'tandfonline.com',
-  // De Gruyter
-  '10.1515': 'degruyter.com',
-  // Emerald
-  '10.1108': 'emerald.com',
+  '10.1016': 'elsevier.com', '10.1007': 'springer.com', '10.1038': 'nature.com',
+  '10.1186': 'biomedcentral.com', '10.1002': 'wiley.com', '10.1111': 'wiley.com',
+  '10.1080': 'tandfonline.com', '10.4324': 'routledge.com', '10.1037': 'apa.org',
+  '10.1027': 'hogrefe.com', '10.1177': 'sagepub.com', '10.1093': 'oup.com',
+  '10.1017': 'cambridge.org', '10.1371': 'plos.org', '10.1136': 'bmj.com',
+  '10.3389': 'frontiersin.org', '10.3390': 'mdpi.com', '10.1521': 'guilford.com',
+  '10.1159': 'karger.com', '10.1515': 'degruyter.com', '10.1108': 'emerald.com',
 };
 
-function getDomainForDoi(doi) {
+function journalUrl(doi) {
   if (!doi) return null;
-  const prefix = doi.split('/')[0];
-  return DOI_DOMAINS[prefix] || null;
+  if (doi.startsWith('10.1016')) {
+    const m = doi.match(/10\.1016\/j\.([a-z]+)\./);
+    return m ? `https://www.sciencedirect.com/journal/${m[1]}` : 'https://www.sciencedirect.com/';
+  }
+  return `https://doi.org/${doi}`;
 }
 
-function faviconUrl(domain) {
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-}
+// ─── Favicon / fallback ───────────────────────────────────────────────────────
+const BOOK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
 
 function pubIconHtml(doi) {
-  const domain = getDomainForDoi(doi);
+  const domain = doi ? (DOI_DOMAINS[doi.split('/')[0]] || null) : null;
   if (domain) {
-    // Use img with onerror fallback to initials icon
-    const initials = domain.split('.')[0].slice(0, 2).toUpperCase();
-    return `<img
-      class="pub-favicon"
-      src="${faviconUrl(domain)}"
-      alt="${domain}"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-    /><div class="pub-favicon-fallback" style="display:none;">${initials}</div>`;
+    return `<img class="pub-favicon" src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="${domain}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="pub-favicon-fallback" style="display:none;">${BOOK_SVG}</div>`;
   }
-  // No domain known — show neutral icon
-  return `<div class="pub-favicon-fallback">📄</div>`;
+  return `<div class="pub-favicon-fallback">${BOOK_SVG}</div>`;
 }
 
-function renderWorks(works) {
+// ─── Author formatting ────────────────────────────────────────────────────────
+function formatAuthorsApa(contributors) {
+  if (!contributors || contributors.length === 0) return 'Conkey-Morrison, C.';
+  const names = contributors
+    .filter(c => c.role === 'author' || !c.role)
+    .map(c => {
+      const credit = c['credit-name']?.value || '';
+      if (!credit) return null;
+      // Try to reformat "Firstname Lastname" → "Lastname, F."
+      const parts = credit.trim().split(/\s+/);
+      if (parts.length >= 2) {
+        const last = parts[parts.length - 1];
+        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
+        return `${last}, ${initials}`;
+      }
+      return credit;
+    })
+    .filter(Boolean);
+
+  if (names.length === 0) return 'Conkey-Morrison, C.';
+  if (names.length <= 20) return names.join(', ');
+  // APA 7: list first 19, then ellipsis, then last author
+  return names.slice(0, 19).join(', ') + ', … ' + names[names.length - 1];
+}
+
+// ─── Citation builders ────────────────────────────────────────────────────────
+function makeApaPlain(w) {
+  const authors = w.authors || 'Conkey-Morrison, C.';
+  const doi = w.doi ? `https://doi.org/${w.doi}` : '';
+  const vol = w.volume ? `, ${w.volume}` : '';
+  const issue = w.issue ? `(${w.issue})` : '';
+  const pages = w.pages ? `, ${w.pages}` : '';
+  const journal = w.journal
+    ? `${w.journal}${vol}${issue}${pages}. `
+    : '';
+  return `${authors} (${w.year}). ${w.title}. ${journal}${doi}`;
+}
+
+function makeRis(w) {
+  const authorLines = (w.authors || 'Conkey-Morrison, Connor')
+    .split(', ')
+    .filter(Boolean)
+    .map(a => `AU  - ${a}`)
+    .join('\r\n');
+  return [
+    'TY  - JOUR',
+    authorLines,
+    `TI  - ${w.title}`,
+    w.journal ? `JO  - ${w.journal}` : '',
+    w.year    ? `PY  - ${w.year}`    : '',
+    w.volume  ? `VL  - ${w.volume}`  : '',
+    w.issue   ? `IS  - ${w.issue}`   : '',
+    w.pages   ? `SP  - ${w.pages}`   : '',
+    w.doi     ? `DO  - ${w.doi}`     : '',
+    w.doi     ? `UR  - https://doi.org/${w.doi}` : '',
+    'ER  - ',
+  ].filter(Boolean).join('\r\n');
+}
+
+// ─── Global store + button handlers ──────────────────────────────────────────
+const PUB_WORKS = [];
+
+function copyApa(idx) {
+  navigator.clipboard.writeText(makeApaPlain(PUB_WORKS[idx])).then(() => {
+    const btn = document.getElementById(`cite-btn-${idx}`);
+    if (btn) {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy APA 7'; btn.classList.remove('copied'); }, 2000);
+    }
+  });
+}
+
+function downloadRisById(idx) {
+  const w = PUB_WORKS[idx];
+  const blob = new Blob([makeRis(w)], { type: 'application/x-research-info-systems' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = w.title.slice(0, 40).replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.ris';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── Render ───────────────────────────────────────────────────────────────────
+function renderWorks(works, fromOrcid) {
+  PUB_WORKS.length = 0;
+  works.forEach(w => PUB_WORKS.push(w));
+
   const byYear = {};
-  for (const w of works) {
+  works.forEach(w => {
     const y = w.year || 'n.d.';
     if (!byYear[y]) byYear[y] = [];
     byYear[y].push(w);
-  }
+  });
 
   let html = '';
+  let idx = 0;
   for (const year of Object.keys(byYear).sort((a, b) => b - a)) {
     html += `<span class="pub-year-head">${year}</span>`;
     for (const w of byYear[year]) {
-      const href = w.doi ? `https://doi.org/${w.doi}` : '#';
-      const target = w.doi ? ' target="_blank"' : '';
+      const articleHref = w.doi ? `https://doi.org/${w.doi}` : '#';
+      const jUrl = journalUrl(w.doi) || articleHref;
+      const i = idx++;
       html += `
         <div class="pub-entry-block">
           ${pubIconHtml(w.doi)}
           <div class="pub-entry-text">
-            <a href="${href}"${target} class="pub-title-link">${w.title}</a>
-            ${w.journal ? `<span class="pub-journal-name">${w.journal}</span>` : ''}
+            <a href="${articleHref}" target="_blank" class="pub-title-link">${w.title}</a>
+            <div class="pub-meta-row">
+              ${w.journal ? `<a href="${jUrl}" target="_blank" class="pub-journal-link">${w.journal}</a>` : ''}
+              <button id="cite-btn-${i}" class="pub-cite-btn" onclick="copyApa(${i})">Copy APA 7</button>
+              <button class="pub-cite-btn" onclick="downloadRisById(${i})">Download RIS</button>
+            </div>
           </div>
         </div>`;
     }
   }
-  return html;
+
+  // Footer: synced note + Scholar link
+  const footer = document.createElement('div');
+  footer.style.cssText = 'margin-top:1.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;border-top:1px solid #e4e1da;padding-top:1rem;';
+
+  const syncNote = fromOrcid
+    ? `<span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;letter-spacing:0.02em;">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank" style="color:#5c5c5c;text-decoration:underline;">ORCID</a> · ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}</span>`
+    : `<span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;">Showing recent publications</span>`;
+
+  const scholarLink = `<a href="${SCHOLAR_URL}" target="_blank" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;color:#1a2e4a;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid #e4e1da;border-radius:999px;transition:all 0.18s;" onmouseover="this.style.background='#eef2f8';this.style.borderColor='#1a2e4a';" onmouseout="this.style.background='';this.style.borderColor='#e4e1da';">View all on Google Scholar →</a>`;
+
+  footer.innerHTML = syncNote + scholarLink;
+
+  // Return html string + append footer node after insertion
+  return { html, footer };
 }
 
+// ─── Fetch full work record for authors ───────────────────────────────────────
+async function fetchFullWork(putCode) {
+  try {
+    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/work/${putCode}`, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const contributors = data?.contributors?.contributor || [];
+    const volume = data?.['journal-title'] ? null : null; // not in summary
+    // Extract volume/issue/pages from citation if present
+    const extIds = data?.['external-ids']?.['external-id'] || [];
+    return {
+      authors: formatAuthorsApa(contributors),
+      volume: data?.['biblio']?.volume || null,
+      issue: data?.['biblio']?.issue || null,
+      pages: data?.['biblio']?.['start-page']
+        ? (data['biblio']['end-page']
+            ? `${data['biblio']['start-page']}–${data['biblio']['end-page']}`
+            : data['biblio']['start-page'])
+        : null,
+    };
+  } catch { return null; }
+}
+
+// ─── Main loader ──────────────────────────────────────────────────────────────
 async function loadOrcidPublications() {
   const container = document.getElementById('orcid-pubs');
   try {
-    const res = await fetch('https://pub.orcid.org/v3.0/0009-0000-1020-2333/works', {
+    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/works`, {
       headers: { 'Accept': 'application/json' }
     });
     if (!res.ok) throw new Error();
     const data = await res.json();
 
-    const works = [];
+    // Parse summary list
+    const summaries = [];
     for (const group of data.group || []) {
       const summary = group['work-summary']?.[0];
       if (!summary) continue;
-
       const title = summary.title?.title?.value || 'Untitled';
-      const year = summary['publication-date']?.year?.value || 'n.d.';
+      const year = parseInt(summary['publication-date']?.year?.value) || 0;
       const journal = summary['journal-title']?.value || '';
-
       let doi = null;
       for (const eid of summary['external-ids']?.['external-id'] || []) {
-        if (eid['external-id-type'] === 'doi') {
-          doi = eid['external-id-value'];
-          break;
-        }
+        if (eid['external-id-type'] === 'doi') { doi = eid['external-id-value']; break; }
       }
-
-      works.push({ title, year: parseInt(year) || 0, journal, doi });
+      const putCode = summary['put-code'];
+      summaries.push({ title, year, journal, doi, putCode });
     }
 
-    if (works.length === 0) {
-      container.innerHTML = '<p class="pub-loading">No publications found.</p>';
-      return;
-    }
+    if (summaries.length === 0) throw new Error('empty');
 
-    works.sort((a, b) => b.year - a.year);
+    // Sort and cap at MAX_PUBS
+    summaries.sort((a, b) => b.year - a.year);
+    const top = summaries.slice(0, MAX_PUBS);
 
-    let html = renderWorks(works);
-    const now = new Date();
-    const synced = now.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-    html += `<p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;margin-top:1.5rem;letter-spacing:0.02em;">Synced from <a href="https://orcid.org/0009-0000-1020-2333" target="_blank" style="color:#5c5c5c;text-decoration:underline;">ORCID</a> · ${synced}</p>`;
+    // Fetch full records in parallel for author lists
+    const fullRecords = await Promise.all(top.map(s => fetchFullWork(s.putCode)));
+
+    // Merge
+    const works = top.map((s, i) => ({
+      ...s,
+      authors: fullRecords[i]?.authors || null,
+      volume:  fullRecords[i]?.volume  || null,
+      issue:   fullRecords[i]?.issue   || null,
+      pages:   fullRecords[i]?.pages   || null,
+    }));
+
+    const { html, footer } = renderWorks(works, true);
     container.innerHTML = html;
+    container.appendChild(footer);
 
   } catch (e) {
-    // Fallback — static list with favicons still applied
+    // Fallback with known author strings
     const fallback = [
-      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6' },
-      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848' },
-      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606' },
-      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298' },
+      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Stavropoulos, V., Conkey-Morrison, C., Gomez, R., Griffiths, M. D.' },
+      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Stavropoulos, V.' },
+      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.' },
+      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.' },
     ];
-    container.innerHTML = renderWorks(fallback);
+    const { html, footer } = renderWorks(fallback, false);
+    container.innerHTML = html;
+    container.appendChild(footer);
   }
 }
 
