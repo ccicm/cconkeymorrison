@@ -15,6 +15,7 @@ page-layout: full
 ::: email-block
 [connorconkeymorrison\@gmail.com](mailto:connorconkeymorrison@gmail.com){.email-address}
 <button class="copy-btn" onclick="copyEmail(this)">Copy address</button>
+<a href="mailto:connorconkeymorrison@gmail.com" class="copy-btn">Open in email</a>
 :::
 
 For research, teaching, clinical, or professional inquiries, email is the best point of contact. I aim to respond within a few business days.
@@ -23,7 +24,35 @@ For research, teaching, clinical, or professional inquiries, email is the best p
 
 ```{=html}
 <style>
-.ccm-form-group { margin-bottom: 1.25rem; margin-top: 1rem; }
+.ccm-type-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.25rem 0 1.5rem 0;
+}
+.ccm-type-btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5c5c5c;
+  background: #f8f7f5;
+  border: 1px solid #e4e1da;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  letter-spacing: 0.01em;
+}
+.ccm-type-btn:hover {
+  border-color: #1a2e4a;
+  color: #1a2e4a;
+}
+.ccm-type-btn.active {
+  background: #1a2e4a;
+  color: #fff;
+  border-color: #1a2e4a;
+}
+.ccm-form-group { margin-bottom: 1.25rem; }
 .ccm-label {
   display: block;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -52,6 +81,13 @@ For research, teaching, clinical, or professional inquiries, email is the best p
   background: #fff;
 }
 .ccm-textarea { min-height: 130px; resize: vertical; line-height: 1.65; }
+.ccm-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
 .ccm-submit {
   display: inline-block;
   padding: 0.6rem 1.4rem;
@@ -73,6 +109,18 @@ For research, teaching, clinical, or professional inquiries, email is the best p
   box-shadow: 0 4px 16px rgba(26,46,74,0.28);
 }
 .ccm-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.ccm-clear {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #5c5c5c;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.18s;
+}
+.ccm-clear:hover { color: #1a2e4a; }
 .ccm-status {
   margin-top: 0.75rem;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -84,8 +132,16 @@ For research, teaching, clinical, or professional inquiries, email is the best p
 .ccm-status.error   { color: #c0392b; }
 </style>
 
+<div class="ccm-type-row">
+  <button class="ccm-type-btn" onclick="setType('Research / collaboration')">Research & collaboration</button>
+  <button class="ccm-type-btn" onclick="setType('Teaching / supervision')">Teaching & supervision</button>
+  <button class="ccm-type-btn" onclick="setType('Clinical / professional')">Clinical & professional</button>
+  <button class="ccm-type-btn" onclick="setType('General')">General</button>
+</div>
+
 <form id="contact-form" onsubmit="handleSubmit(event)">
   <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
+  <input type="hidden" id="ccm-subject" name="subject" value="Message from connorconkeymorrison.com">
   <div class="ccm-form-group">
     <label class="ccm-label" for="name">Name</label>
     <input type="text" id="name" name="name" class="ccm-input" placeholder="Your name" required>
@@ -98,11 +154,65 @@ For research, teaching, clinical, or professional inquiries, email is the best p
     <label class="ccm-label" for="message">Message</label>
     <textarea id="message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
   </div>
-  <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
+  <div class="ccm-footer-row">
+    <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
+    <button type="button" class="ccm-clear" onclick="clearForm()">Clear</button>
+  </div>
   <p id="ccm-status" class="ccm-status"></p>
 </form>
 
 <script>
+const templates = {
+  'Research / collaboration': {
+    subject: 'Research enquiry — connorconkeymorrison.com',
+    placeholder: "Hi Connor,\n\nI'm reaching out regarding a potential research collaboration or enquiry...",
+  },
+  'Teaching / supervision': {
+    subject: 'Teaching enquiry — connorconkeymorrison.com',
+    placeholder: "Hi Connor,\n\nI'm getting in touch about teaching, tutoring, or supervision...",
+  },
+  'Clinical / professional': {
+    subject: 'Professional enquiry — connorconkeymorrison.com',
+    placeholder: "Hi Connor,\n\nI'm reaching out regarding a clinical or professional matter...",
+  },
+  'General': {
+    subject: 'General enquiry — connorconkeymorrison.com',
+    placeholder: "Hi Connor,\n\n",
+  }
+};
+
+function setType(type) {
+  // Update active button
+  document.querySelectorAll('.ccm-type-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim().replace('&', '/').replace(' & ', ' / ') === type || btn.getAttribute('onclick') === "setType('" + type + "')");
+  });
+
+  const t = templates[type];
+  document.getElementById('ccm-subject').value = t.subject;
+  document.getElementById('message').placeholder = t.placeholder;
+
+  // Only pre-fill message if it's currently empty or was pre-filled
+  const msg = document.getElementById('message');
+  if (!msg.dataset.userEdited) {
+    msg.value = '';
+  }
+}
+
+function clearForm() {
+  document.getElementById('contact-form').reset();
+  document.getElementById('message').placeholder = 'Your message...';
+  document.getElementById('message').removeAttribute('data-user-edited');
+  document.getElementById('ccm-subject').value = 'Message from connorconkeymorrison.com';
+  document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('ccm-status').textContent = '';
+  document.getElementById('ccm-status').className = 'ccm-status';
+}
+
+// Track if user has manually edited the message
+document.getElementById('message').addEventListener('input', function() {
+  this.dataset.userEdited = 'true';
+});
+
 async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
@@ -114,7 +224,6 @@ async function handleSubmit(e) {
 
   const form = document.getElementById('contact-form');
   const data = new FormData(form);
-  data.append('subject', 'Message from connorconkeymorrison.com');
 
   try {
     const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
@@ -122,7 +231,7 @@ async function handleSubmit(e) {
     if (result.success) {
       status.textContent = 'Message sent — thanks!';
       status.className = 'ccm-status success';
-      form.reset();
+      clearForm();
     } else {
       throw new Error();
     }
@@ -133,6 +242,17 @@ async function handleSubmit(e) {
 
   btn.textContent = 'Send message';
   btn.disabled = false;
+}
+
+function copyEmail(btn) {
+  navigator.clipboard.writeText('connorconkeymorrison@gmail.com').then(function() {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy address';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
 }
 </script>
 ```
@@ -148,25 +268,9 @@ A downloadable CV will be available here shortly.
 ------------------------------------------------------------------------
 
 ::: profile-links-row
-# Find me online
 [ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
 [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
 [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
 [LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
 [GitHub](https://github.com/ccicm){.profile-link}
 :::
-
-```{=html}
-<script>
-function copyEmail(btn) {
-  navigator.clipboard.writeText('connorconkeymorrison@gmail.com').then(function() {
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(function() {
-      btn.textContent = 'Copy address';
-      btn.classList.remove('copied');
-    }, 2000);
-  });
-}
-</script>
-```
