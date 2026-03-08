@@ -8,15 +8,16 @@ page-layout: full
 :::
 
 ::: profile-links-row
-[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link} 
-[GoogleScholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link} [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
+[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
+[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
 :::
 
 ------------------------------------------------------------------------
 
 ## Current research focus
 
-My present research centres on school attendance problems and emotionally based school avoidance (EBSA) --- the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
+My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
 
 ::: phd-status-strip
 ::: phd-status-item
@@ -46,19 +47,25 @@ My present research centres on school attendance problems and emotionally based 
 
 ::: paper-grid
 ::: paper-card
-[Paper 1]{.paper-label} \### Systematic review
+[Paper 1]{.paper-label}
 
-A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918) systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
+### Systematic review
+
+A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918){.prospero-badge} systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
 :::
 
 ::: paper-card
-[Paper 2]{.paper-label} \### Longitudinal modelling
+[Paper 2]{.paper-label}
+
+### Longitudinal modelling
 
 Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
 :::
 
 ::: paper-card
-[Paper 3]{.paper-label} \### Population-level attendance
+[Paper 3]{.paper-label}
+
+### Population-level attendance
 
 Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
 :::
