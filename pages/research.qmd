@@ -13,6 +13,14 @@ page-layout: full
 [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
 :::
 
+::: jump-nav
+[Current focus](#current-research-focus){.jump-link}
+[PhD papers](#current-research-focus){.jump-link}
+[Supervisory team](#supervisory-team){.jump-link}
+[Publications](#publications){.jump-link}
+[Peer review](#peer-review){.jump-link}
+:::
+
 ------------------------------------------------------------------------
 
 ## Current research focus
