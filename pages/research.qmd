@@ -15,7 +15,7 @@ engine: markdown
 [Peer review](#peer-review){.jump-link}
 :::
 
-------------------------------------------------------------------------
+
 
 ## Current research focus
 
@@ -296,7 +296,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
   background: var(--tag-bg);
   border-color: var(--navy);
 }
-
+------------------------------------------------------------------------
 /* Peer review section */
 .peer-review-section {
   margin-top: 2rem;
