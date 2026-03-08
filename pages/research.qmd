@@ -82,12 +82,6 @@ Exploring system-level patterns in school attendance and non-attendance using na
 
 ## Publications
 
-::: profile-links-row
-[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
-[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
-[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
-:::
-
 [2025]{.pub-year}
 
 ::: pub-entry
@@ -115,3 +109,11 @@ Exploring system-level patterns in school attendance and non-attendance using na
 ## Peer review
 
 I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Behaviour & Information Technology* and *Scientific Reports*.
+
+::: profile-links-row
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
+[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
+[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+[LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
+[GitHub](https://github.com/ccicm){.profile-link}
+:::
