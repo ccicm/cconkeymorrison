@@ -18,15 +18,15 @@ A mix of research tools, open-source work, and things built along the way. Some 
 
 ### Academic Website Template
 
-An open-source Quarto template for building a professional academic website — free, no coding experience required, and deployable to GitHub Pages in under an hour. This site was built with it.
+An open-source Quarto template for building a professional academic website — free, no coding experience required, and deployable to GitHub Pages in under an hour. This site was built with it!
 
 ::: project-tags
 [Quarto]{.project-tag} [GitHub Pages]{.project-tag} [CSS]{.project-tag} [Open source]{.project-tag}
 :::
 
 ::: project-links
-[View template](https://connorconkeymorrison.com/pages/template){.project-link}
-[GitHub](https://github.com/ccicm/academic-website-template){.project-link-secondary}
+[View setup walkthrough](https://connorconkeymorrison.com/pages/template){.project-link}
+[Download GitHub repo](https://github.com/ccicm/academic-website-template){.project-link-secondary}
 :::
 :::
 
