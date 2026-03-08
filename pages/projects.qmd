@@ -51,7 +51,7 @@ A Google Colab notebook pipeline for developing, pulling, and testing search str
 
 ### EBSA Intervention Evidence Map
 
-An interactive evidence map for the systematic review of emotionally based school avoidance interventions (Paper 1). Planned as a living document updated alongside the review.
+An interactive evidence map for the systematic review of emotionally based school avoidance interventions [Paper 1](research.qmd). Planned as a living document updated alongside the review.
 
 ::: project-tags
 [R]{.project-tag} [Systematic review]{.project-tag} [EBSA]{.project-tag} [Visualisation]{.project-tag}
