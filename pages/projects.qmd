@@ -25,7 +25,7 @@ An open-source Quarto template for building a professional academic website — 
 :::
 
 ::: project-links
-[View setup walkthrough](https://connorconkeymorrison.com/pages/template){.project-link}
+[Setup & walkthrough](https://connorconkeymorrison.com/pages/template){.project-link}
 [Download GitHub repo](https://github.com/ccicm/academic-website-template){.project-link-secondary}
 :::
 :::
