@@ -10,15 +10,16 @@ editor:
 # Education & Experience
 :::
 
-::: jump-nav
-[Education](#education){.jump-link}
-[Academic appointments](#academic-appointments){.jump-link}
-[Clinical roles](#clinical-and-school-based-roles){.jump-link}
-[CV](#curriculum-vitae){.jump-link}
-[Memberships & registrations](#professional-memberships){.jump-link}
-[Skills & tools](#skills-and-tools){.jump-link}
-[Prior experience](#prior-experience){.jump-link}
-:::
+------------------------------------------------------------------------
+
+## Current appointments
+
+| Role                                       | Organisation                                             | Days              |
+|------------------------|------------------------|------------------------|
+| PhD Candidate                              | RMIT University                                          | 24/7, 365         |
+| Industry Partner (PhD) & School Counsellor | CatholicCare Victoria / Sacred Heart Primary School, Kew | Tuesdays/flexible |
+| Sessional Academic                         | RMIT University                                          | Fridays           |
+| Associate Lecturer                         | Cairnmillar Institute                                    | Mondays           |
 
 ------------------------------------------------------------------------
 
@@ -27,29 +28,34 @@ editor:
 ::: role-section
 ::: role-block
 ::: role-header
-[Doctor of Philosophy (Psychology)]{.role-title} [2025 -- ongoing]{.role-date}
+[Doctor of Philosophy (Psychology)]{.role-title} [2025 --
+present]{.role-date}
 :::
 
-[RMIT University --- School of Health and Biomedical Sciences]{.role-org}
-[Supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, and Dr Taylor Brown. Research focus on school attendance, intervention evidence, longitudinal modelling, and population-level attendance data.]{.role-desc}
-:::
-
-::: role-block
-::: role-header
-[Master of Professional Psychology]{.role-title} [2024 -- 2025]{.role-date}
-:::
-
-[Victoria University]{.role-org}
-[Provisional registration with the Psychology Board of Australia.]{.role-desc}
+[RMIT University --- School of Health and Biomedical
+Sciences]{.role-org} [Supervised by Dr Daniel Zarate, Dr Vasileios
+Stavropoulos, and Dr Taylor Brown. Research focus on emotionally based
+school avoidance, intervention evidence, longitudinal modelling, and
+population-level attendance data.]{.role-desc}
 :::
 
 ::: role-block
 ::: role-header
-[Bachelor of Psychology (Honours)]{.role-title} [2020 -- 2023]{.role-date}
+[Master of Professional Psychology]{.role-title} [2024 --
+2025]{.role-date}
 :::
 
-[Victoria University]{.role-org}
-[First Class Honours.]{.role-desc}
+[Victoria University]{.role-org} [Provisional registration with the
+Psychology Board of Australia.]{.role-desc}
+:::
+
+::: role-block
+::: role-header
+[Bachelor of Psychology (Honours)]{.role-title} [2020 --
+2023]{.role-date}
+:::
+
+[Victoria University]{.role-org} [First Class Honours.]{.role-desc}
 :::
 :::
 
@@ -63,8 +69,12 @@ editor:
 [Sessional Academic]{.role-title} [2024 -- present]{.role-date}
 :::
 
-[RMIT University]{.role-org}
-[Tutorial delivery, marking, and student support across undergraduate and postgraduate psychology units. Units have included Counselling and Virtual Care, Psychological Assessment and Individual Differences, Philosophy and Methodology of Psychology, Organisational and Motivational Psychology, and Counselling and Professional Practices.]{.role-desc}
+[RMIT University]{.role-org} [Tutorial delivery, marking, and student
+support across undergraduate and postgraduate psychology units. Units
+have included Counselling and Virtual Care, Psychological Assessment and
+Individual Differences, Philosophy and Methodology of Psychology,
+Organisational and Motivational Psychology, and Counselling and
+Professional Practices.]{.role-desc}
 :::
 
 ::: role-block
@@ -72,17 +82,21 @@ editor:
 [Associate Lecturer]{.role-title} [Feb -- Dec 2025]{.role-date}
 :::
 
-[Cairnmillar Institute]{.role-org}
-[Honours-level tutorial support and marking for Research Methods and Ethical Practice units. Assistance with statistical analysis in Jamovi, conceptual clarification, and assessment support.]{.role-desc}
+[Cairnmillar Institute]{.role-org} [Honours-level tutorial support and
+marking for Research Methods and Ethical Practice units. Assistance with
+statistical analysis in Jamovi, conceptual clarification, and assessment
+support.]{.role-desc}
 :::
 
 ::: role-block
 ::: role-header
-[Research Assistant --- Cyberpsychology]{.role-title} [Oct 2023 -- Jan 2024]{.role-date}
+[Research Assistant --- Cyberpsychology]{.role-title} [Oct 2023 -- Jan
+2024]{.role-date}
 :::
 
-[RMIT University]{.role-org}
-[Research support within the cyberpsychology research group, contributing to data management and research activities.]{.role-desc}
+[RMIT University]{.role-org} [Research support within the
+cyberpsychology research group, contributing to data management and
+research activities.]{.role-desc}
 :::
 :::
 
@@ -93,22 +107,27 @@ editor:
 ::: role-section
 ::: role-block
 ::: role-header
-[Industry PhD Partner & School Counsellor]{.role-title} [2024 -- present]{.role-date}
+[School Counsellor]{.role-title} [2026 -- present]{.role-date}
 :::
 
 [CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
-[CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools — currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
+[Current school counselling placement within the CatholicCare Victoria
+industry partnership. Work spans student wellbeing, emotional
+regulation, attendance concerns, and family liaison, alongside
+supervised practice toward general registration.]{.role-desc}
 :::
+
+::: role-block
+::: role-header
+[School Counsellor]{.role-title} [2025]{.role-date}
 :::
 
-------------------------------------------------------------------------
-
-## Curriculum Vitae
-
-::: cv-placeholder
-**Curriculum Vitae**
-
-A downloadable CV will be available here shortly.
+[CatholicCare Victoria / St. Mark's Catholic Parish Primary
+School]{.role-org} [School counselling placement as part of the
+CatholicCare Victoria industry partnership for the PhD program. Student
+wellbeing, early intervention, and family support within a Catholic
+primary school setting.]{.role-desc}
+:::
 :::
 
 ------------------------------------------------------------------------
@@ -119,13 +138,18 @@ A downloadable CV will be available here shortly.
 
 ::: role-section
 ::: role-block
-[Psychology Board of Australia]{.role-title}
-[Provisional registration]{.role-desc}
+[Psychology Board of Australia]{.role-title} [Provisional
+psychologist]{.role-desc}
 :::
 
 ::: role-block
-[Australian Psychological Society (APS)]{.role-title}
-[Student member]{.role-desc}
+[Australian Psychological Society (APS)]{.role-title} [Graduate
+member]{.role-desc}
+:::
+
+::: role-block
+[APS College of Educational and Developmental Psychologists
+(CEDP)]{.role-title} [Student affiliate]{.role-desc}
 :::
 :::
 :::
@@ -135,18 +159,25 @@ A downloadable CV will be available here shortly.
 
 ::: role-section
 ::: role-block
-[Research software]{.role-title}
-[R (RStudio), Jamovi, SPSS, Excel, Quarto]{.role-desc}
+[Research software]{.role-title} [R (RStudio), Jamovi, SPSS, Excel,
+Quarto]{.role-desc}
 :::
 
 ::: role-block
-[Methods]{.role-title}
-[Systematic review, network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage]{.role-desc}
+[Methods]{.role-title} [Systematic review, network analysis, latent
+growth modelling, growth mixture modelling, longitudinal cohort
+analysis, administrative data linkage]{.role-desc}
 :::
 
 ::: role-block
-[Other]{.role-title}
-[Academic peer review, curriculum and assessment design, research supervision support]{.role-desc}
+[Clinical]{.role-title} [Psychoeducation, CBT-informed approaches,
+emotional regulation, school refusal intervention, student wellbeing,
+family consultation]{.role-desc}
+:::
+
+::: role-block
+[Other]{.role-title} [Academic peer review, curriculum and assessment
+design, research supervision support]{.role-desc}
 :::
 :::
 :::
@@ -159,19 +190,39 @@ A downloadable CV will be available here shortly.
 ::: role-section
 ::: role-block
 ::: role-header
-[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 -- 2025]{.role-date}
+[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 --
+2025]{.role-date}
 :::
 
-[State Library Victoria]{.role-org}
-[Worked within the People & Partnerships team on HSW policy, incident investigation, psychosocial risk, and the implementation of a new health and safety management system aligned to ISO 45001.]{.role-desc}
+[State Library Victoria]{.role-org} [Worked within the People &
+Partnerships team on HSW policy, incident investigation, psychosocial
+risk, and the implementation of a new health and safety management
+system aligned to ISO 45001.]{.role-desc}
 :::
 
 ::: role-block
 ::: role-header
-[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 -- 2021]{.role-date}
+[Student Library Assistant]{.role-title} [2021 -- 2023]{.role-date}
 :::
 
-[Ai-Media]{.role-org}
-[Provided live verbatim captioning for broadcast, government, and education clients globally, including major Australian TV networks, federal royal commissions, and Ivy League institutions. Progressed to supervisory and operations coordination roles, managing teams of 100+ casual and freelance staff during the 2020 transition to online learning.]{.role-desc}
+[Victoria University]{.role-org} [Assisted students across VU campus
+libraries with research queries, resource location, and online support.
+Developed and delivered an internal educational seminar on captioning,
+transcription, and accessibility in Teams and Zoom as part of the
+Library's monthly DigiBytes series.]{.role-desc}
+:::
+
+::: role-block
+::: role-header
+[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 --
+2021]{.role-date}
+:::
+
+[Ai-Media]{.role-org} [Provided live verbatim captioning for broadcast,
+government, and education clients globally, including major Australian
+TV networks, federal royal commissions, and Ivy League institutions.
+Progressed to supervisory and operations coordination roles, managing
+teams of 100+ casual and freelance staff during the 2020 transition to
+online learning.]{.role-desc}
 :::
 :::
