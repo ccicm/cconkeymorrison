@@ -42,7 +42,7 @@ A Google Colab notebook pipeline for developing, pulling, and testing search str
 :::
 
 ::: project-links
-[View on Colab]{.project-link}
+[Soon on Colab]{.project-link}
 :::
 :::
 
