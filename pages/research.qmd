@@ -1,6 +1,7 @@
 ---
 title: ""
 page-layout: full
+engine: knitr
 ---
 
 ::: page-header
@@ -82,18 +83,17 @@ Exploring system-level patterns in school attendance and non-attendance using na
 
 ```{=html}
 <style>
+/* Publications layout */
 .pub-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 160px;
+  grid-template-columns: 1fr 160px;
   gap: 2.5rem;
   align-items: start;
-  max-width: 1020px;
 }
 .pub-main { min-width: 0; }
 .pub-sidebar {
   position: sticky;
   top: 80px;
-  width: 160px;
 }
 .sidebar-section {
   background: #ffffff;
@@ -129,15 +129,85 @@ Exploring system-level patterns in school attendance and non-attendance using na
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
   display: block;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .sidebar-link:hover {
   background: #eef2f8;
   border-color: #1a2e4a;
   transform: translateY(-1px);
 }
+
+/* Publications content — reusing existing site classes inline */
+.pub-year-head {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c8922a;
+  margin: 2rem 0 0.75rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e4e1da;
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.pub-entry-block {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e4e1da;
+}
+.pub-entry-block:last-of-type { border-bottom: none; }
+.pub-title-link {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: #1a2e4a !important;
+  text-decoration: none !important;
+  line-height: 1.55;
+  display: inline;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-image: linear-gradient(#c8922a, #c8922a);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.25s ease, color 0.15s;
+}
+.pub-title-link:hover {
+  color: #c8922a !important;
+  background-size: 100% 1px;
+}
+.pub-journal-name {
+  display: block;
+  font-size: 0.82rem;
+  color: #5c5c5c;
+  font-style: italic;
+  margin-top: 0.25rem;
+  font-weight: 400;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.pub-loading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #5c5c5c;
+  padding: 1rem 0;
+}
+
+/* Peer review section */
+.peer-review-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e4e1da;
+}
+.peer-review-section h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.peer-review-section p {
+  font-size: 1rem;
+  color: #2a2a2a;
+  line-height: 1.75;
+}
+
 @media (max-width: 860px) {
   .pub-layout { grid-template-columns: 1fr; }
   .pub-sidebar { display: none; }
@@ -145,52 +215,128 @@ Exploring system-level patterns in school attendance and non-attendance using na
 </style>
 
 <div class="pub-layout">
-<div class="pub-main">
-```
 
-## Publications
+  <!-- Main: Publications + Peer review -->
+  <div class="pub-main">
 
-[2025]{.pub-year}
+    <h2 id="publications" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.55rem;font-weight:700;color:#1a2e4a;letter-spacing:-0.02em;margin-bottom:0.75rem;">Publications</h2>
 
-::: pub-entry
-[Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults](https://doi.org/10.1007/s10862-025-10252-6){.pub-title}\
-[Journal of Psychopathology and Behavioral Assessment]{.pub-journal}
-:::
+    <div id="orcid-pubs">
+      <p class="pub-loading">Loading publications from ORCID…</p>
+    </div>
 
-::: pub-entry
-[Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women](https://doi.org/10.1016/j.chbr.2025.100848){.pub-title}\
-[Computers in Human Behavior Reports]{.pub-journal}
-:::
+    <div class="peer-review-section">
+      <h2 id="peer-review">Peer review</h2>
+      <p>I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for <em>Behaviour &amp; Information Technology</em> and <em>Scientific Reports</em>.</p>
+    </div>
 
-::: pub-entry
-[Flowing in the net of disordered gaming: A network analysis approach](https://doi.org/10.1016/j.abrep.2025.100606){.pub-title}\
-[Addictive Behaviors Reports]{.pub-journal}
-:::
+  </div>
 
-[2024]{.pub-year}
-
-::: pub-entry
-[Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://doi.org/10.1016/j.actpsy.2024.104298){.pub-title}\
-[Acta Psychologica]{.pub-journal}
-:::
-
-## Peer review
-
-I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for *Behaviour & Information Technology* and *Scientific Reports*.
-
-```{=html}
-</div>
-<div class="pub-sidebar">
-  <div class="sidebar-section">
-    <span class="sidebar-label">Find me online</span>
-    <div class="sidebar-links">
-      <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
-      <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
-      <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
-      <a href="https://www.linkedin.com/in/connorconkeymorrison" class="sidebar-link" target="_blank">LinkedIn</a>
-      <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
+  <!-- Sidebar -->
+  <div class="pub-sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Find me online</span>
+      <div class="sidebar-links">
+        <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
+        <a href="https://www.linkedin.com/in/connorconkeymorrison" class="sidebar-link" target="_blank">LinkedIn</a>
+        <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
+      </div>
     </div>
   </div>
+
 </div>
-</div>
+
+<script>
+async function loadOrcidPublications() {
+  const container = document.getElementById('orcid-pubs');
+  try {
+    const res = await fetch('https://pub.orcid.org/v3.0/0009-0000-1020-2333/works', {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+
+    // Collect works with details
+    const works = [];
+    for (const group of data.group || []) {
+      const summary = group['work-summary']?.[0];
+      if (!summary) continue;
+
+      const title = summary.title?.title?.value || 'Untitled';
+      const year = summary['publication-date']?.year?.value || 'n.d.';
+      const journal = summary['journal-title']?.value || '';
+      const putCode = summary['put-code'];
+
+      // Get DOI from external-ids
+      let doi = null;
+      for (const eid of summary['external-ids']?.['external-id'] || []) {
+        if (eid['external-id-type'] === 'doi') {
+          doi = eid['external-id-value'];
+          break;
+        }
+      }
+
+      works.push({ title, year: parseInt(year) || 0, journal, doi });
+    }
+
+    if (works.length === 0) {
+      container.innerHTML = '<p class="pub-loading">No publications found.</p>';
+      return;
+    }
+
+    // Sort by year descending
+    works.sort((a, b) => b.year - a.year);
+
+    // Group by year
+    const byYear = {};
+    for (const w of works) {
+      const y = w.year || 'n.d.';
+      if (!byYear[y]) byYear[y] = [];
+      byYear[y].push(w);
+    }
+
+    // Render
+    let html = '';
+    for (const year of Object.keys(byYear).sort((a, b) => b - a)) {
+      html += `<span class="pub-year-head">${year}</span>`;
+      for (const w of byYear[year]) {
+        const href = w.doi ? `https://doi.org/${w.doi}` : '#';
+        const target = w.doi ? ' target="_blank"' : '';
+        html += `
+          <div class="pub-entry-block">
+            <a href="${href}"${target} class="pub-title-link">${w.title}</a>
+            ${w.journal ? `<span class="pub-journal-name">${w.journal}</span>` : ''}
+          </div>`;
+      }
+    }
+    container.innerHTML = html;
+
+  } catch (e) {
+    // Fallback to static content if API fails
+    container.innerHTML = `
+      <span class="pub-year-head">2025</span>
+      <div class="pub-entry-block">
+        <a href="https://doi.org/10.1007/s10862-025-10252-6" target="_blank" class="pub-title-link">Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults</a>
+        <span class="pub-journal-name">Journal of Psychopathology and Behavioral Assessment</span>
+      </div>
+      <div class="pub-entry-block">
+        <a href="https://doi.org/10.1016/j.chbr.2025.100848" target="_blank" class="pub-title-link">Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women</a>
+        <span class="pub-journal-name">Computers in Human Behavior Reports</span>
+      </div>
+      <div class="pub-entry-block">
+        <a href="https://doi.org/10.1016/j.abrep.2025.100606" target="_blank" class="pub-title-link">Flowing in the net of disordered gaming: A network analysis approach</a>
+        <span class="pub-journal-name">Addictive Behaviors Reports</span>
+      </div>
+      <span class="pub-year-head">2024</span>
+      <div class="pub-entry-block">
+        <a href="https://doi.org/10.1016/j.actpsy.2024.104298" target="_blank" class="pub-title-link">Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach</a>
+        <span class="pub-journal-name">Acta Psychologica</span>
+      </div>`;
+  }
+}
+
+loadOrcidPublications();
+</script>
 ```
