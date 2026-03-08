@@ -1,4 +1,7 @@
-website:
+project:
+  type: website
+  output-dir: _site
+  website:
   title: "Connor Conkey-Morrison"
   navbar:
     left:
