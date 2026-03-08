@@ -33,9 +33,9 @@ An open-source Quarto template for building a professional academic website — 
 ::: project-card
 [In progress]{.project-status .status-wip}
 
-### LSAC Data Pipeline
+### Systematic Review Data Pipeline
 
-A Google Colab notebook pipeline for cleaning, restructuring, and preparing Longitudinal Study of Australian Children (LSAC) data for longitudinal modelling in R. Built to support Paper 2 of my PhD.
+A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1] of my PhD.
 
 ::: project-tags
 [Python]{.project-tag} [Google Colab]{.project-tag} [LSAC]{.project-tag} [Longitudinal data]{.project-tag}
