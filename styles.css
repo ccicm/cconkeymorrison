@@ -188,13 +188,18 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 .hero-text { flex: 1; max-width: 600px; }
 .hero-photo { flex-shrink: 0; }
 .hero-photo figcaption { display: none; }
+.hero-photo figure,
+.hero-photo p,
+.hero-photo div { margin: 0; padding: 0; line-height: 0; }
 
 /* Hero name with animated underline accent */
 .hero-text h1 {
   position: relative;
   display: inline-block;
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+.hero-text > *:first-child { margin-top: 0 !important; }
 
 .hero-text h1::after {
   content: '';
