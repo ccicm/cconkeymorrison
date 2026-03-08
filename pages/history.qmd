@@ -14,6 +14,7 @@ editor:
 [Education](#education){.jump-link}
 [Academic appointments](#academic-appointments){.jump-link}
 [Clinical roles](#clinical-and-school-based-roles){.jump-link}
+[CV](#curriculum-vitae){.jump-link}
 [Memberships & registrations](#professional-memberships){.jump-link}
 [Skills & tools](#skills-and-tools){.jump-link}
 [Prior experience](#prior-experience){.jump-link}
@@ -86,6 +87,7 @@ editor:
 :::
 
 ------------------------------------------------------------------------
+## Curriculum Vitae
 
 ::: cv-placeholder
 **Curriculum Vitae**
