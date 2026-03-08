@@ -54,29 +54,3 @@ Active PhD period
 Systematic review registered
 :::
 :::
-
-::: cards-grid
-::: card
-### Research & Publications
-
-Published work spanning social media, coping, and gaming. Current projects include a systematic review of EBSA interventions, longitudinal trajectory modelling, and population-level attendance analysis.
-
-[Read more](pages/research.qmd){.card-link}
-:::
-
-::: card
-### Education & Experience
-
-Sessional teaching at RMIT and Cairnmillar Institute. School counselling at Sacred Heart Primary School, Kew. Full academic, clinical, and professional history.
-
-[Where have I been?](pages/history.qmd){.card-link}
-:::
-
-::: card
-### Projects
-
-Side projects and tools: this website's open-source template, a Colab data pipeline, and other work in progress.
-
-[See projects](pages/projects.qmd){.card-link}
-:::
-:::
