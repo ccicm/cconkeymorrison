@@ -7,20 +7,6 @@ page-layout: full
 # Research & Publications
 :::
 
-::: profile-links-row
-[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
-[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
-[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
-:::
-
-::: jump-nav
-[Current focus](#current-research-focus){.jump-link}
-[PhD papers](#current-research-focus){.jump-link}
-[Supervisory team](#supervisory-team){.jump-link}
-[Publications](#publications){.jump-link}
-[Peer review](#peer-review){.jump-link}
-:::
-
 ------------------------------------------------------------------------
 
 ## Current research focus
@@ -79,8 +65,6 @@ Exploring system-level patterns in school attendance and non-attendance using na
 :::
 :::
 
-------------------------------------------------------------------------
-
 ## Supervisory team
 
 ::: supervisor-row
@@ -90,6 +74,12 @@ Exploring system-level patterns in school attendance and non-attendance using na
 ------------------------------------------------------------------------
 
 ## Publications
+
+::: profile-links-row
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
+[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
+[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+:::
 
 [2025]{.pub-year}
 
@@ -114,8 +104,6 @@ Exploring system-level patterns in school attendance and non-attendance using na
 [Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach](https://doi.org/10.1016/j.actpsy.2024.104298){.pub-title}\
 [Acta Psychologica]{.pub-journal}
 :::
-
-------------------------------------------------------------------------
 
 ## Peer review
 

@@ -10,26 +10,6 @@ editor:
 # Education & Experience
 :::
 
-::: jump-nav
-[Current appointments](#current-appointments){.jump-link}
-[Education](#education){.jump-link}
-[Academic appointments](#academic-appointments){.jump-link}
-[Clinical roles](#clinical-and-school-based-roles){.jump-link}
-[Skills & tools](#skills-and-tools){.jump-link}
-[Prior experience](#prior-experience){.jump-link}
-:::
-
-------------------------------------------------------------------------
-
-## Current appointments
-
-| Role                                       | Organisation                                             | Days              |
-|--------------------------------------------|----------------------------------------------------------|-------------------|
-| PhD Candidate                              | RMIT University                                          | 24/7, 365         |
-| School Counsellor                          | CatholicCare Victoria                                    | Tuesdays/flexible |
-| Sessional Academic                         | RMIT University                                          | Fridays           |
-| Associate Lecturer                         | Cairnmillar Institute                                    | Mondays           |
-
 ------------------------------------------------------------------------
 
 ## Education
