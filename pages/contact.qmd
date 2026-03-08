@@ -49,6 +49,16 @@ page-layout: full
   color: #fff;
   border-color: var(--navy);
 }
+.ccm-type-btn.bug-btn {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.ccm-type-btn.bug-btn:hover,
+.ccm-type-btn.bug-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
 .ccm-form-wrap {
   display: none;
   margin-top: 1.75rem;
@@ -56,8 +66,8 @@ page-layout: full
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  animation: ccmFadeUp 0.25s ease both;
+  box-shadow: var(--shadow-sm);
+  animation: ccmFadeUp 0.22s ease both;
 }
 .ccm-form-wrap.visible { display: block; }
 @keyframes ccmFadeUp {
@@ -74,6 +84,7 @@ page-layout: full
   margin-bottom: 1.25rem;
   display: block;
 }
+.ccm-selected-type.bug-label { color: var(--accent); }
 .ccm-form-group { margin-bottom: 1.25rem; }
 .ccm-label {
   display: block;
@@ -102,16 +113,7 @@ page-layout: full
   box-shadow: 0 0 0 3px rgba(26,58,42,0.08);
   background: #fff;
 }
-.ccm-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c5c5c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.9rem center;
-  padding-right: 2.25rem;
-  cursor: pointer;
-}
-.ccm-textarea { min-height: 130px; resize: vertical; line-height: 1.65; }
+.ccm-textarea { min-height: 120px; resize: vertical; line-height: 1.65; }
 .ccm-footer-row {
   display: flex;
   align-items: center;
@@ -166,9 +168,8 @@ page-layout: full
 <span class="ccm-type-label">What are you getting in touch about?</span>
 <div class="ccm-type-row">
   <button type="button" class="ccm-type-btn" onclick="setType('research')">Research & collaboration</button>
-  <button type="button" class="ccm-type-btn" onclick="setType('teaching')">Teaching & supervision</button>
-  <button type="button" class="ccm-type-btn" onclick="setType('clinical')">Clinical & professional</button>
   <button type="button" class="ccm-type-btn" onclick="setType('general')">General</button>
+  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" onclick="setType('bug')">Report a website bug</button>
 </div>
 
 <div class="ccm-form-wrap" id="ccm-form-wrap">
@@ -177,50 +178,18 @@ page-layout: full
     <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
     <input type="hidden" id="ccm-subject" name="subject" value="">
 
-    <!-- Shared: Name -->
     <div class="ccm-form-group">
       <label class="ccm-label" for="f-name">Name</label>
       <input type="text" id="f-name" name="name" class="ccm-input" placeholder="Your name" required>
     </div>
 
-    <!-- Shared: Email -->
     <div class="ccm-form-group">
       <label class="ccm-label" for="f-email">Email</label>
       <input type="email" id="f-email" name="email" class="ccm-input" placeholder="your@email.com" required>
     </div>
 
-    <!-- Research: Affiliation -->
-    <div class="ccm-form-group ccm-field-research" style="display:none">
-      <label class="ccm-label" for="f-affiliation">Institution or affiliation</label>
-      <input type="text" id="f-affiliation" name="affiliation" class="ccm-input" placeholder="e.g. University of Melbourne">
-    </div>
-
-    <!-- Teaching: Role -->
-    <div class="ccm-form-group ccm-field-teaching" style="display:none">
-      <label class="ccm-label" for="f-role">Are you a student or staff member?</label>
-      <select id="f-role" name="role" class="ccm-input ccm-select">
-        <option value="" disabled selected>Select one</option>
-        <option>Student</option>
-        <option>Staff</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <!-- Teaching: Unit/context -->
-    <div class="ccm-form-group ccm-field-teaching" style="display:none">
-      <label class="ccm-label" for="f-unit">Unit or context</label>
-      <input type="text" id="f-unit" name="unit" class="ccm-input" placeholder="e.g. PSYC1234 or honours supervision">
-    </div>
-
-    <!-- Clinical: Role/context -->
-    <div class="ccm-form-group ccm-field-clinical" style="display:none">
-      <label class="ccm-label" for="f-context">Your role or context</label>
-      <input type="text" id="f-context" name="context" class="ccm-input" placeholder="e.g. School counsellor, parent, GP">
-    </div>
-
-    <!-- Shared: Message -->
     <div class="ccm-form-group">
-      <label class="ccm-label" for="f-message">Message</label>
+      <label class="ccm-label" for="f-message" id="f-message-label">Message</label>
       <textarea id="f-message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
     </div>
 
@@ -238,53 +207,32 @@ const config = {
     label: 'Research & collaboration',
     subject: 'Research enquiry — connorconkeymorrison.com',
     placeholder: 'Briefly describe your research interest or proposed collaboration...',
-    fields: ['research']
-  },
-  teaching: {
-    label: 'Teaching & supervision',
-    subject: 'Teaching enquiry — connorconkeymorrison.com',
-    placeholder: 'What can I help you with?',
-    fields: ['teaching']
-  },
-  clinical: {
-    label: 'Clinical & professional',
-    subject: 'Clinical enquiry — connorconkeymorrison.com',
-    placeholder: 'What can I help you with?',
-    fields: ['clinical']
   },
   general: {
     label: 'General',
     subject: 'General enquiry — connorconkeymorrison.com',
     placeholder: 'Your message...',
-    fields: []
-  }
+  },
+  bug: {
+    label: 'Report a website bug',
+    subject: 'Bug report — connorconkeymorrison.com',
+    placeholder: 'Describe the bug — what page, what happened, and what you expected...',
+  },
 };
-
-const allFieldGroups = ['research', 'teaching', 'clinical'];
 
 function setType(type) {
   const c = config[type];
 
-  // Update active button
   document.querySelectorAll('.ccm-type-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('onclick') === "setType('" + type + "')");
+    const isBugBtn = btn.id === 'bug-btn';
+    const isActive = btn.getAttribute('onclick') === `setType('${type}')`;
+    btn.classList.toggle('active', isActive);
   });
 
-  // Update subject and placeholder
   document.getElementById('ccm-subject').value = c.subject;
   document.getElementById('f-message').placeholder = c.placeholder;
-
-  // Show/hide conditional fields
-  allFieldGroups.forEach(group => {
-    document.querySelectorAll('.ccm-field-' + group).forEach(el => {
-      el.style.display = c.fields.includes(group) ? 'block' : 'none';
-    });
-  });
-
-  // Update label
   document.getElementById('ccm-selected-label').textContent = c.label;
 
-  // Show form with animation
   const wrap = document.getElementById('ccm-form-wrap');
   wrap.classList.remove('visible');
   void wrap.offsetWidth;
@@ -293,14 +241,10 @@ function setType(type) {
 
 function clearForm() {
   document.getElementById('contact-form').reset();
-  document.getElementById('f-message').placeholder = 'Your message...';
   document.getElementById('ccm-subject').value = '';
   document.getElementById('ccm-selected-label').textContent = '';
   document.getElementById('ccm-form-wrap').classList.remove('visible');
   document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.remove('active'));
-  allFieldGroups.forEach(group => {
-    document.querySelectorAll('.ccm-field-' + group).forEach(el => el.style.display = 'none');
-  });
   document.getElementById('ccm-status').textContent = '';
   document.getElementById('ccm-status').className = 'ccm-status';
 }
@@ -314,10 +258,11 @@ async function handleSubmit(e) {
   status.textContent = '';
   status.className = 'ccm-status';
 
-  const data = new FormData(document.getElementById('contact-form'));
-
   try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(document.getElementById('contact-form'))
+    });
     const result = await res.json();
     if (result.success) {
       status.textContent = 'Message sent — thanks!';
@@ -334,5 +279,14 @@ async function handleSubmit(e) {
   btn.textContent = 'Send message';
   btn.disabled = false;
 }
+
+// Auto-select bug type if arriving from template page
+(function() {
+  const ref = document.referrer;
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('type') === 'bug' || ref.includes('template')) {
+    setType('bug');
+  }
+})();
 </script>
 ```
