@@ -34,7 +34,7 @@ present]{.role-date}
 
 [RMIT University --- School of Health and Biomedical
 Sciences]{.role-org} [Supervised by Dr Daniel Zarate, Dr Vasileios
-Stavropoulos,andDr Taylor Brown. Research focus on emotionally based
+Stavropoulos, and Dr Taylor Brown. Research focus on emotionally based
 school avoidance, intervention evidence, longitudinal modelling, and
 population-level attendance data.]{.role-desc}
 :::

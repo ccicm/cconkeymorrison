@@ -291,6 +291,18 @@ hr {
 
 .card a:hover { color: var(--navy) !important; }
 
+/* FIX: explicit card-link class for card footer links */
+.card-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent) !important;
+  text-decoration: none !important;
+}
+
+.card-link:hover {
+  color: var(--navy) !important;
+}
+
 /* ============================================
    INNER PAGE — PhD PAPER CARDS
    ============================================ */
@@ -507,11 +519,10 @@ hr {
   display: block;
 }
 
-.status-value{
-  [status-good] color: #2d7a4f; 
-  [status-goal] color: #2d7aee;
-  [status-WIP] color: ##e8b86d;
-}
+/* FIX: status colour variants — previously invalid CSS, now correct */
+.status-good { color: #2d7a4f; }
+.status-goal { color: #2d7aee; }
+.status-WIP  { color: #c8922a; }
 
 /* ============================================
    RESEARCH PAGE — SUPERVISOR ROW
@@ -631,5 +642,21 @@ hr {
   }
   .phd-status-item:nth-child(n+3) {
     border-top: 1px solid var(--border);
+  }
+}
+
+/* ============================================
+   HISTORY PAGE — TWO COLUMN LAYOUT
+   ============================================ */
+.history-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .history-two-col {
+    grid-template-columns: 1fr;
   }
 }
