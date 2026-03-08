@@ -844,3 +844,32 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   .phd-status-item:nth-child(3) { border-right: 1px solid var(--border); }
   .phd-status-item:nth-child(n+3) { border-top: 1px solid var(--border); }
 }
+
+/* ============================================
+   JUMP NAV (in-page section links)
+   ============================================ */
+.jump-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.25rem 0 2rem 0;
+}
+
+.jump-link {
+  display: inline-block;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: color 0.18s, border-color 0.18s, background 0.18s, transform 0.15s;
+  letter-spacing: 0.01em;
+}
+
+.jump-link:hover {
+  color: var(--navy) !important;
+  border-color: var(--navy);
+  background: var(--tag-bg);
+  transform: translateY(-1px);
+}
