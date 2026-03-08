@@ -199,7 +199,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .hero-text h1::after {
   content: '';
   position: absolute;
-  bottom: -4px; left: 0;
+  bottom: -1px; left: 0;
   height: 3px;
   width: 0;
   background: linear-gradient(90deg, var(--navy), var(--accent));
