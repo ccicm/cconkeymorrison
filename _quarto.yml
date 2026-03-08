@@ -25,8 +25,6 @@ website:
           - text: "Education & Experience"
             href: pages/history.qmd
           - text: "---"
-          - text: "Current appointments"
-            href: pages/history.qmd#current-appointments
           - text: "Education"
             href: pages/history.qmd#education
           - text: "Academic appointments"
