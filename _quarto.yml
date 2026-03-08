@@ -10,10 +10,10 @@ website:
       - href: index.qmd
         text: Home
       - text: Research
-        href: pages/research.qmd
         menu:
-          - text: "Research overview"
+          - text: "Research"
             href: pages/research.qmd
+          - text: "---"
           - text: "Current focus"
             href: pages/research.qmd#current-research-focus
           - text: "Publications"
@@ -21,8 +21,10 @@ website:
           - text: "PhD papers"
             href: pages/research.qmd#current-research-focus
       - text: Education & Experience
-        href: pages/history.qmd
         menu:
+          - text: "Education & Experience"
+            href: pages/history.qmd
+          - text: "---"
           - text: "Current appointments"
             href: pages/history.qmd#current-appointments
           - text: "Education"
