@@ -10,6 +10,15 @@ editor:
 # Education & Experience
 :::
 
+::: jump-nav
+[Current appointments](#current-appointments){.jump-link}
+[Education](#education){.jump-link}
+[Academic appointments](#academic-appointments){.jump-link}
+[Clinical roles](#clinical-and-school-based-roles){.jump-link}
+[Skills & tools](#skills-and-tools){.jump-link}
+[Prior experience](#prior-experience){.jump-link}
+:::
+
 ------------------------------------------------------------------------
 
 ## Current appointments
@@ -17,7 +26,7 @@ editor:
 | Role                                       | Organisation                                             | Days              |
 |--------------------------------------------|----------------------------------------------------------|-------------------|
 | PhD Candidate                              | RMIT University                                          | 24/7, 365         |
-| Industry Partner (PhD) & School Counsellor | CatholicCare Victoria / Sacred Heart Primary School, Kew | Tuesdays/flexible |
+| School Counsellor                          | CatholicCare Victoria                                    | Tuesdays/flexible |
 | Sessional Academic                         | RMIT University                                          | Fridays           |
 | Associate Lecturer                         | Cairnmillar Institute                                    | Mondays           |
 
@@ -28,11 +37,11 @@ editor:
 ::: role-section
 ::: role-block
 ::: role-header
-[Doctor of Philosophy (Psychology)]{.role-title} [2025 -- present]{.role-date}
+[Doctor of Philosophy (Psychology)]{.role-title} [2025 -- ongoing]{.role-date}
 :::
 
 [RMIT University --- School of Health and Biomedical Sciences]{.role-org}
-[Supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, and Dr Taylor Brown. Research focus on emotionally based school avoidance, intervention evidence, longitudinal modelling, and population-level attendance data.]{.role-desc}
+[Supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, and Dr Taylor Brown. Research focus on school attendance, intervention evidence, longitudinal modelling, and population-level attendance data.]{.role-desc}
 :::
 
 ::: role-block
