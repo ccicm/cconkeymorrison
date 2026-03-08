@@ -8,6 +8,14 @@ page-layout: full
 :::
 
 ------------------------------------------------------------------------
+::: profiles-grid
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
+[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
+[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+[LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
+[GitHub](https://github.com/ccicm){.profile-link}
+:::
+:::
 
 ::: contact-card
 ## Email
@@ -160,15 +168,6 @@ async function handleSubmit(e) {
 
 ::: contact-card
 ## Academic profiles
-
-::: profiles-grid
-[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
-[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
-[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
-[LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
-[GitHub](https://github.com/ccicm){.profile-link}
-:::
-:::
 
 ::: cv-placeholder
 **Curriculum Vitae**
