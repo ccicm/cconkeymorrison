@@ -75,10 +75,16 @@ I research school attendance problems and emotionally based school avoidance (EB
 
   let entries = [];
   try {
-    const res = await fetch('data/reading.json');
+    const res = await fetch('/data/reading.json');
+    if (!res.ok) throw new Error();
     entries = await res.json();
   } catch {
-    container.innerHTML = '';
+    container.innerHTML = '<p style="font-size:0.9rem;color:var(--text-muted);">Nothing here yet.</p>';
+    return;
+  }
+
+  if (!entries.length) {
+    container.innerHTML = '<p style="font-size:0.9rem;color:var(--text-muted);">Nothing here yet.</p>';
     return;
   }
 
