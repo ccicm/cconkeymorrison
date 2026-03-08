@@ -21,32 +21,6 @@ engine: markdown
 
 My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
 
-::: phd-status-strip
-::: phd-status-item
-[Ethics]{.status-label} [Approved]{.status-value .status-good}
-:::
-
-::: phd-status-item
-[Data access]{.status-label} [Granted]{.status-value .status-good}
-:::
-
-::: phd-status-item
-[Paper 1]{.status-label} [Manuscript in progress]{.status-value .status-WIP}
-:::
-
-::: phd-status-item
-[Paper 2]{.status-label} [Variable selection & methods]{.status-value}
-:::
-
-::: phd-status-item
-[Paper 3]{.status-label} [Data granted; pending]{.status-value}
-:::
-
-::: phd-status-item
-[Estimated completion]{.status-label} [2027]{.status-value .status-goal}
-:::
-:::
-
 ::: paper-grid
 ::: paper-card
 [Paper 1]{.paper-label}
@@ -70,6 +44,32 @@ Examining how patterns of school attendance develop across childhood and early a
 ### Population-level attendance
 
 Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
+:::
+:::
+
+::: phd-status-strip
+::: phd-status-item
+[Ethics]{.status-label} [Approved]{.status-value .status-good}
+:::
+
+::: phd-status-item
+[Data access]{.status-label} [Granted]{.status-value .status-good}
+:::
+
+::: phd-status-item
+[Paper 1]{.status-label} [Manuscript in progress]{.status-value .status-WIP}
+:::
+
+::: phd-status-item
+[Paper 2]{.status-label} [Variable selection & methods]{.status-value}
+:::
+
+::: phd-status-item
+[Paper 3]{.status-label} [Data granted; pending]{.status-value}
+:::
+
+::: phd-status-item
+[Estimated completion]{.status-label} [2027]{.status-value .status-goal}
 :::
 :::
 
