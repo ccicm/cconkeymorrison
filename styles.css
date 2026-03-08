@@ -98,7 +98,7 @@ p, li { font-size: 1rem; color: #2a2a2a; }
 a { color: var(--navy); transition: color 0.18s; }
 a:hover { color: var(--accent); }
 
-hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 
 /* ============================================
    NAVBAR
@@ -193,7 +193,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .hero-text h1 {
   position: relative;
   display: inline-block;
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .hero-text h1::after {
@@ -288,7 +288,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 /* ============================================
    ABOUT SECTION
    ============================================ */
-.about-section { max-width: 760px; margin-bottom: 2rem; }
+.about-section { max-width: 760px; margin-bottom: 1.5rem; }
 .about-section h2 { font-size: 1.35rem; margin-top: 0; }
 .about-section .hero-links { margin-top: 1.25rem; }
 
@@ -296,7 +296,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
    STATS STRIP
    ============================================ */
 .stats-strip {
-  display: flex; gap: 0; margin: 0 0 2.5rem 0;
+  display: flex; gap: 0; margin: 0 0 1.5rem 0;
   border: 1px solid var(--border); border-radius: var(--radius);
   overflow: hidden; background: var(--bg-card);
   box-shadow: var(--shadow-sm);
