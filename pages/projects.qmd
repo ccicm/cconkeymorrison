@@ -35,7 +35,7 @@ An open-source Quarto template for building a professional academic website — 
 
 ### Systematic Review Data Pipeline
 
-A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1] of my PhD.
+A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](.research) of my PhD.
 
 ::: project-tags
 [Python]{.project-tag} [Google Colab]{.project-tag} [LSAC]{.project-tag} [Longitudinal data]{.project-tag}
