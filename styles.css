@@ -182,7 +182,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .hero-wrapper {
   display: flex; align-items: flex-start;
   justify-content: space-between;
-  gap: 3rem; padding: 4rem 0 2.5rem 0;
+  gap: 3rem; padding: 2rem 0 2.5rem 0;
 }
 
 .hero-text { flex: 1; max-width: 600px; }
@@ -193,13 +193,13 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .hero-text h1 {
   position: relative;
   display: inline-block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
 }
 
 .hero-text h1::after {
   content: '';
   position: absolute;
-  bottom: -1px; left: 0;
+  bottom: -4px; left: 0;
   height: 3px;
   width: 0;
   background: linear-gradient(90deg, var(--navy), var(--accent));
@@ -290,6 +290,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
    ============================================ */
 .about-section { max-width: 760px; margin-bottom: 2rem; }
 .about-section h2 { font-size: 1.35rem; margin-top: 0; }
+.about-section .hero-links { margin-top: 1.25rem; }
 
 /* ============================================
    STATS STRIP
