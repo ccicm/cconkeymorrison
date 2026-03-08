@@ -38,9 +38,9 @@ format:
         document.addEventListener('DOMContentLoaded', function() {
           var s = getComputedStyle(document.documentElement);
           window.CCM_COLORS = {
-            dark:      s.getPropertyValue('--dark').trim()       || '#1a2e4a',
-            darkLight: s.getPropertyValue('--dark-light').trim() || '#2a4268',
-            accent:    s.getPropertyValue('--accent').trim()     || '#c8922a',
+            navy:      s.getPropertyValue('--navy').trim()       || '#1e3a2a',
+            navyLight: s.getPropertyValue('--navy-light').trim() || '#2a5040',
+            accent:    s.getPropertyValue('--accent').trim()     || '#c05a4a',
             bg:        s.getPropertyValue('--bg').trim()         || '#f8f7f5',
             bgCard:    s.getPropertyValue('--bg-card').trim()    || '#ffffff',
             textMuted: s.getPropertyValue('--text-muted').trim() || '#5c5c5c',
