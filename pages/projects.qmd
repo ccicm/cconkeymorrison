@@ -35,10 +35,10 @@ An open-source Quarto template for building a professional academic website — 
 
 ### Systematic Review Data Pipeline
 
-A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](.research) of my PhD.
+A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](research.qmd) of my PhD.
 
 ::: project-tags
-[Python]{.project-tag} [Google Colab]{.project-tag} [LSAC]{.project-tag} [Longitudinal data]{.project-tag}
+[Python]{.project-tag} [Google Colab]{.project-tag} [Sys review]{.project-tag} 
 :::
 
 ::: project-links
@@ -66,7 +66,7 @@ An interactive evidence map for the systematic review of emotionally based schoo
 A quick-reference guide for common statistical procedures in psychology research — aimed at honours and postgraduate students. Covering assumption testing, effect sizes, and reporting conventions in APA style.
 
 ::: project-tags
-[Jamovi]{.project-tag} [R]{.project-tag} [Statistics]{.project-tag} [Teaching]{.project-tag}
+[Jamovi]{.project-tag} [R]{.project-tag} [Statistics]{.project-tag} [Teaching]{.project-tag} 
 :::
 :::
 
