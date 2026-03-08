@@ -186,11 +186,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 }
 
 .hero-text { flex: 1; max-width: 600px; }
-.hero-photo { flex-shrink: 0; }
+.hero-photo { flex-shrink: 0; margin-top: 0; }
 .hero-photo figcaption { display: none; }
-.hero-photo figure,
-.hero-photo p,
-.hero-photo div { margin: 0; padding: 0; line-height: 0; }
+.hero-photo figure { margin: 0 !important; padding: 0 !important; }
+.hero-photo p { margin: 0 !important; padding: 0 !important; line-height: 0; }
+.hero-photo img { display: block; }
 
 /* Hero name with animated underline accent */
 .hero-text h1 {
