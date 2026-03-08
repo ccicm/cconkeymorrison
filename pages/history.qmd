@@ -86,6 +86,14 @@ editor:
 
 ------------------------------------------------------------------------
 
+::: cv-placeholder
+**Curriculum Vitae**
+
+A downloadable CV will be available here shortly.
+:::
+
+------------------------------------------------------------------------
+
 ## Clinical and school-based roles
 
 ::: role-section
