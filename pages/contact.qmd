@@ -176,10 +176,6 @@ async function handleSubmit(e) {
 A downloadable CV will be available here shortly.
 :::
 
-::: about-section
-This site was built with an open-source Quarto template. View the [setup guide](template.qmd) or grab the [template on GitHub](https://github.com/ccicm/academic-website-template).
-:::
-
 ```{=html}
 <script>
 function copyEmail(btn) {
