@@ -9,48 +9,70 @@ page-layout: full
 
 ------------------------------------------------------------------------
 
-::: contact-card
-## Email
-
-::: email-block
-[connorconkeymorrison\@gmail.com](mailto:connorconkeymorrison@gmail.com){.email-address}
-<button class="copy-btn" onclick="copyEmail(this)">Copy address</button>
-<a href="mailto:connorconkeymorrison@gmail.com" class="copy-btn">Open in email</a>
-:::
-
-For research, teaching, clinical, or professional inquiries, email is the best point of contact. I aim to respond within a few business days.
-
----
-
 ```{=html}
 <style>
+.ccm-type-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  display: block;
+}
 .ccm-type-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin: 1.25rem 0 1.5rem 0;
+  margin-bottom: 0.25rem;
 }
 .ccm-type-btn {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #5c5c5c;
-  background: #f8f7f5;
+  background: #ffffff;
   border: 1px solid #e4e1da;
   border-radius: 999px;
-  padding: 0.3rem 0.85rem;
+  padding: 0.35rem 0.9rem;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
-  letter-spacing: 0.01em;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.15s;
 }
 .ccm-type-btn:hover {
   border-color: #1a2e4a;
   color: #1a2e4a;
+  transform: translateY(-1px);
 }
 .ccm-type-btn.active {
   background: #1a2e4a;
   color: #fff;
   border-color: #1a2e4a;
+}
+.ccm-form-wrap {
+  display: none;
+  margin-top: 1.75rem;
+  background: #ffffff;
+  border: 1px solid #e4e1da;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  animation: ccmFadeUp 0.25s ease both;
+}
+.ccm-form-wrap.visible { display: block; }
+@keyframes ccmFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ccm-selected-type {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #c8922a;
+  margin-bottom: 1.25rem;
+  display: block;
 }
 .ccm-form-group { margin-bottom: 1.25rem; }
 .ccm-label {
@@ -79,6 +101,15 @@ For research, teaching, clinical, or professional inquiries, email is the best p
   border-color: #1a2e4a;
   box-shadow: 0 0 0 3px rgba(26,46,74,0.08);
   background: #fff;
+}
+.ccm-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c5c5c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.25rem;
+  cursor: pointer;
 }
 .ccm-textarea { min-height: 130px; resize: vertical; line-height: 1.65; }
 .ccm-footer-row {
@@ -132,86 +163,147 @@ For research, teaching, clinical, or professional inquiries, email is the best p
 .ccm-status.error   { color: #c0392b; }
 </style>
 
+<span class="ccm-type-label">What are you getting in touch about?</span>
 <div class="ccm-type-row">
-  <button class="ccm-type-btn" onclick="setType('Research / collaboration')">Research & collaboration</button>
-  <button class="ccm-type-btn" onclick="setType('Teaching / supervision')">Teaching & supervision</button>
-  <button class="ccm-type-btn" onclick="setType('Clinical / professional')">Clinical & professional</button>
-  <button class="ccm-type-btn" onclick="setType('General')">General</button>
+  <button type="button" class="ccm-type-btn" onclick="setType('research')">Research & collaboration</button>
+  <button type="button" class="ccm-type-btn" onclick="setType('teaching')">Teaching & supervision</button>
+  <button type="button" class="ccm-type-btn" onclick="setType('clinical')">Clinical & professional</button>
+  <button type="button" class="ccm-type-btn" onclick="setType('general')">General</button>
 </div>
 
-<form id="contact-form" onsubmit="handleSubmit(event)">
-  <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
-  <input type="hidden" id="ccm-subject" name="subject" value="Message from connorconkeymorrison.com">
-  <div class="ccm-form-group">
-    <label class="ccm-label" for="name">Name</label>
-    <input type="text" id="name" name="name" class="ccm-input" placeholder="Your name" required>
-  </div>
-  <div class="ccm-form-group">
-    <label class="ccm-label" for="email">Email</label>
-    <input type="email" id="email" name="email" class="ccm-input" placeholder="your@email.com" required>
-  </div>
-  <div class="ccm-form-group">
-    <label class="ccm-label" for="message">Message</label>
-    <textarea id="message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
-  </div>
-  <div class="ccm-footer-row">
-    <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
-    <button type="button" class="ccm-clear" onclick="clearForm()">Clear</button>
-  </div>
-  <p id="ccm-status" class="ccm-status"></p>
-</form>
+<div class="ccm-form-wrap" id="ccm-form-wrap">
+  <span class="ccm-selected-type" id="ccm-selected-label"></span>
+  <form id="contact-form" onsubmit="handleSubmit(event)">
+    <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
+    <input type="hidden" id="ccm-subject" name="subject" value="">
+
+    <!-- Shared: Name -->
+    <div class="ccm-form-group">
+      <label class="ccm-label" for="f-name">Name</label>
+      <input type="text" id="f-name" name="name" class="ccm-input" placeholder="Your name" required>
+    </div>
+
+    <!-- Shared: Email -->
+    <div class="ccm-form-group">
+      <label class="ccm-label" for="f-email">Email</label>
+      <input type="email" id="f-email" name="email" class="ccm-input" placeholder="your@email.com" required>
+    </div>
+
+    <!-- Research: Affiliation -->
+    <div class="ccm-form-group ccm-field-research" style="display:none">
+      <label class="ccm-label" for="f-affiliation">Institution or affiliation</label>
+      <input type="text" id="f-affiliation" name="affiliation" class="ccm-input" placeholder="e.g. University of Melbourne">
+    </div>
+
+    <!-- Teaching: Role -->
+    <div class="ccm-form-group ccm-field-teaching" style="display:none">
+      <label class="ccm-label" for="f-role">Are you a student or staff member?</label>
+      <select id="f-role" name="role" class="ccm-input ccm-select">
+        <option value="" disabled selected>Select one</option>
+        <option>Student</option>
+        <option>Staff</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <!-- Teaching: Unit/context -->
+    <div class="ccm-form-group ccm-field-teaching" style="display:none">
+      <label class="ccm-label" for="f-unit">Unit or context</label>
+      <input type="text" id="f-unit" name="unit" class="ccm-input" placeholder="e.g. PSYC1234 or honours supervision">
+    </div>
+
+    <!-- Clinical: Role/context -->
+    <div class="ccm-form-group ccm-field-clinical" style="display:none">
+      <label class="ccm-label" for="f-context">Your role or context</label>
+      <input type="text" id="f-context" name="context" class="ccm-input" placeholder="e.g. School counsellor, parent, GP">
+    </div>
+
+    <!-- Shared: Message -->
+    <div class="ccm-form-group">
+      <label class="ccm-label" for="f-message">Message</label>
+      <textarea id="f-message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
+    </div>
+
+    <div class="ccm-footer-row">
+      <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
+      <button type="button" class="ccm-clear" onclick="clearForm()">Clear</button>
+    </div>
+    <p id="ccm-status" class="ccm-status"></p>
+  </form>
+</div>
 
 <script>
-const templates = {
-  'Research / collaboration': {
+const config = {
+  research: {
+    label: 'Research & collaboration',
     subject: 'Research enquiry — connorconkeymorrison.com',
-    placeholder: "Hi Connor,\n\nI'm reaching out regarding a potential research collaboration or enquiry...",
+    placeholder: 'Briefly describe your research interest or proposed collaboration...',
+    fields: ['research']
   },
-  'Teaching / supervision': {
+  teaching: {
+    label: 'Teaching & supervision',
     subject: 'Teaching enquiry — connorconkeymorrison.com',
-    placeholder: "Hi Connor,\n\nI'm getting in touch about teaching, tutoring, or supervision...",
+    placeholder: 'What can I help you with?',
+    fields: ['teaching']
   },
-  'Clinical / professional': {
-    subject: 'Professional enquiry — connorconkeymorrison.com',
-    placeholder: "Hi Connor,\n\nI'm reaching out regarding a clinical or professional matter...",
+  clinical: {
+    label: 'Clinical & professional',
+    subject: 'Clinical enquiry — connorconkeymorrison.com',
+    placeholder: 'What can I help you with?',
+    fields: ['clinical']
   },
-  'General': {
+  general: {
+    label: 'General',
     subject: 'General enquiry — connorconkeymorrison.com',
-    placeholder: "Hi Connor,\n\n",
+    placeholder: 'Your message...',
+    fields: []
   }
 };
 
+const allFieldGroups = ['research', 'teaching', 'clinical'];
+
 function setType(type) {
+  const c = config[type];
+
   // Update active button
   document.querySelectorAll('.ccm-type-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.trim().replace('&', '/').replace(' & ', ' / ') === type || btn.getAttribute('onclick') === "setType('" + type + "')");
+    btn.classList.toggle('active', btn.getAttribute('onclick') === "setType('" + type + "')");
   });
 
-  const t = templates[type];
-  document.getElementById('ccm-subject').value = t.subject;
-  document.getElementById('message').placeholder = t.placeholder;
+  // Update subject and placeholder
+  document.getElementById('ccm-subject').value = c.subject;
+  document.getElementById('f-message').placeholder = c.placeholder;
 
-  // Only pre-fill message if it's currently empty or was pre-filled
-  const msg = document.getElementById('message');
-  if (!msg.dataset.userEdited) {
-    msg.value = '';
-  }
+  // Show/hide conditional fields
+  allFieldGroups.forEach(group => {
+    document.querySelectorAll('.ccm-field-' + group).forEach(el => {
+      el.style.display = c.fields.includes(group) ? 'block' : 'none';
+    });
+  });
+
+  // Update label
+  document.getElementById('ccm-selected-label').textContent = c.label;
+
+  // Show form with animation
+  const wrap = document.getElementById('ccm-form-wrap');
+  wrap.classList.remove('visible');
+  void wrap.offsetWidth;
+  wrap.classList.add('visible');
 }
 
 function clearForm() {
   document.getElementById('contact-form').reset();
-  document.getElementById('message').placeholder = 'Your message...';
-  document.getElementById('message').removeAttribute('data-user-edited');
-  document.getElementById('ccm-subject').value = 'Message from connorconkeymorrison.com';
+  document.getElementById('f-message').placeholder = 'Your message...';
+  document.getElementById('ccm-subject').value = '';
+  document.getElementById('ccm-selected-label').textContent = '';
+  document.getElementById('ccm-form-wrap').classList.remove('visible');
   document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.remove('active'));
+  allFieldGroups.forEach(group => {
+    document.querySelectorAll('.ccm-field-' + group).forEach(el => el.style.display = 'none');
+  });
   document.getElementById('ccm-status').textContent = '';
   document.getElementById('ccm-status').className = 'ccm-status';
 }
-
-// Track if user has manually edited the message
-document.getElementById('message').addEventListener('input', function() {
-  this.dataset.userEdited = 'true';
-});
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -222,8 +314,7 @@ async function handleSubmit(e) {
   status.textContent = '';
   status.className = 'ccm-status';
 
-  const form = document.getElementById('contact-form');
-  const data = new FormData(form);
+  const data = new FormData(document.getElementById('contact-form'));
 
   try {
     const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
@@ -243,21 +334,8 @@ async function handleSubmit(e) {
   btn.textContent = 'Send message';
   btn.disabled = false;
 }
-
-function copyEmail(btn) {
-  navigator.clipboard.writeText('connorconkeymorrison@gmail.com').then(function() {
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(function() {
-      btn.textContent = 'Copy address';
-      btn.classList.remove('copied');
-    }, 2000);
-  });
-}
 </script>
 ```
-
-:::
 
 ::: cv-placeholder
 **Curriculum Vitae**
