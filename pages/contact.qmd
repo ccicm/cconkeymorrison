@@ -7,15 +7,15 @@ page-layout: full
 # Get in touch
 :::
 
-------------------------------------------------------------------------
-::: profiles-grid
+::: profile-links-row
 [ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
 [Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
 [ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
 [LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
 [GitHub](https://github.com/ccicm){.profile-link}
 :::
-:::
+
+------------------------------------------------------------------------
 
 ::: contact-card
 ## Email
@@ -26,21 +26,12 @@ page-layout: full
 :::
 
 For research, teaching, clinical, or professional inquiries, email is the best point of contact. I aim to respond within a few business days.
-:::
+
+---
 
 ```{=html}
 <style>
-.ccm-form-card {
-  background: #ffffff;
-  border: 1px solid #e4e1da;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  margin-top: 1rem;
-}
-.ccm-form-group {
-  margin-bottom: 1.25rem;
-}
+.ccm-form-group { margin-bottom: 1.25rem; margin-top: 1rem; }
 .ccm-label {
   display: block;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -68,11 +59,7 @@ For research, teaching, clinical, or professional inquiries, email is the best p
   box-shadow: 0 0 0 3px rgba(26,46,74,0.08);
   background: #fff;
 }
-.ccm-textarea {
-  min-height: 130px;
-  resize: vertical;
-  line-height: 1.65;
-}
+.ccm-textarea { min-height: 130px; resize: vertical; line-height: 1.65; }
 .ccm-submit {
   display: inline-block;
   padding: 0.6rem 1.4rem;
@@ -93,11 +80,7 @@ For research, teaching, clinical, or professional inquiries, email is the best p
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(26,46,74,0.28);
 }
-.ccm-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
+.ccm-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .ccm-status {
   margin-top: 0.75rem;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -109,25 +92,23 @@ For research, teaching, clinical, or professional inquiries, email is the best p
 .ccm-status.error   { color: #c0392b; }
 </style>
 
-<div class="ccm-form-card">
-  <form id="contact-form" onsubmit="handleSubmit(event)">
-    <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
-    <div class="ccm-form-group">
-      <label class="ccm-label" for="name">Name</label>
-      <input type="text" id="name" name="name" class="ccm-input" placeholder="Your name" required>
-    </div>
-    <div class="ccm-form-group">
-      <label class="ccm-label" for="email">Email</label>
-      <input type="email" id="email" name="email" class="ccm-input" placeholder="your@email.com" required>
-    </div>
-    <div class="ccm-form-group">
-      <label class="ccm-label" for="message">Message</label>
-      <textarea id="message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
-    </div>
-    <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
-    <p id="ccm-status" class="ccm-status"></p>
-  </form>
-</div>
+<form id="contact-form" onsubmit="handleSubmit(event)">
+  <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
+  <div class="ccm-form-group">
+    <label class="ccm-label" for="name">Name</label>
+    <input type="text" id="name" name="name" class="ccm-input" placeholder="Your name" required>
+  </div>
+  <div class="ccm-form-group">
+    <label class="ccm-label" for="email">Email</label>
+    <input type="email" id="email" name="email" class="ccm-input" placeholder="your@email.com" required>
+  </div>
+  <div class="ccm-form-group">
+    <label class="ccm-label" for="message">Message</label>
+    <textarea id="message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
+  </div>
+  <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
+  <p id="ccm-status" class="ccm-status"></p>
+</form>
 
 <script>
 async function handleSubmit(e) {
@@ -164,15 +145,18 @@ async function handleSubmit(e) {
 </script>
 ```
 
-------------------------------------------------------------------------
-
-::: contact-card
-## Academic profiles
+:::
 
 ::: cv-placeholder
 **Curriculum Vitae**
 
 A downloadable CV will be available here shortly.
+:::
+
+------------------------------------------------------------------------
+
+::: about-section
+This site was built with an open-source Quarto template. View the [setup guide](template.qmd) or grab the [template on GitHub](https://github.com/ccicm/academic-website-template).
 :::
 
 ```{=html}
