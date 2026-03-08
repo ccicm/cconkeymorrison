@@ -699,7 +699,8 @@ Papers I've read recently — collaborator work, methodological references, and 
   // Load the JSON list
   let entries = [];
   try {
-    const res = await fetch('../data/reading.json');
+    const res = await fetch('/data/reading.json');
+    if (!res.ok) throw new Error();
     entries = await res.json();
   } catch {
     container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">Could not load reading list.</p>';
