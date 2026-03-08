@@ -7,14 +7,6 @@ page-layout: full
 # Get in touch
 :::
 
-::: profile-links-row
-[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
-[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
-[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
-[LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
-[GitHub](https://github.com/ccicm){.profile-link}
-:::
-
 ------------------------------------------------------------------------
 
 ::: contact-card
@@ -155,8 +147,13 @@ A downloadable CV will be available here shortly.
 
 ------------------------------------------------------------------------
 
-::: about-section
-This site was built with an open-source Quarto template. View the [setup guide](template.qmd) or grab the [template on GitHub](https://github.com/ccicm/academic-website-template).
+::: profile-links-row
+# Find me online
+[ORCID](https://orcid.org/0009-0000-1020-2333){.profile-link}
+[Google Scholar](https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en){.profile-link}
+[ResearchGate](https://www.researchgate.net/profile/Connor-Conkey-Morrison){.profile-link}
+[LinkedIn](https://www.linkedin.com/in/connorconkeymorrison){.profile-link}
+[GitHub](https://github.com/ccicm){.profile-link}
 :::
 
 ```{=html}
