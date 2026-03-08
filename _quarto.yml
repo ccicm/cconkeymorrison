@@ -16,10 +16,6 @@ website:
       - href: pages/contact.qmd
         text: Contact
     right:
-      - text: ORCID
-        href: https://orcid.org/0009-0000-1020-2333
-      - text: Scholar
-        href: https://scholar.google.com/citations?user=ZEvUL_kAAAAJ
       - text: LinkedIn
         href: https://www.linkedin.com/in/connorconkeymorrison
 
