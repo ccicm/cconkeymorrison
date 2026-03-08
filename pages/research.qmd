@@ -1,7 +1,7 @@
 ---
 title: ""
 page-layout: full
-engine: knitr
+engine: markdown
 ---
 
 ::: page-header
@@ -240,7 +240,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
         <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
         <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
-        <a href="https://www.linkedin.com/in/connorconkeymorrison" class="sidebar-link" target="_blank">LinkedIn</a>
+        <a href="https://digitalminds.au/connor-conkey-morrison" class="sidebar-link" target="_blank">DigitalMinds</a>
         <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
       </div>
     </div>
