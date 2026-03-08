@@ -180,13 +180,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
    HERO
    ============================================ */
 .hero-wrapper {
-  display: flex; align-items: center;
+  display: flex; align-items: flex-start;
   justify-content: space-between;
   gap: 3rem; padding: 4rem 0 2.5rem 0;
 }
 
 .hero-text { flex: 1; max-width: 600px; }
 .hero-photo { flex-shrink: 0; }
+.hero-photo figcaption { display: none; }
 
 /* Hero name with animated underline accent */
 .hero-text h1 {
@@ -212,7 +213,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .hero-photo { animation: fadeIn 0.8s ease 0.1s both; }
 
 .profile-img {
-  width: 240px; height: 240px;
+  width: 310px; height: 310px;
   object-fit: cover; border-radius: 20%;
   border: 3px solid var(--border);
   box-shadow: var(--shadow-md);
@@ -755,7 +756,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 .contact-card h2 { margin-top: 0; font-size: 1.15rem; margin-bottom: 1rem; }
 
 .email-block {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: flex-start; justify-content: space-between;
   gap: 1rem; flex-wrap: wrap;
 }
 
@@ -893,7 +894,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   .hero-text h1::after { left: 50%; transform: translateX(-50%); }
   .hero-tags { justify-content: center; }
   .hero-links { justify-content: center; }
-  .profile-img { width: 170px; height: 170px; }
+  .profile-img { width: 200px; height: 200px; }
   h1 { font-size: 2.6rem; }
   .paper-grid { grid-template-columns: 1fr; }
   .project-grid { grid-template-columns: 1fr; }
