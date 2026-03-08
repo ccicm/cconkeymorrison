@@ -87,15 +87,6 @@ editor:
 :::
 
 ------------------------------------------------------------------------
-## Curriculum Vitae
-
-::: cv-placeholder
-**Curriculum Vitae**
-
-A downloadable CV will be available here shortly.
-:::
-
-------------------------------------------------------------------------
 
 ## Clinical and school-based roles
 
@@ -108,6 +99,16 @@ A downloadable CV will be available here shortly.
 [CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
 [CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools — currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
 :::
+:::
+
+------------------------------------------------------------------------
+
+## Curriculum Vitae
+
+::: cv-placeholder
+**Curriculum Vitae**
+
+A downloadable CV will be available here shortly.
 :::
 
 ------------------------------------------------------------------------
