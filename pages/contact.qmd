@@ -168,7 +168,7 @@ page-layout: full
   <button type="button" class="ccm-type-btn" onclick="setType('research')">Research & collaboration</button>
   <button type="button" class="ccm-type-btn" onclick="setType('teaching')">Teaching & supervision</button>
   <button type="button" class="ccm-type-btn" onclick="setType('clinical')">Clinical & professional</button>
-  <button type="button" class="ccm-type-btn" onclick="setType('general')">General</button>
+  <button type="button" class="ccm-type-btn" onclick="setType('general')">General / Something else</button>
 </div>
 
 <div class="ccm-form-wrap" id="ccm-form-wrap">
