@@ -240,7 +240,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
         <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
         <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
-        <a href="https://digitalminds.au/connor-conkey-morrison" class="sidebar-link" target="_blank">DigitalMinds</a>
+        <a href="https://digitalminds.au/connor-conkey-morrison/" class="sidebar-link" target="_blank">DigitalMinds</a>
         <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
       </div>
     </div>
@@ -311,6 +311,9 @@ async function loadOrcidPublications() {
           </div>`;
       }
     }
+    const now = new Date();
+    const synced = now.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+    html += `<p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;margin-top:1.5rem;letter-spacing:0.02em;">Synced from <a href="https://orcid.org/0009-0000-1020-2333" target="_blank" style="color:#5c5c5c;text-decoration:underline;">ORCID</a> · ${synced}</p>`;
     container.innerHTML = html;
 
   } catch (e) {
