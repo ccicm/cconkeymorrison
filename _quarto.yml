@@ -1,18 +1,29 @@
-project:
-  type: website
-  output-dir: _site
-
-
 website:
   title: "Connor Conkey-Morrison"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - href: pages/research.qmd
-        text: Research
-      - href: pages/history.qmd
-        text: Education & Experience
+      - text: Research
+        menu:
+          - text: "Research overview"
+            href: pages/research.qmd
+          - text: "Current focus"
+            href: pages/research.qmd#current-research-focus
+          - text: "Publications"
+            href: pages/research.qmd#publications
+          - text: "PhD papers"
+            href: pages/research.qmd#supervisory-team
+      - text: Education & Experience
+        menu:
+          - text: "Current appointments"
+            href: pages/history.qmd#current-appointments
+          - text: "Education"
+            href: pages/history.qmd#education
+          - text: "Academic roles"
+            href: pages/history.qmd#academic-appointments
+          - text: "Clinical roles"
+            href: pages/history.qmd#clinical-and-school-based-roles
       - href: pages/contact.qmd
         text: Contact
     right:
