@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Connor Conkey-Morrison"
+  favicon: favicon.svg
   navbar:
     left:
       - href: index.qmd
