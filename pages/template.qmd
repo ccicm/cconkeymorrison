@@ -17,7 +17,7 @@ This is the template and setup I used to build this site. It's free, requires no
 
 ## What you'll end up with
 
-A professional academic website with pages for your research, publications, education, and contact details — automatically updated every time you make a change. Hosted for free on GitHub Pages, with the option to add your own custom domain (e.g. `yourname.com`).
+A professional academic website with pages for your research, publications, education, contact details, and projects — automatically deployed every time you push a change. Publications sync live from your ORCID profile with journal favicons, APA 7 citations, and RIS downloads built in. Hosted for free on GitHub Pages, with the option to add your own custom domain (e.g. `yourname.com`).
 
 ------------------------------------------------------------------------
 
@@ -88,12 +88,12 @@ All the content lives in `.qmd` files — these are plain text files with a litt
 ::: role-section
 ::: role-block
 [`index.qmd` — Home page]{.role-title}
-[Replace `Your Name`, the tag pills, and the bio paragraph. Update the photo path once you've added your photo to the `images/` folder.]{.role-desc}
+[Replace `Your Name`, the tag pills, and the bio paragraph. Update the photo path once you've added your photo to the `images/` folder. Edit the stats strip to reflect your own numbers and milestones.]{.role-desc}
 :::
 
 ::: role-block
 [`pages/research.qmd` — Research & Publications]{.role-title}
-[Update the research focus paragraph, the PhD status strip, the paper cards, and the publications list. For each publication, replace the title, DOI link, and journal name.]{.role-desc}
+[Update the research focus paragraph, the PhD status strip, and the paper cards. Then find the line `const ORCID_ID = '...'` near the top of the script block and replace it with your own ORCID identifier — publications will load and update automatically from there. Also update the `SCHOLAR_URL` constant to your Google Scholar profile URL.]{.role-desc}
 :::
 
 ::: role-block
@@ -103,18 +103,45 @@ All the content lives in `.qmd` files — these are plain text files with a litt
 
 ::: role-block
 [`pages/contact.qmd` — Contact]{.role-title}
-[Add your email address and optionally a link to a downloadable CV.]{.role-desc}
+[The contact form uses Web3Forms — replace the access key with your own from [web3forms.com](https://web3forms.com) (free). Update the inquiry type labels and form fields to suit your context.]{.role-desc}
+:::
+
+::: role-block
+[`pages/projects.qmd` — Projects]{.role-title}
+[Optional page for side projects, tools, or works in progress. Each project card has a status badge (Live / In progress / Planned), tag pills, and link buttons. Remove the page entirely from `_quarto.yml` if you don't need it.]{.role-desc}
 :::
 
 ::: role-block
 [`_quarto.yml` — Site title and navigation]{.role-title}
-[Change the `title` field to your name. Update the LinkedIn URL in the `right:` section of the navbar.]{.role-desc}
+[Change the `title` field to your name. Update the LinkedIn URL in the `right:` section of the navbar. Add or remove nav items to match your pages.]{.role-desc}
 :::
 :::
 
 ------------------------------------------------------------------------
 
-## Step 5 — Add your photo
+## Step 5 — Connect your ORCID
+
+Publications on the Research page load live from ORCID — no manual list to maintain. To connect your own profile:
+
+1. Make sure your ORCID profile is set to **public** and your works are added at [orcid.org](https://orcid.org)
+2. Open `pages/research.qmd` and find this line near the bottom:
+
+```js
+const ORCID_ID = '0009-0000-1020-2333';
+```
+
+3. Replace the ID with your own ORCID (the 16-digit number from your ORCID profile URL)
+4. Also update the Scholar URL on the next line:
+
+```js
+const SCHOLAR_URL = 'https://scholar.google.com/citations?user=YOURID';
+```
+
+The page will now show your 6 most recent publications, with journal favicons pulled automatically, APA 7 citations ready to copy, and RIS files available to download. A "View all on Google Scholar" link appears at the bottom.
+
+------------------------------------------------------------------------
+
+## Step 6 — Add your photo
 
 1. Find a headshot photo (square or portrait crops work best)
 2. Rename it `profile.jpg` (or any name you like)
@@ -127,7 +154,7 @@ All the content lives in `.qmd` files — these are plain text files with a litt
 
 ------------------------------------------------------------------------
 
-## Step 6 — Preview locally
+## Step 7 — Preview locally
 
 Before publishing, you can preview your site on your own computer.
 
@@ -141,11 +168,11 @@ A browser window will open showing your site. It updates live as you edit and sa
 
 ------------------------------------------------------------------------
 
-## Step 7 — Publish your changes
+## Step 8 — Publish your changes
 
 1. Open **GitHub Desktop**
 2. You'll see all the files you've changed listed on the left
-3. At the bottom left, type a short summary (e.g. `update bio and publications`) and click **Commit to main**
+3. At the bottom left, type a short summary (e.g. `update bio`) and click **Commit to main**
 4. Click **Push origin** at the top
 
 Your site will rebuild automatically and be live within about 2 minutes. Check the **Actions** tab in your GitHub repository to watch it deploy.
@@ -165,7 +192,7 @@ Replace the hex colour codes with any colours you like. The rest of the site upd
 
 | Palette | `--navy` | `--accent` |
 |---|---|---|
-| Teal & amber (default) | `#1a2e4a` | `#c8922a` |
+| Navy & amber (default) | `#1a2e4a` | `#c8922a` |
 | Deep green & gold | `#1a3a2a` | `#b8860b` |
 | Plum & coral | `#3a1a3a` | `#c8522a` |
 | Slate & teal | `#1a2a3a` | `#2a8a7a` |
@@ -213,6 +240,11 @@ DNS propagation takes up to 30–60 minutes.
 :::
 
 ::: role-block
+[Publications not loading]{.role-title}
+[Check that your ORCID profile is set to public and that your works are visible without logging in. You can verify by visiting `https://pub.orcid.org/v3.0/YOUR-ORCID-ID/works` in a browser — if it returns data, the page will load correctly.]{.role-desc}
+:::
+
+::: role-block
 [Custom domain showing as insecure]{.role-title}
 [Wait 30–60 minutes after setting up DNS for GitHub to provision the SSL certificate. The **Enforce HTTPS** checkbox will become available once it's ready.]{.role-desc}
 :::
@@ -226,5 +258,5 @@ DNS propagation takes up to 30–60 minutes.
 ------------------------------------------------------------------------
 
 ::: about-section
-Questions or issues with the template? Feel free to [get in touch](contact.qmd) or [Open an issue on GitHub](https://github.com/ccicm/academic-website-template/issues/new) and I'll get back to you.
+Questions or issues with the template? Feel free to [get in touch](contact.qmd) or [open an issue on GitHub](https://github.com/ccicm/academic-website-template/issues/new) and I'll get back to you.
 :::
