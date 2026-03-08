@@ -25,6 +25,14 @@ I am a PhD candidate at RMIT University (School of Health and Biomedical Science
 :::
 :::
 
+::: about-section
+## Current focus
+
+I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
+:::
+
+---
+
 ::: stats-strip
 ::: stat-item
 **6**\
@@ -46,12 +54,3 @@ Active PhD period
 Systematic review registered
 :::
 :::
-
-------------------------------------------------------------------------
-
-::: about-section
-## Current focus
-
-I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
-:::
-
