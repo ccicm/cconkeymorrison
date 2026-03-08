@@ -258,5 +258,5 @@ DNS propagation takes up to 30–60 minutes.
 ------------------------------------------------------------------------
 
 ::: about-section
-Questions or issues with the template? Feel free to [get in touch](contact.qmd?type=bug) or [open an issue on GitHub](https://github.com/ccicm/academic-website-template/issues/new) and I'll get back to you.
+Questions or issues with the template? Feel free to [get in touch](contact.qmd) or [open an issue on GitHub](https://github.com/ccicm/academic-website-template/issues/new) and I'll get back to you.
 :::
