@@ -169,7 +169,7 @@ page-layout: full
 <div class="ccm-type-row">
   <button type="button" class="ccm-type-btn" onclick="setType('research')">Research & collaboration</button>
   <button type="button" class="ccm-type-btn" onclick="setType('general')">General</button>
-  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" onclick="setType('bug')">Report a website bug</button>
+  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" onclick="setType('bug')">Report a bug</button>
 </div>
 
 <div class="ccm-form-wrap" id="ccm-form-wrap">
@@ -179,17 +179,17 @@ page-layout: full
     <input type="hidden" id="ccm-subject" name="subject" value="">
 
     <div class="ccm-form-group">
-      <label class="ccm-label" for="f-name">Name</label>
+      <label class="ccm-label" for="f-name">Name*</label>
       <input type="text" id="f-name" name="name" class="ccm-input" placeholder="Your name" required>
     </div>
 
     <div class="ccm-form-group">
-      <label class="ccm-label" for="f-email">Email</label>
+      <label class="ccm-label" for="f-email">Email*</label>
       <input type="email" id="f-email" name="email" class="ccm-input" placeholder="your@email.com" required>
     </div>
 
     <div class="ccm-form-group">
-      <label class="ccm-label" for="f-message" id="f-message-label">Message</label>
+      <label class="ccm-label" for="f-message" id="f-message-label">Message*</label>
       <textarea id="f-message" name="message" class="ccm-input ccm-textarea" placeholder="Your message..." required></textarea>
     </div>
 
