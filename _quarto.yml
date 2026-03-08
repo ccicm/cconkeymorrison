@@ -38,8 +38,8 @@ format:
         document.addEventListener('DOMContentLoaded', function() {
           var s = getComputedStyle(document.documentElement);
           window.CCM_COLORS = {
-            navy:      s.getPropertyValue('--navy').trim()       || '#1a2e4a',
-            navyLight: s.getPropertyValue('--navy-light').trim() || '#2a4268',
+            dark:      s.getPropertyValue('--dark').trim()       || '#1a2e4a',
+            darkLight: s.getPropertyValue('--dark-light').trim() || '#2a4268',
             accent:    s.getPropertyValue('--accent').trim()     || '#c8922a',
             bg:        s.getPropertyValue('--bg').trim()         || '#f8f7f5',
             bgCard:    s.getPropertyValue('--bg-card').trim()    || '#ffffff',
