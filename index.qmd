@@ -4,31 +4,21 @@ page-layout: full
 ---
 
 ```{=html}
-<style>
-.hero-text h1 { margin-top: 0 !important; margin-bottom: 0 !important; }
-.hero-text .hero-tags { margin-top: 0.4rem !important; }
-</style>
-```
-
-::: hero-wrapper
-::: hero-text
-# Connor Conkey-Morrison
-
-::: hero-tags
-[PhD Candidate]{.tag} [Provisional Psychologist]{.tag} [Sessional Academic]{.tag}
-:::
-
-::: hero-bio
-I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute.
-:::
-:::
-
-```{=html}
-<div class="hero-photo">
-  <img src="images/crop_27A5334.jpg" class="profile-img" alt="Connor Conkey-Morrison">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; gap:3rem; padding:2rem 0 2rem 0;">
+  <div style="flex:1; max-width:600px;">
+    <h1 style="font-size:3rem; font-weight:800; line-height:1.1; margin:0 0 0.5rem 0; color:var(--navy); letter-spacing:-0.02em;">Connor Conkey-Morrison</h1>
+    <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin:0 0 1rem 0;">
+      <span class="tag">PhD Candidate</span>
+      <span class="tag">Provisional Psychologist</span>
+      <span class="tag">Sessional Academic</span>
+    </div>
+    <p style="font-size:1.05rem; color:var(--text-muted); line-height:1.75; margin:0 0 0 0;">I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute.</p>
+  </div>
+  <div style="flex-shrink:0;">
+    <img src="images/crop_27A5334.jpg" class="profile-img" alt="Connor Conkey-Morrison">
+  </div>
 </div>
 ```
-:::
 
 ---
 
