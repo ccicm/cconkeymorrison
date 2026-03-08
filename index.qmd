@@ -3,6 +3,15 @@ title: ""
 page-layout: full
 ---
 
+```{=html}
+<style>
+.hero-text h1 { margin-top: 0 !important; margin-bottom: 0 !important; }
+.hero-text .hero-tags { margin-top: 0.4rem !important; }
+.hero-photo figure { margin: 0 !important; }
+.hero-photo p { margin: 0 !important; line-height: 0; }
+</style>
+```
+
 ::: hero-wrapper
 ::: hero-text
 # Connor Conkey-Morrison
