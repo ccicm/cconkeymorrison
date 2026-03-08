@@ -13,3 +13,9 @@ For research, teaching, clinical, or professional inquiries, email is the best p
 ## Curriculum Vitae
 
 A downloadable CV will be available here shortly.
+
+------------------------------------------------------------------------
+
+## Template
+
+Do you like this website? Set up one yourself with the template on my [GitHub](pages/template.qmd)
