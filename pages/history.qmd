@@ -155,25 +155,23 @@ member]{.role-desc}
 
 ::: role-section
 ::: role-block
-[Research software]{.role-title} [R (RStudio), Jamovi, SPSS, Excel,
-Quarto]{.role-desc}
+[Research software]{.role-title} [R (RStudio), Jamovi, SPSS, Excel, Colab]{.role-desc}
 :::
 
 ::: role-block
 [Methods]{.role-title} [Systematic review, network analysis, latent
 growth modelling, growth mixture modelling, longitudinal cohort
-analysis, administrative data linkage]{.role-desc}
+analysis]{.role-desc}
 :::
 
 ::: role-block
-[Clinical]{.role-title} [Psychoeducation, CBT-informed approaches,
+[Clinical]{.role-title} [Psychoeducation, CBT-informed approaches, ACT-informed approaches,
 emotional regulation, school refusal intervention, student wellbeing,
 family consultation]{.role-desc}
 :::
 
 ::: role-block
-[Other]{.role-title} [Academic peer review, curriculum and assessment
-design, research supervision support]{.role-desc}
+[Other]{.role-title} [Academic peer review, research supervision support, peer mentoring]{.role-desc}
 :::
 :::
 :::
@@ -191,7 +189,7 @@ design, research supervision support]{.role-desc}
 :::
 
 [State Library Victoria]{.role-org} [Worked within the People &
-Partnerships team on HSW policy, incident investigation, psychosocial
+HSW policy, incident investigation, psychosocial
 risk, and the implementation of a new health and safety management
 system aligned to ISO 45001.]{.role-desc}
 :::
