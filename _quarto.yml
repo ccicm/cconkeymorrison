@@ -7,32 +7,10 @@ website:
   favicon: favicon.ico
   navbar:
     left:
-      - text: Research
-        menu:
-          - text: "Research & Publications"
-            href: pages/research.qmd
-          - text: "---"
-          - text: "Current research focus"
-            href: pages/research.qmd#current-research-focus
-          - text: "Publications"
-            href: pages/research.qmd#publications
-      - text: Education & Experience
-        menu:
-          - text: "Education & Experience"
-            href: pages/history.qmd
-          - text: "---"
-          - text: "Education"
-            href: pages/history.qmd#education
-          - text: "Academic appointments"
-            href: pages/history.qmd#academic-appointments
-          - text: "Clinical work"
-            href: pages/history.qmd#clinical-and-school-based-roles
-          - text: "Skills & tools"
-            href: pages/history.qmd#skills-and-tools
-          - text: "Memberships & Registrations"
-            href: pages/history.qmd#professional-memberships
-          - text: "Prior experience"
-            href: pages/history.qmd#prior-experience
+      - href: pages/research.qmd
+        text: Research
+      - href: pages/history.qmd
+        text: Education & Experience
       - href: pages/projects.qmd
         text: Projects
       - href: pages/contact.qmd
