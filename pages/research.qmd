@@ -330,79 +330,72 @@ const DOI_DOMAINS = {
   '10.1159': 'karger.com', '10.1515': 'degruyter.com', '10.1108': 'emerald.com',
 };
 
-// ─── Journal name → homepage URL ─────────────────────────────────────────────
-// Keyed on lowercased journal name as returned by ORCID.
-// Elsevier journals are also handled by DOI slug extraction below.
-const JOURNAL_URLS = {
-  // Your current journals
-  'journal of psychopathology and behavioral assessment': 'https://link.springer.com/journal/10862',
-  'computers in human behavior reports': 'https://www.sciencedirect.com/journal/chbr',
-  'addictive behaviors reports': 'https://www.sciencedirect.com/journal/abrep',
-  'acta psychologica': 'https://www.sciencedirect.com/journal/acta-psychologica',
-  // Common psychology & behavioural science journals
-  'psychological science': 'https://journals.sagepub.com/home/pss',
-  'psychological bulletin': 'https://www.apa.org/pubs/journals/bul',
-  'psychological review': 'https://www.apa.org/pubs/journals/rev',
-  'journal of abnormal psychology': 'https://www.apa.org/pubs/journals/abn',
-  'journal of consulting and clinical psychology': 'https://www.apa.org/pubs/journals/ccp',
-  'clinical psychology review': 'https://www.sciencedirect.com/journal/clinical-psychology-review',
-  'behaviour research and therapy': 'https://www.sciencedirect.com/journal/behaviour-research-and-therapy',
-  'behaviour & information technology': 'https://www.tandfonline.com/journals/tbit20',
-  'behavior therapy': 'https://www.sciencedirect.com/journal/behavior-therapy',
-  'journal of anxiety disorders': 'https://www.sciencedirect.com/journal/journal-of-anxiety-disorders',
-  'depression and anxiety': 'https://onlinelibrary.wiley.com/journal/15206394',
-  'cognitive behaviour therapy': 'https://www.tandfonline.com/journals/sveb20',
-  'international journal of mental health and addiction': 'https://link.springer.com/journal/11469',
-  'addictive behaviors': 'https://www.sciencedirect.com/journal/addictive-behaviors',
-  'journal of behavioral addictions': 'https://akjournals.com/journal/2006',
-  'cyberpsychology, behavior, and social networking': 'https://www.liebertpub.com/loi/cyber',
-  'computers in human behavior': 'https://www.sciencedirect.com/journal/computers-in-human-behavior',
-  'internet research': 'https://www.emerald.com/insight/publication/issn/1066-2243',
-  'journal of medical internet research': 'https://www.jmir.org',
-  'scientific reports': 'https://www.nature.com/srep/',
-  'plos one': 'https://journals.plos.org/plosone/',
-  'frontiers in psychology': 'https://www.frontiersin.org/journals/psychology',
-  'frontiers in psychiatry': 'https://www.frontiersin.org/journals/psychiatry',
-  'bmc psychiatry': 'https://bmcpsychiatry.biomedcentral.com',
-  'journal of child psychology and psychiatry': 'https://onlinelibrary.wiley.com/journal/14697610',
-  'child development': 'https://onlinelibrary.wiley.com/journal/14678624',
-  'developmental psychology': 'https://www.apa.org/pubs/journals/dev',
-  'school psychology': 'https://www.apa.org/pubs/journals/spq',
-  'school psychology review': 'https://www.tandfonline.com/journals/uspr20',
-  'psychology in the schools': 'https://onlinelibrary.wiley.com/journal/15206807',
-  'educational psychology review': 'https://link.springer.com/journal/10648',
-  'assessment': 'https://journals.sagepub.com/home/asm',
-  'psychological assessment': 'https://www.apa.org/pubs/journals/pas',
-  'journal of psychopathology and clinical science': 'https://www.apa.org/pubs/journals/abn',
-  'european journal of psychological assessment': 'https://econtent.hogrefe.com/loi/jpa',
-  'personality and individual differences': 'https://www.sciencedirect.com/journal/personality-and-individual-differences',
-  'journal of personality and social psychology': 'https://www.apa.org/pubs/journals/psp',
-};
-
-function journalUrlFromName(journalName) {
-  if (!journalName) return null;
-  return JOURNAL_URLS[journalName.toLowerCase().trim()] || null;
-}
-
-function journalUrlFromDoi(doi) {
+// ─── Journal URL via Crossref ─────────────────────────────────────────────────
+// Crossref returns structured metadata per DOI including publisher links.
+// We extract the best journal-level URL from the response.
+async function fetchJournalUrl(doi) {
   if (!doi) return null;
-  // Elsevier: extract journal slug from DOI path
-  if (doi.startsWith('10.1016')) {
-    const m = doi.match(/10\.1016\/j\.([a-z]+)\./);
-    return m ? `https://www.sciencedirect.com/journal/${m[1]}` : null;
-  }
-  return null;
-}
+  try {
+    const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const work = data?.message;
+    if (!work) return null;
 
-function journalUrl(doi, journalName) {
-  // 1. Try journal name lookup first (most accurate)
-  const byName = journalUrlFromName(journalName);
-  if (byName) return byName;
-  // 2. Try DOI-based extraction (Elsevier)
-  const byDoi = journalUrlFromDoi(doi);
-  if (byDoi) return byDoi;
-  // 3. Fall back to article DOI link
-  return doi ? `https://doi.org/${doi}` : null;
+    // 1. Prefer explicit journal URL from links array
+    const links = work.link || [];
+    for (const l of links) {
+      if (l['content-type'] === 'unspecified' && l.URL?.includes('journal')) return l.URL;
+    }
+
+    // 2. Use ISSN + publisher to construct a reliable URL
+    const issns = work.ISSN || [];
+    const publisher = (work.publisher || '').toLowerCase();
+
+    if (issns.length > 0) {
+      const issn = issns[0];
+
+      if (publisher.includes('elsevier') || publisher.includes('sciencedirect')) {
+        // Elsevier: use journal slug from DOI if available, else ISSN search
+        const m = doi.match(/10\.1016\/j\.([a-z]+)\./);
+        if (m) return `https://www.sciencedirect.com/journal/${m[1]}`;
+        return `https://www.sciencedirect.com/search?qs=&pub=${encodeURIComponent(work['container-title']?.[0] || '')}`;
+      }
+      if (publisher.includes('springer') || publisher.includes('nature')) {
+        return `https://link.springer.com/search?query=&search-within=Journal&facet-journal-id=${issn}`;
+      }
+      if (publisher.includes('wiley')) {
+        return `https://onlinelibrary.wiley.com/journal/${issn.replace('-','')}`;
+      }
+      if (publisher.includes('taylor') || publisher.includes('routledge') || publisher.includes('informa')) {
+        return `https://www.tandfonline.com/journals/${issn}`;
+      }
+      if (publisher.includes('sage')) {
+        return `https://journals.sagepub.com/home/${issn}`;
+      }
+      if (publisher.includes('oxford') || publisher.includes('oup')) {
+        const slug = (work['container-title']?.[0] || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        return `https://academic.oup.com/${slug}`;
+      }
+      if (publisher.includes('american psychological') || publisher.includes('apa ')) {
+        return `https://www.apa.org/pubs/journals/${issn}`;
+      }
+      if (publisher.includes('frontiers')) {
+        const slug = (work['container-title']?.[0] || '').toLowerCase().replace('frontiers in ','').replace(/\s+/g,'-');
+        return `https://www.frontiersin.org/journals/${slug}`;
+      }
+      if (publisher.includes('plos')) {
+        return `https://journals.plos.org/plosone/`;
+      }
+    }
+
+    // 3. Fall back to publisher URL if present
+    if (work['publisher-location']) return null;
+
+    return null;
+  } catch { return null; }
 }
 
 // ─── Favicon / fallback ───────────────────────────────────────────────────────
@@ -518,7 +511,7 @@ function renderWorks(works, fromOrcid) {
     html += `<span class="pub-year-head">${year}</span>`;
     for (const w of byYear[year]) {
       const articleHref = w.doi ? `https://doi.org/${w.doi}` : '#';
-      const jUrl = journalUrl(w.doi, w.journal) || articleHref;
+      const jUrl = w.journalUrl || articleHref;
       const i = idx++;
       html += `
         <div class="pub-entry-block">
@@ -551,29 +544,39 @@ function renderWorks(works, fromOrcid) {
   return { html, footer };
 }
 
-// ─── Fetch full work record for authors ───────────────────────────────────────
-async function fetchFullWork(putCode) {
-  try {
-    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/work/${putCode}`, {
-      headers: { 'Accept': 'application/json' }
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const contributors = data?.contributors?.contributor || [];
-    const volume = data?.['journal-title'] ? null : null; // not in summary
-    // Extract volume/issue/pages from citation if present
-    const extIds = data?.['external-ids']?.['external-id'] || [];
-    return {
-      authors: formatAuthorsApa(contributors),
-      volume: data?.['biblio']?.volume || null,
-      issue: data?.['biblio']?.issue || null,
-      pages: data?.['biblio']?.['start-page']
-        ? (data['biblio']['end-page']
-            ? `${data['biblio']['start-page']}–${data['biblio']['end-page']}`
-            : data['biblio']['start-page'])
-        : null,
-    };
-  } catch { return null; }
+// ─── Fetch full work record (ORCID authors + Crossref journal URL in parallel) ─
+async function fetchFullWork(putCode, doi) {
+  const [orcidResult, jUrl] = await Promise.all([
+    (async () => {
+      try {
+        const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/work/${putCode}`, {
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) return null;
+        const data = await res.json();
+        const contributors = data?.contributors?.contributor || [];
+        return {
+          authors: formatAuthorsApa(contributors),
+          volume: data?.['biblio']?.volume || null,
+          issue:  data?.['biblio']?.issue  || null,
+          pages:  data?.['biblio']?.['start-page']
+            ? (data['biblio']['end-page']
+                ? `${data['biblio']['start-page']}–${data['biblio']['end-page']}`
+                : data['biblio']['start-page'])
+            : null,
+        };
+      } catch { return null; }
+    })(),
+    fetchJournalUrl(doi),
+  ]);
+
+  return {
+    authors:    orcidResult?.authors || null,
+    volume:     orcidResult?.volume  || null,
+    issue:      orcidResult?.issue   || null,
+    pages:      orcidResult?.pages   || null,
+    journalUrl: jUrl                 || null,
+  };
 }
 
 // ─── Main loader ──────────────────────────────────────────────────────────────
@@ -586,7 +589,6 @@ async function loadOrcidPublications() {
     if (!res.ok) throw new Error();
     const data = await res.json();
 
-    // Parse summary list
     const summaries = [];
     for (const group of data.group || []) {
       const summary = group['work-summary']?.[0];
@@ -598,26 +600,23 @@ async function loadOrcidPublications() {
       for (const eid of summary['external-ids']?.['external-id'] || []) {
         if (eid['external-id-type'] === 'doi') { doi = eid['external-id-value']; break; }
       }
-      const putCode = summary['put-code'];
-      summaries.push({ title, year, journal, doi, putCode });
+      summaries.push({ title, year, journal, doi, putCode: summary['put-code'] });
     }
 
     if (summaries.length === 0) throw new Error('empty');
 
-    // Sort and cap at MAX_PUBS
     summaries.sort((a, b) => b.year - a.year);
     const top = summaries.slice(0, MAX_PUBS);
 
-    // Fetch full records in parallel for author lists
-    const fullRecords = await Promise.all(top.map(s => fetchFullWork(s.putCode)));
+    const fullRecords = await Promise.all(top.map(s => fetchFullWork(s.putCode, s.doi)));
 
-    // Merge
     const works = top.map((s, i) => ({
       ...s,
-      authors: fullRecords[i]?.authors || null,
-      volume:  fullRecords[i]?.volume  || null,
-      issue:   fullRecords[i]?.issue   || null,
-      pages:   fullRecords[i]?.pages   || null,
+      authors:    fullRecords[i]?.authors    || null,
+      volume:     fullRecords[i]?.volume     || null,
+      issue:      fullRecords[i]?.issue      || null,
+      pages:      fullRecords[i]?.pages      || null,
+      journalUrl: fullRecords[i]?.journalUrl || (s.doi ? `https://doi.org/${s.doi}` : null),
     }));
 
     const { html, footer } = renderWorks(works, true);
@@ -625,12 +624,11 @@ async function loadOrcidPublications() {
     container.appendChild(footer);
 
   } catch (e) {
-    // Fallback with known author strings
     const fallback = [
-      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Stavropoulos, V., Conkey-Morrison, C., Gomez, R., Griffiths, M. D.' },
-      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Stavropoulos, V.' },
-      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.' },
-      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.' },
+      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Stavropoulos, V., Conkey-Morrison, C., Gomez, R., Griffiths, M. D.', journalUrl: 'https://link.springer.com/journal/10862' },
+      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/chbr' },
+      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/abrep' },
+      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/acta-psychologica' },
     ];
     const { html, footer } = renderWorks(fallback, false);
     container.innerHTML = html;
