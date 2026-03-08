@@ -147,10 +147,6 @@ psychologist]{.role-desc}
 member]{.role-desc}
 :::
 
-::: role-block
-[APS College of Educational and Developmental Psychologists
-(CEDP)]{.role-title} [Student affiliate]{.role-desc}
-:::
 :::
 :::
 
