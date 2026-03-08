@@ -96,11 +96,11 @@ Exploring system-level patterns in school attendance and non-attendance using na
   top: 80px;
 }
 .sidebar-section {
-  background: #ffffff;
-  border: 1px solid #e4e1da;
-  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 1.1rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-sm);
 }
 .sidebar-label {
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -108,7 +108,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #5c5c5c;
+  color: var(--text-muted);
   display: block;
   margin-bottom: 0.6rem;
 }
@@ -121,37 +121,36 @@ Exploring system-level patterns in school attendance and non-attendance using na
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #1a2e4a !important;
+  color: var(--navy) !important;
   text-decoration: none !important;
   padding: 0.3rem 0.5rem;
   border-radius: 6px;
-  border: 1px solid #e4e1da;
+  border: 1px solid var(--border);
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
   display: block;
   text-align: center;
 }
 .sidebar-link:hover {
-  background: #eef2f8;
-  border-color: #1a2e4a;
+  background: var(--tag-bg);
+  border-color: var(--navy);
   transform: translateY(-1px);
 }
 
-/* Publications content — reusing existing site classes inline */
 .pub-year-head {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #c8922a;
+  color: var(--accent);
   margin: 2rem 0 0.75rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e4e1da;
+  border-bottom: 2px solid var(--border);
   display: block;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .pub-entry-block {
   padding: 1rem 0;
-  border-bottom: 1px solid #e4e1da;
+  border-bottom: 1px solid var(--border);
   display: flex;
   gap: 0.85rem;
   align-items: flex-start;
@@ -161,8 +160,8 @@ Exploring system-level patterns in school attendance and non-attendance using na
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  border: 1px solid #e4e1da;
-  background: #f8f7f5;
+  border: 1px solid var(--border);
+  background: var(--bg);
   flex-shrink: 0;
   object-fit: contain;
   padding: 3px;
@@ -172,14 +171,14 @@ Exploring system-level patterns in school attendance and non-attendance using na
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  border: 1px solid #e4e1da;
-  background: #f8f7f5;
+  border: 1px solid var(--border);
+  background: var(--bg);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 2px;
-  color: #c8922a;
+  color: var(--accent);
 }
 .pub-entry-text {
   flex: 1;
@@ -188,32 +187,32 @@ Exploring system-level patterns in school attendance and non-attendance using na
 .pub-title-link {
   font-size: 0.97rem;
   font-weight: 600;
-  color: #1a2e4a !important;
+  color: var(--navy) !important;
   text-decoration: none !important;
   line-height: 1.55;
   display: inline;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background-image: linear-gradient(#c8922a, #c8922a);
+  background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 0% 1px;
   background-repeat: no-repeat;
   background-position: left bottom;
   transition: background-size 0.25s ease, color 0.15s;
 }
 .pub-title-link:hover {
-  color: #c8922a !important;
+  color: var(--accent) !important;
   background-size: 100% 1px;
 }
 .pub-journal-link {
   display: inline;
   font-size: 0.82rem;
-  color: #5c5c5c !important;
+  color: var(--text-muted) !important;
   font-style: italic;
   font-weight: 400;
   font-family: 'Plus Jakarta Sans', sans-serif;
   text-decoration: none !important;
   transition: color 0.15s;
 }
-.pub-journal-link:hover { color: #c8922a !important; }
+.pub-journal-link:hover { color: var(--accent) !important; }
 .pub-meta-row {
   display: flex;
   align-items: center;
@@ -226,9 +225,9 @@ Exploring system-level patterns in school attendance and non-attendance using na
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  color: #5c5c5c;
-  background: #f8f7f5;
-  border: 1px solid #e4e1da;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 0.18rem 0.6rem;
   cursor: pointer;
@@ -237,9 +236,9 @@ Exploring system-level patterns in school attendance and non-attendance using na
   line-height: 1.6;
 }
 .pub-cite-btn:hover {
-  background: #eef2f8;
-  border-color: #1a2e4a;
-  color: #1a2e4a;
+  background: var(--tag-bg);
+  border-color: var(--navy);
+  color: var(--navy);
   transform: translateY(-1px);
 }
 .pub-cite-btn.copied {
@@ -250,21 +249,65 @@ Exploring system-level patterns in school attendance and non-attendance using na
 .pub-loading {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.9rem;
-  color: #5c5c5c;
+  color: var(--text-muted);
   padding: 1rem 0;
+}
+.pub-section-heading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+.pub-footer-row {
+  margin-top: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.pub-synced-note {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+.pub-synced-note a {
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+.pub-scholar-link {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy) !important;
+  text-decoration: none !important;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: background 0.18s, border-color 0.18s;
+}
+.pub-scholar-link:hover {
+  background: var(--tag-bg);
+  border-color: var(--navy);
 }
 
 /* Peer review section */
 .peer-review-section {
   margin-top: 2rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e4e1da;
+  border-top: 1px solid var(--border);
 }
 .peer-review-section h2 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.55rem;
   font-weight: 700;
-  color: #1a2e4a;
+  color: var(--navy);
   letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
 }
@@ -285,7 +328,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
   <!-- Main: Publications + Peer review -->
   <div class="pub-main">
 
-    <h2 id="publications" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.55rem;font-weight:700;color:#1a2e4a;letter-spacing:-0.02em;margin-bottom:0.75rem;">Publications</h2>
+    <h2 id="publications" class="pub-section-heading">Publications</h2>
 
     <div id="orcid-pubs">
       <p class="pub-loading">Loading publications from ORCID…</p>
@@ -399,14 +442,14 @@ async function fetchJournalUrl(doi) {
 }
 
 // ─── Favicon / fallback ───────────────────────────────────────────────────────
-const BOOK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+function getBookSvg() { const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c8922a'; return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`; }
 
 function pubIconHtml(doi) {
   const domain = doi ? (DOI_DOMAINS[doi.split('/')[0]] || null) : null;
   if (domain) {
-    return `<img class="pub-favicon" src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="${domain}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="pub-favicon-fallback" style="display:none;">${BOOK_SVG}</div>`;
+    return `<img class="pub-favicon" src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="${domain}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="pub-favicon-fallback" style="display:none;">${getBookSvg()}</div>`;
   }
-  return `<div class="pub-favicon-fallback">${BOOK_SVG}</div>`;
+  return `<div class="pub-favicon-fallback">${getBookSvg()}</div>`;
 }
 
 // ─── Author formatting ────────────────────────────────────────────────────────
@@ -530,13 +573,13 @@ function renderWorks(works, fromOrcid) {
 
   // Footer: synced note + Scholar link
   const footer = document.createElement('div');
-  footer.style.cssText = 'margin-top:1.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;border-top:1px solid #e4e1da;padding-top:1rem;';
+  footer.className = 'pub-footer-row';
 
   const syncNote = fromOrcid
-    ? `<span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;letter-spacing:0.02em;">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank" style="color:#5c5c5c;text-decoration:underline;">ORCID</a> · ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}</span>`
-    : `<span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;color:#5c5c5c;">Showing recent publications</span>`;
+    ? `<span class="pub-synced-note">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank">ORCID</a> · ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}</span>`
+    : `<span class="pub-synced-note">Showing recent publications</span>`;
 
-  const scholarLink = `<a href="${SCHOLAR_URL}" target="_blank" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;color:#1a2e4a;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid #e4e1da;border-radius:999px;transition:all 0.18s;" onmouseover="this.style.background='#eef2f8';this.style.borderColor='#1a2e4a';" onmouseout="this.style.background='';this.style.borderColor='#e4e1da';">View all on Google Scholar →</a>`;
+  const scholarLink = `<a href="${SCHOLAR_URL}" target="_blank" class="pub-scholar-link">View all on Google Scholar →</a>`;
 
   footer.innerHTML = syncNote + scholarLink;
 
