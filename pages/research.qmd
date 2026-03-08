@@ -688,8 +688,6 @@ loadOrcidPublications();
 
 Papers I've read recently — collaborator work, methodological references, and things worth knowing about.
 
-<!-- READING LIST — replace the existing <div id="reading-list">…</script> block in pages/research.qmd with this -->
-
 <div id="reading-list-wrap">
   <div id="reading-filter-bar" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.1rem;"></div>
   <div id="reading-list"><p class="pub-loading">Loading…</p></div>
@@ -716,13 +714,12 @@ Papers I've read recently — collaborator work, methodological references, and 
   }
 
   // --- Collect all unique tags ---
-  const allTags = ['All', ...new Set(entries.flatMap(e => e.tags || []))];
-  let activeTag = 'All';
+  const allTags = [...new Set(entries.flatMap(e => e.tags || []))];
+  let activeTags = new Set(); // empty = show all
 
   // --- Filter pill styles ---
   function pillStyle(active) {
-    const navy   = getComputedStyle(document.documentElement).getPropertyValue('--navy').trim()   || '#1a2b4a';
-    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#c8922a';
+    const navy = getComputedStyle(document.documentElement).getPropertyValue('--navy').trim() || '#1a2b4a';
     return active
       ? `background:${navy};color:#fff;border:1.5px solid ${navy};border-radius:999px;padding:0.25rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;`
       : `background:transparent;color:${navy};border:1.5px solid ${navy};border-radius:999px;padding:0.25rem 0.85rem;font-size:0.78rem;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.15s;opacity:0.65;`;
@@ -730,11 +727,12 @@ Papers I've read recently — collaborator work, methodological references, and 
 
   function renderFilterBar() {
     filterBar.innerHTML = allTags.map(tag => `
-      <button data-tag="${tag}" style="${pillStyle(tag === activeTag)}">${tag}</button>
+      <button data-tag="${tag}" style="${pillStyle(activeTags.has(tag))}">${tag}</button>
     `).join('');
     filterBar.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', () => {
-        activeTag = btn.dataset.tag;
+        const tag = btn.dataset.tag;
+        if (activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
         renderFilterBar();
         renderList();
       });
@@ -790,7 +788,7 @@ Papers I've read recently — collaborator work, methodological references, and 
 
   async function renderList() {
     container.innerHTML = '<p class="pub-loading">Loading…</p>';
-    const filtered = activeTag === 'All' ? entries : entries.filter(e => (e.tags || []).includes(activeTag));
+    const filtered = activeTags.size === 0 ? entries : entries.filter(e => (e.tags || []).some(t => activeTags.has(t)));
 
     if (!filtered.length) {
       container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No entries for this filter.</p>';
