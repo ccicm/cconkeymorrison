@@ -34,11 +34,11 @@ My present research centres on school attendance problems and emotionally based 
 :::
 
 ::: phd-status-item
-[Paper 2]{.status-label} [Variable selection & methods]{.status-value}
+[Paper 2]{.status-label} [Variable selection & methods]{.status-value .status-WIP}
 :::
 
 ::: phd-status-item
-[Paper 3]{.status-label} [Data granted; pending]{.status-value}
+[Paper 3]{.status-label} [Data granted]{.status-value .status-WIP}
 :::
 
 ::: phd-status-item
