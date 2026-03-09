@@ -1,0 +1,25 @@
+---
+title: ""
+page-layout: full
+---
+
+::: page-header
+# Resources
+:::
+
+This page will host curated resources for families, educators, and trainees — particularly around school attendance, emotionally based school avoidance, and child wellbeing.
+
+------------------------------------------------------------------------
+
+::: role-section
+::: role-block
+[Resources coming soon]{.role-title}
+[Content will be added here as it is developed. Check back or [get in touch](../contact.html) if you're looking for something specific.]{.role-desc}
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: about-section
+[Back to Clinical overview →](index.qmd){.about-link}
+:::

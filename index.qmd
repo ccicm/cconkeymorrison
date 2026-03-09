@@ -14,6 +14,10 @@ page-layout: full
 ::: hero-bio
 I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute.
 :::
+
+::: hero-links
+[Research →](research/index.qmd){.hero-btn .btn-primary} [CV →](cv/index.qmd){.hero-btn .btn-secondary} [Get in touch →](contact.qmd){.hero-btn .btn-secondary}
+:::
 :::
 
 ::: hero-photo
@@ -50,9 +54,7 @@ Systematic review registered
 
 I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
 
-::: hero-links
-[Research →](pages/research.qmd){.hero-btn .btn-primary} [Education & Experience →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
-:::
+[Read more →](research/index.qmd){.about-link}
 :::
 
 ---
@@ -61,7 +63,7 @@ I research school attendance problems and emotionally based school avoidance (EB
 
 ```{=html}
 <div id="home-reading-list"><p style="font-size:0.9rem;color:var(--text-muted);">Loading…</p></div>
-<p style="margin-top:0.75rem;"><a href="pages/research.qmd#recent-reading" style="font-size:0.875rem;font-weight:600;color:var(--accent);text-decoration:none;">View all →</a></p>
+<p style="margin-top:0.75rem;"><a href="research/reading-list.html" style="font-size:0.875rem;font-weight:600;color:var(--accent);text-decoration:none;">View all →</a></p>
 
 <script>
 (async function() {
@@ -69,7 +71,7 @@ I research school attendance problems and emotionally based school avoidance (EB
   const container = document.getElementById('home-reading-list');
 
   function getBookSvg() {
-    const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c05a4a';
+    const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c8922a';
     return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
   }
 
@@ -118,18 +120,17 @@ I research school attendance problems and emotionally based school avoidance (EB
     const url = meta ? meta.url : `https://doi.org/${e.doi}`;
     const title = meta ? meta.title : e.doi;
     const byline = meta ? [meta.authors, meta.year, meta.journal].filter(Boolean).join(' · ') : '';
-    return `
-      <div class="pub-entry-block">
-        <div class="pub-favicon-fallback">${getBookSvg()}</div>
-        <div class="pub-entry-text">
-          <a href="${url}" target="_blank" class="pub-title-link">${title}</a>
-          ${byline ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.2rem;font-style:italic;">${byline}</div>` : ''}
-          ${e.note ? `<div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.35rem;line-height:1.6;">${e.note}</div>` : ''}
-        </div>
-      </div>`;
+    return `<div class="pub-entry-block">
+      <div class="pub-favicon-fallback">${getBookSvg()}</div>
+      <div class="pub-entry-text">
+        <a href="${url}" target="_blank" class="pub-title-link">${title}</a>
+        ${byline ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.2rem;font-style:italic;">${byline}</div>` : ''}
+        ${e.note ? `<div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem;">${e.note}</div>` : ''}
+      </div>
+    </div>`;
   }).join('');
 
-  container.innerHTML = html || '<p style="font-size:0.9rem;color:var(--text-muted);">Nothing here yet.</p>';
+  container.innerHTML = html;
 })();
 </script>
 ```

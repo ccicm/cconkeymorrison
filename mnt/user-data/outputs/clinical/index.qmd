@@ -1,0 +1,47 @@
+---
+title: ""
+page-layout: full
+---
+
+::: page-header
+# Clinical
+:::
+
+::: jump-nav
+[Overview](#overview){.jump-link}
+[Current placement](#current-placement){.jump-link}
+[Approach](#approach){.jump-link}
+:::
+
+------------------------------------------------------------------------
+
+## Overview
+
+I am a provisional psychologist currently completing supervised practice toward general registration with the Psychology Board of Australia. My clinical work sits at the intersection of school-based practice and child and adolescent wellbeing — consistent with my PhD research on emotionally based school avoidance (EBSA).
+
+------------------------------------------------------------------------
+
+## Current placement
+
+::: role-section
+::: role-block
+::: role-header
+[Industry PhD Partner & School Counsellor]{.role-title} [2024 -- present]{.role-date}
+:::
+
+[CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
+[CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools — currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Approach
+
+My clinical approach is informed by evidence-based frameworks for child and adolescent mental health, with particular attention to anxiety-based presentations, school refusal, and family systems. I draw on CBT-informed and systemic approaches, contextualised within school and community settings.
+
+------------------------------------------------------------------------
+
+::: about-section
+[Resources →](resources.qmd){.about-link} [Get in touch →](../contact.html){.about-link}
+:::

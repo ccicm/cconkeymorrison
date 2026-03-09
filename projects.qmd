@@ -1,0 +1,51 @@
+---
+title: ""
+page-layout: full
+---
+
+::: page-header
+# Projects
+:::
+
+Research tools, open-source work, and things built along the way. Some are live; others are works in progress.
+
+------------------------------------------------------------------------
+
+::: project-grid
+
+::: project-card
+[In progress]{.project-status .status-wip}
+
+### Academic website template
+
+A free Quarto-based academic website template deployed to GitHub Pages. Includes live ORCID publications, a reading list, contact form, and full setup guide — no coding experience required.
+
+::: project-tags
+[Quarto]{.project-tag} [GitHub Pages]{.project-tag} [Open source]{.project-tag}
+:::
+
+::: project-links
+[View template](https://connorconkeymorrison.com/pages/template){.project-link}
+[GitHub](https://github.com/ccicm/academic-website-template){.project-link-secondary}
+:::
+:::
+
+::: project-card
+[Planned]{.project-status .status-planned}
+
+### EBSA measurement tool
+
+A placeholder for future project content.
+
+::: project-tags
+[Research]{.project-tag} [Measurement]{.project-tag}
+:::
+:::
+
+:::
+
+------------------------------------------------------------------------
+
+::: about-section
+Interested in collaborating on any of these? [Get in touch →](../contact.html){.about-link}
+:::

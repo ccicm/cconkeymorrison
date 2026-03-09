@@ -1,0 +1,91 @@
+---
+title: ""
+page-layout: full
+engine: markdown
+---
+
+::: page-header
+# Research
+:::
+
+::: jump-nav
+[Current focus](#current-research-focus){.jump-link}
+[PhD papers](#phd-papers){.jump-link}
+[Supervisory team](#supervisory-team){.jump-link}
+:::
+
+------------------------------------------------------------------------
+
+## Current research focus
+
+My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
+
+::: phd-status-strip
+::: phd-status-item
+[Ethics]{.status-label} [Approved]{.status-value .status-good}
+:::
+
+::: phd-status-item
+[Data access]{.status-label} [Granted]{.status-value .status-good}
+:::
+
+::: phd-status-item
+[Paper 1]{.status-label} [Manuscript in progress]{.status-value .status-WIP}
+:::
+
+::: phd-status-item
+[Paper 2]{.status-label} [Variable selection & methods]{.status-value}
+:::
+
+::: phd-status-item
+[Paper 3]{.status-label} [Data granted; pending]{.status-value}
+:::
+
+::: phd-status-item
+[Estimated completion]{.status-label} [2027]{.status-value .status-goal}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## PhD papers
+
+::: paper-grid
+::: paper-card
+[Paper 1]{.paper-label}
+
+### Systematic review
+
+A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918){.prospero-badge} systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
+:::
+
+::: paper-card
+[Paper 2]{.paper-label}
+
+### Longitudinal modelling
+
+Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
+:::
+
+::: paper-card
+[Paper 3]{.paper-label}
+
+### Population-level attendance
+
+Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Supervisory team
+
+::: supervisor-row
+[Dr Daniel Zarate](https://orcid.org/0000-0000-0000-0000){.supervisor-link} [Dr Vasileios Stavropoulos](https://orcid.org/0000-0000-0000-0000){.supervisor-link} [Dr Taylor Brown](https://orcid.org/0000-0000-0000-0000){.supervisor-link}
+:::
+
+------------------------------------------------------------------------
+
+::: about-section
+[Publications →](publications.qmd){.about-link} [Reading List →](reading-list.qmd){.about-link} [Projects →](projects.qmd){.about-link}
+:::
