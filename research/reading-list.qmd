@@ -8,21 +8,28 @@ engine: markdown
 # Reading List
 :::
 
-Papers I've been reading — collaborator work, methodological references, and things worth knowing about. Updated as I go.
+## Recent reading
 
-------------------------------------------------------------------------
+Papers I've read recently — collaborator work, methodological references, and things worth knowing about.
+
+::::: {#reading-list-wrap}
+::: {#reading-filter-bar style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.1rem;"}
+:::
+
+::: {#reading-list}
+<p class="pub-loading">
+
+Loading…
+
+</p>
+:::
+:::::
 
 ```{=html}
-<div id="reading-list"><p class="pub-loading">Loading…</p></div>
-
 <script>
 (async function() {
-  const container = document.getElementById('reading-list');
-
-  function getBookSvg() {
-    const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c8922a';
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
-  }
+  const container   = document.getElementById('reading-list');
+  const filterBar   = document.getElementById('reading-filter-bar');
 
   let entries = [];
   try {
@@ -39,10 +46,39 @@ Papers I've been reading — collaborator work, methodological references, and t
     return;
   }
 
+  // --- Collect all unique tags ---
+  const allTags = [...new Set(entries.flatMap(e => e.tags || []))];
+  let activeTags = new Set(); // empty = show all
+
+  // --- Filter pill styles ---
+  function pillStyle(active) {
+    const navy = getComputedStyle(document.documentElement).getPropertyValue('--navy').trim() || '#1a2b4a';
+    return active
+      ? `background:${navy};color:#fff;border:1.5px solid ${navy};border-radius:999px;padding:0.25rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;`
+      : `background:transparent;color:${navy};border:1.5px solid ${navy};border-radius:999px;padding:0.25rem 0.85rem;font-size:0.78rem;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.15s;opacity:0.65;`;
+  }
+
+  function renderFilterBar() {
+    filterBar.innerHTML = allTags.map(tag => `
+      <button data-tag="${tag}" style="${pillStyle(activeTags.has(tag))}">${tag}</button>
+    `).join('');
+    filterBar.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        if (activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+        renderFilterBar();
+        renderList();
+      });
+    });
+  }
+
+  // --- Metadata cache ---
+  const metaCache = {};
   async function fetchMeta(doi) {
+    if (metaCache[doi] !== undefined) return metaCache[doi];
     try {
       const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
-      if (!res.ok) return null;
+      if (!res.ok) { metaCache[doi] = null; return null; }
       const data = await res.json();
       const w = data.message;
       const authors = (w.author || []).slice(0, 5).map(a => {
@@ -50,40 +86,54 @@ Papers I've been reading — collaborator work, methodological references, and t
         const init = a.given ? a.given[0] + '.' : '';
         return `${last}, ${init}`.trim().replace(/,$/, '');
       }).join(', ') + ((w.author || []).length > 5 ? ', et al.' : '');
-      return {
-        title: w.title?.[0] || 'Untitled',
-        journal: w['container-title']?.[0] || '',
-        year: w.published?.['date-parts']?.[0]?.[0] || '',
-        authors,
-        url: `https://doi.org/${doi}`,
-      };
-    } catch { return null; }
+      metaCache[doi] = { title: w.title?.[0] || 'Untitled', journal: w['container-title']?.[0] || '', year: w.published?.['date-parts']?.[0]?.[0] || '', authors, url: `https://doi.org/${doi}` };
+    } catch { metaCache[doi] = null; }
+    return metaCache[doi];
   }
 
-  const metas = await Promise.all(entries.map(e => fetchMeta(e.doi)));
+  function getBookSvg() {
+    const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c8922a';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+  }
 
-  const html = entries.map((e, i) => {
-    const meta = metas[i];
-    const url = meta ? meta.url : `https://doi.org/${e.doi}`;
-    const title = meta ? meta.title : e.doi;
-    const journal = meta ? [meta.authors, meta.year, meta.journal].filter(Boolean).join(' · ') : '';
-    return `<div class="pub-entry-block">
-      <div class="pub-favicon-fallback">${getBookSvg()}</div>
-      <div class="pub-entry-text">
-        <a href="${url}" target="_blank" class="pub-title-link">${title}</a>
-        ${journal ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.2rem;font-style:italic;">${journal}</div>` : ''}
-        ${e.note ? `<div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.35rem;line-height:1.55;">${e.note}</div>` : ''}
-      </div>
-    </div>`;
-  }).join('');
+  function tagPill(tag) {
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#c8922a';
+    return `<span style="display:inline-block;font-size:0.72rem;font-weight:600;color:${accent};background:color-mix(in srgb,${accent} 12%,transparent);border-radius:999px;padding:0.1rem 0.55rem;margin-right:0.3rem;margin-top:0.35rem;">${tag}</span>`;
+  }
 
-  container.innerHTML = html;
+  function renderCard(meta, entry) {
+    const { doi, note, tags = [] } = entry;
+    const url     = meta ? meta.url   : `https://doi.org/${doi}`;
+    const title   = meta ? meta.title : doi;
+    const byline  = meta ? [meta.authors, meta.year, meta.journal].filter(Boolean).join(' · ') : '';
+    const tagHtml = tags.map(tagPill).join('');
+    return `
+      <div class="pub-entry-block">
+        <div class="pub-favicon-fallback">${getBookSvg()}</div>
+        <div class="pub-entry-text">
+          <a href="${url}" target="_blank" class="pub-title-link">${title}</a>
+          ${byline  ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.2rem;font-style:italic;">${byline}</div>` : ''}
+          ${tagHtml ? `<div style="margin-top:0.1rem;">${tagHtml}</div>` : ''}
+          ${note    ? `<div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.6;">${note}</div>` : ''}
+        </div>
+      </div>`;
+  }
+
+  async function renderList() {
+    container.innerHTML = '<p class="pub-loading">Loading…</p>';
+    const filtered = activeTags.size === 0 ? entries : entries.filter(e => (e.tags || []).some(t => activeTags.has(t)));
+
+    if (!filtered.length) {
+      container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No entries for this filter.</p>';
+      return;
+    }
+
+    const metas = await Promise.all(filtered.map(e => fetchMeta(e.doi)));
+    container.innerHTML = filtered.map((e, i) => renderCard(metas[i], e)).join('');
+  }
+
+  renderFilterBar();
+  renderList();
 })();
 </script>
 ```
-
-------------------------------------------------------------------------
-
-::: about-section
-To add a paper: edit `data/reading.json` with the DOI and a short note. Metadata loads automatically from Crossref.
-:::
