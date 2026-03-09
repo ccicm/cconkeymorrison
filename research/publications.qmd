@@ -228,12 +228,16 @@ function renderWorks(works, fromOrcid) {
       const i = idx++;
       const articleHref = w.doi ? `https://doi.org/${w.doi}` : '#';
       const jUrl = w.journalUrl || articleHref;
+      const authorsLine = w.authors ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.15rem;">${w.authors}</div>` : '';
+      const journalLine = w.journal ? `<div style="margin-top:0.15rem;"><a href="${jUrl}" target="_blank" class="pub-journal-link">${w.journal}</a></div>` : '';
       html += `<div class="pub-entry-block">
         ${pubIconHtml(w.doi)}
         <div class="pub-entry-text">
           <a href="${articleHref}" target="_blank" class="pub-title-link">${w.title}</a>
-          <div class="pub-meta-row">
-            ${w.journal ? `<a href="${jUrl}" target="_blank" class="pub-journal-link">${w.journal}</a>` : ''}
+          ${authorsLine}
+          ${journalLine}
+          <div class="pub-actions" style="display:flex;gap:0.4rem;margin-top:0.45rem;flex-wrap:wrap;">
+            ${w.doi ? `<a href="https://doi.org/${w.doi}" target="_blank" class="pub-cite-btn">DOI ↗</a>` : ''}
             <button id="cite-btn-${i}" class="pub-cite-btn" onclick="copyApa(${i})">Copy APA 7</button>
             <button class="pub-cite-btn" onclick="downloadRisById(${i})">Download RIS</button>
           </div>
