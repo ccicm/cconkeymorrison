@@ -1,0 +1,62 @@
+{
+  "currentQuarter": 5,
+  "estimatedCompletion": "2027",
+  "milestones": [
+    { "quarter": 1,  "label": "M1", "full": "Confirmation of Candidature" },
+    { "quarter": 5,  "label": "M2", "full": "Milestone 2" },
+    { "quarter": 9,  "label": "M3", "full": "Milestone 3" },
+    { "quarter": 13, "label": "4Y", "full": "4th Year — Maximum Submission" }
+  ],
+  "papers": [
+    {
+      "id": 1,
+      "label": "Paper 1",
+      "title": "Systematic review",
+      "activities": [
+        { "desc": "Obtain institutional ethics approval",                      "statuses": { "1": "done" } },
+        { "desc": "Register systematic review protocol (PROSPERO)",            "statuses": { "1": "done" } },
+        { "desc": "Finalise eligibility criteria for EBSA studies",            "statuses": { "1": "done" } },
+        { "desc": "Develop and refine database search strategy",               "statuses": { "1": "done" } },
+        { "desc": "PRISMA-compliant screening in Covidence",                   "statuses": { "3": "done" } },
+        { "desc": "Audit extracted data & finalise coding framework",          "statuses": { "4": "done" } },
+        { "desc": "Assess study quality (risk-of-bias)",                       "statuses": { "3": "wip",  "5": "goal" } },
+        { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "3": "wip",  "5": "goal" } },
+        { "desc": "Draft systematic review manuscript",                        "statuses": { "3": "wip",  "5": "goal" } },
+        { "desc": "Submit Paper 1 & respond to peer review",                   "statuses": { "5": "todo", "6": "goal" } }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Paper 2",
+      "title": "Longitudinal modelling (LSAC)",
+      "activities": [
+        { "desc": "Secure LSAC data access & governance",                      "statuses": { "2": "done" } },
+        { "desc": "Harmonise attendance indicators across waves",              "statuses": { "3": "wip",  "5": "goal" } },
+        { "desc": "Exploratory clustering of attendance patterns",             "statuses": { "4": "wip",  "6": "goal" } },
+        { "desc": "Estimate LCGA developmental trajectories",                  "statuses": { "6": "wip",  "8": "goal" } },
+        { "desc": "Model internalising symptom trajectories",                  "statuses": { "8": "todo", "9": "goal" } },
+        { "desc": "Draft & submit manuscript on SAP phenotypes",               "statuses": { "9": "todo", "10": "goal" } }
+      ]
+    },
+    {
+      "id": 3,
+      "label": "Paper 3",
+      "title": "Population-level attendance (ACARA)",
+      "activities": [
+        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "wip",  "6": "goal" } },
+        { "desc": "Develop analysis syntax for attendance trajectories",       "statuses": { "3": "wip",  "7": "goal" } },
+        { "desc": "Code administrative attendance definitions",                "statuses": { "7": "todo", "8": "goal" } },
+        { "desc": "Growth model for academic achievement",                     "statuses": { "8": "todo", "9": "goal" } },
+        { "desc": "Draft & submit manuscript, peer review",                    "statuses": { "9": "todo", "10": "goal" } }
+      ]
+    },
+    {
+      "id": 0,
+      "label": "Thesis",
+      "title": "Integration & submission",
+      "activities": [
+        { "desc": "Integrate findings into thesis by publication",             "statuses": { "11": "todo", "12": "goal" } }
+      ]
+    }
+  ]
+}

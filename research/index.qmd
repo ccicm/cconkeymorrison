@@ -20,35 +20,219 @@ engine: markdown
 
 My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
 
-::: phd-status-strip
-::: phd-status-item
-[Paper 1]{.status-label} [Manuscript in progress]{.status-value .status-WIP}
-:::
+```{=html}
+<!-- PhD Timeline — reads from /data/timeline.json -->
+<div class="tl-legend">
+  <div class="tl-legend-item"><span class="tl-legend-dot done"></span> Completed</div>
+  <div class="tl-legend-item"><span class="tl-legend-dot wip"></span> In progress</div>
+  <div class="tl-legend-item"><span class="tl-legend-dot todo"></span> Not started</div>
+  <div class="tl-legend-item"><span class="tl-legend-dot goal"></span> Goal</div>
+  <div class="tl-est-badge" id="tl-est-badge">
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.5v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <span id="tl-est-year"></span>
+  </div>
+</div>
 
-::: phd-status-item
-[Ethics & Data]{.status-label} [Approved]{.status-value .status-good}
-:::
+<div class="phd-timeline" id="phd-timeline">
+  <p class="pub-loading">Loading timeline…</p>
+</div>
 
-::: phd-status-item
-[Paper 2]{.status-label} [Variable selection & methods in progress]{.status-value .status-WIP}
-:::
+<div class="tl-milestones-footer" id="tl-milestones-footer"></div>
 
-::: phd-status-item
-[Ethics & Data]{.status-label} [Approved]{.status-value .status-good}
-:::
+<script>
+(function() {
+  const TOTAL_QS = 16;
+  const PAPER_COLORS = { 1: 'var(--navy)', 2: 'var(--accent)', 3: '#2d7a4f', 0: 'var(--text-muted)' };
+  const STATUS_COLORS = { done: '#2d7a4f', wip: '#c05a4a', todo: '#6b6560', goal: '#2d7aee' };
 
-::: phd-status-item
-[Paper 3]{.status-label} [Conceptualising]{.status-value .status-WIP}
-:::
+  function overallStatus(statuses) {
+    const vals = Object.values(statuses);
+    if (vals.every(v => v === 'done')) return 'done';
+    if (vals.includes('wip')) return 'wip';
+    if (vals.includes('todo')) return 'todo';
+    return 'goal';
+  }
 
-::: phd-status-item
-[Ethics & Data]{.status-label} [Approved]{.status-value .status-good}
-:::
+  function dotSvg(status, size) {
+    size = size || 7;
+    const c = STATUS_COLORS[status];
+    if (status === 'done') return `<svg width="${size+4}" height="${size+4}" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="${c}" opacity="0.15"/><path d="M4 7.2L6.2 9.4L10 4.6" stroke="${c}" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    if (status === 'wip') return `<span style="width:${size}px;height:${size}px;border-radius:50%;background:${c};display:inline-block;box-shadow:0 0 0 3px ${c}20;"></span>`;
+    if (status === 'goal') return `<span style="width:${size}px;height:${size}px;border-radius:50%;border:1.5px dashed ${c};display:inline-block;"></span>`;
+    return `<span style="width:${size}px;height:${size}px;border-radius:50%;border:1.5px solid ${c};display:inline-block;opacity:0.5;"></span>`;
+  }
 
-::: phd-status-item
-[Estimated completion]{.status-label} [2027]{.status-value .status-goal}
-:::
-:::
+  function renderBar(activity, paperColor, container) {
+    const entries = Object.entries(activity.statuses).map(([q,s]) => [parseInt(q), s]).sort((a,b) => a[0]-b[0]);
+    const minQ = entries[0][0], maxQ = entries[entries.length-1][0];
+    const left = ((minQ - 1) / TOTAL_QS) * 100;
+    const width = ((maxQ - minQ + 1) / TOTAL_QS) * 100;
+
+    const track = document.createElement('div');
+    track.className = 'tl-bar-track';
+    track.style.cssText = `left:${left}%;width:${width}%;background:color-mix(in srgb, ${paperColor} 15%, transparent);`;
+    container.appendChild(track);
+
+    entries.forEach(([q, sym]) => {
+      const dotLeft = (maxQ === minQ) ? left + width/2 : left + ((q - minQ) / (maxQ - minQ)) * width;
+      const dot = document.createElement('div');
+      dot.className = 'tl-bar-dot';
+      dot.style.left = dotLeft + '%';
+      dot.innerHTML = dotSvg(sym, 8);
+      container.appendChild(dot);
+    });
+  }
+
+  async function init() {
+    const container = document.getElementById('phd-timeline');
+    const footerEl = document.getElementById('tl-milestones-footer');
+
+    let data;
+    try {
+      const res = await fetch('/data/timeline.json');
+      if (!res.ok) throw new Error();
+      data = await res.json();
+    } catch {
+      container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;padding:1rem;">Could not load timeline.</p>';
+      return;
+    }
+
+    const currentQ = data.currentQuarter;
+    document.getElementById('tl-est-year').textContent = 'Est. ' + data.estimatedCompletion;
+
+    // Build milestone lookup
+    const milestoneMap = {};
+    (data.milestones || []).forEach(m => { milestoneMap[m.quarter] = m; });
+
+    // ── Quarter header ──────────────────────
+    let headerHtml = '<div class="tl-header"><div class="tl-header-label">Activity</div><div class="tl-quarters">';
+    for (let q = 1; q <= TOTAL_QS; q++) {
+      const ms = milestoneMap[q];
+      const cur = q === currentQ;
+      headerHtml += `<div class="tl-q${cur ? ' is-current' : ''}">`;
+      if (ms) headerHtml += `<span class="tl-q-milestone">${ms.label}</span>`;
+      headerHtml += `Q${q}`;
+      if (cur) headerHtml += '<div class="tl-q-marker"></div>';
+      headerHtml += '</div>';
+    }
+    headerHtml += '</div></div>';
+
+    container.innerHTML = headerHtml;
+
+    // ── Paper sections ──────────────────────
+    data.papers.forEach(paper => {
+      const color = PAPER_COLORS[paper.id] || 'var(--text-muted)';
+      const completed = paper.activities.filter(a => overallStatus(a.statuses) === 'done').length;
+      const total = paper.activities.length;
+      const pct = Math.round((completed / total) * 100);
+
+      const section = document.createElement('div');
+      section.className = 'tl-paper';
+
+      // Header
+      const header = document.createElement('div');
+      header.className = 'tl-paper-header';
+      header.innerHTML = `
+        <div class="tl-paper-info">
+          <div class="tl-paper-bar" style="background:${color};"></div>
+          <div class="tl-paper-meta">
+            <div class="tl-paper-label" style="color:${color};">${paper.label}</div>
+            <div class="tl-paper-title">${paper.title}</div>
+          </div>
+          <div class="tl-paper-right">
+            <span class="tl-paper-frac">${completed}/${total}</span>
+            <div class="tl-paper-progress" style="background:color-mix(in srgb, ${color} 15%, transparent);">
+              <div class="tl-paper-progress-fill" style="width:${pct}%;background:${color};"></div>
+            </div>
+            <svg class="tl-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="tl-gantt-summary"></div>
+      `;
+
+      // Render mini bars in summary
+      const summaryEl = header.querySelector('.tl-gantt-summary');
+      // Add current-Q line
+      const curLine = document.createElement('div');
+      curLine.className = 'tl-current-line';
+      curLine.style.left = ((currentQ - 0.5) / TOTAL_QS * 100) + '%';
+      summaryEl.appendChild(curLine);
+
+      paper.activities.forEach(act => {
+        const row = document.createElement('div');
+        row.className = 'tl-mini-row';
+        row.style.position = 'relative';
+        renderBar(act, color, row);
+        summaryEl.appendChild(row);
+      });
+
+      section.appendChild(header);
+
+      // Activities (hidden by default)
+      const activitiesDiv = document.createElement('div');
+      activitiesDiv.className = 'tl-activities';
+      activitiesDiv.style.display = 'none';
+
+      paper.activities.forEach(act => {
+        const os = overallStatus(act.statuses);
+        const row = document.createElement('div');
+        row.className = 'tl-activity';
+
+        // Label
+        const label = document.createElement('div');
+        label.className = 'tl-activity-label' + (os === 'done' ? ' is-done' : '');
+        label.innerHTML = dotSvg(os, 7) + ' ' + act.desc;
+
+        // Gantt cell
+        const cell = document.createElement('div');
+        cell.className = 'tl-gantt-cell';
+
+        // Grid lines
+        for (let g = 1; g < TOTAL_QS; g++) {
+          const gl = document.createElement('div');
+          gl.className = 'tl-gridline';
+          gl.style.left = ((g / TOTAL_QS) * 100) + '%';
+          cell.appendChild(gl);
+        }
+        // Current Q line
+        const cl = document.createElement('div');
+        cl.className = 'tl-current-line';
+        cl.style.left = ((currentQ - 0.5) / TOTAL_QS * 100) + '%';
+        cell.appendChild(cl);
+
+        renderBar(act, color, cell);
+
+        row.appendChild(label);
+        row.appendChild(cell);
+        activitiesDiv.appendChild(row);
+      });
+
+      section.appendChild(activitiesDiv);
+
+      // Toggle
+      header.addEventListener('click', () => {
+        const open = activitiesDiv.style.display !== 'none';
+        activitiesDiv.style.display = open ? 'none' : 'block';
+        header.classList.toggle('expanded', !open);
+        header.querySelector('.tl-chevron').classList.toggle('open', !open);
+      });
+
+      container.appendChild(section);
+    });
+
+    // ── Milestone footer ────────────────────
+    if (data.milestones) {
+      footerEl.innerHTML = data.milestones.map(m =>
+        `<div class="tl-milestone-foot"><div class="tl-milestone-foot-label">${m.label}</div><div class="tl-milestone-foot-full">${m.full}</div></div>`
+      ).join('');
+    }
+  }
+
+  init();
+})();
+</script>
+```
+
 
 ------------------------------------------------------------------------
 

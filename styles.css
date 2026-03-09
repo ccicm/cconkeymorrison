@@ -459,3 +459,165 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .phd-status-item:nth-child(3) { border-right: 1px solid var(--border); }
   .phd-status-item:nth-child(n+3) { border-top: 1px solid var(--border); }
 }
+
+/* ============================================
+   PhD TIMELINE (Gantt)
+   ============================================ */
+.phd-timeline {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow-sm); overflow: hidden; margin: 1.5rem 0 2rem 0;
+}
+
+/* Legend row */
+.tl-legend {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;
+  margin-bottom: 1rem;
+}
+.tl-legend-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+}
+.tl-legend-dot {
+  width: 7px; height: 7px; border-radius: 50%; display: inline-block;
+}
+.tl-legend-dot.done  { background: #2d7a4f; }
+.tl-legend-dot.wip   { background: #c05a4a; box-shadow: 0 0 0 3px rgba(192,90,74,0.12); }
+.tl-legend-dot.todo  { border: 1.5px solid var(--text-muted); background: transparent; opacity: 0.5; }
+.tl-legend-dot.goal  { border: 1.5px dashed #2d7aee; background: transparent; }
+.tl-est-badge {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 5px;
+  font-size: 0.72rem; font-weight: 700; color: #2d7aee;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+
+/* Header row (quarters) */
+.tl-header {
+  display: grid; grid-template-columns: minmax(200px, 260px) 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.tl-header-label {
+  padding: 0.55rem 1rem; font-size: 0.68rem; font-weight: 700;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;
+}
+.tl-quarters { display: flex; }
+.tl-q {
+  flex: 1; text-align: center; padding: 0.4rem 0 0.35rem;
+  font-size: 0.6rem; font-weight: 600; color: var(--text-muted);
+  border-left: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  position: relative;
+}
+.tl-q.is-current { font-weight: 800; color: var(--navy); background: color-mix(in srgb, var(--navy) 5%, transparent); }
+.tl-q-milestone {
+  font-size: 0.56rem; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.04em; display: block; margin-bottom: 1px;
+}
+.tl-q-marker {
+  position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 4px solid transparent; border-right: 4px solid transparent;
+  border-bottom: 4px solid var(--navy);
+}
+
+/* Paper section */
+.tl-paper {
+  border-bottom: 1px solid var(--border);
+}
+.tl-paper:last-child { border-bottom: none; }
+
+/* Paper header (clickable) */
+.tl-paper-header {
+  display: grid; grid-template-columns: minmax(200px, 260px) 1fr;
+  cursor: pointer; transition: background 0.15s;
+}
+.tl-paper-header:hover { background: color-mix(in srgb, var(--navy) 4%, transparent); }
+.tl-paper-header.expanded { background: color-mix(in srgb, var(--navy) 3%, transparent); }
+
+.tl-paper-info {
+  padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.6rem;
+}
+.tl-paper-bar { width: 3px; height: 28px; border-radius: 2px; flex-shrink: 0; }
+.tl-paper-meta {}
+.tl-paper-label {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tl-paper-title { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-top: 1px; }
+.tl-paper-right { margin-left: auto; display: flex; align-items: center; gap: 0.4rem; }
+.tl-paper-frac { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); }
+.tl-paper-progress { width: 36px; height: 4px; border-radius: 2px; overflow: hidden; }
+.tl-paper-progress-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+
+.tl-chevron {
+  transition: transform 0.2s; opacity: 0.4;
+}
+.tl-chevron.open { transform: rotate(180deg); }
+
+/* Gantt summary (mini bars in collapsed header) */
+.tl-gantt-summary {
+  position: relative; border-left: 1px solid var(--border);
+  padding: 0.4rem 0.5rem; display: flex; flex-direction: column; gap: 3px;
+}
+.tl-mini-row { position: relative; height: 5px; }
+
+/* Expanded activity rows */
+.tl-activities { border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent); }
+.tl-activity {
+  display: grid; grid-template-columns: minmax(200px, 260px) 1fr;
+  border-top: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  transition: background 0.12s;
+}
+.tl-activity:first-child { border-top: none; }
+.tl-activity:hover { background: var(--tag-bg); }
+
+.tl-activity-label {
+  padding: 0.4rem 1rem 0.4rem 1.75rem;
+  display: flex; align-items: center; gap: 0.45rem;
+  font-size: 0.76rem; color: var(--navy); line-height: 1.35;
+}
+.tl-activity-label.is-done { opacity: 0.5; }
+
+/* Gantt bar area for a single activity */
+.tl-gantt-cell {
+  position: relative; height: 28px;
+  border-left: 1px solid var(--border);
+}
+.tl-gridline {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: color-mix(in srgb, var(--border) 40%, transparent);
+}
+.tl-current-line {
+  position: absolute; top: 0; bottom: 0; width: 1px;
+  background: color-mix(in srgb, var(--navy) 18%, transparent);
+  z-index: 1;
+}
+
+/* Bar + dots inside gantt cell */
+.tl-bar-track {
+  position: absolute; height: 5px; border-radius: 3px; top: 50%; transform: translateY(-50%);
+}
+.tl-bar-dot {
+  position: absolute; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+}
+
+/* Milestone footer */
+.tl-milestones-footer {
+  display: flex; justify-content: space-between;
+  padding: 0.5rem 0.25rem 0;
+  max-width: calc(100% - 260px); margin-left: auto;
+}
+.tl-milestone-foot { text-align: center; }
+.tl-milestone-foot-label { font-size: 0.6rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+.tl-milestone-foot-full  { font-size: 0.56rem; color: var(--text-muted); max-width: 110px; }
+
+/* ── Responsive ────────────────────────────── */
+@media (max-width: 680px) {
+  .tl-header, .tl-paper-header, .tl-activity {
+    grid-template-columns: 1fr;
+  }
+  .tl-quarters, .tl-gantt-summary, .tl-gantt-cell, .tl-milestones-footer {
+    display: none;
+  }
+  .tl-header-label { display: none; }
+  .tl-activity-label { padding-left: 1rem; }
+}
