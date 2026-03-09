@@ -35,7 +35,7 @@
         { "desc": "Exploratory clustering of attendance patterns",             "statuses": { "4": "wip",  "6": "goal" } },
         { "desc": "Estimate LCGA developmental trajectories",                  "statuses": { "6": "wip",  "8": "goal" } },
         { "desc": "Model internalising symptom trajectories",                  "statuses": { "8": "todo", "9": "goal" } },
-        { "desc": "Draft & submit manuscript on SAP phenotypes",               "statuses": { "9": "todo", "10": "goal" } }
+        { "desc": "Draft & submit manuscript",                                 "statuses": { "9": "todo", "10": "goal" } }
       ]
     },
     {
@@ -43,7 +43,7 @@
       "label": "Paper 3",
       "title": "Population-level attendance (ACARA)",
       "activities": [
-        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "wip",  "6": "goal" } },
+        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "done",  "6": "goal" } },
         { "desc": "Develop analysis syntax for attendance trajectories",       "statuses": { "3": "wip",  "7": "goal" } },
         { "desc": "Code administrative attendance definitions",                "statuses": { "7": "todo", "8": "goal" } },
         { "desc": "Growth model for academic achievement",                     "statuses": { "8": "todo", "9": "goal" } },
