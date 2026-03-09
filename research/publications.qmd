@@ -16,175 +16,40 @@ engine: markdown
 
 ```{=html}
 <style>
-.pub-layout {
-  display: grid;
-  grid-template-columns: 1fr 160px;
-  gap: 2.5rem;
-  align-items: start;
-}
+.pub-layout { display: grid; grid-template-columns: 1fr 160px; gap: 2.5rem; align-items: start; }
 .pub-main { min-width: 0; }
-.pub-sidebar {
-  position: sticky;
-  top: 80px;
-}
-.sidebar-section {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.1rem;
-  box-shadow: var(--shadow-sm);
-}
-.sidebar-label {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 0.6rem;
-}
-.sidebar-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-.sidebar-link {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--navy) !important;
-  text-decoration: none !important;
-  padding: 0.3rem 0.5rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  transition: background 0.15s, border-color 0.15s, transform 0.15s;
-  display: block;
-  text-align: center;
-}
-.sidebar-link:hover {
-  background: var(--tag-bg);
-  border-color: var(--navy);
-  transform: translateY(-1px);
-}
-.pub-year-head {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 2rem 0 0.75rem 0;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--border);
-}
-.pub-entry-block {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--border);
-}
+.pub-sidebar { position: sticky; top: 80px; }
+.sidebar-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; box-shadow: var(--shadow-sm); }
+.sidebar-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.6rem; }
+.sidebar-links { display: flex; flex-direction: column; gap: 0.35rem; }
+.sidebar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.5rem; border-radius: 6px; border: 1px solid var(--border); transition: background 0.15s, border-color 0.15s, transform 0.15s; display: block; text-align: center; }
+.sidebar-link:hover { background: var(--tag-bg); border-color: var(--navy); transform: translateY(-1px); }
+.pub-year-head { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 2rem 0 0.75rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+.pub-entry-block { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
 .pub-entry-block:last-child { border-bottom: none; }
-.pub-favicon-wrap, .pub-favicon-fallback {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  background: var(--tag-bg);
-  border: 1px solid var(--border);
-}
+.pub-favicon-wrap, .pub-favicon-fallback { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: var(--tag-bg); border: 1px solid var(--border); }
 .pub-favicon-wrap img { width: 16px; height: 16px; display: block; }
 .pub-entry-text { flex: 1; min-width: 0; }
-.pub-title-link {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--navy) !important;
-  text-decoration: none !important;
-  line-height: 1.4;
-}
+.pub-title-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; line-height: 1.4; }
 .pub-title-link:hover { text-decoration: underline !important; }
-.pub-actions {
-  display: flex;
-  gap: 0.4rem;
-  margin-top: 0.45rem;
-  flex-wrap: wrap;
-}
-.pub-btn {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--navy) !important;
-  text-decoration: none !important;
-  padding: 0.18rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-  white-space: nowrap;
-}
+.pub-actions { display: flex; gap: 0.4rem; margin-top: 0.45rem; flex-wrap: wrap; }
+.pub-btn { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.18rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }
 .pub-btn:hover { background: var(--tag-bg); border-color: var(--navy); }
-.pub-section-heading {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-.pub-synced-note {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-}
+.pub-section-heading { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.pub-synced-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
 .pub-synced-note a { color: var(--text-muted); text-decoration: underline; }
-.pub-scholar-link {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--navy) !important;
-  text-decoration: none !important;
-  padding: 0.3rem 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  transition: background 0.18s, border-color 0.18s;
-}
+.pub-scholar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.85rem; border: 1px solid var(--border); border-radius: 999px; transition: background 0.18s, border-color 0.18s; }
 .pub-scholar-link:hover { background: var(--tag-bg); border-color: var(--navy); }
-.peer-review-section {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-.peer-review-section h2 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-}
-.peer-review-section p {
-  font-size: 1rem;
-  color: #2a2a2a;
-  line-height: 1.75;
-}
-.pub-loading {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-@media (max-width: 860px) {
-  .pub-layout { grid-template-columns: 1fr; }
-  .pub-sidebar { display: none; }
-}
+.peer-review-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.peer-review-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.peer-review-section p { font-size: 1rem; color: #2a2a2a; line-height: 1.75; }
+.pub-loading { font-size: 0.9rem; color: var(--text-muted); }
+@media (max-width: 860px) { .pub-layout { grid-template-columns: 1fr; } .pub-sidebar { display: none; } }
 </style>
 
 <div class="pub-layout">
 
+  <!-- Main content -->
   <div class="pub-main">
     <h2 id="publications" class="pub-section-heading">Publications</h2>
     <div id="orcid-pubs">
@@ -194,7 +59,10 @@ engine: markdown
     <div class="peer-review-section">
       <h2 id="peer-review">Peer review</h2>
       <p>I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for <em>Behaviour &amp; Information Technology</em> and <em>Scientific Reports</em>.</p>
+    </div>
+  </div>
 
+  <!-- Sidebar -->
   <div class="pub-sidebar">
     <div class="sidebar-section">
       <span class="sidebar-label">Find me online</span>
@@ -202,6 +70,8 @@ engine: markdown
         <a href="https://orcid.org/0009-0000-1020-2333" class="sidebar-link" target="_blank">ORCID</a>
         <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en" class="sidebar-link" target="_blank">Google Scholar</a>
         <a href="https://www.researchgate.net/profile/Connor-Conkey-Morrison" class="sidebar-link" target="_blank">ResearchGate</a>
+        <a href="https://digitalminds.au/connor-conkey-morrison/" class="sidebar-link" target="_blank">DigitalMinds</a>
+        <a href="https://github.com/ccicm" class="sidebar-link" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
@@ -209,9 +79,9 @@ engine: markdown
 </div>
 
 <script>
-const ORCID_ID   = '0009-0000-1020-2333';
+const ORCID_ID    = '0009-0000-1020-2333';
 const SCHOLAR_URL = 'https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en';
-const MAX_PUBS   = 6;
+const MAX_PUBS    = 6;
 
 async function fetchFullWork(putCode, doi) {
   try {
@@ -221,9 +91,7 @@ async function fetchFullWork(putCode, doi) {
     const contributors = data['bulk']?.[0]?.work?.contributors?.contributor || data.contributors?.contributor || [];
     const authors = contributors.filter(c => (c['contributor-attributes']?.['contributor-role'] || '').toLowerCase() === 'author').map(c => {
       const cn = c['credit-name']?.value || '';
-      const parts = cn.split(/\s+/);
-      const last = parts.pop() || '';
-      const init = parts[0] ? parts[0][0] + '.' : '';
+      const parts = cn.split(/\s+/); const last = parts.pop() || ''; const init = parts[0] ? parts[0][0] + '.' : '';
       return `${last}, ${init}`.trim().replace(/,$/, '');
     }).filter(Boolean);
     const volume = data.volume?.value || null;
@@ -233,13 +101,7 @@ async function fetchFullWork(putCode, doi) {
     try {
       if (doi) {
         const cr = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
-        if (cr.ok) {
-          const cd = await cr.json();
-          const issn = cd.message?.ISSN?.[0];
-          if (issn) journalUrl = `https://www.crossref.org/openurl?issn=${issn}&genre=journal`;
-          const link = cd.message?.URL || cd.message?.resource?.primary?.URL;
-          if (link) journalUrl = link;
-        }
+        if (cr.ok) { const cd = await cr.json(); const link = cd.message?.URL || cd.message?.resource?.primary?.URL; if (link) journalUrl = link; }
       }
     } catch {}
     return { authors, volume, issue, pages, journalUrl };
@@ -248,17 +110,14 @@ async function fetchFullWork(putCode, doi) {
 
 function buildAPA(w) {
   const authors = w.authors?.length ? w.authors.join(', ') : 'Unknown author';
-  const year = w.year || 'n.d.';
-  const title = w.title || 'Untitled';
+  const year = w.year || 'n.d.'; const title = w.title || 'Untitled';
   const journal = w.journal ? `<em>${w.journal}</em>` : '';
-  const vol = w.volume ? `<em>${w.volume}</em>` : '';
-  const issue = w.issue ? `(${w.issue})` : '';
-  const pages = w.pages || '';
+  const vol = w.volume ? `<em>${w.volume}</em>` : ''; const issue = w.issue ? `(${w.issue})` : ''; const pages = w.pages || '';
   const doi = w.doi ? `https://doi.org/${w.doi}` : '';
-  let citation = `${authors} (${year}). ${title}.`;
-  if (journal) { citation += ` ${journal}`; if (vol) citation += `, ${vol}${issue}`; if (pages) citation += `, ${pages}`; }
-  if (doi) citation += `. ${doi}`;
-  return citation;
+  let c = `${authors} (${year}). ${title}.`;
+  if (journal) { c += ` ${journal}`; if (vol) c += `, ${vol}${issue}`; if (pages) c += `, ${pages}`; }
+  if (doi) c += `. ${doi}`;
+  return c;
 }
 
 function buildRIS(w) {
@@ -266,11 +125,11 @@ function buildRIS(w) {
   (w.authors || []).forEach(a => lines.push(`AU  - ${a}`));
   lines.push(`TI  - ${w.title || ''}`);
   if (w.journal) lines.push(`JO  - ${w.journal}`);
-  if (w.year) lines.push(`PY  - ${w.year}`);
-  if (w.volume) lines.push(`VL  - ${w.volume}`);
-  if (w.issue) lines.push(`IS  - ${w.issue}`);
-  if (w.pages) { const [s, e] = w.pages.split('–'); lines.push(`SP  - ${s || ''}`); if (e) lines.push(`EP  - ${e}`); }
-  if (w.doi) lines.push(`DO  - ${w.doi}`);
+  if (w.year)    lines.push(`PY  - ${w.year}`);
+  if (w.volume)  lines.push(`VL  - ${w.volume}`);
+  if (w.issue)   lines.push(`IS  - ${w.issue}`);
+  if (w.pages)   { const [s,e] = w.pages.split('–'); lines.push(`SP  - ${s||''}`); if(e) lines.push(`EP  - ${e}`); }
+  if (w.doi)     lines.push(`DO  - ${w.doi}`);
   lines.push('ER  - ');
   return lines.join('\n');
 }
@@ -278,7 +137,7 @@ function buildRIS(w) {
 function renderWorks(works, showSynced) {
   const byYear = {};
   works.forEach(w => { const y = w.year || 'n.d.'; if (!byYear[y]) byYear[y] = []; byYear[y].push(w); });
-  const years = Object.keys(byYear).sort((a, b) => b - a);
+  const years = Object.keys(byYear).sort((a,b) => b - a);
   let html = '';
   years.forEach(y => {
     html += `<div class="pub-year-head">${y}</div>`;
@@ -287,51 +146,33 @@ function renderWorks(works, showSynced) {
         ? `<div class="pub-favicon-wrap"><img src="https://www.google.com/s2/favicons?sz=32&domain_url=${encodeURIComponent(w.journalUrl)}" alt="" onerror="this.parentElement.outerHTML='<div class=pub-favicon-fallback><svg xmlns=http://www.w3.org/2000/svg width=16 height=16 viewBox=0 0 24 24 fill=none stroke=currentColor stroke-width=1.75><path d=M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5/></svg></div>'"></div>`
         : `<div class="pub-favicon-fallback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>`;
       const journalLink = w.journalUrl
-        ? `<a href="${w.journalUrl}" target="_blank" style="font-size:0.82rem;color:var(--text-muted);font-style:italic;text-decoration:underline;">${w.journal || 'View journal'}</a>`
+        ? `<a href="${w.journalUrl}" target="_blank" style="font-size:0.82rem;color:var(--text-muted);font-style:italic;text-decoration:underline;">${w.journal||'View journal'}</a>`
         : (w.journal ? `<span style="font-size:0.82rem;color:var(--text-muted);font-style:italic;">${w.journal}</span>` : '');
       const authorsLine = w.authors?.length ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.15rem;">${w.authors.join(', ')}</div>` : '';
-      const doiLink = w.doi ? `<a href="https://doi.org/${w.doi}" target="_blank" class="pub-btn">DOI ↗</a>` : '';
-      const apaBtnId = `apa-${w.putCode}`;
-      const risBtnId = `ris-${w.putCode}`;
-      html += `<div class="pub-entry-block">
-        ${faviconHtml}
-        <div class="pub-entry-text">
-          <a href="${w.doi ? 'https://doi.org/' + w.doi : '#'}" target="_blank" class="pub-title-link">${w.title}</a>
-          ${authorsLine}
-          ${journalLink ? `<div style="margin-top:0.15rem;">${journalLink}</div>` : ''}
-          <div class="pub-actions">
-            ${doiLink}
-            <button class="pub-btn" id="${apaBtnId}" onclick="copyAPA(${JSON.stringify(w).replace(/"/g, '&quot;')}, '${apaBtnId}')">Copy APA 7</button>
-            <button class="pub-btn" id="${risBtnId}" onclick="downloadRIS(${JSON.stringify(w).replace(/"/g, '&quot;')}, '${risBtnId}')">Download RIS</button>
-          </div>
-        </div>
-      </div>`;
+      const apaBtnId = `apa-${w.putCode}`; const risBtnId = `ris-${w.putCode}`;
+      const wJson = JSON.stringify(w).replace(/"/g, '&quot;');
+      html += `<div class="pub-entry-block">${faviconHtml}<div class="pub-entry-text"><a href="${w.doi?'https://doi.org/'+w.doi:'#'}" target="_blank" class="pub-title-link">${w.title}</a>${authorsLine}${journalLink?`<div style="margin-top:0.15rem;">${journalLink}</div>`:''}<div class="pub-actions">${w.doi?`<a href="https://doi.org/${w.doi}" target="_blank" class="pub-btn">DOI ↗</a>`:''}<button class="pub-btn" id="${apaBtnId}" onclick="copyAPA(${wJson},'${apaBtnId}')">Copy APA 7</button><button class="pub-btn" id="${risBtnId}" onclick="downloadRIS(${wJson},'${risBtnId}')">Download RIS</button></div></div></div>`;
     });
   });
   const footer = document.createElement('div');
   footer.style.cssText = 'margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;';
-  if (showSynced) {
-    footer.innerHTML = `<span class="pub-synced-note">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank">ORCID</a></span><a href="${SCHOLAR_URL}" target="_blank" class="pub-scholar-link">View all on Google Scholar →</a>`;
-  }
+  if (showSynced) footer.innerHTML = `<span class="pub-synced-note">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank">ORCID</a></span><a href="${SCHOLAR_URL}" target="_blank" class="pub-scholar-link">View all on Google Scholar →</a>`;
   return { html, footer };
 }
 
 function copyAPA(w, btnId) {
-  const text = buildAPA(w).replace(/<[^>]+>/g, '');
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(buildAPA(w).replace(/<[^>]+>/g,'')).then(() => {
     const btn = document.getElementById(btnId);
     if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy APA 7'; }, 1800); }
   });
 }
 
 function downloadRIS(w, btnId) {
-  const content = buildRIS(w);
-  const blob = new Blob([content], { type: 'application/x-research-info-systems' });
+  const blob = new Blob([buildRIS(w)], { type: 'application/x-research-info-systems' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = `${(w.title || 'reference').slice(0, 40).replace(/[^a-z0-9]/gi, '_')}.ris`;
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a); URL.revokeObjectURL(url);
+  a.href = url; a.download = `${(w.title||'reference').slice(0,40).replace(/[^a-z0-9]/gi,'_')}.ris`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
   const btn = document.getElementById(btnId);
   if (btn) { btn.textContent = 'Downloading…'; setTimeout(() => { btn.textContent = 'Download RIS'; }, 1800); }
 }
@@ -340,25 +181,23 @@ async function loadOrcidPublications() {
   const container = document.getElementById('orcid-pubs');
   try {
     const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/works`, { headers: { Accept: 'application/json' } });
-    if (!res.ok) throw new Error('ORCID fetch failed');
+    if (!res.ok) throw new Error();
     const data = await res.json();
-    const groups = data.group || [];
     const summaries = [];
-    for (const g of groups) {
-      const summary = g['work-summary']?.[0];
-      if (!summary) continue;
-      const title = summary.title?.title?.value || 'Untitled';
-      const year  = parseInt(summary['publication-date']?.year?.value) || 0;
-      const journal = summary['journal-title']?.value || '';
+    for (const g of (data.group || [])) {
+      const s = g['work-summary']?.[0]; if (!s) continue;
+      const title = s.title?.title?.value || 'Untitled';
+      const year  = parseInt(s['publication-date']?.year?.value) || 0;
+      const journal = s['journal-title']?.value || '';
       let doi = null;
-      for (const eid of summary['external-ids']?.['external-id'] || []) { if (eid['external-id-type'] === 'doi') { doi = eid['external-id-value']; break; } }
-      summaries.push({ title, year, journal, doi, putCode: summary['put-code'] });
+      for (const eid of s['external-ids']?.['external-id'] || []) { if (eid['external-id-type'] === 'doi') { doi = eid['external-id-value']; break; } }
+      summaries.push({ title, year, journal, doi, putCode: s['put-code'] });
     }
-    if (summaries.length === 0) throw new Error('empty');
-    summaries.sort((a, b) => b.year - a.year);
+    if (!summaries.length) throw new Error('empty');
+    summaries.sort((a,b) => b.year - a.year);
     const top = summaries.slice(0, MAX_PUBS);
     const fullRecords = await Promise.all(top.map(s => fetchFullWork(s.putCode, s.doi)));
-    const works = top.map((s, i) => ({ ...s, authors: fullRecords[i]?.authors || null, volume: fullRecords[i]?.volume || null, issue: fullRecords[i]?.issue || null, pages: fullRecords[i]?.pages || null, journalUrl: fullRecords[i]?.journalUrl || (s.doi ? `https://doi.org/${s.doi}` : null) }));
+    const works = top.map((s,i) => ({ ...s, authors: fullRecords[i]?.authors||null, volume: fullRecords[i]?.volume||null, issue: fullRecords[i]?.issue||null, pages: fullRecords[i]?.pages||null, journalUrl: fullRecords[i]?.journalUrl||(s.doi?`https://doi.org/${s.doi}`:null) }));
     const { html, footer } = renderWorks(works, true);
     container.innerHTML = html;
     container.appendChild(footer);
