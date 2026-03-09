@@ -92,11 +92,26 @@ editor:
 ::: role-section
 ::: role-block
 ::: role-header
-[Industry PhD Partner & School Counsellor]{.role-title} [2024 -- present]{.role-date}
+[School Counsellor]{.role-title} [2026 -- present]{.role-date}
 :::
 
 [CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
-[CatholicCare Victoria is the industry partner for my PhD, providing the practice context within which my research on school attendance and emotionally based school avoidance is situated. As part of this engagement, I undertake school counselling placements in Catholic primary schools — currently at Sacred Heart Primary School, Kew (2026). Work spans student wellbeing, emotional regulation, attendance concerns, and family liaison, alongside supervised practice toward general registration.]{.role-desc}
+[Current school counselling placement within the CatholicCare Victoria
+industry partnership. Work spans student wellbeing, emotional
+regulation, attendance concerns, and family liaison, alongside
+supervised practice toward general registration.]{.role-desc}
+:::
+
+::: role-block
+::: role-header
+[School Counsellor]{.role-title} [2025]{.role-date}
+:::
+
+[CatholicCare Victoria / St. Mark's Catholic Parish Primary
+School]{.role-org} [School counselling placement as part of the
+CatholicCare Victoria industry partnership for the PhD program. Student
+wellbeing, early intervention, and family support within a Catholic
+primary school setting.]{.role-desc}
 :::
 :::
 
@@ -132,18 +147,23 @@ A PDF version of this CV will be available here shortly.
 
 ::: role-section
 ::: role-block
-[Research software]{.role-title}
-[R (RStudio), Jamovi, SPSS, Excel, Quarto]{.role-desc}
+[Research software]{.role-title} [R (RStudio), Jamovi, SPSS, Excel, Colab]{.role-desc}
 :::
 
 ::: role-block
-[Methods]{.role-title}
-[Systematic review, network analysis, latent growth modelling, growth mixture modelling, longitudinal cohort analysis, administrative data linkage]{.role-desc}
+[Methods]{.role-title} [Systematic review, network analysis, latent
+growth modelling, growth mixture modelling, longitudinal cohort
+analysis]{.role-desc}
 :::
 
 ::: role-block
-[Other]{.role-title}
-[Academic peer review, curriculum and assessment design, research supervision support]{.role-desc}
+[Clinical]{.role-title} [Psychoeducation, CBT-informed approaches, ACT-informed approaches,
+emotional regulation, school refusal intervention, student wellbeing,
+family consultation]{.role-desc}
+:::
+
+::: role-block
+[Other]{.role-title} [Academic peer review, research supervision support, peer mentoring]{.role-desc}
 :::
 :::
 :::
@@ -156,19 +176,39 @@ A PDF version of this CV will be available here shortly.
 ::: role-section
 ::: role-block
 ::: role-header
-[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 -- 2025]{.role-date}
+[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 --
+2025]{.role-date}
 :::
 
-[State Library Victoria]{.role-org}
-[Worked within the People & Partnerships team on HSW policy, incident investigation, psychosocial risk, and the implementation of a new health and safety management system aligned to ISO 45001.]{.role-desc}
+[State Library Victoria]{.role-org} [Worked within the People &
+HSW policy, incident investigation, psychosocial
+risk, and the implementation of a new health and safety management
+system aligned to ISO 45001.]{.role-desc}
 :::
 
 ::: role-block
 ::: role-header
-[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 -- 2021]{.role-date}
+[Student Library Assistant]{.role-title} [2021 -- 2023]{.role-date}
 :::
 
-[Ai-Media]{.role-org}
-[Provided live verbatim captioning for broadcast, government, and education clients globally, including major Australian TV networks, federal royal commissions, and Ivy League institutions. Progressed to supervisory and operations coordination roles, managing teams of 100+ casual and freelance staff during the 2020 transition to online learning.]{.role-desc}
+[Victoria University]{.role-org} [Assisted students across VU campus
+libraries with research queries, resource location, and online support.
+Developed and delivered an internal educational seminar on captioning,
+transcription, and accessibility in Teams and Zoom as part of the
+Library's monthly DigiBytes series.]{.role-desc}
+:::
+
+::: role-block
+::: role-header
+[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 --
+2021]{.role-date}
+:::
+
+[Ai-Media]{.role-org} [Provided live verbatim captioning for broadcast,
+government, and education clients globally, including major Australian
+TV networks, federal royal commissions, and Ivy League institutions.
+Progressed to supervisory and operations coordination roles, managing
+teams of 100+ casual and freelance staff during the 2020 transition to
+online learning.]{.role-desc}
 :::
 :::

@@ -5,12 +5,11 @@ engine: markdown
 ---
 
 ::: page-header
-# Publications
+# Publications {#publications}
 :::
 
 ::: jump-nav
-[Publications](#publications){.jump-link}
-[Peer review](#peer-review){.jump-link}
+[Publications](#publications){.jump-link} [Peer review](#peer-review){.jump-link}
 :::
 
 ------------------------------------------------------------------------
