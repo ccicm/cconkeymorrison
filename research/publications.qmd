@@ -119,30 +119,39 @@ async function fetchJournalUrl(doi) {
     const publisher = (work.publisher || '').toLowerCase();
     const title     = work['container-title']?.[0] || '';
     const issn      = issns[0] || '';
+    // Canonical article URL from Crossref — reliable fallback
+    const articleUrl = work?.resource?.primary?.URL || work?.URL || `https://doi.org/${doi}`;
 
     if (publisher.includes('elsevier') || publisher.includes('sciencedirect')) {
-      const m = doi.match(/10\.1016\/j\.([a-z]+)\./);
-      if (m) return `https://www.sciencedirect.com/journal/${m[1]}`;
-      return title ? `https://www.sciencedirect.com/search?pub=${encodeURIComponent(title)}` : null;
+      // ScienceDirect journal URLs use the full journal name slug
+      if (title) {
+        const slug = title.toLowerCase()
+          .replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+        return `https://www.sciencedirect.com/journal/${slug}`;
+      }
+      return articleUrl;
     }
     if (publisher.includes('springer') || publisher.includes('nature')) {
-      return issn ? `https://link.springer.com/search?query=&search-within=Journal&facet-journal-id=${issn}` : null;
+      // Springer journal IDs are numeric — extract from DOI
+      const m = doi.match(/10\.1007\/s?(\d+)-/);
+      if (m) return `https://link.springer.com/journal/${m[1]}`;
+      return issn ? `https://link.springer.com/search?query=&search-within=Journal&facet-journal-id=${issn}` : articleUrl;
     }
     if (publisher.includes('wiley')) {
-      return issn ? `https://onlinelibrary.wiley.com/journal/${issn.replace('-','')}` : null;
+      return issn ? `https://onlinelibrary.wiley.com/journal/${issn.replace('-','')}` : articleUrl;
     }
     if (publisher.includes('taylor') || publisher.includes('routledge') || publisher.includes('informa')) {
-      return issn ? `https://www.tandfonline.com/journals/${issn}` : null;
+      return issn ? `https://www.tandfonline.com/journals/${issn}` : articleUrl;
     }
     if (publisher.includes('sage')) {
-      return issn ? `https://journals.sagepub.com/home/${issn}` : null;
+      return issn ? `https://journals.sagepub.com/home/${issn}` : articleUrl;
     }
     if (publisher.includes('oxford') || publisher.includes('oup')) {
-      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g,'');
       return `https://academic.oup.com/${slug}`;
     }
-    if (publisher.includes('american psychological') || publisher.includes('apa ')) {
-      return issn ? `https://www.apa.org/pubs/journals/${issn}` : null;
+    if (publisher.includes('american psychological') || publisher.includes('apa')) {
+      return issn ? `https://www.apa.org/pubs/journals/${issn}` : articleUrl;
     }
     if (publisher.includes('frontiers')) {
       const slug = title.toLowerCase().replace('frontiers in ','').replace(/\s+/g,'-');
@@ -150,8 +159,8 @@ async function fetchJournalUrl(doi) {
     }
     if (publisher.includes('plos')) return 'https://journals.plos.org/plosone/';
 
-    // Generic fallback: DOI itself
-    return `https://doi.org/${doi}`;
+    // Generic fallback: use Crossref article URL
+    return articleUrl;
   } catch { return null; }
 }
 
