@@ -12,25 +12,13 @@ website:
   favicon: favicon.ico
   navbar:
     left:
-      - text: Research
-        menu:
-          - href: research/index.qmd
-            text: Overview
-          - href: research/publications.qmd
-            text: Publications
-          - href: research/reading-list.qmd
-            text: Reading List
-          - href: research/projects.qmd
-            text: Projects
-      - text: Clinical
-        menu:
-          - href: clinical/index.qmd
-            text: Overview
-          - href: clinical/resources.qmd
-            text: Resources
-      - href: cv/index.qmd
-        text: CV
-      - href: contact.qmd
+      - href: pages/research.qmd
+        text: Research
+      - href: pages/history.qmd
+        text: Education & Experience
+      - href: pages/projects.qmd
+        text: Projects
+      - href: pages/contact.qmd
         text: Contact
     right:
       - text: LinkedIn
@@ -52,9 +40,9 @@ format:
         document.addEventListener('DOMContentLoaded', function() {
           var s = getComputedStyle(document.documentElement);
           window.CCM_COLORS = {
-            navy:      s.getPropertyValue('--navy').trim()       || '#1a2e4a',
-            navyLight: s.getPropertyValue('--navy-light').trim() || '#2a4a6a',
-            accent:    s.getPropertyValue('--accent').trim()     || '#c8922a',
+            navy:      s.getPropertyValue('--navy').trim()       || '#1e3a2a',
+            navyLight: s.getPropertyValue('--navy-light').trim() || '#2a5040',
+            accent:    s.getPropertyValue('--accent').trim()     || '#c05a4a',
             bg:        s.getPropertyValue('--bg').trim()         || '#f8f7f5',
             bgCard:    s.getPropertyValue('--bg-card').trim()    || '#ffffff',
             textMuted: s.getPropertyValue('--text-muted').trim() || '#5c5c5c',

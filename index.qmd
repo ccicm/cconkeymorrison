@@ -1,54 +1,135 @@
 ---
-title: "Home"
+title: ""
 page-layout: full
 ---
 
-:::::: home-hero
+::: hero-wrapper
+::: hero-text
 # Connor Conkey-Morrison
 
-::: home-subtitle
-PhD Candidate \| Provisional Psychologist \| Sessional Academic
+::: hero-tags
+[PhD Candidate]{.tag} [Provisional Psychologist]{.tag} [Sessional Academic]{.tag}
 :::
 
-::: home-intro
-Research on school attendance problems, emotionally based school avoidance, and adolescent mental health. My work draws on intervention evidence, longitudinal modelling, and population-level education data.
+::: hero-bio
+I am a PhD candidate at RMIT University (School of Health and Biomedical Sciences). I also work as a provisional psychologist, and sessional academic at RMIT University and the Cairnmillar Institute.
+:::
 :::
 
-::: home-buttons
-[Research & publications](research.qmd){.hero-btn} [Teaching & Roles](teaching.qmd){.hero-btn} [CV & Contact](contact.qmd){.hero-btn}
+::: hero-photo
+![Connor Conkey-Morrison](images/crop_27A5334.jpg){.profile-img}
 :::
-::::::
-
-::: home-section
-## Profile
-
-I am a PhD candidate at RMIT University and a provisional psychologist. My research focuses on school attendance problems, emotionally based school avoidance, and adolescent mental health, with particular interests in intervention evidence, developmental patterns of disengagement, and the use of large-scale administrative and longitudinal data.
-
-Alongside research, I work across teaching, student support, and school-based practice.
 :::
 
-::::::: home-grid
-::: home-card
-### Research & Publications
+---
 
-Current work on school attendance problems, intervention evidence, and developmental trajectories; see peer-reviewed publications.
-
-[View research →](research.qmd)
+::: stats-strip
+::: stat-item
+**6**\
+Papers in progress
 :::
 
-::: home-card
-### Teaching & Roles
-
-Teaching, counselling, and broader academic and professional roles.
-
-[View teaching & roles →](teaching.qmd)
+::: stat-item
+**4**\
+Peer-reviewed publications
 :::
 
-::: home-card
-### Contact information
-
-Current appointments, education, and a downloadable CV.
-
-[View Contact information →](contact.qmd)
+::: stat-item
+**2024–2027**\
+Active PhD period
 :::
-:::::::
+
+::: stat-item
+**PROSPERO**\
+Systematic review registered
+:::
+:::
+
+::: about-section
+## Current focus
+
+I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data.
+
+::: hero-links
+[Research →](pages/research.qmd){.hero-btn .btn-primary} [Education & Experience →](pages/history.qmd){.hero-btn .btn-secondary} [Get in touch →](pages/contact.qmd){.hero-btn .btn-secondary}
+:::
+:::
+
+---
+
+## Recent reading
+
+```{=html}
+<div id="home-reading-list"><p style="font-size:0.9rem;color:var(--text-muted);">Loading…</p></div>
+<p style="margin-top:0.75rem;"><a href="pages/research.qmd#recent-reading" style="font-size:0.875rem;font-weight:600;color:var(--accent);text-decoration:none;">View all →</a></p>
+
+<script>
+(async function() {
+  const MAX = 3;
+  const container = document.getElementById('home-reading-list');
+
+  function getBookSvg() {
+    const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c05a4a';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+  }
+
+  let entries = [];
+  try {
+    const res = await fetch('/data/reading.json');
+    if (!res.ok) throw new Error();
+    entries = await res.json();
+  } catch {
+    container.innerHTML = '<p style="font-size:0.9rem;color:var(--text-muted);">Nothing here yet.</p>';
+    return;
+  }
+
+  if (!entries.length) {
+    container.innerHTML = '<p style="font-size:0.9rem;color:var(--text-muted);">Nothing here yet.</p>';
+    return;
+  }
+
+  const shown = entries.slice(0, MAX);
+
+  async function fetchMeta(doi) {
+    try {
+      const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
+      if (!res.ok) return null;
+      const data = await res.json();
+      const w = data.message;
+      const authors = (w.author || []).slice(0, 3).map(a => {
+        const last = a.family || '';
+        const init = a.given ? a.given[0] + '.' : '';
+        return `${last}, ${init}`.trim().replace(/,$/, '');
+      }).join(', ') + ((w.author || []).length > 3 ? ', et al.' : '');
+      return {
+        title: w.title?.[0] || 'Untitled',
+        journal: w['container-title']?.[0] || '',
+        year: w.published?.['date-parts']?.[0]?.[0] || '',
+        authors,
+        url: `https://doi.org/${doi}`,
+      };
+    } catch { return null; }
+  }
+
+  const metas = await Promise.all(shown.map(e => fetchMeta(e.doi)));
+
+  const html = shown.map((e, i) => {
+    const meta = metas[i];
+    const url = meta ? meta.url : `https://doi.org/${e.doi}`;
+    const title = meta ? meta.title : e.doi;
+    const byline = meta ? [meta.authors, meta.year, meta.journal].filter(Boolean).join(' · ') : '';
+    return `
+      <div class="pub-entry-block">
+        <div class="pub-favicon-fallback">${getBookSvg()}</div>
+        <div class="pub-entry-text">
+          <a href="${url}" target="_blank" class="pub-title-link">${title}</a>
+          ${byline ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.2rem;font-style:italic;">${byline}</div>` : ''}
+          ${e.note ? `<div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.35rem;line-height:1.6;">${e.note}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = html || '<p style="font-size:0.9rem;color:var(--text-muted);">Nothing here yet.</p>';
+})();
+</script>
+```
