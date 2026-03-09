@@ -22,23 +22,27 @@ My present research centres on school attendance problems and emotionally based 
 
 ::: phd-status-strip
 ::: phd-status-item
-[Ethics]{.status-label} [Approved]{.status-value .status-good}
-:::
-
-::: phd-status-item
-[Data access]{.status-label} [Granted]{.status-value .status-good}
-:::
-
-::: phd-status-item
 [Paper 1]{.status-label} [Manuscript in progress]{.status-value .status-WIP}
 :::
 
 ::: phd-status-item
-[Paper 2]{.status-label} [Variable selection & methods]{.status-value .status-WIP}
+[Ethics & Data]{.status-label} [Approved]{.status-value .status-good}
 :::
 
 ::: phd-status-item
-[Paper 3]{.status-label} [Data granted]{.status-value .status-WIP}
+[Paper 2]{.status-label} [Variable selection & methods in progress]{.status-value .status-WIP}
+:::
+
+::: phd-status-item
+[Ethics & Data]{.status-label} [Approved]{.status-value .status-good}
+:::
+
+::: phd-status-item
+[Paper 3]{.status-label} [Conceptualising]{.status-value .status-WIP}
+:::
+
+::: phd-status-item
+[Ethics & Data]{.status-label} [Approved]{.status-value .status-good}
 :::
 
 ::: phd-status-item
