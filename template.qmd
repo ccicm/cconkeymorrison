@@ -246,12 +246,12 @@ Open `styles.css` and find these two lines near the top:
 Replace the hex colour codes with any colours you like. The rest of the
 site updates automatically. A few examples:
 
-| Palette                | `--navy`                    | `--accent` |
-|------------------------|-----------------------------|------------|
-| Navy & amber (default) | `#``1a2e4a`{style="1a2e4a"} | `#c8922a`  |
-| Deep green & gold      | `#1a3a2a`{style="1a3a2a"}   | `#b8860b`  |
-| Plum & coral           | `#3a1a3a`                   | `#c8522a`  |
-| Slate & teal           | `#1a2a3a`                   | `#2a8a7a`  |
+| Palette | --navy | --accent |
+|--------|--------|---------|
+| Navy & amber (default) | <span style="background:#1a2e4a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#1a2e4a` | <span style="background:#c8922a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#c8922a` |
+| Deep green & gold | <span style="background:#1a3a2a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#1a3a2a` | <span style="background:#b8860b;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#b8860b` |
+| Plum & coral | <span style="background:#3a1a3a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#3a1a3a` | <span style="background:#c8522a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#c8522a` |
+| Slate & teal | <span style="background:#1a2a3a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#1a2a3a` | <span style="background:#2a8a7a;padding:4px 18px;border-radius:3px;display:inline-block;"></span> `#2a8a7a` |
 
 ------------------------------------------------------------------------
 
