@@ -194,9 +194,7 @@ engine: markdown
 
     <div class="peer-review-section">
       <h2 id="peer-review">Peer review</h2>
-      <p>I contribute to peer review for journals in psychology, behavioural science, and digital health.</p>
-    </div>
-  </div>
+      <p>I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for <em>Behaviour &amp; Information Technology</em> and <em>Scientific Reports</em>.</p>
 
   <div class="pub-sidebar">
     <div class="sidebar-section">
