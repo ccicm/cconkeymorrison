@@ -9,16 +9,14 @@ engine: markdown
 :::
 
 ::: jump-nav
-[Current focus](#current-research-focus){.jump-link}
-[PhD papers](#phd-papers){.jump-link}
-[Supervisory team](#supervisory-team){.jump-link}
+[Current focus](#current-research-focus){.jump-link} [PhD papers](#phd-papers){.jump-link} [Supervisory team](#supervisory-team){.jump-link}
 :::
 
 ------------------------------------------------------------------------
 
-## Current research focus
+## Current research focus {#current-research-focus}
 
-My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress rather than truancy or parent-condoned absence. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
+My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
 
 ```{=html}
 <!-- PhD Timeline — reads from /data/timeline.json -->
@@ -233,12 +231,11 @@ My present research centres on school attendance problems and emotionally based 
 </script>
 ```
 
-
 ------------------------------------------------------------------------
 
-## PhD papers
+## PhD papers {#phd-papers}
 
-::: paper-grid
+:::::: paper-grid
 ::: paper-card
 [Paper 1]{.paper-label}
 
@@ -262,11 +259,11 @@ Examining how patterns of school attendance develop across childhood and early a
 
 Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
 :::
-:::
+::::::
 
 ------------------------------------------------------------------------
 
-## Supervisory team
+## Supervisory team {#supervisory-team}
 
 ::: supervisor-row
 [Dr Daniel Zarate](https://orcid.org/0000-0000-0000-0000){.supervisor-link} [Dr Vasileios Stavropoulos](https://orcid.org/0000-0000-0000-0000){.supervisor-link} [Dr Taylor Brown](https://orcid.org/0000-0000-0000-0000){.supervisor-link}
