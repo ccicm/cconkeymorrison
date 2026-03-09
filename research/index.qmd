@@ -40,7 +40,7 @@ My present research centres on school attendance problems and emotionally based 
 <script>
 (function() {
   const TOTAL_QS = 16;
-  const PAPER_COLORS = { 1: 'var(--navy)', 2: 'var(--accent)', 3: '#2d7a4f', 0: 'var(--text-muted)' };
+  const PAPER_COLORS = { 1: '#2d7a4f', 2: 'var(--accent)', 3: 'var(--navy)', 0: 'var(--text-muted)' };
   const STATUS_COLORS = { done: '#2d7a4f', wip: '#c05a4a', todo: '#6b6560', goal: '#2d7aee' };
 
   function overallStatus(statuses) {
