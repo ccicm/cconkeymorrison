@@ -4,15 +4,10 @@ page-layout: full
 engine: markdown
 ---
 
-::: page-header
-# Reading List
-:::
-
-Papers I've read recently — collaborator work, methodological references, and things worth knowing about.
-
----
-
 ```{=html}
+<div class="page-header"><h1>Reading List</h1></div>
+<p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">Papers I've read recently — collaborator work, methodological references, and things worth knowing about.</p>
+<hr style="border:none;border-top:1px solid var(--border);margin:0 0 1.5rem 0;">
 <div id="reading-filter-bar" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.1rem;"></div>
 <div id="reading-list"><p class="pub-loading">Loading…</p></div>
 <script>
