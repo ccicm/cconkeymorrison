@@ -24,18 +24,23 @@ engine: markdown
 .sidebar-links { display: flex; flex-direction: column; gap: 0.35rem; }
 .sidebar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.5rem; border-radius: 6px; border: 1px solid var(--border); transition: background 0.15s, border-color 0.15s, transform 0.15s; display: block; text-align: center; }
 .sidebar-link:hover { background: var(--tag-bg); border-color: var(--navy); transform: translateY(-1px); }
-.pub-year-head { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 2rem 0 0.75rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
-.pub-entry-block { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
-.pub-entry-block:last-child { border-bottom: none; }
-.pub-favicon-wrap, .pub-favicon-fallback { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: var(--tag-bg); border: 1px solid var(--border); }
-.pub-favicon-wrap img { width: 16px; height: 16px; display: block; }
+.pub-year-head { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 2rem 0 0.75rem 0; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); display: block; font-family: 'Plus Jakarta Sans', sans-serif; }
+.pub-entry-block { padding: 1rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.85rem; align-items: flex-start; }
+.pub-entry-block:last-of-type { border-bottom: none; }
+.pub-favicon { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); flex-shrink: 0; object-fit: contain; padding: 3px; margin-top: 2px; }
+.pub-favicon-fallback { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; color: var(--accent); }
 .pub-entry-text { flex: 1; min-width: 0; }
-.pub-title-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; line-height: 1.4; }
-.pub-title-link:hover { text-decoration: underline !important; }
-.pub-actions { display: flex; gap: 0.4rem; margin-top: 0.45rem; flex-wrap: wrap; }
-.pub-btn { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.18rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }
-.pub-btn:hover { background: var(--tag-bg); border-color: var(--navy); }
-.pub-section-heading { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.pub-title-link { font-size: 0.97rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; line-height: 1.55; display: inline; font-family: 'Plus Jakarta Sans', sans-serif; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1px; background-repeat: no-repeat; background-position: left bottom; transition: background-size 0.25s ease, color 0.15s; }
+.pub-title-link:hover { color: var(--accent) !important; background-size: 100% 1px; }
+.pub-journal-link { display: inline; font-size: 0.82rem; color: var(--text-muted) !important; font-style: italic; font-weight: 400; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: none !important; transition: color 0.15s; }
+.pub-journal-link:hover { color: var(--accent) !important; }
+.pub-meta-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.4rem; flex-wrap: wrap; }
+.pub-cite-btn { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em; color: var(--text-muted); background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 0.18rem 0.6rem; cursor: pointer; transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s; white-space: nowrap; line-height: 1.6; }
+.pub-cite-btn:hover { background: var(--tag-bg); border-color: var(--navy); color: var(--navy); transform: translateY(-1px); }
+.pub-cite-btn.copied { background: #e8f5ee; border-color: #2d7a4f; color: #2d7a4f; }
+.pub-loading { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text-muted); padding: 1rem 0; }
+.pub-section-heading { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.75rem; margin-top: 0; }
+.pub-footer-row { margin-top: 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 .pub-synced-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
 .pub-synced-note a { color: var(--text-muted); text-decoration: underline; }
 .pub-scholar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.85rem; border: 1px solid var(--border); border-radius: 999px; transition: background 0.18s, border-color 0.18s; }
@@ -43,26 +48,20 @@ engine: markdown
 .peer-review-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 .peer-review-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.75rem; }
 .peer-review-section p { font-size: 1rem; color: #2a2a2a; line-height: 1.75; }
-.pub-loading { font-size: 0.9rem; color: var(--text-muted); }
 @media (max-width: 860px) { .pub-layout { grid-template-columns: 1fr; } .pub-sidebar { display: none; } }
 </style>
 
 <div class="pub-layout">
 
-  <!-- Main content -->
   <div class="pub-main">
     <h2 id="publications" class="pub-section-heading">Publications</h2>
-    <div id="orcid-pubs">
-      <p class="pub-loading">Loading publications from ORCID…</p>
-    </div>
-
+    <div id="orcid-pubs"><p class="pub-loading">Loading publications from ORCID…</p></div>
     <div class="peer-review-section">
       <h2 id="peer-review">Peer review</h2>
       <p>I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for <em>Behaviour &amp; Information Technology</em> and <em>Scientific Reports</em>.</p>
     </div>
   </div>
 
-  <!-- Sidebar -->
   <div class="pub-sidebar">
     <div class="sidebar-section">
       <span class="sidebar-label">Find me online</span>
@@ -83,98 +82,193 @@ const ORCID_ID    = '0009-0000-1020-2333';
 const SCHOLAR_URL = 'https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en';
 const MAX_PUBS    = 6;
 
-async function fetchFullWork(putCode, doi) {
+// DOI prefix → publisher domain for favicon lookup
+const DOI_DOMAINS = {
+  '10.1016': 'sciencedirect.com', '10.1007': 'springer.com', '10.1038': 'nature.com',
+  '10.1186': 'biomedcentral.com', '10.1002': 'wiley.com',    '10.1111': 'wiley.com',
+  '10.1080': 'tandfonline.com',   '10.4324': 'routledge.com','10.1037': 'apa.org',
+  '10.1027': 'hogrefe.com',       '10.1177': 'sagepub.com',  '10.1093': 'oup.com',
+  '10.1017': 'cambridge.org',     '10.1371': 'plos.org',     '10.1136': 'bmj.com',
+  '10.3389': 'frontiersin.org',   '10.3390': 'mdpi.com',     '10.1521': 'guilford.com',
+  '10.1159': 'karger.com',        '10.1515': 'degruyter.com','10.1108': 'emerald.com',
+};
+
+function getBookSvg() {
+  const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c05a4a';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+}
+
+function pubIconHtml(doi) {
+  const prefix = doi ? doi.split('/')[0] : null;
+  const domain = prefix ? (DOI_DOMAINS[prefix] || null) : null;
+  if (domain) {
+    return `<img class="pub-favicon" src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="pub-favicon-fallback" style="display:none;">${getBookSvg()}</div>`;
+  }
+  return `<div class="pub-favicon-fallback">${getBookSvg()}</div>`;
+}
+
+// Build a journal-level URL from Crossref metadata + publisher heuristics
+async function fetchJournalUrl(doi) {
+  if (!doi) return null;
   try {
-    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/work/${putCode}`, { headers: { Accept: 'application/json' } });
+    const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
     if (!res.ok) return null;
-    const data = await res.json();
-    const contributors = data['bulk']?.[0]?.work?.contributors?.contributor || data.contributors?.contributor || [];
-    const authors = contributors.filter(c => (c['contributor-attributes']?.['contributor-role'] || '').toLowerCase() === 'author').map(c => {
-      const cn = c['credit-name']?.value || '';
-      const parts = cn.split(/\s+/); const last = parts.pop() || ''; const init = parts[0] ? parts[0][0] + '.' : '';
-      return `${last}, ${init}`.trim().replace(/,$/, '');
-    }).filter(Boolean);
-    const volume = data.volume?.value || null;
-    const issue  = data['journal-issue']?.['issue-number']?.value || null;
-    const pages  = data.pages?.start?.value ? (data.pages.end?.value ? `${data.pages.start.value}–${data.pages.end.value}` : data.pages.start.value) : null;
-    let journalUrl = doi ? `https://doi.org/${doi}` : null;
-    try {
-      if (doi) {
-        const cr = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
-        if (cr.ok) { const cd = await cr.json(); const link = cd.message?.URL || cd.message?.resource?.primary?.URL; if (link) journalUrl = link; }
-      }
-    } catch {}
-    return { authors, volume, issue, pages, journalUrl };
+    const work = (await res.json()).message;
+    if (!work) return null;
+    const issns     = work.ISSN || [];
+    const publisher = (work.publisher || '').toLowerCase();
+    const title     = work['container-title']?.[0] || '';
+    const issn      = issns[0] || '';
+
+    if (publisher.includes('elsevier') || publisher.includes('sciencedirect')) {
+      const m = doi.match(/10\.1016\/j\.([a-z]+)\./);
+      if (m) return `https://www.sciencedirect.com/journal/${m[1]}`;
+      return title ? `https://www.sciencedirect.com/search?pub=${encodeURIComponent(title)}` : null;
+    }
+    if (publisher.includes('springer') || publisher.includes('nature')) {
+      return issn ? `https://link.springer.com/search?query=&search-within=Journal&facet-journal-id=${issn}` : null;
+    }
+    if (publisher.includes('wiley')) {
+      return issn ? `https://onlinelibrary.wiley.com/journal/${issn.replace('-','')}` : null;
+    }
+    if (publisher.includes('taylor') || publisher.includes('routledge') || publisher.includes('informa')) {
+      return issn ? `https://www.tandfonline.com/journals/${issn}` : null;
+    }
+    if (publisher.includes('sage')) {
+      return issn ? `https://journals.sagepub.com/home/${issn}` : null;
+    }
+    if (publisher.includes('oxford') || publisher.includes('oup')) {
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      return `https://academic.oup.com/${slug}`;
+    }
+    if (publisher.includes('american psychological') || publisher.includes('apa ')) {
+      return issn ? `https://www.apa.org/pubs/journals/${issn}` : null;
+    }
+    if (publisher.includes('frontiers')) {
+      const slug = title.toLowerCase().replace('frontiers in ','').replace(/\s+/g,'-');
+      return `https://www.frontiersin.org/journals/${slug}`;
+    }
+    if (publisher.includes('plos')) return 'https://journals.plos.org/plosone/';
+
+    // Generic fallback: DOI itself
+    return `https://doi.org/${doi}`;
   } catch { return null; }
 }
 
+function formatAuthors(contributors) {
+  if (!contributors || contributors.length === 0) return null;
+  const names = contributors
+    .filter(c => (c['contributor-attributes']?.['contributor-role'] || 'author').toLowerCase() === 'author')
+    .map(c => {
+      const credit = c['credit-name']?.value || '';
+      if (!credit) return null;
+      const parts = credit.trim().split(/\s+/);
+      if (parts.length >= 2) {
+        const last = parts[parts.length - 1];
+        const inits = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
+        return `${last}, ${inits}`;
+      }
+      return credit;
+    }).filter(Boolean);
+  if (!names.length) return null;
+  if (names.length <= 20) return names.join(', ');
+  return names.slice(0, 19).join(', ') + ', … ' + names[names.length - 1];
+}
+
 function buildAPA(w) {
-  const authors = w.authors?.length ? w.authors.join(', ') : 'Unknown author';
-  const year = w.year || 'n.d.'; const title = w.title || 'Untitled';
-  const journal = w.journal ? `<em>${w.journal}</em>` : '';
-  const vol = w.volume ? `<em>${w.volume}</em>` : ''; const issue = w.issue ? `(${w.issue})` : ''; const pages = w.pages || '';
-  const doi = w.doi ? `https://doi.org/${w.doi}` : '';
-  let c = `${authors} (${year}). ${title}.`;
-  if (journal) { c += ` ${journal}`; if (vol) c += `, ${vol}${issue}`; if (pages) c += `, ${pages}`; }
-  if (doi) c += `. ${doi}`;
-  return c;
+  const authors = w.authors || 'Conkey-Morrison, C.';
+  const journal = w.journal ? `${w.journal}` : '';
+  const vol     = w.volume  ? `, ${w.volume}` : '';
+  const issue   = w.issue   ? `(${w.issue})`  : '';
+  const pages   = w.pages   ? `, ${w.pages}`  : '';
+  const doi     = w.doi     ? ` https://doi.org/${w.doi}` : '';
+  return `${authors} (${w.year || 'n.d.'}). ${w.title}.${journal ? ' ' + journal + vol + issue + pages + '.' : ''}${doi}`;
 }
 
 function buildRIS(w) {
   const lines = ['TY  - JOUR'];
-  (w.authors || []).forEach(a => lines.push(`AU  - ${a}`));
+  (w.authors || 'Conkey-Morrison, Connor').split(', ').filter(Boolean).forEach(a => lines.push(`AU  - ${a}`));
   lines.push(`TI  - ${w.title || ''}`);
   if (w.journal) lines.push(`JO  - ${w.journal}`);
   if (w.year)    lines.push(`PY  - ${w.year}`);
   if (w.volume)  lines.push(`VL  - ${w.volume}`);
   if (w.issue)   lines.push(`IS  - ${w.issue}`);
-  if (w.pages)   { const [s,e] = w.pages.split('–'); lines.push(`SP  - ${s||''}`); if(e) lines.push(`EP  - ${e}`); }
-  if (w.doi)     lines.push(`DO  - ${w.doi}`);
+  if (w.pages)   lines.push(`SP  - ${w.pages}`);
+  if (w.doi)     lines.push(`DO  - ${w.doi}`, `UR  - https://doi.org/${w.doi}`);
   lines.push('ER  - ');
-  return lines.join('\n');
+  return lines.join('\r\n');
 }
 
-function renderWorks(works, showSynced) {
-  const byYear = {};
-  works.forEach(w => { const y = w.year || 'n.d.'; if (!byYear[y]) byYear[y] = []; byYear[y].push(w); });
-  const years = Object.keys(byYear).sort((a,b) => b - a);
-  let html = '';
-  years.forEach(y => {
-    html += `<div class="pub-year-head">${y}</div>`;
-    byYear[y].forEach(w => {
-      const faviconHtml = w.journalUrl
-        ? `<div class="pub-favicon-wrap"><img src="https://www.google.com/s2/favicons?sz=32&domain_url=${encodeURIComponent(w.journalUrl)}" alt="" onerror="this.parentElement.outerHTML='<div class=pub-favicon-fallback><svg xmlns=http://www.w3.org/2000/svg width=16 height=16 viewBox=0 0 24 24 fill=none stroke=currentColor stroke-width=1.75><path d=M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5/></svg></div>'"></div>`
-        : `<div class="pub-favicon-fallback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>`;
-      const journalLink = w.journalUrl
-        ? `<a href="${w.journalUrl}" target="_blank" style="font-size:0.82rem;color:var(--text-muted);font-style:italic;text-decoration:underline;">${w.journal||'View journal'}</a>`
-        : (w.journal ? `<span style="font-size:0.82rem;color:var(--text-muted);font-style:italic;">${w.journal}</span>` : '');
-      const authorsLine = w.authors?.length ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.15rem;">${w.authors.join(', ')}</div>` : '';
-      const apaBtnId = `apa-${w.putCode}`; const risBtnId = `ris-${w.putCode}`;
-      const wJson = JSON.stringify(w).replace(/"/g, '&quot;');
-      html += `<div class="pub-entry-block">${faviconHtml}<div class="pub-entry-text"><a href="${w.doi?'https://doi.org/'+w.doi:'#'}" target="_blank" class="pub-title-link">${w.title}</a>${authorsLine}${journalLink?`<div style="margin-top:0.15rem;">${journalLink}</div>`:''}<div class="pub-actions">${w.doi?`<a href="https://doi.org/${w.doi}" target="_blank" class="pub-btn">DOI ↗</a>`:''}<button class="pub-btn" id="${apaBtnId}" onclick="copyAPA(${wJson},'${apaBtnId}')">Copy APA 7</button><button class="pub-btn" id="${risBtnId}" onclick="downloadRIS(${wJson},'${risBtnId}')">Download RIS</button></div></div></div>`;
-    });
-  });
-  const footer = document.createElement('div');
-  footer.style.cssText = 'margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;';
-  if (showSynced) footer.innerHTML = `<span class="pub-synced-note">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank">ORCID</a></span><a href="${SCHOLAR_URL}" target="_blank" class="pub-scholar-link">View all on Google Scholar →</a>`;
-  return { html, footer };
-}
-
-function copyAPA(w, btnId) {
-  navigator.clipboard.writeText(buildAPA(w).replace(/<[^>]+>/g,'')).then(() => {
-    const btn = document.getElementById(btnId);
-    if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy APA 7'; }, 1800); }
+// Global store for cite/download handlers
+const PUB_WORKS = [];
+function copyApa(idx) {
+  navigator.clipboard.writeText(buildAPA(PUB_WORKS[idx])).then(() => {
+    const btn = document.getElementById(`cite-btn-${idx}`);
+    if (btn) { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy APA 7'; btn.classList.remove('copied'); }, 2000); }
   });
 }
-
-function downloadRIS(w, btnId) {
+function downloadRisById(idx) {
+  const w = PUB_WORKS[idx];
   const blob = new Blob([buildRIS(w)], { type: 'application/x-research-info-systems' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = `${(w.title||'reference').slice(0,40).replace(/[^a-z0-9]/gi,'_')}.ris`;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-  const btn = document.getElementById(btnId);
-  if (btn) { btn.textContent = 'Downloading…'; setTimeout(() => { btn.textContent = 'Download RIS'; }, 1800); }
+  a.href = url; a.download = (w.title||'reference').slice(0,40).replace(/[^a-z0-9]/gi,'_').toLowerCase() + '.ris';
+  a.click(); URL.revokeObjectURL(url);
+}
+
+function renderWorks(works, fromOrcid) {
+  PUB_WORKS.length = 0;
+  works.forEach(w => PUB_WORKS.push(w));
+  const byYear = {};
+  works.forEach(w => { const y = w.year || 'n.d.'; if (!byYear[y]) byYear[y] = []; byYear[y].push(w); });
+  let html = ''; let idx = 0;
+  for (const year of Object.keys(byYear).sort((a,b) => b - a)) {
+    html += `<span class="pub-year-head">${year}</span>`;
+    for (const w of byYear[year]) {
+      const i = idx++;
+      const articleHref = w.doi ? `https://doi.org/${w.doi}` : '#';
+      const jUrl = w.journalUrl || articleHref;
+      html += `<div class="pub-entry-block">
+        ${pubIconHtml(w.doi)}
+        <div class="pub-entry-text">
+          <a href="${articleHref}" target="_blank" class="pub-title-link">${w.title}</a>
+          <div class="pub-meta-row">
+            ${w.journal ? `<a href="${jUrl}" target="_blank" class="pub-journal-link">${w.journal}</a>` : ''}
+            <button id="cite-btn-${i}" class="pub-cite-btn" onclick="copyApa(${i})">Copy APA 7</button>
+            <button class="pub-cite-btn" onclick="downloadRisById(${i})">Download RIS</button>
+          </div>
+        </div>
+      </div>`;
+    }
+  }
+  const footer = document.createElement('div');
+  footer.className = 'pub-footer-row';
+  footer.innerHTML = (fromOrcid
+    ? `<span class="pub-synced-note">Synced from <a href="https://orcid.org/${ORCID_ID}" target="_blank">ORCID</a> · ${new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'})}</span>`
+    : `<span class="pub-synced-note">Showing recent publications</span>`)
+    + `<a href="${SCHOLAR_URL}" target="_blank" class="pub-scholar-link">View all on Google Scholar →</a>`;
+  return { html, footer };
+}
+
+async function fetchFullWork(putCode, doi) {
+  const [orcidData, jUrl] = await Promise.all([
+    (async () => {
+      try {
+        const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/work/${putCode}`, { headers: { Accept: 'application/json' } });
+        if (!res.ok) return null;
+        const data = await res.json();
+        const contributors = data?.contributors?.contributor || data['bulk']?.[0]?.work?.contributors?.contributor || [];
+        return {
+          authors: formatAuthors(contributors),
+          volume:  data?.volume?.value || null,
+          issue:   data?.['journal-issue']?.['issue-number']?.value || null,
+          pages:   data?.pages?.start?.value ? (data.pages.end?.value ? `${data.pages.start.value}–${data.pages.end.value}` : data.pages.start.value) : null,
+        };
+      } catch { return null; }
+    })(),
+    fetchJournalUrl(doi),
+  ]);
+  return { authors: orcidData?.authors||null, volume: orcidData?.volume||null, issue: orcidData?.issue||null, pages: orcidData?.pages||null, journalUrl: jUrl||null };
 }
 
 async function loadOrcidPublications() {
@@ -186,8 +280,8 @@ async function loadOrcidPublications() {
     const summaries = [];
     for (const g of (data.group || [])) {
       const s = g['work-summary']?.[0]; if (!s) continue;
-      const title = s.title?.title?.value || 'Untitled';
-      const year  = parseInt(s['publication-date']?.year?.value) || 0;
+      const title   = s.title?.title?.value || 'Untitled';
+      const year    = parseInt(s['publication-date']?.year?.value) || 0;
       const journal = s['journal-title']?.value || '';
       let doi = null;
       for (const eid of s['external-ids']?.['external-id'] || []) { if (eid['external-id-type'] === 'doi') { doi = eid['external-id-value']; break; } }
@@ -196,13 +290,22 @@ async function loadOrcidPublications() {
     if (!summaries.length) throw new Error('empty');
     summaries.sort((a,b) => b.year - a.year);
     const top = summaries.slice(0, MAX_PUBS);
-    const fullRecords = await Promise.all(top.map(s => fetchFullWork(s.putCode, s.doi)));
-    const works = top.map((s,i) => ({ ...s, authors: fullRecords[i]?.authors||null, volume: fullRecords[i]?.volume||null, issue: fullRecords[i]?.issue||null, pages: fullRecords[i]?.pages||null, journalUrl: fullRecords[i]?.journalUrl||(s.doi?`https://doi.org/${s.doi}`:null) }));
+    const full = await Promise.all(top.map(s => fetchFullWork(s.putCode, s.doi)));
+    const works = top.map((s,i) => ({ ...s, authors: full[i]?.authors||null, volume: full[i]?.volume||null, issue: full[i]?.issue||null, pages: full[i]?.pages||null, journalUrl: full[i]?.journalUrl||(s.doi?`https://doi.org/${s.doi}`:null) }));
     const { html, footer } = renderWorks(works, true);
     container.innerHTML = html;
     container.appendChild(footer);
   } catch {
-    container.innerHTML = '<p class="pub-loading">Could not load publications. <a href="https://orcid.org/0009-0000-1020-2333" target="_blank">View on ORCID →</a></p>';
+    // Fallback to known publications
+    const fallback = [
+      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Stavropoulos, V., Conkey-Morrison, C., Gomez, R., Griffiths, M. D.', journalUrl: 'https://link.springer.com/journal/10862' },
+      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/computers-in-human-behavior-reports' },
+      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
+      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/acta-psychologica' },
+    ];
+    const { html, footer } = renderWorks(fallback, false);
+    container.innerHTML = html;
+    container.appendChild(footer);
   }
 }
 
