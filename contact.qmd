@@ -193,9 +193,19 @@ async function handleSubmit(e) {
   btn.textContent = 'Send message'; btn.disabled = false;
 }
 
-(function() {
+(function () {
   const params = new URLSearchParams(window.location.search);
-  if (params.get('type') === 'bug') setType('bug');
+
+  if (params.get('type') === 'bug') {
+    setType('bug');
+    return;
+  }
+
+  const ref = document.referrer || "";
+
+  if (ref.includes("template")) {
+    setType("bug");
+  }
 })();
 </script>
 ```
