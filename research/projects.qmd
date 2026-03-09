@@ -7,38 +7,66 @@ page-layout: full
 # Projects
 :::
 
-Research tools, open-source work, and things built along the way. Some are live; others are works in progress.
+Research tools, open-source work, and things built along the way. Some are live; most are works in progress.
 
 ------------------------------------------------------------------------
 
 ::: project-grid
 
 ::: project-card
-[In progress]{.project-status .status-wip}
+[Live]{.project-status .status-live}
 
-### Academic website template
+### Academic Website Template
 
-A free Quarto-based academic website template deployed to GitHub Pages. Includes live ORCID publications, a reading list, contact form, and full setup guide — no coding experience required.
+An open-source Quarto template for building a professional academic website — free, no coding experience required, and deployable to GitHub Pages in under an hour. This site was built with it!
 
 ::: project-tags
-[Quarto]{.project-tag} [GitHub Pages]{.project-tag} [Open source]{.project-tag}
+[Quarto]{.project-tag} [GitHub Pages]{.project-tag} [CSS]{.project-tag} [Open source]{.project-tag}
 :::
 
 ::: project-links
-[View template](https://connorconkeymorrison.com/template){.project-link}
-[GitHub](https://github.com/ccicm/academic-website-template){.project-link-secondary}
+[Setup & walkthrough](https://connorconkeymorrison.com/template){.project-link}
+[Download GitHub repo](https://github.com/ccicm/academic-website-template){.project-link-secondary}
+:::
+:::
+
+::: project-card
+[In progress]{.project-status .status-wip}
+
+### Systematic Review Data Pipeline
+
+A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](research.qmd) of my PhD.
+
+::: project-tags
+[Python]{.project-tag} [Google Colab]{.project-tag} [Sys review]{.project-tag} 
+:::
+
+::: project-links
+[Soon on Colab]{.project-link}
 :::
 :::
 
 ::: project-card
 [Planned]{.project-status .status-planned}
 
-### EBSA measurement tool
+### EBSA Intervention Evidence Map
 
-A placeholder for future project content.
+An interactive evidence map for the systematic review of emotionally based school avoidance interventions [Paper 1](research.qmd). Planned as a living document updated alongside the review.
 
 ::: project-tags
-[Research]{.project-tag} [Measurement]{.project-tag}
+[R]{.project-tag} [Systematic review]{.project-tag} [EBSA]{.project-tag} [Visualisation]{.project-tag}
+:::
+:::
+
+::: project-card
+[Planned]{.project-status .status-planned}
+
+### Psychology Stats Reference
+
+A quick-reference guide for common statistical procedures in psychology research — aimed at honours and postgraduate students. Covering assumption testing, effect sizes, and reporting conventions in APA style.
+
+::: project-tags
+[Jamovi]{.project-tag} [R]{.project-tag} [Statistics]{.project-tag} [Teaching]{.project-tag} 
 :::
 :::
 
@@ -47,5 +75,5 @@ A placeholder for future project content.
 ------------------------------------------------------------------------
 
 ::: about-section
-Interested in collaborating on any of these? [Get in touch →](../contact.html){.about-link}
+Have a question about any of these, or interested in collaborating? [Get in touch →](contact.qmd)
 :::
