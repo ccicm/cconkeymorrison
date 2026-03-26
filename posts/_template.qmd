@@ -1,0 +1,28 @@
+---
+title: "Post title here"
+date: 2026-01-01
+categories: []
+description: "One or two sentence summary shown on the listing card."
+engine: markdown
+---
+
+```{=html}
+<style>#title-block-header { display: none !important; }</style>
+<div class="page-header">
+  <h1>Post title here</h1>
+</div>
+<p style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0 2rem 0;font-weight:500;">1 January 2026 &nbsp;·&nbsp; <span style="color:var(--accent);">Category &nbsp;·&nbsp; Category</span></p>
+<hr style="border:none;border-top:1px solid var(--border);margin:0 0 2rem 0;">
+```
+
+Opening paragraph here.
+
+---
+
+Body here.
+
+---
+
+## References
+
+1. Author A, Author B. Title. *Journal.* Year;vol(issue):pages. [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
