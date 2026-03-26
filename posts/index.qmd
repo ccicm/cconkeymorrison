@@ -1,0 +1,21 @@
+---
+title: ""
+page-layout: full
+engine: markdown
+listing:
+  contents: "."
+  sort: "date desc"
+  type: default
+  fields: [date, title, description, categories]
+  date-format: "D MMMM YYYY"
+  filter-ui: false
+  sort-ui: false
+---
+
+::: page-header
+# Writing
+:::
+
+<p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">Commentary on research, policy, and practice.</p>
+
+<hr style="border:none;border-top:1px solid var(--border);margin:0 0 1.5rem 0;">

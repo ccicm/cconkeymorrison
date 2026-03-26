@@ -22,6 +22,8 @@ website:
             text: Reading List
           - href: research/projects.qmd
             text: Projects
+          - href: posts/index.qmd
+            text: Writing
       - text: Clinical
         menu:
           - href: clinical/index.qmd
