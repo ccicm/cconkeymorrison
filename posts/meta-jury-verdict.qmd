@@ -20,27 +20,32 @@ A Los Angeles jury found this week that Meta and Google acted not with negligenc
 She was awarded $6 million in damages, the punitive component reflecting the jury's conclusion that the companies knew what they were doing and did it anyway. Meta disagrees (shocking), noting that teen mental health is "profoundly complex" and cannot be attributed to a single app. The statement is true, and entirely beside the point.
 
 ```{=html}
-<div class="stats-strip" style="margin:2rem 0;">
-  <div class="stat-item"><strong>$6M</strong>awarded in damages</div>
-  <div class="stat-item"><strong>80%</strong>of Australian children 8–12 on social media in 2024</div>
-  <div class="stat-item"><strong>143</strong>studies across 1M+ adolescents in the 2024 meta-analysis</div>
-  <div class="stat-item"><strong>$49.5M</strong>maximum fine for non-compliant platforms</div>
-</div>
+<figure style="margin:2rem 0;padding:1.25rem 1.75rem;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow-sm);">
+  <blockquote style="margin:0 0 0.6rem 0;font-size:1rem;font-style:italic;color:var(--navy);line-height:1.75;">"Teen mental health is profoundly complex and cannot be attributed to a single app."</blockquote>
+  <figcaption style="font-size:0.78rem;font-weight:600;color:var(--text-muted);">— Meta spokesperson, responding to the verdict</figcaption>
+</figure>
 ```
 
 The trajectory described in Kaley's case (early platform access, progressive withdrawal from real-world relationships, internalising symptoms emerging before adolescence, appearance-related distress amplified by filters and algorithmic comparison) will be familiar to anyone who has spent time in this literature. A 2024 meta-analysis across 143 studies and over a million adolescents found that engagement-based measures of social media use (how you use it, not just how long) were more strongly associated with internalising symptoms than time alone.¹ Passive consumption — scrolling, watching, comparing — is more reliably associated with anxiety and depressed mood than active interaction, even after controlling for total time spent.² 'Infinite scroll' is not a neutral feature. Neither is an algorithmically curated feed of appearance content served to a nine-year-old.
 
-The Australian context is sobering. The eSafety Commissioner's own research found that 80% of Australian children aged 8–12 were using social media in 2024, with most platforms relying on nothing more than a (self-declared, mind you) date of birth to determine whether a child was old enough to sign up.³ Almost three in four Australian children had been exposed to harmful online content, and more than half had experienced cyberbullying. As of December 2025, social media platforms must now prevent under-16s from Australia from holding accounts — a move the platforms variously described as rushed, unworkable, a threat to free expression, and (Reddit's contribution) 'potentially more dangerous for children than simply letting them stay on Reddit'.
+```{=html}
+<div style="margin:2.5rem 0;padding:0.25rem 0 0.25rem 1.5rem;border-left:3px solid var(--navy);">
+  <p style="font-size:1.15rem;font-weight:600;color:var(--navy);line-height:1.65;margin:0;">How you use social media matters more than how long. Passive scrolling and appearance comparison drive risk — not time on the platform alone.</p>
+</div>
+```
+
+The Australian context is sobering. The eSafety Commissioner's own research found that 80% of Australian children aged 8–12 were using social media in 2024, with most platforms relying on nothing more than a (self-declared, mind you) date of birth to determine whether a child was old enough to sign up.³ Almost three in four Australian children had been exposed to harmful online content, and more than half had experienced cyberbullying. As of December 2025, social media platforms must now prevent under-16s from Australia from holding accounts — a move the platforms variously described as rushed, unworkable, and a threat to free expression.
+
+```{=html}
+<figure style="margin:2rem 0;padding:1.25rem 1.75rem;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow-sm);">
+  <blockquote style="margin:0 0 0.6rem 0;font-size:1rem;font-style:italic;color:var(--navy);line-height:1.75;">"Potentially more dangerous for children than simply letting them stay on Reddit."</blockquote>
+  <figcaption style="font-size:0.78rem;font-weight:600;color:var(--text-muted);">— Reddit, on Australia's under-16 social media ban</figcaption>
+</figure>
+```
 
 The legislation allows fines of up to $49.5 million for platforms that fail to take reasonable steps to comply (the kind of figure that focused attention in ways that a decade of eSafety reports didn't).
 
 What the Los Angeles verdict adds to this picture is an evidentiary record produced under oath demonstrating that at least one major platform had internal research documenting harm to children and treated it as a communications liability rather than a reason to change anything.
-
-```{=html}
-<blockquote style="border-left:4px solid var(--accent);margin:2rem 0;padding:0.75rem 1.5rem;background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:0 var(--radius) var(--radius) 0;">
-  <p style="font-size:1.05rem;font-style:italic;color:var(--navy);margin:0;line-height:1.7;">The records are tangible proof of malicious and unethical practice — and they are now public.</p>
-</blockquote>
-```
 
 That record will be cited in the June federal trial in California. I expect it will be cited in Australia. Though appeals will be long (and expensive, though the platforms will fund them comfortably), the evidentiary record produced under oath is not going away.
 
