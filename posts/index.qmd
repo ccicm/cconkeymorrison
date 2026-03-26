@@ -5,7 +5,8 @@ engine: markdown
 listing:
   contents: "."
   sort: "date desc"
-  type: default
+  type: grid
+  grid-columns: 2
   fields: [date, title, description, categories]
   date-format: "D MMMM YYYY"
   filter-ui: false
@@ -19,3 +20,73 @@ listing:
 <p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">Commentary on research, policy, and practice.</p>
 
 <hr style="border:none;border-top:1px solid var(--border);margin:0 0 1.5rem 0;">
+
+```{=html}
+<style>
+/* Match project-card aesthetic */
+.quarto-listing .card {
+  background: var(--bg-card);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s, transform 0.22s, border-color 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+.quarto-listing .card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--navy), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s ease;
+}
+.quarto-listing .card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: transparent !important;
+}
+.quarto-listing .card:hover::after { transform: scaleX(1); }
+
+.quarto-listing .listing-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: var(--navy) !important;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+.quarto-listing .listing-title a {
+  color: var(--navy) !important;
+  text-decoration: none !important;
+}
+.quarto-listing .listing-title a:hover { color: var(--accent) !important; }
+
+.quarto-listing .listing-description {
+  font-size: 0.88rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.65;
+}
+.quarto-listing .listing-date {
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  color: var(--accent) !important;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.4rem;
+}
+.quarto-listing .listing-categories .listing-category {
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--tag-bg) !important;
+  color: var(--tag-color) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 999px !important;
+  padding: 0.15rem 0.55rem !important;
+  cursor: default;
+}
+</style>
+```
