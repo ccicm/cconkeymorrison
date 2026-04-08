@@ -4,6 +4,8 @@
 var RESPONSES_SHEET = "Form Responses 1";
 var REGISTER_SHEET  = "Register";
 var SESSIONS_SHEET  = "Sessions";
+var APPROVED_USERS_SHEET = "Approved Users";
+var USER_REQUESTS_SHEET  = "User Requests";
 
 var REGISTER_HEADERS = [
   "Timestamp", "Submitted By", "Resource Category",
@@ -56,10 +58,124 @@ function setupSheets() {
   var ses = ss.getSheetByName(SESSIONS_SHEET);
   if (!ses) ses = ss.insertSheet(SESSIONS_SHEET);
   formatSessionsSheet_(ses);
-  SpreadsheetApp.getUi().alert("Sheets ready. Run 'Seed sessions' next, then set up the onFormSubmit trigger.");
+  var approved = ss.getSheetByName(APPROVED_USERS_SHEET);
+  if (!approved) approved = ss.insertSheet(APPROVED_USERS_SHEET);
+  formatApprovedUsersSheet_(approved);
+  var requests = ss.getSheetByName(USER_REQUESTS_SHEET);
+  if (!requests) requests = ss.insertSheet(USER_REQUESTS_SHEET);
+  formatUserRequestsSheet_(requests);
+  SpreadsheetApp.getUi().alert("Sheets ready. Run 'Seed sessions' next, then add approved users and set up the onFormSubmit trigger.");
 }
 
 function onFormSubmit() { syncRegister(); }
+
+// ─── Access control ──────────────────────────────────────────────────────
+
+function normalizeEmail_(email) {
+  return String(email || "").trim().toLowerCase();
+}
+
+function normalizeStatus_(status) {
+  return String(status || "").trim().toLowerCase();
+}
+
+function getCurrentUserEmail_() {
+  try {
+    return normalizeEmail_(Session.getActiveUser().getEmail());
+  } catch (e) {
+    return "";
+  }
+}
+
+function getApprovedUsersSheet_() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(APPROVED_USERS_SHEET);
+  if (!sh) {
+    sh = ss.insertSheet(APPROVED_USERS_SHEET);
+    formatApprovedUsersSheet_(sh);
+  }
+  return sh;
+}
+
+function getUserRequestsSheet_() {
+  var ss = SpreadsheetApp.getActive();
+  var sh = ss.getSheetByName(USER_REQUESTS_SHEET);
+  if (!sh) {
+    sh = ss.insertSheet(USER_REQUESTS_SHEET);
+    formatUserRequestsSheet_(sh);
+  }
+  return sh;
+}
+
+function getApprovalRecord_(email) {
+  var normalized = normalizeEmail_(email);
+  if (!normalized) return null;
+
+  var sh = getApprovedUsersSheet_();
+  var lastRow = sh.getLastRow();
+  if (lastRow < 2) return null;
+
+  var data = sh.getRange(2, 1, lastRow - 1, 7).getValues();
+  for (var i = 0; i < data.length; i++) {
+    var row = data[i];
+    if (normalizeEmail_(row[0]) !== normalized) continue;
+    return {
+      email: normalizeEmail_(row[0]),
+      name: String(row[1] || "").trim(),
+      status: normalizeStatus_(row[2]),
+      role: String(row[3] || "").trim(),
+      dateRequested: row[4],
+      dateApproved: row[5],
+      notes: String(row[6] || "").trim()
+    };
+  }
+
+  return null;
+}
+
+function getAccessState_(email) {
+  var normalized = normalizeEmail_(email);
+  if (!normalized) return "no_identity";
+
+  var record = getApprovalRecord_(normalized);
+  if (!record) return "pending";
+  if (record.status === "approved") return "approved";
+  if (record.status === "revoked") return "revoked";
+  return "pending";
+}
+
+function isApprovedUser_(email) {
+  return getAccessState_(email) === "approved";
+}
+
+function requireApprovedUser_() {
+  var email = getCurrentUserEmail_();
+  var state = getAccessState_(email);
+  if (state === "approved") return getApprovalRecord_(email);
+  if (state === "no_identity") {
+    throw new Error("Google sign-in is required.");
+  }
+  if (state === "revoked") {
+    throw new Error("Your access has been revoked.");
+  }
+  throw new Error("Access is pending approval.");
+}
+
+function submitAccessRequest(payload) {
+  try {
+    var email = normalizeEmail_(payload && payload.email);
+    var name = String((payload && payload.name) || "").trim();
+    var reason = String((payload && payload.reason) || "").trim();
+    var notes = String((payload && payload.notes) || "").trim();
+    if (!email) throw new Error("Email is required.");
+
+    var sh = getUserRequestsSheet_();
+    sh.appendRow([new Date(), email, name, reason, notes]);
+    return { success: true };
+  } catch (e) {
+    return { success: false, error: e.message };
+  }
+}
 
 // ─── Sessions ─────────────────────────────────────────────────────────────
 
@@ -94,6 +210,7 @@ function seedSessions() {
  * Past/upcoming split uses date-only comparison in the script timezone.
  */
 function getSessions() {
+  requireApprovedUser_();
   var ss  = SpreadsheetApp.getActive();
   var ses = ss.getSheetByName(SESSIONS_SHEET);
   if (!ses || ses.getLastRow() < 2) return { upcoming: [], past: [] };
@@ -141,6 +258,7 @@ function getSessions() {
 
 function addSession(payload) {
   try {
+    requireApprovedUser_();
     var ss  = SpreadsheetApp.getActive();
     var ses = ss.getSheetByName(SESSIONS_SHEET);
     if (!ses) throw new Error("Sessions sheet not found.");
@@ -269,6 +387,24 @@ function formatSessionsSheet_(sh) {
   sh.setFrozenRows(1);
   var widths={1:90,2:70,3:100,4:80,5:200,6:300,7:280,8:150};
   for(var col in widths) sh.setColumnWidth(Number(col), widths[col]);
+}
+
+function formatApprovedUsersSheet_(sh) {
+  var headers = ["Email", "Name", "Status", "Role", "Date Requested", "Date Approved", "Notes"];
+  sh.getRange(1, 1, 1, headers.length).setValues([headers]);
+  sh.getRange(1, 1, 1, headers.length).setBackground("#0f2340").setFontColor("#ffffff").setFontWeight("bold").setFontSize(11);
+  sh.setFrozenRows(1);
+  var widths = {1:220, 2:180, 3:100, 4:120, 5:130, 6:130, 7:260};
+  for (var col in widths) sh.setColumnWidth(Number(col), widths[col]);
+}
+
+function formatUserRequestsSheet_(sh) {
+  var headers = ["Timestamp", "Email", "Name", "Reason", "Notes"];
+  sh.getRange(1, 1, 1, headers.length).setValues([headers]);
+  sh.getRange(1, 1, 1, headers.length).setBackground("#0f2340").setFontColor("#ffffff").setFontWeight("bold").setFontSize(11);
+  sh.setFrozenRows(1);
+  var widths = {1:130, 2:220, 3:180, 4:220, 5:260};
+  for (var col in widths) sh.setColumnWidth(Number(col), widths[col]);
 }
 
 function applyConditionalFormatting_(sh, rowCount) {

@@ -12,16 +12,145 @@
 var UPLOAD_FOLDER_ID = "1-N0mC49U4ckeQWCtWJyh8VQ-hXKuZwEnr88JN0yeBDvxWNHjSbSJTSzCp63hIJRKivLbHEv9";
 
 function doGet() {
+  var email = getCurrentUserEmail_();
+  var state = getAccessState_(email);
+  if (state === "approved") {
+    return HtmlService
+      .createHtmlOutput(getAppHtml_())
+      .setTitle("NPE KnowledgeBase")
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  }
+
   return HtmlService
-    .createHtmlOutput(getAppHtml_())
-    .setTitle("NPE KnowledgeBase")
+    .createHtmlOutput(getAccessHtml_(state, email))
+    .setTitle(state === "no_identity" ? "Sign in required" : "Request access")
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function escapeHtml_(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function getAccessHtml_(state, email) {
+  var isNoIdentity = state === "no_identity";
+  var heading = isNoIdentity ? "Sign in required" : "Request access";
+  var bodyText = isNoIdentity
+    ? "Sign in with the Google account you want approved, then refresh this page."
+    : (state === "revoked"
+      ? "Your access has been revoked. Submit a new request if you believe this is in error."
+      : "Your account is not approved yet. Send a request and the owner can add you to Approved Users.");
+
+  var h = [];
+  h.push('<!DOCTYPE html><html lang="en"><head>');
+  h.push('<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">');
+  h.push('<title>NPE KnowledgeBase</title>');
+  h.push('<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">');
+  h.push('<style>');
+  h.push(':root{--navy:#0f2340;--teal:#0d7377;--teal2:#14a085;--cream:#f7f4ef;--warm:#efe9e0;--text:#1a1a2e;--muted:#64748b;--border:#ddd6c8;--white:#ffffff;--danger:#b91c1c;}');
+  h.push('*,*::before,*::after{box-sizing:border-box;}');
+  h.push('body{margin:0;font-family:"DM Sans",sans-serif;background:linear-gradient(180deg,#f5f1ea 0%,#fbfaf7 100%);color:var(--text);min-height:100vh;}');
+  h.push('.wrap{min-height:100vh;display:grid;place-items:center;padding:2rem;}');
+  h.push('.card{width:min(720px,100%);background:rgba(255,255,255,.94);backdrop-filter:blur(4px);border:1px solid var(--border);border-radius:24px;box-shadow:0 18px 60px rgba(15,35,64,.12);padding:2rem;}');
+  h.push('.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.7rem;}');
+  h.push('h1{margin:0;font-family:"DM Serif Display",serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--navy);}');
+  h.push('.lede{margin-top:.9rem;font-size:1rem;line-height:1.6;color:var(--muted);max-width:60ch;}');
+  h.push('.panel{margin-top:1.4rem;border:1px solid var(--border);border-radius:18px;padding:1.2rem;background:var(--cream);}');
+  h.push('.panel h2{margin:0 0 .6rem;font-family:"DM Serif Display",serif;font-size:1.2rem;color:var(--navy);}');
+  h.push('.grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1rem;}');
+  h.push('.field{display:flex;flex-direction:column;gap:.32rem;}');
+  h.push('.field label{font-size:.78rem;font-weight:600;color:var(--navy);}');
+  h.push('input,textarea{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:.7rem .85rem;font:inherit;background:var(--white);color:var(--text);outline:none;}');
+  h.push('textarea{min-height:110px;resize:vertical;}');
+  h.push('input:focus,textarea:focus{border-color:var(--teal);}');
+  h.push('.full{grid-column:1/-1;}');
+  h.push('.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;align-items:center;}');
+  h.push('.btn{border:none;border-radius:999px;padding:.78rem 1.15rem;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}');
+  h.push('.btn-primary{background:var(--teal);color:#fff;}');
+  h.push('.btn-primary:hover{background:var(--teal2);}');
+  h.push('.btn-secondary{background:#fff;color:var(--navy);border:1.5px solid var(--border);}');
+  h.push('.btn-secondary:hover{border-color:var(--teal);color:var(--teal);}');
+  h.push('.status{margin-top:1rem;font-size:.92rem;line-height:1.5;display:none;}');
+  h.push('.status.ok{display:block;color:#166534;background:#dcfce7;padding:.8rem 1rem;border-radius:12px;}');
+  h.push('.status.fail{display:block;color:var(--danger);background:#fee2e2;padding:.8rem 1rem;border-radius:12px;}');
+  h.push('.meta{margin-top:1rem;font-size:.84rem;color:var(--muted);}');
+  h.push('.chip{display:inline-flex;align-items:center;padding:.22rem .55rem;border-radius:999px;background:#e0f7f7;color:#0d7377;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}');
+  h.push('@media(max-width:720px){.card{padding:1.35rem;border-radius:20px;}.grid{grid-template-columns:1fr;}}');
+  h.push('</style>');
+  h.push('</head><body>');
+  h.push('<div class="wrap"><div class="card">');
+  h.push('<div class="eyebrow">NPE KnowledgeBase</div>');
+  h.push('<h1>' + heading + '</h1>');
+  h.push('<p class="lede">' + bodyText + '</p>');
+
+  if (!isNoIdentity) {
+    h.push('<div class="panel">');
+    h.push('<h2>Request access</h2>');
+    h.push('<p class="meta">This submits a request to the User Requests sheet. The owner can then add you to Approved Users.</p>');
+    h.push('<div class="grid">');
+    h.push('<div class="field"><label for="reqName">Name</label><input id="reqName" type="text" placeholder="Your name"></div>');
+    h.push('<div class="field"><label for="reqEmail">Email</label><input id="reqEmail" type="email" value="' + escapeHtml_(email) + '" placeholder="you@example.com"></div>');
+    h.push('<div class="field full"><label for="reqReason">Why do you need access?</label><textarea id="reqReason" placeholder="A short note is enough"></textarea></div>');
+    h.push('<div class="field full"><label for="reqNotes">Notes</label><textarea id="reqNotes" placeholder="Optional context"></textarea></div>');
+    h.push('</div>');
+    h.push('<div class="actions">');
+    h.push('<button class="btn btn-primary" id="reqBtn" onclick="submitRequest()">Request access</button>');
+    h.push('<a class="btn btn-secondary" href="' + ScriptApp.getService().getUrl() + '">Refresh</a>');
+    h.push('</div>');
+    h.push('<div class="status" id="reqStatus"></div>');
+    h.push('</div>');
+  } else {
+    h.push('<div class="panel">');
+    h.push('<h2>How access works</h2>');
+    h.push('<p class="meta">1. Sign in with the Google account you want approved. 2. Refresh this page. 3. If you are not yet on the approved list, submit the request form from the website front door or contact the owner directly.</p>');
+    h.push('<div class="actions"><a class="btn btn-secondary" href="' + ScriptApp.getService().getUrl() + '">Refresh after sign-in</a></div>');
+    h.push('</div>');
+  }
+
+  h.push('<div class="meta"><span class="chip">Private hub</span> Approved users can browse the resource library, sessions, and uploads.</div>');
+  h.push('</div></div>');
+
+  if (!isNoIdentity) {
+    h.push('<script>');
+    h.push('function submitRequest(){');
+    h.push('  var btn=document.getElementById("reqBtn");');
+    h.push('  var st=document.getElementById("reqStatus");');
+    h.push('  var payload={');
+    h.push('    name:document.getElementById("reqName").value.trim(),');
+    h.push('    email:document.getElementById("reqEmail").value.trim(),');
+    h.push('    reason:document.getElementById("reqReason").value.trim(),');
+    h.push('    notes:document.getElementById("reqNotes").value.trim()');
+    h.push('  };');
+    h.push('  if(!payload.email){ st.className="status fail"; st.textContent="Email is required."; return; }');
+    h.push('  btn.disabled=true; btn.textContent="Sending…";');
+    h.push('  google.script.run');
+    h.push('    .withSuccessHandler(function(res){');
+    h.push('      btn.disabled=false; btn.textContent="Request access";');
+    h.push('      if(res && res.success){ st.className="status ok"; st.textContent="Request received. The owner can approve you in the Approved Users sheet."; }');
+    h.push('      else { st.className="status fail"; st.textContent="Request failed: "+((res && res.error) || "unknown error"); }');
+    h.push('    })');
+    h.push('    .withFailureHandler(function(e){');
+    h.push('      btn.disabled=false; btn.textContent="Request access";');
+    h.push('      st.className="status fail"; st.textContent="Request failed: "+(e.message||e);');
+    h.push('    })');
+    h.push('    .submitAccessRequest(payload);');
+    h.push('}');
+    h.push('</script>');
+  }
+
+  h.push('</body></html>');
+  return h.join('\n');
 }
 
 // ─── getResources ──────────────────────────────────────────────────────────────
 // Reads Register sheet. No DriveApp loop — File ID is pre-stored in col N.
 
 function getResources() {
+  requireApprovedUser_();
   var ss  = SpreadsheetApp.getActive();
   var reg = ss.getSheetByName(REGISTER_SHEET);
   if (!reg) return [];
@@ -55,7 +184,6 @@ function getResources() {
     if (category === "Both") category = "Clinical Practice";
 
     var viewUrl     = fileId ? "https://drive.google.com/file/d/" + fileId + "/view" : "";
-    var downloadUrl = fileId ? "https://drive.google.com/uc?export=download&id=" + fileId : "";
     var displayTitle    = title    || fileName.replace(/\.[^/.]+$/, "");
     var displayFileName = fileName.replace(/\.[^/.]+$/, "");
 
@@ -79,7 +207,6 @@ function getResources() {
       fileName:     displayFileName,
       fileType:     fileType,
       viewUrl:      viewUrl,
-      downloadUrl:  downloadUrl,
       searchMeta:   searchMeta
     });
   }
@@ -90,6 +217,7 @@ function getResources() {
 
 function submitResource(payload) {
   try {
+    requireApprovedUser_();
     var folder  = DriveApp.getFolderById(UPLOAD_FOLDER_ID);
     var bytes   = Utilities.base64Decode(payload.fileData);
     var blob    = Utilities.newBlob(bytes, payload.mimeType, payload.fileName);
@@ -943,7 +1071,6 @@ function getAppHtml_() {
   h.push('        r.notes?\'<div class="notes-text">\'+esc(r.notes)+\'</div>\':\'\',');
   h.push('        \'<div class="card-footer">\',');
   h.push('          r.viewUrl?\'<a class="btn-outline" href="\'+r.viewUrl+\'" target="_blank">View</a>\':\'\',');
-  h.push('          r.downloadUrl?\'<a class="btn-solid" href="\'+r.downloadUrl+\'" target="_blank">Download</a>\':\'\',');
   h.push('          r.submittedBy?\'<span class="by">\'+esc(r.submittedBy.split(\'@\')[0])+\'</span>\':\'\',');
   h.push('        \'</div>\',');
   h.push('      \'</div>\'');
