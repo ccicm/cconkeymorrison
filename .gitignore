@@ -4,3 +4,4 @@
 .quarto/
 _site/
 /.quarto/
+kb_site/public/config.js
