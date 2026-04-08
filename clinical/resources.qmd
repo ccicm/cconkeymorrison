@@ -215,6 +215,22 @@ async function submitAccessRequest(event) {
 ::: role-block
 [Already have access?]{.role-title}
 [Use your member login link and sign in with the approved Google account. If your access is pending, contact me directly.]{.role-desc}
+
+```{=html}
+<!-- Replace MEMBER_LOGIN_URL with your deployed Apps Script web app URL -->
+<a id="member-login-btn" class="npe-btn npe-btn-secondary" href="https://script.google.com/macros/s/PASTE_YOUR_DEPLOYMENT_ID/exec" target="_blank" rel="noopener">Member login →</a>
+<script>
+(function () {
+	var btn = document.getElementById('member-login-btn');
+	if (!btn) return;
+	if (btn.href.indexOf('PASTE_YOUR_DEPLOYMENT_ID') > -1) {
+		btn.href = 'mailto:connorconkeymorrison@gmail.com?subject=NPE%20KnowledgeBase%20member%20login';
+		btn.removeAttribute('target');
+		btn.textContent = 'Member login (contact me) →';
+	}
+})();
+</script>
+```
 :::
 :::
 
