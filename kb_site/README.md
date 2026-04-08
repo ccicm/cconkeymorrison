@@ -28,7 +28,7 @@ This folder is a starter for a separate member-only site (for example `kb.yourdo
    - Add redirect URLs for your member site domain (and localhost if testing).
 4. In `public/`, copy `config.example.js` to `config.js` and add:
    - `SUPABASE_URL`
-   - `SUPABASE_ANON_KEY`
+   - `SUPABASE_ANON_KEY` (paste your Supabase **Publishable key**)
 5. Upload `public/` to a static host (or connect repo).
 
 ## DNS suggestion
