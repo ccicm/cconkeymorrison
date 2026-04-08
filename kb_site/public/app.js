@@ -14,21 +14,28 @@
     el.textContent = message;
   }
 
-  async function signInGoogle() {
+  async function signInEmail() {
+    const email = window.prompt("Enter your email to receive a sign-in link:");
+    if (!email) return;
+
     const origin = window.location.origin;
     const redirectTo = window.location.pathname.endsWith("member.html")
       ? origin + "/member.html"
       : origin + "/member.html";
 
-    const { error } = await client.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo }
+    const { error } = await client.auth.signInWithOtp({
+      email: email.trim().toLowerCase(),
+      options: { emailRedirectTo: redirectTo }
     });
 
     if (error) {
-      setNotice("auth-status", "Sign-in failed: " + error.message, false);
-      setNotice("member-status", "Sign-in failed: " + error.message, false);
+      setNotice("auth-status", "Could not send sign-in link: " + error.message, false);
+      setNotice("member-status", "Could not send sign-in link: " + error.message, false);
+      return;
     }
+
+    setNotice("auth-status", "Check your email for a sign-in link.", true);
+    setNotice("member-status", "Check your email for a sign-in link.", true);
   }
 
   async function signOut() {
@@ -61,7 +68,7 @@
     const { data: authData } = await client.auth.getUser();
     const user = authData && authData.user;
     if (!user) {
-      setNotice(statusElId, "Please sign in with Google.", false);
+      setNotice(statusElId, "Please sign in with your email link.", false);
       return;
     }
 
@@ -134,7 +141,7 @@
   }
 
   const signInBtn = document.getElementById("btn-signin");
-  if (signInBtn) signInBtn.addEventListener("click", signInGoogle);
+  if (signInBtn) signInBtn.addEventListener("click", signInEmail);
 
   const signOutBtn = document.getElementById("btn-signout");
   if (signOutBtn) signOutBtn.addEventListener("click", signOut);
