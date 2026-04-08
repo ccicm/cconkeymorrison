@@ -4,30 +4,217 @@ page-layout: full
 ---
 
 ::: page-header
-# Resources
+# NPE KnowledgeBase
 :::
 
-This page will host curated resources for families, educators, and trainees — particularly around school attendance, emotionally based school avoidance, and child wellbeing.
+The NPE KnowledgeBase is a private study hub for National Psychology Exam preparation and clinical practice resources.
+
+::: jump-nav
+[Overview](#overview){.jump-link}
+[How access works](#access-flow){.jump-link}
+[Request access](#request-access){.jump-link}
+:::
+
+------------------------------------------------------------------------
+
+## Overview {#overview}
+
+::: role-section
+::: role-block
+[What this is]{.role-title}
+[A private member space for approved users to access shared resources, session information, and study materials.]{.role-desc}
+:::
+
+::: role-block
+[Who it is for]{.role-title}
+[Peers and colleagues preparing for the NPE who have been approved for access.]{.role-desc}
+:::
+
+::: role-block
+[What to expect]{.role-title}
+[You request access here, requests are reviewed manually, and approved users are then added to the member list.]{.role-desc}
+:::
+:::
+
+------------------------------------------------------------------------
+
+## How access works {#access-flow}
+
+1. Submit a request using the form below.
+2. Your request is reviewed.
+3. If approved, your email is added to the approved users list.
+4. You receive the private member login link.
+
+::: about-section
+[Get in touch →](../contact.qmd){.about-link}
+:::
+
+------------------------------------------------------------------------
+
+## Request access {#request-access}
+
+```{=html}
+<style>
+.npe-form-wrap {
+	max-width: 640px;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background: var(--bg-card);
+	padding: 1rem;
+	box-shadow: var(--shadow-sm);
+}
+.npe-form {
+	display: grid;
+	gap: 0.8rem;
+}
+.npe-field {
+	display: grid;
+	gap: 0.25rem;
+}
+.npe-label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--navy);
+}
+.npe-input,
+.npe-textarea {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--bg-card);
+	color: var(--text);
+	padding: 0.55rem 0.7rem;
+	font: inherit;
+	outline: none;
+}
+.npe-input:focus,
+.npe-textarea:focus {
+	border-color: var(--navy);
+	box-shadow: 0 0 0 2px rgba(30, 58, 42, 0.08);
+}
+.npe-textarea {
+	min-height: 110px;
+	resize: vertical;
+}
+.npe-actions {
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+	margin-top: 0.1rem;
+}
+.npe-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 999px;
+	padding: 0.45rem 1rem;
+	font-size: 0.82rem;
+	font-weight: 700;
+	text-decoration: none !important;
+	border: 2px solid var(--navy);
+	cursor: pointer;
+}
+.npe-btn-primary {
+	background: var(--navy);
+	color: #fff;
+}
+.npe-btn-secondary {
+	background: transparent;
+	color: var(--navy);
+}
+.npe-status {
+	display: none;
+	margin-top: 0.5rem;
+	padding: 0.65rem 0.8rem;
+	border-radius: 8px;
+	font-size: 0.85rem;
+}
+.npe-status.ok {
+	display: block;
+	background: #dcfce7;
+	color: #166534;
+}
+.npe-status.fail {
+	display: block;
+	background: #fee2e2;
+	color: #991b1b;
+}
+</style>
+
+<div class="npe-form-wrap">
+	<form id="npe-access-form" class="npe-form" onsubmit="return submitAccessRequest(event)">
+		<input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
+		<input type="hidden" name="subject" value="NPE KnowledgeBase access request — connorconkeymorrison.com">
+
+		<div class="npe-field">
+			<label class="npe-label" for="npe-name">Name</label>
+			<input class="npe-input" id="npe-name" name="name" type="text" required>
+		</div>
+
+		<div class="npe-field">
+			<label class="npe-label" for="npe-email">Email</label>
+			<input class="npe-input" id="npe-email" name="email" type="email" required>
+		</div>
+
+		<div class="npe-field">
+			<label class="npe-label" for="npe-message">Reason for access</label>
+			<textarea class="npe-textarea" id="npe-message" name="message" required></textarea>
+		</div>
+
+		<div class="npe-actions">
+			<button type="submit" class="npe-btn npe-btn-primary" id="npe-submit">Request access</button>
+			<a class="npe-btn npe-btn-secondary" href="mailto:connorconkeymorrison@gmail.com?subject=NPE%20KnowledgeBase%20access%20request">Email instead</a>
+		</div>
+
+		<p id="npe-status" class="npe-status"></p>
+	</form>
+</div>
+
+<script>
+async function submitAccessRequest(event) {
+	event.preventDefault();
+
+	const form = document.getElementById('npe-access-form');
+	const status = document.getElementById('npe-status');
+	const submit = document.getElementById('npe-submit');
+
+	status.className = 'npe-status';
+	status.textContent = '';
+	submit.disabled = true;
+	submit.textContent = 'Sending...';
+
+	try {
+		const response = await fetch('https://api.web3forms.com/submit', {
+			method: 'POST',
+			body: new FormData(form)
+		});
+		const result = await response.json();
+
+		if (!result.success) throw new Error(result.message || 'Submission failed');
+
+		status.className = 'npe-status ok';
+		status.textContent = 'Request sent. I will follow up with access details after review.';
+		form.reset();
+	} catch (error) {
+		status.className = 'npe-status fail';
+		status.textContent = 'Request failed. Please try again or email directly.';
+	} finally {
+		submit.disabled = false;
+		submit.textContent = 'Request access';
+	}
+
+	return false;
+}
+</script>
+```
 
 ------------------------------------------------------------------------
 
 ::: role-section
 ::: role-block
-[Resources coming soon]{.role-title}
-[Content will be added here as it is developed. Check back or [get in touch](../contact.html) if you're looking for something specific.]{.role-desc}
-:::
-:::
-
-------------------------------------------------------------------------
-
-## NPE KnowledgeBase
-
-::: role-section
-::: role-block
-[Private study hub]{.role-title}
-[The NPE KnowledgeBase is a private resource and session hub for approved Google users. The public site explains access and collects requests, while the actual library and upload workflow stay inside Apps Script and Drive.]{.role-desc}
-
-[Request access](../pages/npe-knowledgebase.qmd#request-access){.about-link} [Open the access page](../pages/npe-knowledgebase.qmd){.about-link}
+[Already have access?]{.role-title}
+[Use your member login link and sign in with the approved Google account. If your access is pending, contact me directly.]{.role-desc}
 :::
 :::
 

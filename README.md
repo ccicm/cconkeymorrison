@@ -19,7 +19,6 @@ cconkeymorrison/
 │   ├── research.qmd           # Research & publications (ORCID + Crossref, recent reading)
 │   ├── history.qmd            # Education & experience
 │   ├── contact.qmd            # Contact form (Web3Forms)
-│   ├── npe-knowledgebase.qmd   # Public NPE KnowledgeBase landing page and access request form
 │   ├── projects.qmd           # Side projects and tools
 │   └── template.qmd           # Public template setup guide
 ├── styles.css                 # All visual styling (CSS variables at top)
