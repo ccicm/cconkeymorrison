@@ -1,4 +1,4 @@
--- NPE KnowledgeBase starter schema (Supabase)
+-- NPE Study Club starter schema (Supabase)
 
 create extension if not exists pgcrypto;
 
@@ -136,7 +136,7 @@ to authenticated
 with check (public.is_approved_user(auth.uid()));
 
 -- Storage (run in SQL editor):
--- 1) create private bucket named "kb-files"
+-- 1) create private bucket named "npe-study-club-files"
 -- 2) policies:
 --   read only for approved users
 --   upload only for approved users
@@ -147,7 +147,7 @@ with check (public.is_approved_user(auth.uid()));
 -- for select
 -- to authenticated
 -- using (
---   bucket_id = 'kb-files'
+--   bucket_id = 'npe-study-club-files'
 --   and public.is_approved_user(auth.uid())
 -- );
 
@@ -157,6 +157,6 @@ with check (public.is_approved_user(auth.uid()));
 -- for insert
 -- to authenticated
 -- with check (
---   bucket_id = 'kb-files'
+--   bucket_id = 'npe-study-club-files'
 --   and public.is_approved_user(auth.uid())
 -- );

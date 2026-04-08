@@ -17,7 +17,7 @@ I am a PhD candidate at RMIT University (School of Health and Biomedical Science
 
 ::: hero-links
 [Research →](research/index.qmd){.hero-btn .btn-primary} [CV →](cv/index.qmd){.hero-btn .btn-secondary} [Get in touch →](contact.qmd){.hero-btn .btn-secondary}
-[NPE KnowledgeBase →](clinical/resources.qmd){.hero-btn .btn-secondary}
+[NPE Study Club →](clinical/resources.qmd){.hero-btn .btn-secondary}
 :::
 :::
 

@@ -43,5 +43,5 @@ My clinical approach is informed by evidence-based frameworks for child and adol
 ------------------------------------------------------------------------
 
 ::: about-section
-[Resources →](resources.qmd){.about-link} [Member Portal →](member-portal.qmd){.about-link} [Get in touch →](../contact.html){.about-link}
+[Resources →](resources.qmd){.about-link} [Get in touch →](../contact.html){.about-link}
 :::

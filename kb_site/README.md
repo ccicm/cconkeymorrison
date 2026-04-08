@@ -1,6 +1,6 @@
-# NPE KnowledgeBase Member Site (Zero-Cost Starter)
+# NPE Study Club Member Site (Zero-Cost Starter)
 
-This folder is a starter for a separate member-only site (for example `kb.yourdomain.com`) using:
+This folder is a starter for a separate member-only site (for example `studyclub.yourdomain.com`) using:
 - Static hosting (GitHub Pages / Netlify / Vercel free tier)
 - Supabase free tier (auth, database, storage)
 
@@ -24,7 +24,7 @@ This folder is a starter for a separate member-only site (for example `kb.yourdo
 1. Create a new Supabase project.
 2. In Supabase SQL editor, run `supabase-schema.sql`.
 3. In Supabase Auth settings:
-   - Enable Google provider.
+   - Keep Email sign-in enabled.
    - Add redirect URLs for your member site domain (and localhost if testing).
 4. In `public/`, copy `config.example.js` to `config.js` and add:
    - `SUPABASE_URL`
@@ -34,7 +34,7 @@ This folder is a starter for a separate member-only site (for example `kb.yourdo
 ## DNS suggestion
 
 - Keep main site on `connorconkeymorrison.com`
-- Host member site on `kb.connorconkeymorrison.com`
+- Host member site on `studyclub.connorconkeymorrison.com`
 
 ## Notes
 

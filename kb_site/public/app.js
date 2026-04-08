@@ -5,6 +5,23 @@
   }
 
   const cfg = window.KB_CONFIG;
+
+  function hasValidConfig() {
+    const url = String(cfg.SUPABASE_URL || "");
+    const key = String(cfg.SUPABASE_ANON_KEY || "");
+    return url.indexOf("https://") === 0 && url.indexOf(".supabase.co") > -1 && key.indexOf("sb_publishable_") === 0;
+  }
+
+  if (!hasValidConfig()) {
+    const msg = "Config error: set SUPABASE_URL to https://<project>.supabase.co and SUPABASE_ANON_KEY to your sb_publishable key.";
+    console.error(msg);
+    setTimeout(function () {
+      setNotice("auth-status", msg, false);
+      setNotice("member-status", msg, false);
+    }, 0);
+    return;
+  }
+
   const client = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
 
   function setNotice(id, message, ok) {

@@ -4,13 +4,13 @@ page-layout: full
 ---
 
 ::: page-header
-# NPE KnowledgeBase
+# NPE Study Club
 :::
 
-The NPE KnowledgeBase is a private study hub for National Psychology Exam preparation and clinical practice resources.
+NPE Study Club is a private study hub for National Psychology Exam preparation and clinical practice resources.
 
 ::: about-section
-[Already approved? Open Member Portal →](member-portal.qmd){.about-link}
+[Member portal link coming soon]{.about-link}
 :::
 
 ::: jump-nav
@@ -47,7 +47,7 @@ The NPE KnowledgeBase is a private study hub for National Psychology Exam prepar
 1. Submit a request using the form below.
 2. Your request is reviewed.
 3. If approved, your email is added to the approved users list.
-4. Sign in via the Member Portal page on this website.
+4. You will receive the member portal link once the new site is live.
 
 ::: about-section
 [Get in touch →](../contact.qmd){.about-link}
@@ -149,7 +149,7 @@ The NPE KnowledgeBase is a private study hub for National Psychology Exam prepar
 <div class="npe-form-wrap">
 	<form id="npe-access-form" class="npe-form" onsubmit="return submitAccessRequest(event)">
 		<input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
-		<input type="hidden" name="subject" value="NPE KnowledgeBase access request — connorconkeymorrison.com">
+		<input type="hidden" name="subject" value="NPE Study Club access request — connorconkeymorrison.com">
 
 		<div class="npe-field">
 			<label class="npe-label" for="npe-name">Name</label>
@@ -168,7 +168,7 @@ The NPE KnowledgeBase is a private study hub for National Psychology Exam prepar
 
 		<div class="npe-actions">
 			<button type="submit" class="npe-btn npe-btn-primary" id="npe-submit">Request access</button>
-			<a class="npe-btn npe-btn-secondary" href="mailto:connorconkeymorrison@gmail.com?subject=NPE%20KnowledgeBase%20access%20request">Email instead</a>
+			<a class="npe-btn npe-btn-secondary" href="mailto:connorconkeymorrison@gmail.com?subject=NPE%20Study%20Club%20access%20request">Email instead</a>
 		</div>
 
 		<p id="npe-status" class="npe-status"></p>
@@ -218,9 +218,7 @@ async function submitAccessRequest(event) {
 ::: role-section
 ::: role-block
 [Already have access?]{.role-title}
-[Open the portal and sign in with your approved Google account.]{.role-desc}
-
-[Open Member Portal →](member-portal.qmd){.about-link}
+[The standalone member portal is being finalized. Approved users will receive the direct link as soon as it is live.]{.role-desc}
 :::
 :::
 

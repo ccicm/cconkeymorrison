@@ -1,4 +1,4 @@
-# Migration Steps (Apps Script -> Site-Native Member Portal)
+# Migration Steps (Apps Script -> NPE Study Club Site)
 
 ## Goal
 
@@ -8,8 +8,8 @@ Move member UX fully onto your own site while keeping costs at zero.
 
 1. Create Supabase project.
 2. Run `supabase-schema.sql`.
-3. Enable Google auth provider.
-4. Create private storage bucket `kb-files`.
+3. Keep Email auth enabled.
+4. Create private storage bucket `npe-study-club-files`.
 5. Add storage RLS policies from SQL comments.
 
 ## Phase 2: Deploy member starter
@@ -20,7 +20,7 @@ Move member UX fully onto your own site while keeping costs at zero.
    - GitHub Pages, or
    - Netlify/Vercel free.
 
-Recommended subdomain: `kb.connorconkeymorrison.com`.
+Recommended subdomain: `studyclub.connorconkeymorrison.com`.
 
 ## Phase 3: Data migration
 
@@ -33,7 +33,7 @@ Recommended subdomain: `kb.connorconkeymorrison.com`.
 ## Phase 4: File migration
 
 1. Keep source files in private Google Drive initially.
-2. Optional: gradually move to Supabase Storage bucket (`kb-files`).
+2. Optional: gradually move to Supabase Storage bucket (`npe-study-club-files`).
 3. Update `resources.file_path` to new storage paths.
 
 ## Phase 5: Cutover

@@ -30,8 +30,6 @@ website:
             text: Overview
           - href: clinical/resources.qmd
             text: Resources
-          - href: clinical/member-portal.qmd
-            text: Member Portal
       - href: cv/index.qmd
         text: CV
       - href: contact.qmd
