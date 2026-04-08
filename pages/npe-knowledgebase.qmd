@@ -1,0 +1,529 @@
+---
+title: "NPE KnowledgeBase"
+page-layout: full
+---
+
+```{=html}
+<style>
+.npe-shell {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0 2rem;
+}
+.npe-shell::before,
+.npe-shell::after {
+  content: '';
+  position: absolute;
+  inset: auto;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  filter: blur(24px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+.npe-shell::before {
+  top: -8rem;
+  right: -8rem;
+  background: radial-gradient(circle, rgba(192,90,74,0.28) 0%, rgba(192,90,74,0.05) 70%, transparent 72%);
+}
+.npe-shell::after {
+  left: -10rem;
+  bottom: -10rem;
+  background: radial-gradient(circle, rgba(30,58,42,0.18) 0%, rgba(30,58,42,0.04) 70%, transparent 72%);
+}
+.npe-hero {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,247,245,0.92));
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  box-shadow: var(--shadow-lg);
+}
+.npe-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.npe-kicker::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(192,90,74,0.12);
+}
+.npe-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+.npe-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 0.98;
+  margin: 0.7rem 0 1rem;
+}
+.npe-lead {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin-bottom: 1.25rem;
+}
+.npe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 1.1rem 0 0.3rem;
+}
+.npe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1.1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--navy);
+  text-decoration: none !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.npe-btn:hover { transform: translateY(-1px); }
+.npe-btn-primary {
+  background: var(--navy);
+  color: #fff !important;
+}
+.npe-btn-primary:hover {
+  background: var(--navy-light);
+  border-color: var(--navy-light);
+  color: #fff !important;
+}
+.npe-btn-secondary {
+  background: transparent;
+  color: var(--navy) !important;
+}
+.npe-btn-secondary:hover {
+  background: var(--tag-bg);
+}
+.npe-meta-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+.npe-meta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1rem 1rem 0.95rem;
+  box-shadow: var(--shadow-sm);
+}
+.npe-meta-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+.npe-meta-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+.npe-meta-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.npe-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 0;
+}
+.npe-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+.npe-pill strong {
+  display: block;
+  color: var(--navy);
+  font-size: 0.96rem;
+  margin-bottom: 0.25rem;
+}
+.npe-pill span {
+  display: block;
+  font-size: 0.87rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.npe-section {
+  margin-top: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+.npe-section h2 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+  font-size: 1.35rem;
+}
+.npe-section p.section-intro {
+  color: var(--text-muted);
+  margin-top: 0;
+  max-width: 72ch;
+}
+.npe-what-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.npe-info-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: linear-gradient(180deg, #fff, #faf9f7);
+}
+.npe-info-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+.npe-info-card ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-muted);
+}
+.npe-info-card li + li { margin-top: 0.4rem; }
+.npe-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.npe-step {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: var(--cream);
+}
+.npe-step-num {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+.npe-step h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+.npe-step p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.npe-request {
+  margin-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, #ffffff, #f8f6f1);
+  box-shadow: var(--shadow-md);
+}
+.npe-request-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.npe-request-note {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(238, 242, 248, 0.7);
+  padding: 1rem;
+}
+.npe-request-note h3 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+.npe-request-note p,
+.npe-request-note li {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.npe-form {
+  display: grid;
+  gap: 0.9rem;
+}
+.npe-field {
+  display: grid;
+  gap: 0.35rem;
+}
+.npe-field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.npe-input,
+.npe-textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text);
+  padding: 0.72rem 0.85rem;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.npe-input:focus,
+.npe-textarea:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(30,58,42,0.08);
+}
+.npe-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.npe-form-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.15rem;
+}
+.npe-status {
+  display: none;
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  padding: 0.8rem 0.95rem;
+  border-radius: 12px;
+}
+.npe-status.ok {
+  display: block;
+  background: #dcfce7;
+  color: #166534;
+}
+.npe-status.fail {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+}
+@media (max-width: 900px) {
+  .npe-hero-grid,
+  .npe-request-grid,
+  .npe-what-grid,
+  .npe-flow,
+  .npe-strip {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+```
+
+::: npe-shell
+::: npe-hero
+<span class="npe-kicker">Public front door</span>
+
+<div class="npe-hero-grid">
+<div>
+# NPE KnowledgeBase
+
+<p class="npe-lead">A curated resource hub for National Psychology Exam preparation and clinical practice. The public website explains access and handles requests. The private library stays inside Google Workspace, with approved-user gating in Apps Script and files stored in private Drive.</p>
+
+<div class="npe-actions">
+[Request access](#request-access){.npe-btn .npe-btn-primary}
+[What lives where](#what-lives-where){.npe-btn .npe-btn-secondary}
+</div>
+</div>
+
+<div class="npe-meta-grid">
+<div class="npe-meta-card">
+<div class="npe-meta-label">Public site</div>
+<h3>Open landing page</h3>
+<p>Explains the hub, who it is for, and how approval works.</p>
+</div>
+<div class="npe-meta-card">
+<div class="npe-meta-label">Private hub</div>
+<h3>Apps Script backend</h3>
+<p>Resources, sessions, and uploads stay behind Google sign-in plus approval.</p>
+</div>
+<div class="npe-meta-card">
+<div class="npe-meta-label">Uploads</div>
+<h3>Private Drive only</h3>
+<p>Files live in a controlled Drive folder, not in the public Git repo.</p>
+</div>
+</div>
+</div>
+
+<div class="npe-strip">
+<div class="npe-pill"><strong>Public</strong><span>Website pages, access explanation, and the request form.</span></div>
+<div class="npe-pill"><strong>Approved users</strong><span>Browse resources, sessions, and view Drive links.</span></div>
+<div class="npe-pill"><strong>Admin only</strong><span>Upload files, manage approvals, and seed sessions.</span></div>
+</div>
+:::
+
+::: npe-section
+<span id="what-lives-where"></span>
+## What lives where
+
+<p class="section-intro">The cleanest setup is a public Quarto site for the branded front door and a private Apps Script hub for authenticated functionality. That keeps the public repo simple and makes the security boundary explicit.</p>
+
+<div class="npe-what-grid">
+<div class="npe-info-card">
+<h3>Quarto site</h3>
+<ul>
+<li>Landing page and explanation</li>
+<li>Request-access form</li>
+<li>Public-facing updates or announcements</li>
+</ul>
+</div>
+<div class="npe-info-card">
+<h3>Apps Script hub</h3>
+<ul>
+<li>Approved-user check</li>
+<li>Resource browsing and uploads</li>
+<li>Sessions and calendar data</li>
+</ul>
+</div>
+</div>
+:::
+
+::: npe-section
+## How access works
+
+<p class="section-intro">A simple manual approval workflow is usually the most robust for a small member space. It avoids overengineering, keeps your access list auditable, and lets you revoke access cleanly if needed.</p>
+
+<div class="npe-flow">
+<div class="npe-step">
+<div class="npe-step-num">1</div>
+<h3>Request access</h3>
+<p>Users submit this form from the public website with their name, email, and a short reason.</p>
+</div>
+<div class="npe-step">
+<div class="npe-step-num">2</div>
+<h3>Approve manually</h3>
+<p>You add them to the Approved Users sheet and set Status to Approved.</p>
+</div>
+<div class="npe-step">
+<div class="npe-step-num">3</div>
+<h3>Enter the hub</h3>
+<p>The Apps Script app checks the signed-in email and only serves approved users.</p>
+</div>
+</div>
+:::
+
+::: {.npe-request #request-access}
+## Request access
+
+<p class="section-intro">Use this form to request access to the private hub. Requests go straight to your inbox, and you can copy approved users into the Apps Script sheet when ready.</p>
+
+<div class="npe-request-grid">
+<div>
+<form id="npe-access-form" class="npe-form" onsubmit="return submitAccessRequest(event)">
+  <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
+  <input type="hidden" name="subject" value="NPE KnowledgeBase access request — connorconkeymorrison.com">
+
+  <div class="npe-field">
+    <label for="npe-name">Name</label>
+    <input id="npe-name" class="npe-input" name="name" type="text" placeholder="Your name" required>
+  </div>
+
+  <div class="npe-field">
+    <label for="npe-email">Email</label>
+    <input id="npe-email" class="npe-input" name="email" type="email" placeholder="you@example.com" required>
+  </div>
+
+  <div class="npe-field">
+    <label for="npe-role">Role or relationship</label>
+    <input id="npe-role" class="npe-input" name="role" type="text" placeholder="For example: peer, colleague, student, supervisor">
+  </div>
+
+  <div class="npe-field">
+    <label for="npe-reason">Why do you need access?</label>
+    <textarea id="npe-reason" class="npe-textarea" name="message" placeholder="A short note is enough" required></textarea>
+  </div>
+
+  <div class="npe-form-actions">
+    <button type="submit" class="npe-btn npe-btn-primary" id="npe-submit">Request access</button>
+    <a class="npe-btn npe-btn-secondary" href="mailto:connorconkeymorrison@gmail.com?subject=NPE%20KnowledgeBase%20access%20request">Email instead</a>
+  </div>
+
+  <p id="npe-status" class="npe-status"></p>
+</form>
+</div>
+
+<aside class="npe-request-note">
+<h3>What happens next</h3>
+<p>You review the request, copy the user into the Approved Users sheet, and set their status to <strong>Approved</strong>. The Apps Script hub will then let them in when they sign in with the same Google account.</p>
+<p>This keeps the public site simple and the actual permission check where it belongs: on the server.</p>
+<ul>
+<li>Approved users can browse resources and sessions.</li>
+<li>Uploads stay in a private Drive folder.</li>
+<li>Revoked users are blocked server-side.</li>
+</ul>
+</aside>
+</div>
+:::
+:::
+
+```{=html}
+<script>
+async function submitAccessRequest(event) {
+  event.preventDefault();
+  const form = document.getElementById('npe-access-form');
+  const status = document.getElementById('npe-status');
+  const submit = document.getElementById('npe-submit');
+
+  status.className = 'npe-status';
+  status.textContent = '';
+  submit.disabled = true;
+  submit.textContent = 'Sending...';
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(form)
+    });
+    const result = await response.json();
+
+    if (!result.success) throw new Error(result.message || 'Submission failed');
+
+    status.className = 'npe-status ok';
+    status.textContent = 'Request sent. You will be added to the Approved Users sheet after review.';
+    form.reset();
+  } catch (error) {
+    status.className = 'npe-status fail';
+    status.textContent = 'Request failed. Try again or email directly.';
+  } finally {
+    submit.disabled = false;
+    submit.textContent = 'Request access';
+  }
+
+  return false;
+}
+</script>
+```

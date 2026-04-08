@@ -30,6 +30,8 @@ website:
             text: Overview
           - href: clinical/resources.qmd
             text: Resources
+      - href: pages/npe-knowledgebase.qmd
+        text: NPE KnowledgeBase
       - href: cv/index.qmd
         text: CV
       - href: contact.qmd
