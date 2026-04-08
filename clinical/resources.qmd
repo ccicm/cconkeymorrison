@@ -20,6 +20,19 @@ This page will host curated resources for families, educators, and trainees — 
 
 ------------------------------------------------------------------------
 
+## NPE KnowledgeBase
+
+::: role-section
+::: role-block
+[Private study hub]{.role-title}
+[The NPE KnowledgeBase is a private resource and session hub for approved Google users. The public site explains access and collects requests, while the actual library and upload workflow stay inside Apps Script and Drive.]{.role-desc}
+
+[Request access](../pages/npe-knowledgebase.qmd#request-access){.about-link} [Open the access page](../pages/npe-knowledgebase.qmd){.about-link}
+:::
+:::
+
+------------------------------------------------------------------------
+
 ::: about-section
 [Back to Clinical overview →](index.qmd){.about-link}
 :::
