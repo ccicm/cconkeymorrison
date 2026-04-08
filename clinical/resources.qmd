@@ -10,7 +10,7 @@ page-layout: full
 The NPE KnowledgeBase is a private study hub for National Psychology Exam preparation and clinical practice resources.
 
 ::: about-section
-[Already approved? Member login →](https://script.google.com/macros/s/AKfycbxd9d8YmSf3WCVMMOnQJ_B22KrmU1XkZVKtWp270LE1IofW2IX2147tGGnCku4_vAedig/exec){.about-link}
+[Already approved? Open Member Portal →](member-portal.qmd){.about-link}
 :::
 
 ::: jump-nav
@@ -47,7 +47,7 @@ The NPE KnowledgeBase is a private study hub for National Psychology Exam prepar
 1. Submit a request using the form below.
 2. Your request is reviewed.
 3. If approved, your email is added to the approved users list.
-4. You receive the private member login link.
+4. Sign in via the Member Portal page on this website.
 
 ::: about-section
 [Get in touch →](../contact.qmd){.about-link}
@@ -218,28 +218,14 @@ async function submitAccessRequest(event) {
 ::: role-section
 ::: role-block
 [Already have access?]{.role-title}
-[Use your member login link and sign in with the approved Google account. If your access is pending, contact me directly.]{.role-desc}
+[Open the portal and sign in with your approved Google account.]{.role-desc}
 
-```{=html}
-<!-- Replace MEMBER_LOGIN_URL with your deployed Apps Script web app URL -->
-<a id="member-login-btn" class="npe-btn npe-btn-secondary" href="https://script.google.com/macros/s/AKfycbxd9d8YmSf3WCVMMOnQJ_B22KrmU1XkZVKtWp270LE1IofW2IX2147tGGnCku4_vAedig/exec" target="_blank" rel="noopener">Member login →</a>
-<script>
-(function () {
-	var btn = document.getElementById('member-login-btn');
-	if (!btn) return;
-	if (btn.href.indexOf('PASTE_YOUR_DEPLOYMENT_ID') > -1) {
-		btn.href = 'mailto:connorconkeymorrison@gmail.com?subject=NPE%20KnowledgeBase%20member%20login';
-		btn.removeAttribute('target');
-		btn.textContent = 'Member login (contact me) →';
-	}
-})();
-</script>
-```
+[Open Member Portal →](member-portal.qmd){.about-link}
 :::
 :::
 
 ------------------------------------------------------------------------
 
 ::: about-section
-[Back to Clinical overview →](index.qmd){.about-link}
+[← Back to Clinical overview](index.qmd){.about-link}
 :::
