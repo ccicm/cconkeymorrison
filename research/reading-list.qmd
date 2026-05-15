@@ -59,6 +59,8 @@ engine: markdown
     }
   };
 
+  const usedTags = new Set(entries.flatMap(e => e.tags || []));
+
   function tagColor(tag) {
     for (const g of Object.values(GROUPS)) {
       if (g.tags.has(tag)) return g.color;
@@ -66,26 +68,96 @@ engine: markdown
     return getComputedStyle(document.documentElement).getPropertyValue('--navy').trim() || '#1e3a2a';
   }
 
-  let activeGroups = new Set();
+  // activeFilters holds group names (whole group) or individual tag names
+  let activeFilters = new Set();
+  let openDropdown = null;
 
-  function groupPillStyle(color, active) {
-    return active
-      ? `background:${color};color:#fff;border:1.5px solid ${color};border-radius:999px;padding:0.25rem 0.85rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;`
-      : `background:transparent;color:${color};border:1.5px solid ${color};border-radius:999px;padding:0.25rem 0.85rem;font-size:0.78rem;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.15s;opacity:0.7;`;
+  function groupState(name) {
+    if (activeFilters.has(name)) return 'full';
+    if ([...GROUPS[name].tags].some(t => activeFilters.has(t))) return 'partial';
+    return 'off';
+  }
+
+  function entryMatches(entry) {
+    if (activeFilters.size === 0) return true;
+    const tags = entry.tags || [];
+    for (const f of activeFilters) {
+      if (GROUPS[f]) { if (tags.some(t => GROUPS[f].tags.has(t))) return true; }
+      else            { if (tags.includes(f)) return true; }
+    }
+    return false;
   }
 
   function renderFilterBar() {
-    filterBar.innerHTML = Object.entries(GROUPS).map(([name, g]) =>
-      `<button data-group="${name}" style="${groupPillStyle(g.color, activeGroups.has(name))}">${name}</button>`
-    ).join('');
-    filterBar.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const g = btn.dataset.group;
-        if (activeGroups.has(g)) activeGroups.delete(g); else activeGroups.add(g);
+    filterBar.innerHTML = '';
+    Object.entries(GROUPS).forEach(([name, g]) => {
+      const state   = groupState(name);
+      const subActive = [...g.tags].filter(t => activeFilters.has(t));
+      const isOpen  = openDropdown === name;
+
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'position:relative;display:inline-block;';
+
+      // pill
+      const pill = document.createElement('div');
+      pill.style.cssText = `display:inline-flex;align-items:stretch;border:1.5px solid ${g.color};border-radius:999px;overflow:visible;`;
+
+      // label (toggle whole group)
+      const labelBtn = document.createElement('button');
+      const labelOn  = state === 'full';
+      labelBtn.textContent = subActive.length ? `${name} (${subActive.length})` : name;
+      labelBtn.style.cssText = `background:${labelOn ? g.color : 'transparent'};color:${labelOn ? '#fff' : g.color};padding:0.25rem 0.7rem 0.25rem 0.85rem;border:none;border-radius:999px 0 0 999px;cursor:pointer;font-size:0.78rem;font-weight:${state !== 'off' ? 600 : 500};font-family:inherit;opacity:${state === 'off' ? 0.7 : 1};transition:all 0.15s;`;
+      labelBtn.addEventListener('click', () => {
+        [...g.tags].forEach(t => activeFilters.delete(t));
+        if (activeFilters.has(name)) activeFilters.delete(name); else activeFilters.add(name);
+        openDropdown = null;
         renderFilterBar(); renderList();
       });
+
+      // chevron (open dropdown)
+      const chevBtn = document.createElement('button');
+      const chevOn  = state !== 'off' || isOpen;
+      chevBtn.innerHTML = '&#9660;';
+      chevBtn.style.cssText = `background:${chevOn ? `color-mix(in srgb,${g.color} 20%,transparent)` : 'transparent'};color:${g.color};padding:0.25rem 0.55rem;border:none;border-left:1.5px solid ${g.color}50;border-radius:0 999px 999px 0;cursor:pointer;font-size:0.58rem;font-family:inherit;transition:all 0.15s;`;
+      chevBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        openDropdown = isOpen ? null : name;
+        renderFilterBar();
+      });
+
+      pill.appendChild(labelBtn);
+      pill.appendChild(chevBtn);
+      wrap.appendChild(pill);
+
+      // dropdown
+      if (isOpen) {
+        const dd = document.createElement('div');
+        dd.style.cssText = `position:absolute;top:calc(100% + 6px);left:0;background:var(--background,#fff);border:1.5px solid ${g.color}40;border-radius:10px;padding:0.35rem 0.3rem;z-index:200;min-width:170px;box-shadow:0 4px 16px rgba(0,0,0,0.13);display:flex;flex-direction:column;gap:0.1rem;`;
+        [...g.tags].filter(t => usedTags.has(t)).sort().forEach(tag => {
+          const on = activeFilters.has(tag);
+          const tb = document.createElement('button');
+          tb.textContent = tag;
+          tb.style.cssText = `background:${on ? `color-mix(in srgb,${g.color} 14%,transparent)` : 'transparent'};color:${g.color};border:none;text-align:left;padding:0.22rem 0.65rem;border-radius:6px;cursor:pointer;font-size:0.76rem;font-weight:${on ? 600 : 400};font-family:inherit;transition:background 0.1s;`;
+          tb.addEventListener('mouseenter', () => { if (!on) tb.style.background = `color-mix(in srgb,${g.color} 7%,transparent)`; });
+          tb.addEventListener('mouseleave', () => { if (!on) tb.style.background = 'transparent'; });
+          tb.addEventListener('click', e => {
+            e.stopPropagation();
+            activeFilters.delete(name);
+            if (activeFilters.has(tag)) activeFilters.delete(tag); else activeFilters.add(tag);
+            renderFilterBar(); renderList();
+          });
+          dd.appendChild(tb);
+        });
+        wrap.appendChild(dd);
+      }
+
+      filterBar.appendChild(wrap);
     });
   }
+
+  document.addEventListener('click', () => {
+    if (openDropdown) { openDropdown = null; renderFilterBar(); }
+  });
 
   function getBookSvg() {
     const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c05a4a';
@@ -99,27 +171,18 @@ engine: markdown
 
   function renderCard(entry) {
     const { doi, title, authors, year, journal, note, abstract, tags = [] } = entry;
-    const url = `https://doi.org/${doi}`;
+    const url          = `https://doi.org/${doi}`;
     const displayTitle = title || doi;
-    const byline = [authors, year, journal].filter(Boolean).join(' · ');
-    const tagHtml = tags.map(tagPill).join('');
-    const noteHtml = note
+    const byline       = [authors, year, journal].filter(Boolean).join(' · ');
+    const tagHtml      = tags.map(tagPill).join('');
+    const noteHtml     = note
       ? `<div style="font-size:0.88rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.6;">${note}${abstract ? ` <span title="${abstract.replace(/"/g,'&quot;')}" style="cursor:help;opacity:0.45;font-size:0.8rem;"> ···</span>` : ''}</div>`
       : '';
     return `<div class="pub-entry-block"><div class="pub-favicon-fallback">${getBookSvg()}</div><div class="pub-entry-text"><a href="${url}" target="_blank" class="pub-title-link">${displayTitle}</a>${byline?`<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.2rem;font-style:italic;">${byline}</div>`:''} ${tagHtml?`<div style="margin-top:0.1rem;">${tagHtml}</div>`:''} ${noteHtml}</div></div>`;
   }
 
-  function entryMatchesGroups(entry) {
-    if (activeGroups.size === 0) return true;
-    const tags = entry.tags || [];
-    for (const g of activeGroups) {
-      if (tags.some(t => GROUPS[g].tags.has(t))) return true;
-    }
-    return false;
-  }
-
   function renderList() {
-    const filtered = entries.filter(entryMatchesGroups);
+    const filtered = entries.filter(entryMatches);
     if (!filtered.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No entries for this filter.</p>'; return; }
     container.innerHTML = filtered.map(renderCard).join('');
   }
