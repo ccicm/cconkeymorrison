@@ -1,6 +1,7 @@
 [
   {
     "doi": "10.3389/fpsyg.2025.1613712",
+    "title": "School-based support for emotion-related attendance challenges: effectiveness of @School when implemented with neurodiverse adolescents, their parents, and school staff",
     "tags": [
       "EBSA",
       "Intervention",
@@ -10,6 +11,7 @@
   },
   {
     "doi": "10.1192/bjo.2025.61",
+    "title": "A coach-assisted, online parenting programme to support parents of adolescents who refuse school: evidence of acceptability and feasibility",
     "tags": [
       "EBSA",
       "Intervention",
@@ -19,6 +21,7 @@
   },
   {
     "doi": "10.1007/s10578-024-01755-6",
+    "title": "Intervention for School Anxiety and Absenteeism in Children (ISAAC): Mixed-Method Feasibility Study of a Coach-Assisted, Parent-Focused Online Program",
     "tags": [
       "EBSA",
       "Intervention",
@@ -28,6 +31,7 @@
   },
   {
     "doi": "10.1177/10634266231151903",
+    "title": "School Refusal in Adolescence: Personality Traits and Their Influence on Treatment Outcome",
     "tags": [
       "EBSA",
       "Personality",
@@ -37,6 +41,7 @@
   },
   {
     "doi": "10.3389/fpsyg.2025.1608184",
+    "title": "Teachers’ experiences with the Back2School intervention—a pilot study addressing problematic school absenteeism",
     "tags": [
       "EBSA",
       "Intervention",
@@ -46,6 +51,7 @@
   },
   {
     "doi": "10.1016/j.childyouth.2024.108091",
+    "title": "A systematic review of intervention programs for school attendance problems",
     "tags": [
       "EBSA",
       "Systematic review",
@@ -55,6 +61,7 @@
   },
   {
     "doi": "10.1111/jcpp.12848",
+    "title": "Practitioner Review: School refusal: developments in conceptualisation and treatment since 2000",
     "tags": [
       "EBSA",
       "Definitions",
@@ -64,6 +71,7 @@
   },
   {
     "doi": "10.1016/j.psychres.2023.115366",
+    "title": "Mapping the links between sexual addiction and gambling disorder: A Bayesian network approach",
     "tags": [
       "Network analysis",
       "Behavioural addiction",
@@ -73,6 +81,7 @@
   },
   {
     "doi": "10.1093/pnasnexus/pgag042",
+    "title": "Large language models are homogeneously creative",
     "tags": [
       "AI",
       "Creativity",
@@ -82,6 +91,7 @@
   },
   {
     "doi": "10.1111/nyas.14763",
+    "title": "A new method for training creativity: narrative as an alternative to divergent thinking",
     "tags": [
       "AI",
       "Creativity",
@@ -91,6 +101,7 @@
   },
   {
     "doi": "10.1002/jocb.70077",
+    "title": "“The Cat Sat on the …?” Why Generative AI Has Limited Creativity",
     "tags": [
       "AI",
       "Creativity",
@@ -100,6 +111,7 @@
   },
   {
     "doi": "10.1007/s10803-025-06828-6",
+    "title": "Brief Report: School Anxiety, School Attendance and School Refusal/Distress Following an Autism-Specific Parent-Mediated Intervention for Anxiety in Preschoolers",
     "tags": [
       "EBSA",
       "Autism",
@@ -109,6 +121,7 @@
   },
   {
     "doi": "10.1136/adc.76.2.90",
+    "title": "School refusal and truancy",
     "tags": [
       "EBSA",
       "Foundational",
@@ -118,16 +131,17 @@
   },
   {
     "doi": "10.1017/ipm.2024.22",
+    "title": "Co-designing a virtual reality exposure therapy with students experiencing school anxiety: a proof-of-concept study",
     "tags": [
       "EBSA",
       "Intervention",
-      "VR",
-      "Feasibility"
+      "VR"
     ],
     "note": "Proof-of-concept virtual reality exposure intervention for school anxiety. Experimental stage with limited generalisability."
   },
   {
     "doi": "10.1016/j.cbpra.2018.08.001",
+    "title": "The Link: An Alternative Educational Program in the Netherlands to Reengage School-Refusing Adolescents With Schooling",
     "tags": [
       "EBSA",
       "Intervention",
@@ -137,6 +151,7 @@
   },
   {
     "doi": "10.1136/bmj.l6890",
+    "title": "Synthesis without meta-analysis (SWiM) in systematic reviews: reporting guideline",
     "tags": [
       "Methods",
       "Systematic review"
@@ -145,6 +160,7 @@
   },
   {
     "doi": "10.1007/s10578-022-01358-z",
+    "title": "Modifiable Parent Factors Associated with Child and Adolescent School Refusal: A Systematic Review",
     "tags": [
       "EBSA",
       "Parent factors",
@@ -154,6 +170,7 @@
   },
   {
     "doi": "10.1016/j.cbpra.2014.08.002",
+    "title": "Dialectical Behavior Therapy for School Refusal: Treatment Development and Incorporation of Web-Based Coaching",
     "tags": [
       "EBSA",
       "Intervention development",
@@ -163,6 +180,7 @@
   },
   {
     "doi": "10.1177/1362361317748619",
+    "title": "Individual characteristics of students with autism spectrum disorders and school refusal behavior",
     "tags": [
       "EBSA",
       "Autism",
@@ -172,6 +190,7 @@
   },
   {
     "doi": "10.1186/s13052-024-01667-0",
+    "title": "School refusal behavior in children and adolescents: a five-year narrative review of clinical significance and psychopathological profiles",
     "tags": [
       "EBSA",
       "Clinical review",
@@ -181,6 +200,7 @@
   },
   {
     "doi": "10.1016/j.cbpra.2018.08.003",
+    "title": "Reengagement With Education: A Multidisciplinary Home-School-Clinic Approach Developed in Australia for School-Refusing Youth",
     "tags": [
       "EBSA",
       "Intervention",
@@ -190,6 +210,7 @@
   },
   {
     "doi": "10.5334/cie.38",
+    "title": "Emotionally Based School Avoidance (EBSA): Students’ Views of What Works in a Specialist Setting",
     "tags": [
       "EBSA",
       "Student voice",
@@ -199,6 +220,7 @@
   },
   {
     "doi": "10.3389/feduc.2021.715177",
+    "title": "How to Understand School Refusal",
     "tags": [
       "EBSA",
       "Conceptual",
@@ -208,6 +230,7 @@
   },
   {
     "doi": "10.1016/j.cbpra.2018.12.003",
+    "title": "Developments in Classification, Identification, and Intervention for School Refusal and Other Attendance Problems: Introduction to the Special Series",
     "tags": [
       "EBSA",
       "Conceptual",
@@ -217,6 +240,7 @@
   },
   {
     "doi": "10.1016/j.cbpra.2018.03.006",
+    "title": "Differentiation Between School Attendance Problems: Why and How?",
     "tags": [
       "EBSA",
       "Conceptual",
@@ -226,6 +250,7 @@
   },
   {
     "doi": "10.3389/fpsyg.2020.01744",
+    "title": "A Scoping Review of Constructs Measured Following Intervention for School Refusal: Are We Measuring Up?",
     "tags": [
       "EBSA",
       "Measurement",
@@ -235,6 +260,7 @@
   },
   {
     "doi": "10.3389/feduc.2021.715177",
+    "title": "How to Understand School Refusal",
     "tags": [
       "EBSA",
       "Conceptual",
@@ -244,6 +270,7 @@
   },
   {
     "doi": "10.1016/j.cbpra.2018.12.003",
+    "title": "Developments in Classification, Identification, and Intervention for School Refusal and Other Attendance Problems: Introduction to the Special Series",
     "tags": [
       "EBSA",
       "Conceptual",
@@ -253,6 +280,7 @@
   },
   {
     "doi": "10.1016/j.cbpra.2018.03.006",
+    "title": "Differentiation Between School Attendance Problems: Why and How?",
     "tags": [
       "EBSA",
       "Conceptual",
@@ -262,6 +290,7 @@
   },
   {
     "doi": "10.3389/fpsyg.2020.01744",
+    "title": "A Scoping Review of Constructs Measured Following Intervention for School Refusal: Are We Measuring Up?",
     "tags": [
       "EBSA",
       "Measurement",
@@ -271,6 +300,7 @@
   },
   {
     "doi": "10.1024/1422-4917/a000881",
+    "title": "Developmental Issues Associated with Adolescent School Refusal and                     Cognitive-Behavioral Therapy Manuals",
     "tags": [
       "EBSA",
       "Practitioner review",
@@ -280,6 +310,7 @@
   },
   {
     "doi": "10.3389/fpsyg.2025.1613712",
+    "title": "School-based support for emotion-related attendance challenges: effectiveness of @School when implemented with neurodiverse adolescents, their parents, and school staff",
     "tags": [
       "EBSA",
       "Intervention",
@@ -289,6 +320,7 @@
   },
   {
     "doi": "10.3389/fnhum.2024.1468729",
+    "title": "An exploratory cluster-randomized controlled trial on mindfulness yoga’s effectiveness in school-refusing children: reductions in SCAS-C physical injury fears and pulse rate",
     "tags": [
       "EBSA",
       "Intervention",
@@ -298,6 +330,7 @@
   },
   {
     "doi": "10.1037/t11398-000",
+    "title": "School Refusal Assessment Scale--Revised",
     "tags": [
       "EBSA",
       "Measurement tool"
@@ -306,6 +339,7 @@
   },
   {
     "doi": "10.1016/j.cpr.2007.07.012",
+    "title": "School absenteeism and school refusal behavior in youth: A contemporary review",
     "tags": [
       "EBSA",
       "Review",
@@ -315,6 +349,7 @@
   },
   {
     "doi": "10.1007/s10566-020-09591-0",
+    "title": "Integrating Systemic and Analytic Approaches to School Attendance Problems: Synergistic Frameworks for Research and Policy Directions",
     "tags": [
       "EBSA",
       "Systems framework"
@@ -323,6 +358,7 @@
   },
   {
     "doi": "10.2174/2210676608666180709155116",
+    "title": "Chronic Absenteeism: A Brief Review of Causes, Course and Treatment",
     "tags": [
       "EBSA",
       "Chronic absenteeism",
@@ -332,6 +368,7 @@
   },
   {
     "doi": "10.1097/00004583-200102000-00014",
+    "title": "School Refusal in Children and Adolescents: A Review of the Past 10 Years",
     "tags": [
       "EBSA",
       "Clinical review"
@@ -340,6 +377,7 @@
   },
   {
     "doi": "10.1007/s10578-024-01755-6",
+    "title": "Intervention for School Anxiety and Absenteeism in Children (ISAAC): Mixed-Method Feasibility Study of a Coach-Assisted, Parent-Focused Online Program",
     "tags": [
       "EBSA",
       "Intervention",
@@ -349,6 +387,7 @@
   },
   {
     "doi": "10.1136/bmjment-2023-300944",
+    "title": "Perfect storm: emotionally based school avoidance in the post-COVID-19 pandemic context",
     "tags": [
       "EBSA",
       "Intervention",
@@ -358,6 +397,7 @@
   },
   {
     "doi": "10.3389/fpsyg.2019.02862",
+    "title": "Rapid Return for School Refusal: A School-Based Approach Applied With Japanese Adolescents",
     "tags": [
       "EBSA",
       "Intervention",
@@ -367,6 +407,7 @@
   },
   {
     "doi": "10.1177/1049731515598619",
+    "title": "Treatment for School Refusal Among Children and Adolescents",
     "tags": [
       "EBSA",
       "Intervention",
@@ -376,16 +417,17 @@
   },
   {
     "doi": "10.1177/13591045231222648",
+    "title": "Intervention for school anxiety and absenteeism in children (ISAAC): Co-designing a brief parent-focused intervention for emotionally-based school avoidance",
     "tags": [
       "EBSA",
       "Intervention",
-      "Parent",
-      "Co-design"
+      "Parent"
     ],
     "note": "Co-designed parent-focused intervention for emotionally based school avoidance. Emphasises acceptability and feasibility over efficacy at this stage."
   },
   {
     "doi": "10.1016/j.cbpra.2018.08.003",
+    "title": "Reengagement With Education: A Multidisciplinary Home-School-Clinic Approach Developed in Australia for School-Refusing Youth",
     "tags": [
       "EBSA",
       "Intervention",
@@ -395,16 +437,17 @@
   },
   {
     "doi": "10.1007/s10578-016-0675-y",
+    "title": "Augmenting Cognitive Behavior Therapy for School Refusal with Fluoxetine: A Randomized Controlled Trial",
     "tags": [
       "EBSA",
       "Intervention",
-      "CBT",
-      "Pharmacology"
+      "CBT"
     ],
     "note": "RCT combining CBT with fluoxetine for school refusal. Suggests potential additive benefit but raises questions about pharmacological contribution."
   },
   {
     "doi": "10.3389/feduc.2019.00061",
+    "title": "The Kids and Teens at School (KiTeS) Framework: An Inclusive Bioecological Systems Approach to Understanding School Absenteeism and School Attendance Problems",
     "tags": [
       "EBSA",
       "Framework",
@@ -414,6 +457,7 @@
   },
   {
     "doi": "10.1177/1362361317748619",
+    "title": "Individual characteristics of students with autism spectrum disorders and school refusal behavior",
     "tags": [
       "EBSA",
       "Autism",
@@ -423,6 +467,7 @@
   },
   {
     "doi": "10.3389/frcha.2025.1629877",
+    "title": "Fostering school reintegration after psychiatric inpatient treatment: description and study protocol of an evaluation study about a rehabilitation program for children and adolescents with chronic school refusal (SchuTIng-stAR)",
     "tags": [
       "EBSA",
       "Intervention",
@@ -432,6 +477,7 @@
   },
   {
     "doi": "10.1186/s13034-020-00325-7",
+    "title": "School refusal and bullying in children with autism spectrum disorder",
     "tags": [
       "EBSA",
       "Autism",
@@ -441,16 +487,17 @@
   },
   {
     "doi": "10.1080/13603116.2022.2049378",
+    "title": "Autistic girls and emotionally based school avoidance: supportive factors for successful re-engagement in mainstream high school",
     "tags": [
       "EBSA",
       "Autism",
-      "Gender",
-      "Inclusion"
+      "Gender"
     ],
     "note": "Explores supportive factors for autistic girls re-engaging in mainstream schooling. Emphasises contextual and relational supports."
   },
   {
     "doi": "10.1371/journal.pone.0261827",
+    "title": "How can the education sector support children’s mental health? Views of Australian healthcare clinicians",
     "tags": [
       "EBSA",
       "Education system",
@@ -460,6 +507,7 @@
   },
   {
     "doi": "10.1016/j.childyouth.2024.108091",
+    "title": "A systematic review of intervention programs for school attendance problems",
     "tags": [
       "EBSA",
       "Systematic review",
@@ -469,6 +517,7 @@
   },
   {
     "doi": "10.3238/arztebl.2015.0655",
+    "title": "The Treatment of School Avoidance in Children and Adolescents With Psychiatric Illness",
     "tags": [
       "EBSA",
       "Intervention",
@@ -478,6 +527,7 @@
   },
   {
     "doi": "10.3389/fpsyt.2021.624841",
+    "title": "Multifamily Therapy for Adolescents With School Refusal: Perspectives of the Adolescents and Their Parents",
     "tags": [
       "EBSA",
       "Intervention",
@@ -487,6 +537,7 @@
   },
   {
     "doi": "10.1080/02667363.2023.2285457",
+    "title": "SPIRAL: parents’ experiences of emotionally-based school non-attendance (EBSNA) informing a framework for successful reintegration",
     "tags": [
       "EBSA",
       "Intervention",
@@ -496,6 +547,7 @@
   },
   {
     "doi": "10.1016/j.apnu.2024.03.019",
+    "title": "Effectiveness of cognitive-behavioral group play therapy on anxiety-based school refusal and behavioral problems in elementary school boys: a preliminary randomized controlled trial",
     "tags": [
       "EBSA",
       "Intervention",
@@ -505,16 +557,17 @@
   },
   {
     "doi": "10.1192/bjo.2025.61",
+    "title": "A coach-assisted, online parenting programme to support parents of adolescents who refuse school: evidence of acceptability and feasibility",
     "tags": [
       "EBSA",
       "Intervention",
-      "Parent",
-      "Digital"
+      "Parent"
     ],
     "note": "Online parenting program for adolescent school refusal. High acceptability but limited measurable improvement in attendance outcomes."
   },
   {
     "doi": "10.1371/journal.pone.0334037",
+    "title": "Does multifamily therapy help parents of adolescents with anxiety-based school refusal? A qualitative approach",
     "tags": [
       "EBSA",
       "Intervention",
@@ -524,6 +577,7 @@
   },
   {
     "doi": "10.1136/bmj.i4919",
+    "title": "ROBINS-I: a tool for assessing risk of bias in non-randomised studies of interventions",
     "tags": [
       "EBSA",
       "Methods",
@@ -533,6 +587,7 @@
   },
   {
     "doi": "10.1136/bmj.l4898",
+    "title": "RoB 2: a revised tool for assessing risk of bias in randomised trials",
     "tags": [
       "EBSA",
       "Methods",
@@ -542,6 +597,7 @@
   },
   {
     "doi": "10.3390/ijerph191811564",
+    "title": "Adverse Childhood Experiences and Education Outcomes among Adolescents: Linking Survey and Administrative Data",
     "tags": [
       "EBSA",
       "Education outcomes",
@@ -551,6 +607,7 @@
   },
   {
     "doi": "10.1177/2333794X211002952",
+    "title": "Outcome of a Multi-modal CBT-based Treatment Program for Chronic School Refusal",
     "tags": [
       "EBSA",
       "Intervention",
@@ -560,6 +617,7 @@
   },
   {
     "doi": "10.1002/cad.20484",
+    "title": "School refusal and anxiety among children and adolescents: A systematic scoping review",
     "tags": [
       "EBSA",
       "Scoping review",
@@ -569,6 +627,7 @@
   },
   {
     "doi": "10.1080/02667363.2018.1518215",
+    "title": "A grounded theory study of family coach intervention with persistent school non-attenders",
     "tags": [
       "EBSA",
       "Intervention",
@@ -578,6 +637,7 @@
   },
   {
     "doi": "10.1007/s12144-024-05742-x",
+    "title": "A systematic review of school refusal",
     "tags": [
       "EBSA",
       "Systematic review"
@@ -586,11 +646,37 @@
   },
   {
     "doi": "10.1080/02671520802308677",
+    "title": "Transition matters: pupils’ experiences of the primary–secondary school transition in the West of Scotland and consequences for well‐being and attainment",
     "tags": [
       "EBSA",
       "Transition",
       "Developmental"
     ],
     "note": "Examines school transition effects on wellbeing and attendance. Highlights developmental turning points in attendance trajectories."
+  },
+  {
+    "doi": "10.7189/jogh.11.03084",
+    "title": "Impact of COVID-2019 on school attendance problems",
+    "tags": [
+      "EBSA",
+      "Methods"
+    ]
+  },
+  {
+    "doi": "10.1080/02667363.2026.2613688",
+    "title": "An exploration of approaches to supporting young people experiencing emotionally based school avoidance (EBSA) in a social, emotional and mental health (SEMH) school",
+    "tags": [
+      "EBSA",
+      "Digital",
+      "Mental health"
+    ]
+  },
+  {
+    "doi": "10.3389/frcha.2026.1802875",
+    "title": "Editorial: Addressing emotionally based school avoidance: causes, consequences, and interventions",
+    "tags": [
+      "EBSA",
+      "Intervention"
+    ]
   }
 ]
