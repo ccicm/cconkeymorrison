@@ -19,10 +19,10 @@
         { "desc": "Develop and refine database search strategy",               "statuses": { "1": "done" } },
         { "desc": "PRISMA-compliant screening in Covidence",                   "statuses": { "3": "done" } },
         { "desc": "Audit extracted data & finalise coding framework",          "statuses": { "4": "done" } },
-        { "desc": "Assess study quality (risk-of-bias)",                       "statuses": { "3": "wip",  "5": "goal" } },
-        { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "3": "wip",  "5": "goal" } },
-        { "desc": "Draft systematic review manuscript",                        "statuses": { "3": "wip",  "5": "goal" } },
-        { "desc": "Submit Paper 1 & respond to peer review",                   "statuses": { "5": "todo", "6": "goal" } }
+        { "desc": "Assess study quality (risk-of-bias)",                       "statuses": { "5": "done" } },
+        { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "5": "done" } },
+        { "desc": "Draft systematic review manuscript",                        "statuses": { "6": "done" } },
+        { "desc": "Submit Paper 1 & respond to peer review",                   "statuses": { "6": "todo", "6": "goal" } }
       ]
     },
     {
