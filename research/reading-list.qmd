@@ -68,9 +68,16 @@ engine: markdown
     return getComputedStyle(document.documentElement).getPropertyValue('--navy').trim() || '#1e3a2a';
   }
 
-  // activeFilters holds group names (whole group) or individual tag names
   let activeFilters = new Set();
-  let openDropdown = null;
+  let activeDropdownName = null;
+  let activeDropdownEl   = null;
+
+  function removeDropdown() {
+    if (activeDropdownEl) { activeDropdownEl.remove(); activeDropdownEl = null; }
+    activeDropdownName = null;
+  }
+
+  document.addEventListener('click', () => { if (activeDropdownEl) { removeDropdown(); renderFilterBar(); } });
 
   function groupState(name) {
     if (activeFilters.has(name)) return 'full';
@@ -88,79 +95,119 @@ engine: markdown
     return false;
   }
 
+  function openDropdownFor(name, g, anchorEl) {
+    removeDropdown();
+    activeDropdownName = name;
+
+    const rect = anchorEl.getBoundingClientRect();
+    const dd   = document.createElement('div');
+    dd.style.cssText = [
+      'position:fixed',
+      `top:${rect.bottom + window.scrollY + 6}px`,
+      `left:${rect.left + window.scrollX}px`,
+      'background:#ffffff',
+      `border:1.5px solid ${g.color}`,
+      'border-radius:10px',
+      'padding:0.4rem 0.3rem',
+      'z-index:99999',
+      'min-width:180px',
+      'box-shadow:0 8px 28px rgba(0,0,0,0.22)',
+      'display:flex',
+      'flex-direction:column',
+      'gap:0.1rem',
+    ].join(';');
+    dd.addEventListener('click', e => e.stopPropagation());
+
+    [...g.tags].filter(t => usedTags.has(t)).sort().forEach(tag => {
+      const on = activeFilters.has(tag);
+      const tb = document.createElement('button');
+      tb.textContent = tag;
+      tb.style.cssText = [
+        `background:${on ? g.color : 'transparent'}`,
+        `color:${on ? '#fff' : g.color}`,
+        'border:none',
+        'text-align:left',
+        'padding:0.28rem 0.75rem',
+        'border-radius:6px',
+        'cursor:pointer',
+        'font-size:0.78rem',
+        `font-weight:${on ? 600 : 400}`,
+        'font-family:inherit',
+        'transition:background 0.1s',
+      ].join(';');
+      tb.addEventListener('mouseenter', () => { if (!on) tb.style.background = `color-mix(in srgb,${g.color} 10%,transparent)`; });
+      tb.addEventListener('mouseleave', () => { if (!on) tb.style.background = 'transparent'; });
+      tb.addEventListener('click', e => {
+        e.stopPropagation();
+        activeFilters.delete(name);
+        if (activeFilters.has(tag)) activeFilters.delete(tag); else activeFilters.add(tag);
+        removeDropdown();
+        renderFilterBar(); renderList();
+      });
+      dd.appendChild(tb);
+    });
+
+    document.body.appendChild(dd);
+    activeDropdownEl = dd;
+  }
+
   function renderFilterBar() {
     filterBar.innerHTML = '';
     Object.entries(GROUPS).forEach(([name, g]) => {
-      const state   = groupState(name);
+      const state     = groupState(name);
       const subActive = state !== 'full' ? [...g.tags].filter(t => activeFilters.has(t)) : [];
-      const isOpen  = openDropdown === name;
+      const isOpen    = activeDropdownName === name;
 
       const wrap = document.createElement('div');
-      wrap.style.cssText = 'position:relative;display:inline-block;';
+      wrap.style.cssText = 'display:inline-flex;align-items:stretch;border:1.5px solid ' + g.color + ';border-radius:999px;overflow:hidden;';
 
-      // pill
-      const pill = document.createElement('div');
-      pill.style.cssText = `display:inline-flex;align-items:stretch;border:1.5px solid ${g.color};border-radius:999px;overflow:visible;`;
-
-      // label (toggle whole group)
       const labelBtn = document.createElement('button');
       const labelOn  = state === 'full';
       labelBtn.textContent = subActive.length ? `${name} (${subActive.length})` : name;
-      labelBtn.style.cssText = `background:${labelOn ? g.color : 'transparent'};color:${labelOn ? '#fff' : g.color};padding:0.25rem 0.7rem 0.25rem 0.85rem;border:none;border-radius:999px 0 0 999px;cursor:pointer;font-size:0.78rem;font-weight:${state !== 'off' ? 600 : 500};font-family:inherit;opacity:${state === 'off' ? 0.7 : 1};transition:all 0.15s;`;
-      labelBtn.addEventListener('click', () => {
+      labelBtn.style.cssText = [
+        `background:${labelOn ? g.color : 'transparent'}`,
+        `color:${labelOn ? '#fff' : g.color}`,
+        'padding:0.25rem 0.7rem 0.25rem 0.85rem',
+        'border:none',
+        'cursor:pointer',
+        'font-size:0.78rem',
+        `font-weight:${state !== 'off' ? 600 : 500}`,
+        'font-family:inherit',
+        `opacity:${state === 'off' ? 0.7 : 1}`,
+        'transition:all 0.15s',
+      ].join(';');
+      labelBtn.addEventListener('click', e => {
+        e.stopPropagation();
         [...g.tags].forEach(t => activeFilters.delete(t));
         if (activeFilters.has(name)) activeFilters.delete(name); else activeFilters.add(name);
-        openDropdown = null;
+        removeDropdown();
         renderFilterBar(); renderList();
       });
 
-      // chevron (open dropdown)
       const chevBtn = document.createElement('button');
-      const chevOn  = state !== 'off' || isOpen;
       chevBtn.innerHTML = '&#9660;';
-      chevBtn.style.cssText = `background:${chevOn ? `color-mix(in srgb,${g.color} 20%,transparent)` : 'transparent'};color:${g.color};padding:0.25rem 0.55rem;border:none;border-left:1.5px solid ${g.color}50;border-radius:0 999px 999px 0;cursor:pointer;font-size:0.58rem;font-family:inherit;transition:all 0.15s;`;
+      chevBtn.style.cssText = [
+        `background:${isOpen || state !== 'off' ? `color-mix(in srgb,${g.color} 22%,transparent)` : 'transparent'}`,
+        `color:${g.color}`,
+        'padding:0.25rem 0.55rem',
+        'border:none',
+        `border-left:1.5px solid ${g.color}50`,
+        'cursor:pointer',
+        'font-size:0.58rem',
+        'font-family:inherit',
+        'transition:all 0.15s',
+      ].join(';');
       chevBtn.addEventListener('click', e => {
         e.stopPropagation();
-        openDropdown = isOpen ? null : name;
-        renderFilterBar();
+        if (isOpen) { removeDropdown(); renderFilterBar(); }
+        else        { openDropdownFor(name, g, wrap); renderFilterBar(); }
       });
 
-      pill.appendChild(labelBtn);
-      pill.appendChild(chevBtn);
-      wrap.appendChild(pill);
-
-      // dropdown
-      if (isOpen) {
-        const dd = document.createElement('div');
-        const pageBg = getComputedStyle(document.body).backgroundColor;
-        const solidBg = pageBg && pageBg !== 'rgba(0, 0, 0, 0)' ? pageBg : '#ffffff';
-        dd.style.cssText = `position:absolute;top:calc(100% + 6px);left:0;background:${solidBg};border:1.5px solid ${g.color}50;border-radius:10px;padding:0.35rem 0.3rem;z-index:9999;min-width:170px;box-shadow:0 6px 24px rgba(0,0,0,0.18);display:flex;flex-direction:column;gap:0.1rem;`;
-        dd.addEventListener('click', e => e.stopPropagation());
-        [...g.tags].filter(t => usedTags.has(t)).sort().forEach(tag => {
-          const on = activeFilters.has(tag);
-          const tb = document.createElement('button');
-          tb.textContent = tag;
-          tb.style.cssText = `background:${on ? `color-mix(in srgb,${g.color} 14%,transparent)` : 'transparent'};color:${g.color};border:none;text-align:left;padding:0.22rem 0.65rem;border-radius:6px;cursor:pointer;font-size:0.76rem;font-weight:${on ? 600 : 400};font-family:inherit;transition:background 0.1s;`;
-          tb.addEventListener('mouseenter', () => { if (!on) tb.style.background = `color-mix(in srgb,${g.color} 7%,transparent)`; });
-          tb.addEventListener('mouseleave', () => { if (!on) tb.style.background = 'transparent'; });
-          tb.addEventListener('click', e => {
-            e.stopPropagation();
-            activeFilters.delete(name);
-            if (activeFilters.has(tag)) activeFilters.delete(tag); else activeFilters.add(tag);
-            renderFilterBar(); renderList();
-          });
-          dd.appendChild(tb);
-        });
-        wrap.appendChild(dd);
-      }
-
+      wrap.appendChild(labelBtn);
+      wrap.appendChild(chevBtn);
       filterBar.appendChild(wrap);
     });
   }
-
-  document.addEventListener('click', () => {
-    if (openDropdown) { openDropdown = null; renderFilterBar(); }
-  });
 
   function getBookSvg() {
     const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c05a4a';
