@@ -70,5 +70,527 @@
       "Comorbidity"
     ],
     "note": "From colleagues at RMIT — uses network analysis to map the relationships between sexual addiction and gambling disorder. A different area from my own work, but a nice example of how complex behavioural patterns can be modelled without assuming simple cause and effect."
+  },
+  {
+    "doi": "10.1093/pnasnexus/pgag042",
+    "tags": [
+      "AI",
+      "Creativity",
+      "Machine learning"
+    ],
+    "note": "Empirical work on AI systems and creative performance. Focuses on computational approaches to modelling creativity rather than clinical or educational application."
+  },
+  {
+    "doi": "10.1111/nyas.14763",
+    "tags": [
+      "AI",
+      "Creativity",
+      "Machine learning"
+    ],
+    "note": "Conceptual synthesis on AI and creativity. Emphasises theoretical mechanisms and broader implications rather than applied intervention work."
+  },
+  {
+    "doi": "10.1002/jocb.70077",
+    "tags": [
+      "AI",
+      "Creativity",
+      "Machine learning"
+    ],
+    "note": "Applied cognitive research on AI-assisted creativity. Relevant for understanding decision processes under human–machine collaboration."
+  },
+  {
+    "doi": "10.1007/s10803-025-06828-6",
+    "tags": [
+      "EBSA",
+      "Autism",
+      "Intervention outcomes"
+    ],
+    "note": "Autism-focused early intervention study examining downstream effects on school anxiety and attendance-related outcomes. Preventive rather than adolescent EBSA treatment work."
+  },
+  {
+    "doi": "10.1136/adc.76.2.90",
+    "tags": [
+      "EBSA",
+      "Foundational",
+      "Conceptual"
+    ],
+    "note": "Early clinical discussion of school refusal and truancy. Historically important but conceptually dated relative to modern EBSA frameworks."
+  },
+  {
+    "doi": "10.1017/ipm.2024.22",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "VR",
+      "Feasibility"
+    ],
+    "note": "Proof-of-concept virtual reality exposure intervention for school anxiety. Experimental stage with limited generalisability."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.08.001",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Re-engagement"
+    ],
+    "note": "Structured re-engagement program (“The Link”) for school-refusing adolescents. Focus on reintegration rather than symptom reduction alone."
+  },
+  {
+    "doi": "10.1136/bmj.l6890",
+    "tags": [
+      "Methods",
+      "Systematic review"
+    ],
+    "note": "SWiM guideline for narrative synthesis in systematic reviews. Methodological standard for non-meta-analytic evidence synthesis."
+  },
+  {
+    "doi": "10.1007/s10578-022-01358-z",
+    "tags": [
+      "EBSA",
+      "Parent factors",
+      "Systematic review"
+    ],
+    "note": "Review of modifiable parental variables associated with school refusal. Highlights family-level intervention targets."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2014.08.002",
+    "tags": [
+      "EBSA",
+      "Intervention development",
+      "DBT"
+    ],
+    "note": "Early adaptation of DBT principles for school refusal with digital coaching elements. Prototype-stage intervention development."
+  },
+  {
+    "doi": "10.1177/1362361317748619",
+    "tags": [
+      "EBSA",
+      "Autism",
+      "Individual differences"
+    ],
+    "note": "Examines autism-related traits associated with school refusal patterns. Supports heterogeneity in mechanisms underpinning attendance problems."
+  },
+  {
+    "doi": "10.1186/s13052-024-01667-0",
+    "tags": [
+      "EBSA",
+      "Clinical review",
+      "Psychopathology"
+    ],
+    "note": "Narrative synthesis of clinical presentations linked to school refusal. Emphasises comorbidity and heterogeneity over single-cause models."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.08.003",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Systems model"
+    ],
+    "note": "Home–school–clinic re-engagement model integrating education and mental health services. Multi-system coordination emphasis."
+  },
+  {
+    "doi": "10.5334/cie.38",
+    "tags": [
+      "EBSA",
+      "Student voice",
+      "Qualitative"
+    ],
+    "note": "Student accounts of EBSA in specialist settings. Focus on perceived helpful conditions for re-engagement."
+  },
+  {
+    "doi": "10.3389/feduc.2021.715177",
+    "tags": [
+      "EBSA",
+      "Conceptual",
+      "Review"
+    ],
+    "note": "Conceptual clarification of school refusal definitions. Focus on boundaries between related attendance constructs."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.12.003",
+    "tags": [
+      "EBSA",
+      "Conceptual",
+      "Editorial"
+    ],
+    "note": "Framing article introducing classification and intervention distinctions in attendance problems literature."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.03.006",
+    "tags": [
+      "EBSA",
+      "Conceptual",
+      "Differentiation"
+    ],
+    "note": "Clarifies distinctions between types of school attendance problems. Foundational for current EBSA classification debates."
+  },
+  {
+    "doi": "10.3389/fpsyg.2020.01744",
+    "tags": [
+      "EBSA",
+      "Measurement",
+      "Scoping review"
+    ],
+    "note": "Reviews constructs used in post-intervention EBSA research. Identifies inconsistency in outcome measurement frameworks."
+  },
+  {
+    "doi": "10.3389/feduc.2021.715177",
+    "tags": [
+      "EBSA",
+      "Conceptual",
+      "Review"
+    ],
+    "note": "Conceptual clarification of school refusal definitions. Focuses on distinguishing constructs within school attendance problems and implications for intervention design."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.12.003",
+    "tags": [
+      "EBSA",
+      "Conceptual",
+      "Special series"
+    ],
+    "note": "Introductory framing paper for a special series on school attendance problems. Emphasises classification issues and how they shape intervention logic."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.03.006",
+    "tags": [
+      "EBSA",
+      "Conceptual",
+      "Differentiation"
+    ],
+    "note": "Key paper differentiating categories of school attendance problems. Central to modern EBSA taxonomy debates."
+  },
+  {
+    "doi": "10.3389/fpsyg.2020.01744",
+    "tags": [
+      "EBSA",
+      "Measurement",
+      "Scoping review"
+    ],
+    "note": "Examines constructs used to measure outcomes after EBSA interventions. Identifies lack of consistency in outcome selection and reporting."
+  },
+  {
+    "doi": "10.1024/1422-4917/a000881",
+    "tags": [
+      "EBSA",
+      "Practitioner review",
+      "CBT"
+    ],
+    "note": "Practitioner-focused review of adolescent school refusal with emphasis on CBT manuals and developmental considerations."
+  },
+  {
+    "doi": "10.3389/fpsyg.2025.1613712",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Neurodiversity"
+    ],
+    "note": "School-based intervention for neurodiverse adolescents with attendance difficulties. Highlights multi-stakeholder coordination across school, family, and student systems."
+  },
+  {
+    "doi": "10.3389/fnhum.2024.1468729",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Mindfulness"
+    ],
+    "note": "Cluster RCT of mindfulness-based yoga for school refusal. Reports physiological and anxiety-related outcomes rather than attendance change alone."
+  },
+  {
+    "doi": "10.1037/t11398-000",
+    "tags": [
+      "EBSA",
+      "Measurement tool"
+    ],
+    "note": "Standardised assessment scale for school refusal patterns (SRAS-R). Widely used in classification and functional assessment approaches."
+  },
+  {
+    "doi": "10.1016/j.cpr.2007.07.012",
+    "tags": [
+      "EBSA",
+      "Review",
+      "Clinical synthesis"
+    ],
+    "note": "Foundational clinical review of school refusal and absenteeism. Establishes early integrative models still referenced in current frameworks."
+  },
+  {
+    "doi": "10.1007/s10566-020-09591-0",
+    "tags": [
+      "EBSA",
+      "Systems framework"
+    ],
+    "note": "Proposes integrated systemic and analytic model for understanding school attendance problems. Moves away from single-cause explanations."
+  },
+  {
+    "doi": "10.2174/2210676608666180709155116",
+    "tags": [
+      "EBSA",
+      "Chronic absenteeism",
+      "Review"
+    ],
+    "note": "Brief review of chronic absenteeism causes and treatment approaches. Broader than EBSA but commonly used in related synthesis."
+  },
+  {
+    "doi": "10.1097/00004583-200102000-00014",
+    "tags": [
+      "EBSA",
+      "Clinical review"
+    ],
+    "note": "Early review of school refusal in child and adolescent psychiatry. Establishes clinical baseline for later intervention literature."
+  },
+  {
+    "doi": "10.1007/s10578-024-01755-6",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Digital feasibility"
+    ],
+    "note": "Feasibility study of coach-assisted online intervention for school anxiety and absenteeism. Early-stage evidence on digital delivery models."
+  },
+  {
+    "doi": "10.1136/bmjment-2023-300944",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Parent program"
+    ],
+    "note": "Online parenting intervention for emotionally based school avoidance. High acceptability but limited behavioural impact on attendance outcomes."
+  },
+  {
+    "doi": "10.3389/fpsyg.2019.02862",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "School-based CBT"
+    ],
+    "note": "Rapid return school-based CBT intervention in adolescent sample. Focus on structured reintegration into school attendance."
+  },
+  {
+    "doi": "10.1177/1049731515598619",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Meta-analysis"
+    ],
+    "note": "Systematic review and meta-analysis of interventions for school refusal. Suggests overall positive effects but highlights weak methodological consistency across studies."
+  },
+  {
+    "doi": "10.1177/13591045231222648",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Parent",
+      "Co-design"
+    ],
+    "note": "Co-designed parent-focused intervention for emotionally based school avoidance. Emphasises acceptability and feasibility over efficacy at this stage."
+  },
+  {
+    "doi": "10.1016/j.cbpra.2018.08.003",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Systems model"
+    ],
+    "note": "Multi-disciplinary home–school–clinic model for school-refusing youth. Focuses on coordinated service delivery across education and clinical systems."
+  },
+  {
+    "doi": "10.1007/s10578-016-0675-y",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "CBT",
+      "Pharmacology"
+    ],
+    "note": "RCT combining CBT with fluoxetine for school refusal. Suggests potential additive benefit but raises questions about pharmacological contribution."
+  },
+  {
+    "doi": "10.3389/feduc.2019.00061",
+    "tags": [
+      "EBSA",
+      "Framework",
+      "Systems theory"
+    ],
+    "note": "KiTeS bioecological framework for understanding school attendance problems. Positions EBSA within multi-layered environmental systems."
+  },
+  {
+    "doi": "10.1177/1362361317748619",
+    "tags": [
+      "EBSA",
+      "Autism",
+      "Individual differences"
+    ],
+    "note": "Examines ASD-related characteristics associated with school refusal. Reinforces heterogeneity in underlying mechanisms."
+  },
+  {
+    "doi": "10.3389/frcha.2025.1629877",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Rehabilitation"
+    ],
+    "note": "Protocol for post-psychiatric inpatient reintegration program. Focus on structured return-to-school pathways after severe mental health episodes."
+  },
+  {
+    "doi": "10.1186/s13034-020-00325-7",
+    "tags": [
+      "EBSA",
+      "Autism",
+      "Bullying"
+    ],
+    "note": "Links bullying experiences with school refusal in autistic children. Suggests social environment as a key mediating factor."
+  },
+  {
+    "doi": "10.1080/13603116.2022.2049378",
+    "tags": [
+      "EBSA",
+      "Autism",
+      "Gender",
+      "Inclusion"
+    ],
+    "note": "Explores supportive factors for autistic girls re-engaging in mainstream schooling. Emphasises contextual and relational supports."
+  },
+  {
+    "doi": "10.1371/journal.pone.0261827",
+    "tags": [
+      "EBSA",
+      "Education system",
+      "Mental health"
+    ],
+    "note": "Clinician perspectives on how education systems can support child mental health. Focuses on system-level rather than individual interventions."
+  },
+  {
+    "doi": "10.1016/j.childyouth.2024.108091",
+    "tags": [
+      "EBSA",
+      "Systematic review",
+      "Intervention"
+    ],
+    "note": "Broad review of interventions for school attendance problems. Useful for situating EBSA-specific interventions within wider attendance literature."
+  },
+  {
+    "doi": "10.3238/arztebl.2015.0655",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "RCT"
+    ],
+    "note": "Randomised controlled trial of treatment approaches for school avoidance in clinical populations. Early evidence base with limited generalisability."
+  },
+  {
+    "doi": "10.3389/fpsyt.2021.624841",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Multifamily therapy"
+    ],
+    "note": "Qualitative evidence on multifamily therapy for school refusal. Highlights perceived benefits in family communication and support."
+  },
+  {
+    "doi": "10.1080/02667363.2023.2285457",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Parent experience"
+    ],
+    "note": "Parent experiences of emotionally based school non-attendance. Develops framework for reintegration based on lived experience."
+  },
+  {
+    "doi": "10.1016/j.apnu.2024.03.019",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "CBT play therapy"
+    ],
+    "note": "Preliminary RCT of CBT-based group play therapy for anxiety-related school refusal. Early evidence, limited sample and scope."
+  },
+  {
+    "doi": "10.1192/bjo.2025.61",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Parent",
+      "Digital"
+    ],
+    "note": "Online parenting program for adolescent school refusal. High acceptability but limited measurable improvement in attendance outcomes."
+  },
+  {
+    "doi": "10.1371/journal.pone.0334037",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Multifamily therapy"
+    ],
+    "note": "Qualitative study of multifamily therapy effects on parents. Emphasises relational and systemic change processes."
+  },
+  {
+    "doi": "10.1136/bmj.i4919",
+    "tags": [
+      "EBSA",
+      "Methods",
+      "Risk of bias"
+    ],
+    "note": "ROBINS-I tool for assessing bias in non-randomised intervention studies. Methodological standard rather than substantive EBSA content."
+  },
+  {
+    "doi": "10.1136/bmj.l4898",
+    "tags": [
+      "EBSA",
+      "Methods",
+      "Risk of bias"
+    ],
+    "note": "RoB 2 tool for assessing bias in randomised trials. Key methodological reference for intervention evaluation."
+  },
+  {
+    "doi": "10.3390/ijerph191811564",
+    "tags": [
+      "EBSA",
+      "Education outcomes",
+      "ACEs"
+    ],
+    "note": "Links adverse childhood experiences to education outcomes. Indirect relevance to EBSA via risk factor pathways."
+  },
+  {
+    "doi": "10.1177/2333794X211002952",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "CBT programme"
+    ],
+    "note": "Multi-modal CBT-based treatment for chronic school refusal. Reports outcomes for structured clinical intervention."
+  },
+  {
+    "doi": "10.1002/cad.20484",
+    "tags": [
+      "EBSA",
+      "Scoping review",
+      "Anxiety"
+    ],
+    "note": "Scoping review of school refusal and anxiety. Synthesises broad literature without strict intervention focus."
+  },
+  {
+    "doi": "10.1080/02667363.2018.1518215",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Family coaching"
+    ],
+    "note": "Grounded theory study of family coach interventions for persistent non-attendance. Focus on process rather than outcomes."
+  },
+  {
+    "doi": "10.1007/s12144-024-05742-x",
+    "tags": [
+      "EBSA",
+      "Systematic review"
+    ],
+    "note": "Systematic review of school refusal literature. Consolidates definitions, causes, and intervention approaches."
+  },
+  {
+    "doi": "10.1080/02671520802308677",
+    "tags": [
+      "EBSA",
+      "Transition",
+      "Developmental"
+    ],
+    "note": "Examines school transition effects on wellbeing and attendance. Highlights developmental turning points in attendance trajectories."
   }
 ]
