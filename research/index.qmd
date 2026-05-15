@@ -266,7 +266,7 @@ Exploring system-level patterns in school attendance and non-attendance using na
 ## Supervisory team {#supervisory-team}
 
 ::: supervisor-row
-[Dr Daniel Zarate](https://orcid.org/0000-0000-0000-0000){.supervisor-link} [Dr Vasileios Stavropoulos](https://orcid.org/0000-0000-0000-0000){.supervisor-link} [Dr Taylor Brown](https://orcid.org/0000-0000-0000-0000){.supervisor-link}
+[Dr Daniel Zarate]{.supervisor-link} [Dr Vasileios Stavropoulos]{.supervisor-link} [Dr Taylor Brown]{.supervisor-link}
 :::
 
 ------------------------------------------------------------------------

@@ -38,7 +38,7 @@
         { "desc": "Exploratory clustering of attendance patterns",             "statuses": { "4": "wip",  "6": "goal" } },
         { "desc": "Estimation of LCGA developmental trajectories",             "statuses": { "6": "wip",  "8": "goal" } },
         { "desc": "Modelling internalising symptom trajectories",              "statuses": { "8": "todo", "9": "goal" } },
-        { "desc": "Draft manuscript",                                          "statuses": { "9": "wip", "10": "goal" } }
+        { "desc": "Draft manuscript",                                          "statuses": { "9": "wip", "10": "goal" } },
         { "desc": "Submit manuscript",                                         "statuses": { "9": "todo", "10": "goal" } }
       ]
     },
