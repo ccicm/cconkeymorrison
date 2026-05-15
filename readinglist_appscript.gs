@@ -77,7 +77,6 @@ const TAG_KEYWORDS = {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('📚 Reading List')
-    .addItem('Fill missing metadata', 'fillMissingMetadata')
     .addItem('Generate missing insights', 'generateMissingInsights')
     .addSeparator()
     .addItem('Sync to website now', 'syncReadingList')
@@ -143,15 +142,17 @@ function setupSheets() {
 function applyTagValidation_(rlSheet) {
   const tagsSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.TAGS_SHEET_NAME);
   if (!tagsSheet) return;
-  const lastRow  = Math.max(rlSheet.getLastRow(), 2);
+  const headers   = rlSheet.getRange(1, 1, 1, rlSheet.getLastColumn()).getValues()[0];
+  const lastRow   = Math.max(rlSheet.getLastRow(), 2);
   const tagsRange = tagsSheet.getRange(2, 1, DEFAULT_TAGS.length + 50, 1);
   const rule = SpreadsheetApp.newDataValidation()
     .requireValueInRange(tagsRange, true)
     .setAllowInvalid(true)
     .build();
-  for (let col = 6; col <= 8; col++) {
-    rlSheet.getRange(2, col, lastRow - 1, 1).setDataValidation(rule);
-  }
+  ['tag 1','tag 2','tag 3'].forEach(name => {
+    const col = headers.map(h => String(h).trim().toLowerCase()).indexOf(name);
+    if (col !== -1) rlSheet.getRange(2, col + 1, lastRow - 1, 1).setDataValidation(rule);
+  });
 }
 
 // ── Migration (one-time) ──────────────────────────────────────
@@ -248,21 +249,26 @@ function onApaEdit(e) {
   const meta      = fetchMetaFromCrossRef_(doi);
   const suggested = suggestTags_(meta.title || input, meta.abstract);
 
-  rlSheet.appendRow([
-    doi, meta.title||'', meta.authors||'',
-    meta.year ? String(meta.year) : '', meta.journal||'',
-    suggested[0]||'', suggested[1]||'', suggested[2]||'',
-    '', meta.abstract||''
-  ]);
+  // Write new row by header name so column order doesn't matter
+  const headers = rlSheet.getRange(1, 1, 1, rlSheet.getLastColumn()).getValues()[0];
+  const hLower  = headers.map(h => String(h).trim().toLowerCase());
+  const newRow  = rlSheet.getLastRow() + 1;
+  const set = (name, val) => {
+    const c = hLower.indexOf(name);
+    if (c !== -1) rlSheet.getRange(newRow, c + 1).setValue(val);
+  };
+  set('doi',      doi);
+  set('title',    meta.title    || '');
+  set('authors',  meta.authors  || '');
+  set('year',     meta.year ? String(meta.year) : '');
+  set('journal',  meta.journal  || '');
+  set('abstract', meta.abstract || '');
+  set('tag 1',    suggested[0]  || '');
+  set('tag 2',    suggested[1]  || '');
+  set('tag 3',    suggested[2]  || '');
+  set('note',     '');
 
-  const newRow    = rlSheet.getLastRow();
-  const tagsSheet = ss.getSheetByName(CONFIG.TAGS_SHEET_NAME);
-  if (tagsSheet) {
-    const rule = SpreadsheetApp.newDataValidation()
-      .requireValueInRange(tagsSheet.getRange(2, 1, DEFAULT_TAGS.length + 50, 1), true)
-      .setAllowInvalid(true).build();
-    for (let col = 6; col <= 8; col++) rlSheet.getRange(newRow, col).setDataValidation(rule);
-  }
+  applyTagValidation_(rlSheet);
 
   statusCell.setValue('✅ Added');
 }
@@ -335,102 +341,7 @@ function suggestTags_(title, abstract) {
   return matched;
 }
 
-// ── Groq helper ───────────────────────────────────────────────
-function callGroq_(prompt, maxTokens, temperature) {
-  const key = getGroqKey_();
-  if (!key) return null;
-  try {
-    const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
-      payload: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
-        messages: [{ role: 'user', content: prompt }],
-        max_tokens: maxTokens,
-        temperature: temperature
-      }),
-      muteHttpExceptions: true
-    });
-    return JSON.parse(res.getContentText()).choices?.[0]?.message?.content?.trim() || null;
-  } catch (e) {
-    Logger.log('Groq error: ' + e.message);
-    return null;
-  }
-}
 
-// ── Fill missing metadata ─────────────────────────────────────
-function fillMissingMetadata() {
-  const ss    = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
-  if (!sheet) { SpreadsheetApp.getUi().alert('Reading List sheet not found.'); return; }
-  if (!getGroqKey_()) { SpreadsheetApp.getUi().alert('No Groq key set.'); return; }
-
-  const data = sheet.getDataRange().getValues();
-  const h    = data[0].map(x => String(x).trim().toLowerCase());
-  const doiCol  = h.indexOf('doi');
-  const titleCol   = h.indexOf('title');
-  const authCol    = h.indexOf('authors');
-  const yearCol    = h.indexOf('year');
-  const journalCol = h.indexOf('journal');
-  const absCol     = h.indexOf('abstract');
-  if (doiCol === -1) { SpreadsheetApp.getUi().alert('Run migration first.'); return; }
-
-  let count = 0;
-  for (let i = 1; i < data.length; i++) {
-    const doi      = String(data[i][doiCol]     || '').trim();
-    const title    = String(data[i][titleCol]   || '').trim();
-    const authors  = String(data[i][authCol]    || '').trim();
-    const year     = String(data[i][yearCol]    || '').trim();
-    const journal  = String(data[i][journalCol] || '').trim();
-    const abstract = absCol !== -1 ? String(data[i][absCol] || '').trim() : '';
-    if (!doi) continue;
-
-    // ── Short metadata (authors / year / journal) ──
-    const missingMeta = [
-      !authors && 'authors',
-      !year    && 'year',
-      !journal && 'journal'
-    ].filter(Boolean);
-
-    if (missingMeta.length) {
-      const metaPrompt =
-        `Return ONLY valid JSON, no other text.\n` +
-        `Academic paper — Title: "${title}", DOI: ${doi}\n` +
-        `Provide these fields (only if confident): ${missingMeta.join(', ')}\n` +
-        `Format: {"authors":"Last, F., Last, F., et al.","year":"2023","journal":"Full Journal Name"}\n` +
-        `Omit any field you are not confident about.`;
-      const text = callGroq_(metaPrompt, 80, 0.1);
-      if (text) {
-        const match = text.match(/\{[\s\S]*\}/);
-        if (match) {
-          try {
-            const meta = JSON.parse(match[0]);
-            if (!authors && meta.authors) { sheet.getRange(i+1, authCol+1).setValue(meta.authors);    count++; }
-            if (!year    && meta.year)    { sheet.getRange(i+1, yearCol+1).setValue(String(meta.year)); }
-            if (!journal && meta.journal) { sheet.getRange(i+1, journalCol+1).setValue(meta.journal);  }
-          } catch(e) { Logger.log('JSON parse row ' + (i+1) + ': ' + e.message); }
-        }
-      }
-      Utilities.sleep(200);
-    }
-
-    // ── Abstract ──
-    if (!abstract && absCol !== -1) {
-      const absPrompt =
-        `Write a concise 2-3 sentence academic abstract for this paper based on what you know about it.\n` +
-        `Title: "${title}"\nDOI: ${doi}\n` +
-        `If you don't know this paper well enough to be accurate, reply with just: UNKNOWN`;
-      const absText = callGroq_(absPrompt, 200, 0.2);
-      if (absText && !absText.startsWith('UNKNOWN')) {
-        sheet.getRange(i+1, absCol+1).setValue(absText);
-        count++;
-      }
-      Utilities.sleep(200);
-    }
-  }
-
-  SpreadsheetApp.getUi().alert(`✅ Metadata filled for ${count} entries.`);
-}
 
 // ── Generate missing insights ─────────────────────────────────
 function generateMissingInsights() {
@@ -464,7 +375,8 @@ function generateMissingInsights() {
 }
 
 function generateInsight_(title, abstract) {
-  if (!title) return '';
+  const key = getGroqKey_();
+  if (!key || !title) return '';
   const context = abstract ? `Abstract: ${abstract}\n\n` : '';
   const prompt =
     `You write sharp, opinionated research notes — 2 sentences, plain prose, no bold, no asterisks.\n\n` +
@@ -474,7 +386,20 @@ function generateInsight_(title, abstract) {
     `"Feasibility study of VR exposure for school anxiety. Early-stage, limited generalisability, but a useful marker of where digital intervention design is heading."\n\n` +
     `Now write a note in exactly this style for:\nPaper: "${title}"\n${context}` +
     `2 sentences only. No formatting. Start with what's notable, end with why it matters or what it raises.`;
-  return callGroq_(prompt, 100, 0.5) || '';
+  try {
+    const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+      payload: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 100,
+        temperature: 0.5
+      }),
+      muteHttpExceptions: true
+    });
+    return JSON.parse(res.getContentText()).choices?.[0]?.message?.content?.trim() || '';
+  } catch (e) { return ''; }
 }
 
 // ── Sheet → JSON ──────────────────────────────────────────────
