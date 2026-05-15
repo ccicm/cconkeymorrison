@@ -481,13 +481,13 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   width: 7px; height: 7px; border-radius: 50%; display: inline-block;
 }
 .tl-legend-dot.done  { background: #2d7a4f; }
-.tl-legend-dot.wip   { background: #c05a4a; box-shadow: 0 0 0 3px rgba(192,90,74,0.12); }
+.tl-legend-dot.wip   { background: #8a8786; box-shadow: 0 0 0 3px rgba(138,135,134,0.12); }
 .tl-legend-dot.todo  { border: 1.5px solid var(--text-muted); background: transparent; opacity: 0.5; }
-.tl-legend-dot.goal  { border: 1.5px dashed #2d7aee; background: transparent; }
+.tl-legend-dot.goal  { border: 1.5px dashed #c8922a; background: transparent; }
 .tl-est-badge {
   margin-left: auto;
   display: flex; align-items: center; gap: 5px;
-  font-size: 0.72rem; font-weight: 700; color: #2d7aee;
+  font-size: 0.72rem; font-weight: 700; color: #c8922a;
   letter-spacing: 0.04em; text-transform: uppercase;
 }
 

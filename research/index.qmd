@@ -41,7 +41,7 @@ My present research centres on school attendance problems and emotionally based 
 (function() {
   const TOTAL_QS = 16;
   const PAPER_COLORS = { 1: '#2d7a4f', 2: 'var(--accent)', 3: 'var(--navy)', 0: 'var(--text-muted)' };
-  const STATUS_COLORS = { done: '#2d7a4f', wip: '#6b6560', todo: '#c05a4a', goal: '#b8860b' };
+  const STATUS_COLORS = { done: '#2d7a4f', wip: '#8a8786', todo: '#6b6560', goal: '#c8922a' };
 
   function overallStatus(statuses) {
     const vals = Object.values(statuses);
