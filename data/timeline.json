@@ -23,7 +23,8 @@
         { "desc": "Assess study quality (risk-of-bias)",                       "statuses": { "5": "done" } },
         { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "5": "done" } },
         { "desc": "Draft systematic review manuscript",                        "statuses": { "5": "done" } },
-        { "desc": "Submit Paper 1 & respond to peer review",                   "statuses": { "6": "todo", "6": "goal" } }
+        { "desc": "Submit manuscript to journal for review",                   "statuses": { "6": "done" } },
+        { "desc": "Respond to peer review",                                    "statuses": { "7": "todo", "8": "goal" } }
       ]
     },
     {
@@ -31,12 +32,14 @@
       "label": "Paper 2",
       "title": "Longitudinal modelling (LSAC)",
       "activities": [
-        { "desc": "Secure LSAC data access & governance",                      "statuses": { "2": "done" } },
-        { "desc": "Harmonise attendance indicators across waves",              "statuses": { "3": "wip",  "5": "goal" } },
+        { "desc": "Secured LSAC data access & governance",                     "statuses": { "2": "done" } },
+        { "desc": "Methodological specification and code development",         "statuses": { "2": "wip" , "5": "goal" } },
+        { "desc": "Confirm data availability and consistency across waves",    "statuses": { "3": "done" } },
         { "desc": "Exploratory clustering of attendance patterns",             "statuses": { "4": "wip",  "6": "goal" } },
-        { "desc": "Estimate LCGA developmental trajectories",                  "statuses": { "6": "wip",  "8": "goal" } },
-        { "desc": "Model internalising symptom trajectories",                  "statuses": { "8": "todo", "9": "goal" } },
-        { "desc": "Draft & submit manuscript",                                 "statuses": { "9": "todo", "10": "goal" } }
+        { "desc": "Estimation of LCGA developmental trajectories",             "statuses": { "6": "wip",  "8": "goal" } },
+        { "desc": "Modelling internalising symptom trajectories",              "statuses": { "8": "todo", "9": "goal" } },
+        { "desc": "Draft manuscript",                                          "statuses": { "9": "wip", "10": "goal" } }
+        { "desc": "Submit manuscript",                                         "statuses": { "9": "todo", "10": "goal" } }
       ]
     },
     {
@@ -44,7 +47,7 @@
       "label": "Paper 3",
       "title": "Population-level attendance (ACARA)",
       "activities": [
-        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "done",  "6": "goal" } },
+        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "done" } },
         { "desc": "Develop analysis syntax for attendance trajectories",       "statuses": { "3": "wip",  "7": "goal" } },
         { "desc": "Code administrative attendance definitions",                "statuses": { "7": "todo", "8": "goal" } },
         { "desc": "Growth model for academic achievement",                     "statuses": { "8": "todo", "9": "goal" } },
