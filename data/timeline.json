@@ -15,13 +15,14 @@
       "activities": [
         { "desc": "Obtain institutional ethics approval",                      "statuses": { "1": "done" } },
         { "desc": "Register systematic review protocol (PROSPERO)",            "statuses": { "1": "done" } },
-        { "desc": "Finalise eligibility criteria for EBSA studies",            "statuses": { "1": "done" } },
-        { "desc": "Develop and refine database search strategy",               "statuses": { "1": "done" } },
+        { "desc": "Finalise eligibility criteria for EBSA studies",            "statuses": { "2": "done" } },
+        { "desc": "Develop and refine database search strategy",               "statuses": { "2": "done" } },
         { "desc": "PRISMA-compliant screening in Covidence",                   "statuses": { "3": "done" } },
-        { "desc": "Audit extracted data & finalise coding framework",          "statuses": { "4": "done" } },
+        { "desc": "Revision of review protocol (PROSPERO)",                    "statuses": { "3": "done" } },
+        { "desc": "Extracted data from included studies",                      "statuses": { "4": "done" } },
         { "desc": "Assess study quality (risk-of-bias)",                       "statuses": { "5": "done" } },
         { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "5": "done" } },
-        { "desc": "Draft systematic review manuscript",                        "statuses": { "6": "done" } },
+        { "desc": "Draft systematic review manuscript",                        "statuses": { "5": "done" } },
         { "desc": "Submit Paper 1 & respond to peer review",                   "statuses": { "6": "todo", "6": "goal" } }
       ]
     },
