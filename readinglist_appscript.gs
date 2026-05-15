@@ -76,6 +76,7 @@ const TAG_KEYWORDS = {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('📚 Reading List')
+    .addItem('Rescue misplaced abstracts', 'rescueMisplacedAbstracts')
     .addItem('Fill missing abstracts', 'fillMissingAbstracts')
     .addItem('Generate missing insights', 'generateMissingInsights')
     .addSeparator()
@@ -390,6 +391,41 @@ function callGroq_(prompt, maxTokens, temperature) {
     Logger.log('Groq error: ' + e.message);
     return null;
   }
+}
+
+// ── Rescue abstracts that landed in tag columns ───────────────
+function rescueMisplacedAbstracts() {
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet) { SpreadsheetApp.getUi().alert('Reading List sheet not found.'); return; }
+
+  const data = sheet.getDataRange().getValues();
+  const h    = data[0].map(x => String(x).trim().toLowerCase());
+  const absCol  = h.indexOf('abstract');
+  const tag1Col = h.indexOf('tag 1');
+  const tag2Col = h.indexOf('tag 2');
+  const tag3Col = h.indexOf('tag 3');
+  if (absCol === -1) { SpreadsheetApp.getUi().alert('No Abstract column found.'); return; }
+
+  let moved = 0;
+  for (let i = 1; i < data.length; i++) {
+    const abstract = String(data[i][absCol] || '').trim();
+    if (abstract) continue; // already has one
+
+    // Check each tag column for long text (>80 chars = almost certainly an abstract)
+    for (const tagCol of [tag1Col, tag2Col, tag3Col]) {
+      if (tagCol === -1) continue;
+      const val = String(data[i][tagCol] || '').trim();
+      if (val.length > 80) {
+        sheet.getRange(i + 1, absCol  + 1).setValue(val);
+        sheet.getRange(i + 1, tagCol  + 1).setValue('');
+        moved++;
+        break;
+      }
+    }
+  }
+
+  SpreadsheetApp.getUi().alert(`✅ Done. Moved ${moved} misplaced abstract(s) to the Abstract column.`);
 }
 
 // ── Fill missing abstracts ────────────────────────────────────
