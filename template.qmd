@@ -191,7 +191,82 @@ at the bottom.
 
 ------------------------------------------------------------------------
 
-## Step 6 — Add your photo
+## Step 6 — Add your reading list
+
+The homepage shows a curated list of recent papers pulled from
+`data/reading.json`. To add entries, open that file and add items in
+this format:
+
+``` json
+[
+  {
+    "doi": "10.1000/xyz123",
+    "note": "A short note about why this paper is worth reading."
+  }
+]
+```
+
+The `note` field is optional. The homepage shows the first 3 entries.
+New entries go at the top of the list.
+
+------------------------------------------------------------------------
+
+## Optional: Sync your reading list from Google Sheets
+
+If you'd rather manage your reading list in a spreadsheet, the template
+includes `readinglist_appscript.gs` — a Google Apps Script that connects
+a Google Sheet to your site. Paste a DOI, PMID, or APA citation into the
+sheet and metadata (title, authors, journal, year, abstract) and tags are
+filled in automatically. One click commits `data/reading.json` to GitHub
+and your site rebuilds within ~2 minutes.
+
+**What you'll need:**
+
+-   A GitHub personal access token (with `repo` scope) — create one at
+    [github.com/settings/tokens](https://github.com/settings/tokens)
+-   A Google account with access to Google Sheets and Apps Script
+-   Optional: a free Groq API key from
+    [console.groq.com](https://console.groq.com) — enables
+    AI-generated reading notes
+
+**Setup:**
+
+1.  Create a new Google Sheet and open **Extensions → Apps Script**
+2.  Delete the default code and paste the contents of
+    `readinglist_appscript.gs`
+3.  At the top of the script, update these two lines:
+
+``` js
+GITHUB_OWNER: 'YOUR-GITHUB-USERNAME',
+GITHUB_REPO:  'YOUR-REPO-NAME',
+```
+
+4.  Also replace `youremail@institution.edu` with your email (used for
+    Crossref API politeness)
+5.  Save the script (**Ctrl+S**), then reload your Google Sheet — a **📚
+    Reading List** menu will appear
+6.  Run the setup steps in order from that menu:
+    -   **1. Set GitHub token** — paste your token
+    -   **2. Set Groq API key** — optional, skip if not needed
+    -   **3. Set up sheets & tags** — creates the Reading List, APA
+        Input, and Tags sheets
+    -   **5. Install APA trigger** — enables auto-processing when you
+        paste into the sheet
+
+**Adding papers:**
+
+Paste a DOI, PMID, or APA citation into column A of the **APA Input**
+sheet. The script resolves it, fetches metadata, suggests tags, and adds
+a row to the Reading List. If you set a Groq key, a short reading note
+is generated automatically — edit it to match your voice.
+
+**Syncing to your site:**
+
+Click **📚 Reading List → Sync to website now**. Done.
+
+------------------------------------------------------------------------
+
+## Step 7 — Add your photo
 
 1.  Find a headshot photo (square or portrait crops work best)
 2.  Rename it `profile.jpg` (or any name you like)
@@ -204,7 +279,7 @@ at the bottom.
 
 ------------------------------------------------------------------------
 
-## Step 7 — Preview locally
+## Step 8 — Preview locally
 
 Before publishing, you can preview your site on your own computer.
 
@@ -221,7 +296,7 @@ preview.
 
 ------------------------------------------------------------------------
 
-## Step 8 — Publish your changes
+## Step 9 — Publish your changes
 
 1.  Open **GitHub Desktop**
 2.  You'll see all the files you've changed listed on the left

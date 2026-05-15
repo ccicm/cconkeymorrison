@@ -92,9 +92,10 @@ I research school attendance problems and emotionally based school avoidance (EB
 
   const shown = entries.slice(0, MAX);
 
-  async function fetchMeta(doi) {
+  async function fetchMeta(e) {
+    if (e.title) return { title: e.title, journal: e.journal || '', year: e.year || '', authors: e.authors || '', url: `https://doi.org/${e.doi}` };
     try {
-      const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
+      const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(e.doi)}?mailto=connorconkeymorrison@gmail.com`);
       if (!res.ok) return null;
       const data = await res.json();
       const w = data.message;
@@ -108,12 +109,12 @@ I research school attendance problems and emotionally based school avoidance (EB
         journal: w['container-title']?.[0] || '',
         year: w.published?.['date-parts']?.[0]?.[0] || '',
         authors,
-        url: `https://doi.org/${doi}`,
+        url: `https://doi.org/${e.doi}`,
       };
     } catch { return null; }
   }
 
-  const metas = await Promise.all(shown.map(e => fetchMeta(e.doi)));
+  const metas = await Promise.all(shown.map(e => fetchMeta(e)));
 
   const html = shown.map((e, i) => {
     const meta = metas[i];
