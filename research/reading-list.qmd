@@ -92,7 +92,7 @@ engine: markdown
     filterBar.innerHTML = '';
     Object.entries(GROUPS).forEach(([name, g]) => {
       const state   = groupState(name);
-      const subActive = [...g.tags].filter(t => activeFilters.has(t));
+      const subActive = state !== 'full' ? [...g.tags].filter(t => activeFilters.has(t)) : [];
       const isOpen  = openDropdown === name;
 
       const wrap = document.createElement('div');
@@ -132,7 +132,10 @@ engine: markdown
       // dropdown
       if (isOpen) {
         const dd = document.createElement('div');
-        dd.style.cssText = `position:absolute;top:calc(100% + 6px);left:0;background:var(--background,#fff);border:1.5px solid ${g.color}40;border-radius:10px;padding:0.35rem 0.3rem;z-index:200;min-width:170px;box-shadow:0 4px 16px rgba(0,0,0,0.13);display:flex;flex-direction:column;gap:0.1rem;`;
+        const pageBg = getComputedStyle(document.body).backgroundColor;
+        const solidBg = pageBg && pageBg !== 'rgba(0, 0, 0, 0)' ? pageBg : '#ffffff';
+        dd.style.cssText = `position:absolute;top:calc(100% + 6px);left:0;background:${solidBg};border:1.5px solid ${g.color}50;border-radius:10px;padding:0.35rem 0.3rem;z-index:9999;min-width:170px;box-shadow:0 6px 24px rgba(0,0,0,0.18);display:flex;flex-direction:column;gap:0.1rem;`;
+        dd.addEventListener('click', e => e.stopPropagation());
         [...g.tags].filter(t => usedTags.has(t)).sort().forEach(tag => {
           const on = activeFilters.has(tag);
           const tb = document.createElement('button');
