@@ -124,11 +124,12 @@ own numbers and milestones.]{.role-desc}
 
 ::: role-block
 [`pages/research.qmd` — Research & Publications]{.role-title} [Update
-the research focus paragraph, the PhD status strip, and the paper cards.
-Then find the line `const ORCID_ID = '...'` near the top of the script
-block and replace it with your own ORCID identifier — publications will
-load and update automatically from there. Also update the `SCHOLAR_URL`
-constant to your Google Scholar profile URL.]{.role-desc}
+the research focus paragraph and the paper cards. The progress tracker
+reads from `data/timeline.json` — edit that file to set your current
+quarter, completion year, row labels, and activity list (see Step 4b
+below). Then find `const ORCID_ID = '...'` near the top of the script
+block and replace it with your own ORCID identifier — publications load
+automatically from there. Also update the `SCHOLAR_URL` constant.]{.role-desc}
 :::
 
 ::: role-block
@@ -160,6 +161,38 @@ section of the navbar. Add or remove nav items to match your
 pages.]{.role-desc}
 :::
 :::::::::
+
+------------------------------------------------------------------------
+
+## Step 4b — Update your progress tracker
+
+The research page includes an interactive Gantt-style tracker that reads
+from `data/timeline.json`. It's set up as a PhD-by-publication tracker,
+but the structure is generic — rename the rows to chapters, phases,
+workstreams, or whatever fits your project. Open the file and update:
+
+-   **`currentQuarter`** — which quarter you're in (1–16 covers four
+    years)
+-   **`estimatedCompletion`** — your target completion year
+-   **`milestones`** — key dates to mark on the header (e.g.
+    confirmation, annual reviews). Set `quarter` to the quarter each
+    falls in. Delete this section if you don't need it.
+-   **`papers`** — one row per workstream (paper, chapter, phase —
+    rename `label` and `title` freely). Each has a list of `activities`.
+
+Each activity has a `desc` (short label) and a `statuses` object — the
+keys are quarter numbers, the values are `"done"`, `"wip"`, `"todo"`, or
+`"goal"`. A single-quarter activity has one entry; a multi-quarter span
+has two (start and end):
+
+``` json
+{ "desc": "Data collection", "statuses": { "3": "wip", "6": "goal" } }
+{ "desc": "Ethics approval",  "statuses": { "1": "done" } }
+```
+
+Add or remove as many rows and activities as you need. If you don't want
+the tracker at all, delete the `{=html}` block from
+`pages/research.qmd` and remove `data/timeline.json`.
 
 ------------------------------------------------------------------------
 
