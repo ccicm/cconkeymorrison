@@ -33,16 +33,16 @@ An open-source Quarto template for building a professional academic website — 
 ::: project-card
 [In progress]{.project-status .status-wip}
 
-### Systematic Review Data Pipeline
+### Truly Systematic Review 
 
-A Google Colab notebook pipeline for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](research.qmd) of my PhD.
+A Shiny app for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](research.qmd) of my PhD.
 
 ::: project-tags
-[Python]{.project-tag} [Google Colab]{.project-tag} [Sys review]{.project-tag} 
+[Sys review]{.project-tag} [RStudio]{.project-tag} [Shiny]{.project-tag}
 :::
 
 ::: project-links
-[Soon on Colab]{.project-link}
+[Soon on Git]{.project-link}
 :::
 :::
 
@@ -51,7 +51,7 @@ A Google Colab notebook pipeline for developing, pulling, and testing search str
 
 ### EBSA Intervention Evidence Map
 
-An interactive evidence map for the systematic review of emotionally based school avoidance interventions [Paper 1](research.qmd). Planned as a living document updated alongside the review.
+An interactive evidence map for the systematic review of emotionally based school avoidance interventions. Planned as a living document updated alongside the review.
 
 ::: project-tags
 [R]{.project-tag} [Systematic review]{.project-tag} [EBSA]{.project-tag} [Visualisation]{.project-tag}
