@@ -303,6 +303,18 @@ function searchByTitle_(title) {
   } catch (e) { return null; }
 }
 
+function decodeHtml_(str) {
+  return str
+    .replace(/&amp;/g,  '&')
+    .replace(/&lt;/g,   '<')
+    .replace(/&gt;/g,   '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g,  "'")
+    .replace(/<[^>]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 // ── CrossRef + Europe PMC + Semantic Scholar lookup ──────────
 function fetchMetaFromCrossRef_(doi) {
   let title = '', authors = '', year = '', journal = '', abstract = '';
@@ -317,11 +329,11 @@ function fetchMetaFromCrossRef_(doi) {
       const authorList = (w.author || []).slice(0, 3).map(a =>
         a.given ? `${a.family||''}, ${a.given[0]}.` : (a.family||''));
       if ((w.author||[]).length > 3) authorList.push('et al.');
-      title    = w.title?.[0] || '';
+      title    = decodeHtml_(w.title?.[0] || '');
       authors  = authorList.join(', ');
       year     = w.published?.['date-parts']?.[0]?.[0] || '';
-      journal  = w['container-title']?.[0] || '';
-      abstract = w.abstract ? w.abstract.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim() : '';
+      journal  = decodeHtml_(w['container-title']?.[0] || '');
+      abstract = w.abstract ? decodeHtml_(w.abstract) : '';
     }
   } catch (e) { Logger.log('CrossRef error: ' + e.message); }
 
@@ -547,12 +559,13 @@ function sheetToJson_() {
     if (!doi) return acc;
 
     const get  = name => col(name) !== -1 ? String(row[col(name)] || '').trim() : '';
+    const clean = val => decodeHtml_(val);
     const entry = { doi };
-    if (get('title'))    entry.title    = get('title');
+    if (get('title'))    entry.title    = clean(get('title'));
     if (get('authors'))  entry.authors  = get('authors');
     if (get('year'))     entry.year     = get('year');
-    if (get('journal'))  entry.journal  = get('journal');
-    if (get('abstract')) entry.abstract = get('abstract');
+    if (get('journal'))  entry.journal  = clean(get('journal'));
+    if (get('abstract')) entry.abstract = clean(get('abstract'));
     if (get('note'))     entry.note     = get('note');
 
     const tags = col('tag 1') !== -1
