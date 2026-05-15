@@ -8,12 +8,18 @@ engine: markdown
 <div class="page-header"><h1>Reading List</h1></div>
 <p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">Papers I've read recently — collaborator work, methodological references, and things worth knowing about.</p>
 <hr style="border:none;border-top:1px solid var(--border);margin:0 0 1.5rem 0;">
-<div id="reading-filter-bar" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.1rem;"></div>
+<input id="reading-search" type="text" placeholder="Search titles, authors, notes…" style="width:100%;box-sizing:border-box;padding:0.5rem 0.85rem;font-size:0.9rem;font-family:inherit;border:1.5px solid var(--border,#ddd);border-radius:8px;margin-bottom:0.85rem;outline:none;background:transparent;color:inherit;">
+<div id="reading-filter-row" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;margin-bottom:1.1rem;">
+  <div id="reading-filter-bar" style="display:contents;"></div>
+  <button id="reading-clear" style="display:none;background:transparent;border:1.5px solid var(--text-muted,#aaa);border-radius:999px;padding:0.25rem 0.85rem;font-size:0.76rem;color:var(--text-muted,#888);cursor:pointer;font-family:inherit;opacity:0.8;">✕ Clear</button>
+</div>
 <div id="reading-list"><p class="pub-loading">Loading…</p></div>
 <script>
 (async function() {
   const container = document.getElementById('reading-list');
   const filterBar = document.getElementById('reading-filter-bar');
+  const searchEl  = document.getElementById('reading-search');
+  const clearBtn  = document.getElementById('reading-clear');
   let entries = [];
   try {
     const res = await fetch('/data/reading.json');
@@ -29,10 +35,9 @@ engine: markdown
     'School attendance': {
       color: '#2d6a4f',
       tags: new Set(['EBSA','Chronic absenteeism','Re-engagement','Transition',
-        'Definitions','Conceptual','Review','Foundational','Systems model',
-        'Systems framework','Systems theory','Education system','Education outcomes',
-        'Student voice','School staff','Developmental','Clinical review',
-        'Practitioner review','Framework','Differentiation','Editorial','Clinical synthesis'])
+        'Systems model','Systems framework','Systems theory','Education system',
+        'Education outcomes','Student voice','School staff','Developmental',
+        'Definitions','Framework','Differentiation'])
     },
     'Interventions': {
       color: '#c05a4a',
@@ -48,10 +53,12 @@ engine: markdown
         'Individual differences','Parent experience','Inclusion','Parent factors',
         'Personality','Behavioural addiction'])
     },
-    'Methods': {
+    'Study design': {
       color: '#2c6e8a',
       tags: new Set(['Systematic review','Scoping review','Meta-analysis','Qualitative',
-        'Methods','Risk of bias','Measurement','Network analysis','Measurement tool'])
+        'RCT','Methods','Risk of bias','Measurement','Network analysis','Measurement tool',
+        'Clinical review','Practitioner review','Review','Foundational',
+        'Editorial','Clinical synthesis','Conceptual'])
     },
     'Digital & AI': {
       color: '#b07d2e',
@@ -69,6 +76,7 @@ engine: markdown
   }
 
   let activeFilters = new Set();
+  let searchQuery   = '';
   let activeDropdownName = null;
   let activeDropdownEl   = null;
 
@@ -79,6 +87,26 @@ engine: markdown
 
   document.addEventListener('click', () => { if (activeDropdownEl) { removeDropdown(); renderFilterBar(); } });
 
+  searchEl.addEventListener('input', () => {
+    searchQuery = searchEl.value.trim().toLowerCase();
+    updateClearBtn();
+    renderList();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    activeFilters.clear();
+    searchQuery = '';
+    searchEl.value = '';
+    removeDropdown();
+    updateClearBtn();
+    renderFilterBar();
+    renderList();
+  });
+
+  function updateClearBtn() {
+    clearBtn.style.display = (activeFilters.size > 0 || searchQuery) ? 'inline-block' : 'none';
+  }
+
   function groupState(name) {
     if (activeFilters.has(name)) return 'full';
     if ([...GROUPS[name].tags].some(t => activeFilters.has(t))) return 'partial';
@@ -86,6 +114,10 @@ engine: markdown
   }
 
   function entryMatches(entry) {
+    if (searchQuery) {
+      const hay = [entry.title, entry.authors, entry.journal, entry.note].filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(searchQuery)) return false;
+    }
     if (activeFilters.size === 0) return true;
     const tags = entry.tags || [];
     for (const f of activeFilters) {
@@ -98,13 +130,12 @@ engine: markdown
   function openDropdownFor(name, g, anchorEl) {
     removeDropdown();
     activeDropdownName = name;
-
     const rect = anchorEl.getBoundingClientRect();
     const dd   = document.createElement('div');
     dd.style.cssText = [
       'position:fixed',
-      `top:${rect.bottom + window.scrollY + 6}px`,
-      `left:${rect.left + window.scrollX}px`,
+      `top:${rect.bottom + 6}px`,
+      `left:${rect.left}px`,
       'background:#ffffff',
       `border:1.5px solid ${g.color}`,
       'border-radius:10px',
@@ -117,7 +148,6 @@ engine: markdown
       'gap:0.1rem',
     ].join(';');
     dd.addEventListener('click', e => e.stopPropagation());
-
     [...g.tags].filter(t => usedTags.has(t)).sort().forEach(tag => {
       const on = activeFilters.has(tag);
       const tb = document.createElement('button');
@@ -125,15 +155,9 @@ engine: markdown
       tb.style.cssText = [
         `background:${on ? g.color : 'transparent'}`,
         `color:${on ? '#fff' : g.color}`,
-        'border:none',
-        'text-align:left',
-        'padding:0.28rem 0.75rem',
-        'border-radius:6px',
-        'cursor:pointer',
-        'font-size:0.78rem',
-        `font-weight:${on ? 600 : 400}`,
-        'font-family:inherit',
-        'transition:background 0.1s',
+        'border:none','text-align:left','padding:0.28rem 0.75rem',
+        'border-radius:6px','cursor:pointer','font-size:0.78rem',
+        `font-weight:${on ? 600 : 400}`,'font-family:inherit','transition:background 0.1s',
       ].join(';');
       tb.addEventListener('mouseenter', () => { if (!on) tb.style.background = `color-mix(in srgb,${g.color} 10%,transparent)`; });
       tb.addEventListener('mouseleave', () => { if (!on) tb.style.background = 'transparent'; });
@@ -142,11 +166,11 @@ engine: markdown
         activeFilters.delete(name);
         if (activeFilters.has(tag)) activeFilters.delete(tag); else activeFilters.add(tag);
         removeDropdown();
+        updateClearBtn();
         renderFilterBar(); renderList();
       });
       dd.appendChild(tb);
     });
-
     document.body.appendChild(dd);
     activeDropdownEl = dd;
   }
@@ -167,20 +191,16 @@ engine: markdown
       labelBtn.style.cssText = [
         `background:${labelOn ? g.color : 'transparent'}`,
         `color:${labelOn ? '#fff' : g.color}`,
-        'padding:0.25rem 0.7rem 0.25rem 0.85rem',
-        'border:none',
-        'cursor:pointer',
-        'font-size:0.78rem',
-        `font-weight:${state !== 'off' ? 600 : 500}`,
-        'font-family:inherit',
-        `opacity:${state === 'off' ? 0.7 : 1}`,
-        'transition:all 0.15s',
+        'padding:0.25rem 0.7rem 0.25rem 0.85rem','border:none','cursor:pointer',
+        'font-size:0.78rem',`font-weight:${state !== 'off' ? 600 : 500}`,
+        'font-family:inherit',`opacity:${state === 'off' ? 0.7 : 1}`,'transition:all 0.15s',
       ].join(';');
       labelBtn.addEventListener('click', e => {
         e.stopPropagation();
         [...g.tags].forEach(t => activeFilters.delete(t));
         if (activeFilters.has(name)) activeFilters.delete(name); else activeFilters.add(name);
         removeDropdown();
+        updateClearBtn();
         renderFilterBar(); renderList();
       });
 
@@ -188,14 +208,9 @@ engine: markdown
       chevBtn.innerHTML = '&#9660;';
       chevBtn.style.cssText = [
         `background:${isOpen || state !== 'off' ? `color-mix(in srgb,${g.color} 22%,transparent)` : 'transparent'}`,
-        `color:${g.color}`,
-        'padding:0.25rem 0.55rem',
-        'border:none',
-        `border-left:1.5px solid ${g.color}50`,
-        'cursor:pointer',
-        'font-size:0.58rem',
-        'font-family:inherit',
-        'transition:all 0.15s',
+        `color:${g.color}`,'padding:0.25rem 0.55rem','border:none',
+        `border-left:1.5px solid ${g.color}50`,'cursor:pointer',
+        'font-size:0.58rem','font-family:inherit','transition:all 0.15s',
       ].join(';');
       chevBtn.addEventListener('click', e => {
         e.stopPropagation();
