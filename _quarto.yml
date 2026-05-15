@@ -24,10 +24,6 @@ website:
             text: Projects
           - href: posts/index.qmd
             text: Writing
-      - text: Clinical
-        menu:
-          - href: clinical/index.qmd
-            text: Overview
       - href: cv/index.qmd
         text: CV
       - href: contact.qmd
