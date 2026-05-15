@@ -155,7 +155,7 @@ function migrateExistingData() {
   const ui = SpreadsheetApp.getUi();
   const confirm = ui.alert(
     'Migrate existing data',
-    'Restructures Reading List to new columns (adds Authors, Year, Journal) and fetches from CrossRef. Existing notes are preserved. Continue?',
+    'Restructures Reading List to new columns (adds Authors, Year, Journal, Abstract) and fetches from CrossRef. Existing notes are preserved. Continue?',
     ui.ButtonSet.OK_CANCEL
   );
   if (confirm !== ui.Button.OK) return;
@@ -166,36 +166,39 @@ function migrateExistingData() {
 
   const data = sheet.getDataRange().getValues();
   const h = data[0].map(x => String(x).trim().toLowerCase());
-  const doiCol    = h.indexOf('doi');
-  const titleCol  = h.indexOf('title');
-  const authCol   = h.indexOf('authors');
-  const yearCol   = h.indexOf('year');
+  const doiCol     = h.indexOf('doi');
+  const titleCol   = h.indexOf('title');
+  const authCol    = h.indexOf('authors');
+  const yearCol    = h.indexOf('year');
   const journalCol = h.indexOf('journal');
-  const tag1Col   = h.indexOf('tag 1');
-  const tag2Col   = h.indexOf('tag 2');
-  const tag3Col   = h.indexOf('tag 3');
-  const tagsCol   = h.indexOf('tags');
-  const noteCol   = h.indexOf('note');
+  const tag1Col    = h.indexOf('tag 1');
+  const tag2Col    = h.indexOf('tag 2');
+  const tag3Col    = h.indexOf('tag 3');
+  const tagsCol    = h.indexOf('tags');
+  const noteCol    = h.indexOf('note');
+  const absCol     = h.indexOf('abstract');
   if (doiCol === -1) { ui.alert('No DOI column found.'); return; }
 
-  const newData = [['DOI', 'Title', 'Authors', 'Year', 'Journal', 'Tag 1', 'Tag 2', 'Tag 3', 'Note']];
+  // DOI | Title | Authors | Year | Journal | Tag 1 | Tag 2 | Tag 3 | Note | Abstract
+  const newData = [['DOI', 'Title', 'Authors', 'Year', 'Journal', 'Tag 1', 'Tag 2', 'Tag 3', 'Note', 'Abstract']];
 
   for (let i = 1; i < data.length; i++) {
     const doi = String(data[i][doiCol] || '').trim();
     if (!doi) continue;
 
-    // Only fetch from CrossRef if we're missing title or authors
-    let title   = titleCol !== -1  ? String(data[i][titleCol]   || '').trim() : '';
-    let authors = authCol !== -1   ? String(data[i][authCol]    || '').trim() : '';
-    let year    = yearCol !== -1   ? String(data[i][yearCol]    || '').trim() : '';
-    let journal = journalCol !== -1 ? String(data[i][journalCol] || '').trim() : '';
+    let title    = titleCol   !== -1 ? String(data[i][titleCol]   || '').trim() : '';
+    let authors  = authCol    !== -1 ? String(data[i][authCol]    || '').trim() : '';
+    let year     = yearCol    !== -1 ? String(data[i][yearCol]    || '').trim() : '';
+    let journal  = journalCol !== -1 ? String(data[i][journalCol] || '').trim() : '';
+    let abstract = absCol     !== -1 ? String(data[i][absCol]     || '').trim() : '';
 
-    if (!title || !authors) {
+    if (!title || !authors || !abstract) {
       const meta = fetchMetaFromCrossRef_(doi);
-      if (!title)   title   = meta.title   || '';
-      if (!authors) authors = meta.authors || '';
-      if (!year)    year    = meta.year    ? String(meta.year) : '';
-      if (!journal) journal = meta.journal || '';
+      if (!title)    title    = meta.title    || '';
+      if (!authors)  authors  = meta.authors  || '';
+      if (!year)     year     = meta.year ? String(meta.year) : '';
+      if (!journal)  journal  = meta.journal  || '';
+      if (!abstract) abstract = meta.abstract || '';
       Utilities.sleep(200);
     }
 
@@ -207,12 +210,12 @@ function migrateExistingData() {
     }
 
     const note = noteCol !== -1 ? String(data[i][noteCol] || '').trim() : '';
-    newData.push([doi, title, authors, year, journal, tags[0] || '', tags[1] || '', tags[2] || '', note]);
+    newData.push([doi, title, authors, year, journal, tags[0] || '', tags[1] || '', tags[2] || '', note, abstract]);
   }
 
   sheet.clearContents();
-  sheet.getRange(1, 1, newData.length, 9).setValues(newData);
-  sheet.getRange(1, 1, 1, 9).setFontWeight('bold');
+  sheet.getRange(1, 1, newData.length, 10).setValues(newData);
+  sheet.getRange(1, 1, 1, 10).setFontWeight('bold');
   applyTagValidation_(sheet);
 
   ui.alert(`✅ Migration complete. ${newData.length - 1} entries migrated.`);
@@ -261,14 +264,15 @@ function onApaEdit(e) {
   // Append row — note left blank, use "Generate missing insights" to fill
   rlSheet.appendRow([
     doi,
-    meta.title   || '',
-    meta.authors || '',
-    meta.year    ? String(meta.year) : '',
-    meta.journal || '',
-    suggested[0] || '',
-    suggested[1] || '',
-    suggested[2] || '',
-    ''
+    meta.title    || '',
+    meta.authors  || '',
+    meta.year     ? String(meta.year) : '',
+    meta.journal  || '',
+    suggested[0]  || '',
+    suggested[1]  || '',
+    suggested[2]  || '',
+    '',
+    meta.abstract || ''
   ]);
 
   const newRow = rlSheet.getLastRow();
@@ -386,7 +390,8 @@ function generateMissingInsights() {
   const doiCol   = h.indexOf('doi');
   const titleCol = h.indexOf('title');
   const noteCol  = h.indexOf('note');
-  if (doiCol === -1 || noteCol === -1) { SpreadsheetApp.getUi().alert('Missing columns.'); return; }
+  const absCol   = h.indexOf('abstract');
+  if (doiCol === -1 || noteCol === -1) { SpreadsheetApp.getUi().alert('Missing columns. Run migration first.'); return; }
 
   let count = 0;
   for (let i = 1; i < data.length; i++) {
@@ -394,45 +399,47 @@ function generateMissingInsights() {
     const note = String(data[i][noteCol] || '').trim();
     if (!doi || note) continue;
 
-    const title = titleCol !== -1 ? String(data[i][titleCol] || '').trim() : '';
-    const { abstract } = fetchMetaFromCrossRef_(doi);
-    const insight = generateInsight_(title, abstract);
+    const title    = titleCol !== -1 ? String(data[i][titleCol] || '').trim() : '';
+    const abstract = absCol   !== -1 ? String(data[i][absCol]   || '').trim() : '';
+    const insight  = generateInsight_(title, abstract);
     if (insight) {
       sheet.getRange(i + 1, noteCol + 1).setValue(insight);
       count++;
     }
-    Utilities.sleep(300);
+    Utilities.sleep(200);
   }
 
   SpreadsheetApp.getUi().alert(`✅ Generated insights for ${count} entries.`);
 }
 
-// ── Insight generator (Gemini) ────────────────────────────────
+// ── Insight generator (Groq / Llama) ─────────────────────────
 function generateInsight_(title, abstract) {
   const key = PropertiesService.getUserProperties().getProperty('GROQ_KEY');
-  if (!key || !title) return abstract || '';
-  const prompt = abstract
-    ? `Paper: "${title}"\n\nAbstract: ${abstract}\n\nWrite a 2-sentence insight for a researcher studying school attendance problems and cyberpsychology. Flag what's notable or worth knowing — not just what the paper does. Be direct. Don't start with "This paper" or "The study".`
-    : `Paper title: "${title}"\n\nWrite a 2-sentence insight for a researcher studying school attendance problems and cyberpsychology. Draw on what you know about this paper or topic. Flag what's notable. Be direct. Don't start with "This paper" or "The study".`;
+  if (!key || !title) return '';
+  const context = abstract ? `Abstract: ${abstract}\n\n` : '';
+  const prompt =
+    `You write sharp, opinionated research notes — 2 sentences, plain prose, no bold, no asterisks, no bullet points.\n\n` +
+    `Examples of the style:\n` +
+    `"An Australian online parenting program for adolescent school refusal. Interesting because parents found it acceptable — but attendance didn't actually improve, raising questions about whether parent-only approaches are sufficient."\n` +
+    `"Foundational clinical review that established the integrative models still referenced today. Worth reading as baseline — but the framing has shifted considerably since."\n` +
+    `"Feasibility study of VR exposure for school anxiety. Early-stage, limited generalisability, but a useful marker of where digital intervention design is heading."\n\n` +
+    `Now write a note in exactly this style for:\nPaper: "${title}"\n${context}` +
+    `2 sentences only. No formatting. Start with what's notable, end with why it matters or what it raises.`;
   try {
     const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + key,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
       payload: JSON.stringify({
         model: 'llama-3.1-8b-instant',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 120,
-        temperature: 0.7
+        max_tokens: 100,
+        temperature: 0.5
       }),
       muteHttpExceptions: true
     });
-    const json = JSON.parse(res.getContentText());
-    return json.choices?.[0]?.message?.content?.trim() || abstract || '';
+    return JSON.parse(res.getContentText()).choices?.[0]?.message?.content?.trim() || '';
   } catch (e) {
-    return abstract || '';
+    return '';
   }
 }
 
@@ -456,16 +463,18 @@ function sheetToJson_() {
   const tag3Col    = h.indexOf('tag 3');
   const tagsCol    = h.indexOf('tags');
   const noteCol    = h.indexOf('note');
+  const absCol     = h.indexOf('abstract');
   if (doiCol === -1) throw new Error('Missing "DOI" column.');
 
   return data.slice(1).reduce((acc, row) => {
     const doi = String(row[doiCol] || '').trim();
     if (!doi) return acc;
     const entry = { doi };
-    if (titleCol   !== -1 && row[titleCol])   entry.title   = String(row[titleCol]).trim();
-    if (authCol    !== -1 && row[authCol])     entry.authors = String(row[authCol]).trim();
-    if (yearCol    !== -1 && row[yearCol])     entry.year    = String(row[yearCol]).trim();
-    if (journalCol !== -1 && row[journalCol])  entry.journal = String(row[journalCol]).trim();
+    if (titleCol   !== -1 && row[titleCol])   entry.title    = String(row[titleCol]).trim();
+    if (authCol    !== -1 && row[authCol])     entry.authors  = String(row[authCol]).trim();
+    if (yearCol    !== -1 && row[yearCol])     entry.year     = String(row[yearCol]).trim();
+    if (journalCol !== -1 && row[journalCol])  entry.journal  = String(row[journalCol]).trim();
+    if (absCol     !== -1 && row[absCol])      entry.abstract = String(row[absCol]).trim();
     const tags = tag1Col !== -1
       ? [tag1Col, tag2Col, tag3Col].filter(c => c !== -1).map(c => String(row[c] || '').trim()).filter(Boolean)
       : tagsCol !== -1 ? String(row[tagsCol] || '').split(',').map(t => t.trim()).filter(Boolean) : [];
@@ -514,79 +523,3 @@ function syncReadingList() {
   }
 }
 
-function listGeminiModels() {
-  const key = PropertiesService.getUserProperties().getProperty('GEMINI_KEY');
-  const res = UrlFetchApp.fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`,
-    { muteHttpExceptions: true }
-  );
-  Logger.log(res.getContentText().substring(0, 3000));
-}
-
-function testGemini() {
-  try {
-    const key = PropertiesService.getUserProperties().getProperty('GEMINI_KEY');
-    Logger.log('Key found: ' + (key ? 'yes (' + key.substring(0, 8) + '...)' : 'NO KEY'));
-    if (!key) return;
-
-    const res = UrlFetchApp.fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,
-      {
-        method: 'POST',
-        contentType: 'application/json',
-        payload: JSON.stringify({ contents: [{ parts: [{ text: 'Say hello.' }] }] }),
-        muteHttpExceptions: true
-      }
-    );
-    Logger.log('Status: ' + res.getResponseCode());
-    Logger.log('Response: ' + res.getContentText().substring(0, 500));
-  } catch(e) {
-    Logger.log('Caught error: ' + e.message);
-    Logger.log('Error stack: ' + e.stack);
-  }
-}
-
-function debugInsights() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
-  const data = sheet.getDataRange().getValues();
-  const h = data[0].map(x => String(x).trim().toLowerCase());
-  const doiCol = h.indexOf('doi');
-  const titleCol = h.indexOf('title');
-  const noteCol = h.indexOf('note');
-
-  Logger.log('Columns — doi:' + doiCol + ' title:' + titleCol + ' note:' + noteCol);
-
-  // Count empty notes
-  let empty = 0;
-  for (let i = 1; i < data.length; i++) {
-    if (String(data[i][doiCol]||'').trim() && !String(data[i][noteCol]||'').trim()) empty++;
-  }
-  Logger.log('Rows with empty notes: ' + empty);
-
-  // Test Gemini on the first empty row
-  for (let i = 1; i < data.length; i++) {
-    const doi   = String(data[i][doiCol]  || '').trim();
-    const note  = String(data[i][noteCol] || '').trim();
-    const title = String(data[i][titleCol]|| '').trim();
-    if (!doi || note) continue;
-
-    Logger.log('Testing on: ' + title);
-    const { abstract } = fetchMetaFromCrossRef_(doi);
-    Logger.log('Abstract found: ' + (abstract ? 'yes (' + abstract.substring(0,80) + '...)' : 'no'));
-
-    const key = PropertiesService.getUserProperties().getProperty('GEMINI_KEY');
-    const res = UrlFetchApp.fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${key}`,
-      {
-        method: 'POST',
-        contentType: 'application/json',
-        payload: JSON.stringify({ contents: [{ parts: [{ text: `Write one sentence about: "${title}"` }] }] }),
-        muteHttpExceptions: true
-      }
-    );
-    Logger.log('Gemini status: ' + res.getResponseCode());
-    Logger.log('Gemini response: ' + res.getContentText().substring(0, 500));
-    break;
-  }
-}
