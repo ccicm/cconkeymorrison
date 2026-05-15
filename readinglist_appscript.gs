@@ -76,7 +76,7 @@ const TAG_KEYWORDS = {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('📚 Reading List')
-    .addItem('Fill missing metadata', 'fillMissingMetadata')
+    .addItem('Fill missing abstracts', 'fillMissingAbstracts')
     .addItem('Generate missing insights', 'generateMissingInsights')
     .addSeparator()
     .addItem('Sync to website now', 'syncReadingList')
@@ -364,78 +364,57 @@ function callGroq_(prompt, maxTokens, temperature) {
   }
 }
 
-// ── Fill missing metadata ─────────────────────────────────────
-function fillMissingMetadata() {
+// ── Fill missing abstracts ────────────────────────────────────
+function fillMissingAbstracts() {
   const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
   if (!sheet) { SpreadsheetApp.getUi().alert('Reading List sheet not found.'); return; }
-  if (!getGroqKey_()) { SpreadsheetApp.getUi().alert('No Groq key set.'); return; }
 
-  const data = sheet.getDataRange().getValues();
-  const h    = data[0].map(x => String(x).trim().toLowerCase());
-  const doiCol  = h.indexOf('doi');
-  const titleCol   = h.indexOf('title');
-  const authCol    = h.indexOf('authors');
-  const yearCol    = h.indexOf('year');
-  const journalCol = h.indexOf('journal');
-  const absCol     = h.indexOf('abstract');
-  if (doiCol === -1) { SpreadsheetApp.getUi().alert('Run migration first.'); return; }
+  const data   = sheet.getDataRange().getValues();
+  const h      = data[0].map(x => String(x).trim().toLowerCase());
+  const doiCol = h.indexOf('doi');
+  const absCol = h.indexOf('abstract');
+  if (doiCol === -1) { SpreadsheetApp.getUi().alert('No DOI column found. Run migration first.'); return; }
+  if (absCol  === -1) { SpreadsheetApp.getUi().alert('No Abstract column found.'); return; }
 
-  let count = 0;
+  let filled = 0, skipped = 0;
   for (let i = 1; i < data.length; i++) {
-    const doi      = String(data[i][doiCol]     || '').trim();
-    const title    = String(data[i][titleCol]   || '').trim();
-    const authors  = String(data[i][authCol]    || '').trim();
-    const year     = String(data[i][yearCol]    || '').trim();
-    const journal  = String(data[i][journalCol] || '').trim();
-    const abstract = absCol !== -1 ? String(data[i][absCol] || '').trim() : '';
-    if (!doi) continue;
+    const doi      = String(data[i][doiCol] || '').trim();
+    const abstract = String(data[i][absCol] || '').trim();
+    if (!doi || abstract) { if (abstract) skipped++; continue; }
 
-    // ── Short metadata (authors / year / journal) ──
-    const missingMeta = [
-      !authors && 'authors',
-      !year    && 'year',
-      !journal && 'journal'
-    ].filter(Boolean);
+    // CrossRef first, Europe PMC fallback
+    let fetched = '';
+    try {
+      const res = UrlFetchApp.fetch(
+        `https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`,
+        { muteHttpExceptions: true });
+      if (res.getResponseCode() === 200) {
+        const w = JSON.parse(res.getContentText()).message;
+        if (w.abstract) fetched = w.abstract.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
+      }
+    } catch (e) { Logger.log('CrossRef row ' + (i+1) + ': ' + e.message); }
 
-    if (missingMeta.length) {
-      const metaPrompt =
-        `Return ONLY valid JSON, no other text.\n` +
-        `Academic paper — Title: "${title}", DOI: ${doi}\n` +
-        `Provide these fields (only if confident): ${missingMeta.join(', ')}\n` +
-        `Format: {"authors":"Last, F., Last, F., et al.","year":"2023","journal":"Full Journal Name"}\n` +
-        `Omit any field you are not confident about.`;
-      const text = callGroq_(metaPrompt, 80, 0.1);
-      if (text) {
-        const match = text.match(/\{[\s\S]*\}/);
-        if (match) {
-          try {
-            const meta = JSON.parse(match[0]);
-            if (!authors && meta.authors) { sheet.getRange(i+1, authCol+1).setValue(meta.authors);    count++; }
-            if (!year    && meta.year)    { sheet.getRange(i+1, yearCol+1).setValue(String(meta.year)); }
-            if (!journal && meta.journal) { sheet.getRange(i+1, journalCol+1).setValue(meta.journal);  }
-          } catch(e) { Logger.log('JSON parse row ' + (i+1) + ': ' + e.message); }
+    if (!fetched) {
+      try {
+        const res = UrlFetchApp.fetch(
+          `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:${encodeURIComponent(doi)}&resultType=core&format=json`,
+          { muteHttpExceptions: true });
+        if (res.getResponseCode() === 200) {
+          const item = JSON.parse(res.getContentText()).resultList?.result?.[0];
+          if (item?.abstractText) fetched = item.abstractText.replace(/\s+/g,' ').trim();
         }
-      }
-      Utilities.sleep(200);
+      } catch (e) { Logger.log('Europe PMC row ' + (i+1) + ': ' + e.message); }
     }
 
-    // ── Abstract ──
-    if (!abstract && absCol !== -1) {
-      const absPrompt =
-        `Write a concise 2-3 sentence academic abstract for this paper based on what you know about it.\n` +
-        `Title: "${title}"\nDOI: ${doi}\n` +
-        `If you don't know this paper well enough to be accurate, reply with just: UNKNOWN`;
-      const absText = callGroq_(absPrompt, 200, 0.2);
-      if (absText && !absText.startsWith('UNKNOWN')) {
-        sheet.getRange(i+1, absCol+1).setValue(absText);
-        count++;
-      }
-      Utilities.sleep(200);
+    if (fetched) {
+      sheet.getRange(i + 1, absCol + 1).setValue(fetched);
+      filled++;
     }
+    Utilities.sleep(150);
   }
 
-  SpreadsheetApp.getUi().alert(`✅ Metadata filled for ${count} entries.`);
+  SpreadsheetApp.getUi().alert(`✅ Done. Abstracts filled: ${filled}. Already had one: ${skipped}.`);
 }
 
 // ── Generate missing insights ─────────────────────────────────
