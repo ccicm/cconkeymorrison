@@ -302,30 +302,58 @@ function searchByTitle_(title) {
   } catch (e) { return null; }
 }
 
-// ── CrossRef lookup ───────────────────────────────────────────
+// ── CrossRef + Europe PMC + Semantic Scholar lookup ──────────
 function fetchMetaFromCrossRef_(doi) {
+  let title = '', authors = '', year = '', journal = '', abstract = '';
+
+  // CrossRef — title, authors, year, journal, abstract (patchy for psych/edu)
   try {
     const res = UrlFetchApp.fetch(
       `https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`,
       { muteHttpExceptions: true });
-    if (res.getResponseCode() !== 200) return {};
-    const w = JSON.parse(res.getContentText()).message;
+    if (res.getResponseCode() === 200) {
+      const w = JSON.parse(res.getContentText()).message;
+      const authorList = (w.author || []).slice(0, 3).map(a =>
+        a.given ? `${a.family||''}, ${a.given[0]}.` : (a.family||''));
+      if ((w.author||[]).length > 3) authorList.push('et al.');
+      title    = w.title?.[0] || '';
+      authors  = authorList.join(', ');
+      year     = w.published?.['date-parts']?.[0]?.[0] || '';
+      journal  = w['container-title']?.[0] || '';
+      abstract = w.abstract ? w.abstract.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim() : '';
+    }
+  } catch (e) { Logger.log('CrossRef error: ' + e.message); }
 
-    const authorList = (w.author || []).slice(0, 3).map(a =>
-      a.given ? `${a.family||''}, ${a.given[0]}.` : (a.family||''));
-    if ((w.author||[]).length > 3) authorList.push('et al.');
-
-    return {
-      title:    w.title?.[0] || '',
-      authors:  authorList.join(', '),
-      year:     w.published?.['date-parts']?.[0]?.[0] || '',
-      journal:  w['container-title']?.[0] || '',
-      abstract: w.abstract ? w.abstract.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim() : ''
-    };
-  } catch (e) {
-    Logger.log('CrossRef error: ' + e.message);
-    return {};
+  // Europe PMC fallback
+  if (!abstract) {
+    try {
+      const res = UrlFetchApp.fetch(
+        `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:${encodeURIComponent(doi)}&resultType=core&format=json`,
+        { muteHttpExceptions: true });
+      if (res.getResponseCode() === 200) {
+        const item = JSON.parse(res.getContentText()).resultList?.result?.[0];
+        if (item?.abstractText) abstract = item.abstractText.replace(/\s+/g,' ').trim();
+      }
+    } catch (e) { Logger.log('Europe PMC error: ' + e.message); }
   }
+
+  // Semantic Scholar fallback — best abstract coverage for psych/edu
+  if (!abstract) abstract = fetchSemanticScholarAbstract_(doi);
+
+  return { title, authors, year, journal, abstract };
+}
+
+function fetchSemanticScholarAbstract_(doi) {
+  try {
+    const res = UrlFetchApp.fetch(
+      `https://api.semanticscholar.org/graph/v1/paper/DOI:${encodeURIComponent(doi)}?fields=abstract`,
+      { muteHttpExceptions: true });
+    if (res.getResponseCode() === 200) {
+      const data = JSON.parse(res.getContentText());
+      if (data.abstract) return data.abstract.replace(/\s+/g,' ').trim();
+    }
+  } catch (e) { Logger.log('Semantic Scholar error: ' + e.message); }
+  return '';
 }
 
 // ── Tag suggester ─────────────────────────────────────────────
@@ -383,7 +411,7 @@ function fillMissingAbstracts() {
     const abstract = String(data[i][absCol] || '').trim();
     if (!doi || abstract) { if (abstract) skipped++; continue; }
 
-    // CrossRef first, Europe PMC fallback
+    // CrossRef → Europe PMC → Semantic Scholar
     let fetched = '';
     try {
       const res = UrlFetchApp.fetch(
@@ -406,6 +434,8 @@ function fillMissingAbstracts() {
         }
       } catch (e) { Logger.log('Europe PMC row ' + (i+1) + ': ' + e.message); }
     }
+
+    if (!fetched) fetched = fetchSemanticScholarAbstract_(doi);
 
     if (fetched) {
       sheet.getRange(i + 1, absCol + 1).setValue(fetched);
