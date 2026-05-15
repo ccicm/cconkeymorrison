@@ -75,15 +75,16 @@ const TAG_KEYWORDS = {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('📚 Reading List')
-    .addItem('Sync to website now', 'syncReadingList')
+    .addItem('Fill missing metadata', 'fillMissingMetadata')
     .addItem('Generate missing insights', 'generateMissingInsights')
     .addSeparator()
-    .addItem('1. Set up sheets & tags (first time)', 'setupSheets')
-    .addItem('2. Migrate existing data (first time)', 'migrateExistingData')
-    .addItem('3. Install APA trigger (first time)', 'setupTrigger')
-    .addItem('Set Groq API key', 'promptForApiKey')
+    .addItem('Sync to website now', 'syncReadingList')
     .addSeparator()
-    .addItem('Set GitHub token', 'promptForToken')
+    .addItem('1. Set GitHub token', 'promptForToken')
+    .addItem('2. Set Groq API key', 'promptForApiKey')
+    .addItem('3. Set up sheets & tags (first time)', 'setupSheets')
+    .addItem('4. Migrate existing data (first time)', 'migrateExistingData')
+    .addItem('5. Install APA trigger (first time)', 'setupTrigger')
     .addToUi();
 }
 
@@ -288,7 +289,7 @@ function onApaEdit(e) {
     }
   }
 
-  statusCell.setValue('✅ Added — run "Generate missing insights" for note');
+statusCell.setValue('✅ Added to Reading List');
 }
 
 // ── Input resolver (DOI / PMID / title / full APA) ────────────
@@ -410,6 +411,111 @@ function generateMissingInsights() {
   }
 
   SpreadsheetApp.getUi().alert(`✅ Generated insights for ${count} entries.`);
+}
+
+// ── Metadata generator (Groq / Llama) ─────────────────────────
+function fillMissingMetadata() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet) { SpreadsheetApp.getUi().alert('Reading List sheet not found.'); return; }
+
+  const data = sheet.getDataRange().getValues();
+  const h = data[0].map(x => String(x).trim().toLowerCase());
+  const doiCol     = h.indexOf('doi');
+  const titleCol   = h.indexOf('title');
+  const authCol    = h.indexOf('authors');
+  const yearCol    = h.indexOf('year');
+  const journalCol = h.indexOf('journal');
+  if (doiCol === -1) { SpreadsheetApp.getUi().alert('Missing columns.'); return; }
+
+  const key = PropertiesService.getUserProperties().getProperty('GROQ_KEY');
+  if (!key) { SpreadsheetApp.getUi().alert('No Groq key set.'); return; }
+
+  let count = 0;
+  let updates = [];
+  for (let i = 1; i < data.length; i++) {
+    const doi     = String(data[i][doiCol]     || '').trim();
+    const title   = String(data[i][titleCol]   || '').trim();
+    const authors = String(data[i][authCol]    || '').trim();
+    const year    = String(data[i][yearCol]    || '').trim();
+    const journal = String(data[i][journalCol] || '').trim();
+    const abstract = String(data[i][abstractCol] || '').trim();
+
+    if (!doi) continue;
+    if (authors && year && journal && abstract) continue; // nothing missing
+
+    const missing = [];
+    if (!authors) missing.push('authors (e.g. "Smith, J., Jones, A., et al.")');
+    if (!year)    missing.push('year (4-digit)');
+    if (!journal) missing.push('journal (full name)');
+    if (!abstract) missing.push('abstract (full)');
+
+
+    const prompt =
+      `For this academic paper, provide ONLY the missing fields as a JSON object.\n` +
+      `Title: "${title}"\nDOI: ${doi}\n` +
+      `Missing: ${missing.join(', ')}\n\n` +
+      `Return only valid JSON with keys: ${[!authors && 'authors', !year && 'year', !journal && 'journal', !abstract && 'abstract'].filter(Boolean).join(', ')}.\n` +
+      `Only include fields you are confident about. If unsure about a field, omit it entirely.\n` +
+      `Example: {"authors": "West, P., Sweeting, H., Young, R.", "year": "2008", "journal": "Research Papers in Education"}`;
+
+    try {
+      const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+        payload: JSON.stringify({
+          model: 'llama-3.1-8b-instant',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 80,
+          temperature: 0.1
+        }),
+        muteHttpExceptions: true
+      });
+
+    const text = JSON.parse(res.getContentText()).choices?.[0]?.message?.content?.trim() || '';
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) { Utilities.sleep(200); continue; }
+
+      let changedFields = [];
+
+      if (!authors && meta.authors) {
+      sheet.getRange(i + 1, authCol + 1).setValue(meta.authors);
+      changedFields.push('authors');
+      }
+
+      if (!year && meta.year) {
+      sheet.getRange(i + 1, yearCol + 1).setValue(String(meta.year));
+      changedFields.push('year');
+      }
+
+      if (!journal && meta.journal) {
+      sheet.getRange(i + 1, journalCol + 1).setValue(meta.journal);
+      changedFields.push('journal');
+      }
+
+      if (!abstract && meta.abstract) {
+      sheet.getRange(i + 1, abstractCol + 1).setValue(meta.abstract);
+      changedFields.push('abstract');
+      }
+
+        if (changedFields.length > 0) {
+        count++;
+
+        updates.push(
+          `Row ${i + 1} | DOI: ${doi}\n` +
+          `Updated: ${changedFields.join(', ')}`
+        );
+      }
+    } catch (e) {
+      Logger.log('Row ' + (i+1) + ' error: ' + e.message);
+    }
+    Utilities.sleep(200);
+  }
+
+  SpreadsheetApp.getUi().alert(
+  `✅ Filled metadata for ${count} entries.\n\n` +
+  (updates.length ? updates.join('\n\n') : 'No updates made.')
+);
 }
 
 // ── Insight generator (Groq / Llama) ─────────────────────────
