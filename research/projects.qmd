@@ -31,9 +31,9 @@ An open-source Quarto template for building a professional academic website — 
 :::
 
 ::: project-card
-[In progress]{.project-status .status-wip}
+[Under testing]{.project-status .status-wip}
 
-### Truly Systematic Review 
+### Truly Systematic Review
 
 A Shiny app for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](research.qmd) of my PhD.
 
@@ -42,7 +42,7 @@ A Shiny app for developing, pulling, and testing search strings in PubMed data. 
 :::
 
 ::: project-links
-[Soon on Git]{.project-link}
+[View on GitHub](https://github.com/ccicm/TrulySystematicReview){.project-link-secondary}
 :::
 :::
 
