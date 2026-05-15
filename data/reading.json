@@ -6,7 +6,6 @@
     "year": "2025",
     "journal": "Frontiers in Psychology",
     "abstract": "Emotion-related school attendance challenges (ER-SAC) among neurodiverse adolescents are a growing concern due to their impact on both academic and social–emotional development. Despite the prevalence of ER-SAC, few school-based interventions specifically addressing this challenge have been evaluated in real-world settings. The current effectiveness study examined outcomes of the @School intervention, a modular, developmentally sensitive cognitive behavioral intervention that had previously only been evaluated in a research context. In this study, it was delivered by school-based psychologists in a specialized educational setting. Nineteen neurodiverse adolescents aged 12–17 years, all experiencing ER-SAC, participated in the study along with their parents. @School comprises individualized modules for adolescents and parents, as well as structured collaboration with school staff. Outcomes were assessed at pre-, post-, and five-month follow-up, and included adolescents’ school attendance, anxiety, school-related fear, depression, and self-efficacy, together with parent self-efficacy. Results revealed significant improvements in school attendance, adolescent anxiety (reported by both adolescents and parents), adolescent depression (reported by parents), and school-related fear. No significant changes were observed in adolescent or parent self-efficacy. Post-hoc analyses indicated significant reductions in social anxiety symptoms, although these reductions did not predict school attendance outcomes. Findings support the effectiveness of the @School intervention, delivered in a real-world setting, for improving school attendance and reducing emotional distress among neurodiverse adolescents. The results also highlight the value of school-based interventions that integrate support across multiple levels—addressing the needs of adolescents, their parents, and the school environment—to respond to the complex emotional and contextual factors contributing to ER-SAC.",
-    "note": "Neurodiversity",
     "tags": [
       "EBSA",
       "Intervention",
@@ -75,6 +74,7 @@
     "authors": "Pérez-Marco, M., Gonzálvez, C., Fuster, A., et al.",
     "year": "2025",
     "journal": "Children and Youth Services Review",
+    "abstract": "School attendance problems (SAPs) refer to a construct that encompasses different manifestations of negative behaviours or persistent difficulties of a student to attend or stay in school for various reasons (anxiety, rejection, fear, etc.). Due to the worldwide concern about the negative repercussions of non-attendance, a deeper understanding of its intervention is essential. For this reason, this study aims to offer a systematic review of the programs designed to reduce or eradicate SAPs in child and adolescent population, differentiating between two main types according to the causal origin of the attendance problem: school refusal or truancy. For this purpose, a systematic process of search was carried out in the databases Web Of Science, Scopus, PsycINFO and Psicodoc with a common search strategy. According to 5 inclusion criteria, the data extracted from each study were analyzed based on 3 levels of effectiveness and the Cochrane’s risk bias tool. Seventy-eight programs aimed at intervening in SAPs in 6–18-year-old population were reviewed. Twenty-nine of the studies showed one of the established levels of effectiveness for the reduction of School Refusal or Truancy, which had similar characteristics in the application of the intervention program. Consequently, the strengths and weaknesses of these programs are discussed in order to provide a source of reference for staff responsible for improving school attendance. This work will contribute to clarifying which types of interventions are the most effective in dealing with SAPs.",
     "note": "A recent systematic review of intervention programs for school attendance problems more broadly. Good for situating the EBSA-specific literature within the wider attendance field.",
     "tags": [
       "EBSA",
@@ -102,8 +102,8 @@
     "authors": "Hunt, B., Zarate, D., Gill, P., et al.",
     "year": "2023",
     "journal": "Psychiatry Research",
-    "abstract": "This paper explores the complex relationships between sexual addiction and gambling disorder using a Bayesian network approach. The study aims to identify key variables and pathways that contribute to the co-occurrence of these two disorders. By mapping these links, the research provides a nuanced understanding of the underlying mechanisms driving the comorbidity of sexual addiction and gambling disorder.",
-    "note": "From colleagues at RMIT — uses network analysis to map the relationships between sexual addiction and gambling disorder. A different area from my own work, but a nice example of how complex behavioural patterns can be modelled without assuming simple cause and effect.",
+    "abstract": "Contemporary literature and recent classification systems have expanded the field of addictions to include problematic behaviours such as gambling and sexual addiction. However, conceptualisation of behavioural addictions is poorly understood and gender-based differences have emerged in relation to how these behaviours are expressed. The current research conducted partial-correlation and Bayesian network analyses to assess the symptomatic structure of gambling disorder and sexual addiction. Convenience community sampling recruited 937 adults aged 18 to 64 years (315 females, Mage = 30.02; 622 males, Mage = 29.46). Symptoms of problematic behaviours were measured using the Online Gambling Disorder Questionnaire (OGDQ) and the Bergen Yale Sex Addiction Scale (BYSAS). Results indicate distinct gender-based differences in the symptom networks of sexual addiction and gambling disorder, with a more complex network observed amongst men for both conditions. Addiction salience, withdrawal and dishonesty/deception were important components of the addictive network. Interpersonal conflict was more central for women while intrapsychic conflict a more prominent issue for men. Differences in the two symptom networks indicate separate disorders as opposed to a single underlying construct. Treating practitioners and community initiatives aimed at addressing sexual addiction and disordered gambling should consider gender, when designing educational or therapeutic interventions.",
+    "note": "From colleagues at RMIT — uses network analysis to map the relationships between sexual addiction and gambling disorder. A different area from my own work, but a nice example of how complex behavioural patterns can be modelled without assuming simple cause and effect. This paper explores the complex relationships between sexual addiction and gambling disorder using a Bayesian network approach. The study aims to identify key variables and pathways that contribute to the co-occurrence of these two disorders. By mapping these links, the research provides a nuanced understanding of the underlying mechanisms driving the comorbidity of sexual addiction and gambling disorder.",
     "tags": [
       "Network analysis",
       "Behavioural addiction",
@@ -158,8 +158,8 @@
     "authors": "Adams, D., Malone, S., Dargue, N., et al.",
     "year": "2025",
     "journal": "Journal of Autism and Developmental Disorders",
-    "abstract": "This paper explores the effects of an autism-specific parent-mediated intervention on anxiety in preschoolers, examining its impact on school anxiety, attendance, and refusal/distress. The study aims to provide insights into the intervention's efficacy in addressing anxiety-related issues in young children with autism. The findings contribute to the understanding of effective interventions for anxiety in preschoolers with autism.",
-    "note": "Autism-focused early intervention study examining downstream effects on school anxiety and attendance-related outcomes. Preventive rather than adolescent EBSA treatment work.",
+    "abstract": "Purpose Autistic children have an increased likelihood of experiencing anxiety, even in the preschool years. Studies evaluating anxiety interventions in autistic children have tended to focus upon home or community settings. This study expands upon previous work to evaluate whether a parent-mediated intervention for autistic preschool children’s anxiety impacts later school anxiety and school attendance. Method Data for this study comes from a randomised controlled trial of an autism-specific program designed to reduce and/or prevent anxiety in autistic preschoolers; CLK-CUES. In addition to pre- and post-group anxiety measures, the trial included data from parents and teachers one year later, once the children started school. Teacher-reported school anxiety and parent-reported school attendance data were available for the CLK-CUES (n = 15) and control group (n = 13). Findings Children whose parents received CLK-CUES had lower levels of separation anxiety in school and significantly lower non-attendance rates than the control group. This was predominantly due to a significant between-group difference in the number of days missed due to school refusal/distress. Interpretation Findings indicate promise for this autism-specific anxiety program to reduce school anxiety and support school attendance in young autistic children. Further research with larger samples and an extended follow-up is warranted.",
+    "note": "This paper explores the effects of an autism-specific parent-mediated intervention on anxiety in preschoolers, examining its impact on school anxiety, attendance, and refusal/distress. The study aims to provide insights into the intervention's efficacy in addressing anxiety-related issues in young children with autism. The findings contribute to the understanding of effective interventions for anxiety in preschoolers with autism.",
     "tags": [
       "EBSA",
       "Autism",
@@ -199,23 +199,12 @@
     "authors": "Brouwer-Borghuis, M., Heyne, D., Sauter, F., et al.",
     "year": "2019",
     "journal": "Cognitive and Behavioral Practice",
+    "abstract": "Facets of school life affect the development and maintenance of school refusal (SR). These facets will warrant attention during intervention for SR. This paper considers a range of school-related factors associated with SR, grouped according to five domains of school climate. It also describes school-based interventions for SR in the form of alternative educational programs (AEPs). The paper then presents the Link, an AEP for Dutch adolescents with SR. The Link offers an educational setting that addresses school-related factors associated with SR. After participation in the Link, adolescents are helped to return to a more typical educational setting. Based on a review of 30 case files, we provide an account of adolescents who have participated in the Link. Often, these adolescents displayed chronic and severe SR, met criteria for anxiety or depressive disorders, and were diagnosed with an autism spectrum disorder. The Link process is illustrated via a case vignette. Thereafter, the role of AEPs in the treatment of SR is discussed.",
     "note": "Structured re-engagement program (“The Link”) for school-refusing adolescents. Focus on reintegration rather than symptom reduction alone.",
     "tags": [
       "EBSA",
       "Intervention",
       "Re-engagement"
-    ]
-  },
-  {
-    "doi": "10.1136/bmj.l6890",
-    "title": "Synthesis without meta-analysis (SWiM) in systematic reviews: reporting guideline",
-    "authors": "Campbell, M., McKenzie, J., Sowden, A., et al.",
-    "year": "2020",
-    "journal": "BMJ",
-    "note": "SWiM guideline for narrative synthesis in systematic reviews. Methodological standard for non-meta-analytic evidence synthesis.",
-    "tags": [
-      "Methods",
-      "Systematic review"
     ]
   },
   {
@@ -238,8 +227,8 @@
     "authors": "Chu, B., Rizvi, S., Zendegui, E., et al.",
     "year": "2015",
     "journal": "Cognitive and Behavioral Practice",
-    "abstract": "This paper explores the application of Dialectical Behavior Therapy (DBT) in addressing school refusal, a complex behavioral issue affecting students. The authors describe the development of a DBT-based treatment program and its integration with web-based coaching to enhance accessibility and efficacy. This innovative approach aims to provide a more comprehensive support system for students struggling with school refusal.",
-    "note": "Early adaptation of DBT principles for school refusal with digital coaching elements. Prototype-stage intervention development.",
+    "abstract": "Youth school refusal is a significant societal problem with broad negative long-term consequences, yet few treatments have been developed for this population. This paper reports on the development and implementation of a novel treatment program, Dialectical Behavior Therapy for School Refusal (DBT-SR), that attempts to address limitations in both existing treatment models and current delivery systems. DBT-SR employs a multimodal approach to directly address the severe emotional and behavioral dysregulation mechanisms maintaining school refusal behavior. It also incorporates a web-based coaching component to provide active, real-time skills coaching to youth and parents at the times, and in the context, of greatest need (at home, during morning hours). A pilot trial and illustrative case examples provide “proof of concept” that DBT-SR is reasonably feasible and acceptable to clients and therapists and that web-based coaching provides incremental, unique benefit. Significant development remains, as participant recruitment proved a challenge in this trial. However, results suggest that DBT-SR is a promising, novel intervention that deserves further development.",
+    "note": "This paper explores the application of Dialectical Behavior Therapy (DBT) in addressing school refusal, a complex behavioral issue affecting students. The authors describe the development of a DBT-based treatment program and its integration with web-based coaching to enhance accessibility and efficacy. This innovative approach aims to provide a more comprehensive support system for students struggling with school refusal.",
     "tags": [
       "EBSA",
       "Intervention development",
@@ -280,8 +269,8 @@
     "authors": "McKay-Brown, L., McGrath, R., Dalton, L., et al.",
     "year": "2019",
     "journal": "Cognitive and Behavioral Practice",
-    "abstract": "This paper presents a multidisciplinary approach to reengage school-refusing youth in education, developed in Australia through collaboration between home, school, and clinic settings. The approach aims to address the complex needs of these students, promoting academic and social reintegration. This innovative model has the potential to inform evidence-based practices globally.",
-    "note": "Home–school–clinic re-engagement model integrating education and mental health services. Multi-system coordination emphasis.",
+    "abstract": "School refusal (SR) can result in decreased academic achievement, impaired social connections, and family stress. Current interventions for SR include behavioral and cognitive-behavioral treatments that are not always effective. Incorporating multidisciplinary work that includes therapeutic and educational interventions may enhance outcomes for youth displaying SR. The In2School program fosters a working partnership between mental health clinicians and teachers. It was designed to meet the needs of young people missing more than 50% of school in the previous 6 weeks due to mental health disorders, including anxiety or depression. This paper reports on an action research study in which the In2School program was piloted. Over a 14-week period, therapeutic and educational interventions were integrated into the learning environment via a transitional classroom to support youths’ return to school. Outcomes of this program are reported for the first cohort of 7 youth. Of these youth, 6 returned to mainstream schooling with attendance levels being maintained for 6 months after completing the intervention. Progress was observed in mental health recovery, quality of life reports, increased social interactions with peers, and positive experiences at school. The preliminary results presented in this paper suggest that a multidisciplinary, home-school-clinic intervention holds promise for helping school-refusing youth to return to school.",
+    "note": "This paper presents a multidisciplinary approach to reengage school-refusing youth in education, developed in Australia through collaboration between home, school, and clinic settings. The approach aims to address the complex needs of these students, promoting academic and social reintegration. This innovative model has the potential to inform evidence-based practices globally.",
     "tags": [
       "EBSA",
       "Intervention",
@@ -322,6 +311,7 @@
     "authors": "Heyne, D.",
     "year": "2019",
     "journal": "Cognitive and Behavioral Practice",
+    "abstract": "The literature on school attendance problems (SAPs) is diverse and sometimes confusing, but it is also promising. This special series presents seven articles and a discussion that attest to the diversity, complexity, and exciting developments associated with SAPs. While some articles focus on school refusal in particular, others have relevance for school refusal, truancy, and other types of SAPs. Collectively, the seven articles provide direction in thinking about two key questions: (1) How can SAPs best be classified and identified?; and (2) Which innovative approaches can be applied when a SAP is severe, chronic, and/or complex? In this way the series has direct relevance for Tiers 1 and 3 of the Response to Intervention model for managing school absenteeism (Kearney & Graczyk, 2014). Three innovative treatment programs presented in this series illustrate ways in which mental health interventions and educational interventions can be combined to address Tier 3 SAPs. The discussion article presents thought-provoking reflections on the topics covered in the seven articles and on the gaps in practice and research in the field of SAPs. You are invited to critically and creatively respond to the ideas offered in this series.",
     "note": "Framing article introducing classification and intervention distinctions in attendance problems literature.",
     "tags": [
       "EBSA",
@@ -391,6 +381,7 @@
     "authors": "Heyne, D., Gren-Landell, M., Melvin, G., et al.",
     "year": "2019",
     "journal": "Cognitive and Behavioral Practice",
+    "abstract": "School attendance problems (SAPs) are heterogeneous with respect to etiology and presentation. The long history of conceptualizing SAPs has led to a vast array of terms and definitions as well as different perspectives on the most helpful approach to classification. For educators, practitioners, researchers, and policymakers, this presents a challenge in understanding, assessing, and intervening with SAPs. This paper outlines evolution in the conceptualization of SAPs, focusing on two contemporary approaches to differentiating between them. One approach draws on the longstanding differentiation between SAP types labeled school refusal, truancy, and school withdrawal. A fourth type of SAP, labeled school exclusion, is also considered. The other approach focuses on the function of absenteeism, measured via the School Refusal Assessment Scale (SRAS). Anecdotal and scientific support for the SAP typology is presented, along with the benefits and shortcomings of the SRAS approach to differentiation. The paper offers suggestions for how to differentiate between SAPs and introduces the SNACK, a brief screening measure that permits differentiation by SAP type.",
     "note": "Key paper differentiating categories of school attendance problems. Central to modern EBSA taxonomy debates.",
     "tags": [
       "EBSA",
@@ -404,6 +395,7 @@
     "authors": "Heyne, D., Strömbeck, J., Alanko, K., et al.",
     "year": "2020",
     "journal": "Frontiers in Psychology",
+    "abstract": "Reviews of the effectiveness of interventions for school refusal (SR) rely upon well-conducted primary studies. Currently there are no guidelines for those conducting primary studies about the measurement of outcome following intervention for SR. Most people would agree that it is important to measure school attendance as an outcome but there has been little discussion about other constructs that warrant measurement. To facilitate this discussion and support the development of guidelines, we conducted a scoping review of constructs measured in studies evaluating intervention for SR. We screened the title and abstract of 3,213 publications found in peer-reviewed journals between 1980 and 2019. After full text review of 271 publications, 50 publications describing 51 studies were included. Results address the frequency with which constructs were measured, along with instruments used, informants, and time-points for measurement. Based on the results, we offer guidelines for choosing constructs to measure following intervention for SR and considerations for how to measure the constructs. Guidelines can increase consistency across primary studies, with benefits for future meta-analyses and international comparisons. They also provide support for practitioners contemplating routine evaluation of their interventions for SR. Ultimately, a core outcome set for SR can be developed.",
     "note": "Examines constructs used to measure outcomes after EBSA interventions. Identifies lack of consistency in outcome selection and reporting.",
     "tags": [
       "EBSA",
@@ -413,7 +405,7 @@
   },
   {
     "doi": "10.1024/1422-4917/a000881",
-    "title": "Developmental Issues Associated with Adolescent School Refusal and                     Cognitive-Behavioral Therapy Manuals",
+    "title": "Developmental Issues Associated with Adolescent School Refusal and Cognitive-Behavioral Therapy Manuals",
     "authors": "Heyne, D.",
     "year": "2022",
     "journal": "Zeitschrift für Kinder- und Jugendpsychiatrie und Psychotherapie",
@@ -459,6 +451,7 @@
     "authors": "Kearney, C.",
     "year": "2002",
     "journal": "PsycTESTS Dataset",
+    "abstract": "The School Refusal Assessment Scale--Revised (SRAS-R; Kearney, 2002) is a measure designed to help clinicians identify the primary function of a child's school refusal behavior. There 2 versions of the scale: the School Refusal Assessment Scale-Child--Revised (SRAS-C-R) and the School Refusal Assessment Scale-Parent--Revised (SRAS-P-R). Both versions contain 24 items. Examples of items are: \"How often do you stay away from school because you will feel sad or depressed if you go?\" \"How often do you stay away from school because you feel embarrassed in front of other people at school?\" There are 4 subscales with 6 items each: Avoidance of Stimuli that Provoke Negative Affectivity, Escape from Aversive Social and/or Evaluative Situations, Pursuit of Attention, and Pursuit of Tangible Reinforcement. The revision of the School Refusal Assessment Scale (SRAS; Kearney & Silverman, 1993) was developed from clinical experience and in accordance with evolving changes in the functional model. Evidence of concurrent validity, test-retest reliability, and parent interrater reliability was found. A principal components factor analysis delineated 3 constructs: Negative Reinforcement, Attention-Seeking, and Tangible Reinforcement. (APA PsycTests Database Record (c) 2019 APA, all rights reserved)",
     "note": "Standardised assessment scale for school refusal patterns (SRAS-R). Widely used in classification and functional assessment approaches.",
     "tags": [
       "EBSA",
@@ -471,6 +464,7 @@
     "authors": "Kearney, C.",
     "year": "2008",
     "journal": "Clinical Psychology Review",
+    "abstract": "Absenteeism from school is a serious public health issue for mental health professionals, physicians, and educators. The prevalence of unexcused absences from school exceeds that of major childhood behavior disorders and is a key risk factor for violence, injury, substance use, psychiatric disorders, and economic deprivation. This article involves a contemporary research review on absenteeism prevalence, comorbid physical and psychiatric conditions, classification, contextual risk factors, cross-cultural variables, assessment, intervention, and outcome. Contextual risk factors include homelessness and poverty, teenage pregnancy, school violence and victimization, school climate and connectedness, parental involvement, and family variables, among others. A description of intervention includes medical, clinical, and systemic interventions. Medical professionals, community- and school-based mental health professionals, and educators are encouraged to fully understand the parameters of school absenteeism to develop better, consensual policies regarding definition, classification, assessment, and intervention of youths with problematic school absenteeism.",
     "note": "Foundational clinical review of school refusal and absenteeism. Establishes early integrative models still referenced in current frameworks.",
     "tags": [
       "EBSA",
@@ -484,8 +478,8 @@
     "authors": "Kearney, C.",
     "year": "2021",
     "journal": "Child & Youth Care Forum",
-    "abstract": "This paper explores the integration of systemic and analytic approaches to address school attendance problems, aiming to develop synergistic frameworks for research and policy directions. By combining these two perspectives, the authors seek to provide a more comprehensive understanding of the complex factors influencing school attendance. This integrated framework has the potential to inform evidence-based policies and interventions.",
-    "note": "Proposes integrated systemic and analytic model for understanding school attendance problems. Moves away from single-cause explanations.",
+    "abstract": "Background School attendance and school attendance problems are complex and significant indicators of child and adolescent health and development. The study of school attendance/problems has a rich history but one that has bifurcated into detached systemic and analytic approaches. Objective Integrative heuristic frameworks are pursued to enhance synergy regarding school attendance/problems via shared conceptual schemas, cohesive organization of key variables, fundamental evolutionary processes, assimilated measurement tools, and coordinated intercession strategies. Method Five major domains (and themes) of the school attendance/problems literature are presented to juxtapose systemic and analytic approaches in this area: core constructs (dimensional and categorical), influencing factors (distal and proximal), trajectories (continuous and discontinuous), measurement (evaluation and assessment), and intercession (intervention and treatment). Results Systemic and analytic approaches to each major domain of school attendance/problems contain key commonalities for integrative heuristic frameworks. These frameworks include symbiotic categorical-dimensional orientations defining core constructs, shared domain architectures and ecological levels linking distal and proximal influencing factors, developmental cascade pathways accounting for continuous and discontinuous trajectories, nuanced early warning systems and data mining algorithms blending evaluation and assessment, and multi-tiered systems of support incorporating broad interventions and specific treatments. Conclusions Only by encompassing all valid panoramic and immersive perspectives and best practices can researchers, educators, policymakers, families, and other stakeholders fully comprehend and address the complicated ecosystem of school attendance/problems. Such integration is also necessary to effectively draw all youth, and particularly marginalized youth, into the educational process.",
+    "note": "This paper explores the integration of systemic and analytic approaches to address school attendance problems, aiming to develop synergistic frameworks for research and policy directions. By combining these two perspectives, the authors seek to provide a more comprehensive understanding of the complex factors influencing school attendance. This integrated framework has the potential to inform evidence-based policies and interventions.",
     "tags": [
       "EBSA",
       "Systems framework"
@@ -497,6 +491,7 @@
     "authors": "Kiani, C., Otero, K., Taufique, S., et al.",
     "year": "2019",
     "journal": "Adolescent Psychiatry",
+    "abstract": "Background: Chronic absenteeism from school is a pervasive problem with complex causes and long-reaching consequences. School refusal has been associated with increased likelihood to engage in criminal behavior, sexual risk behaviors, abuse of illicit substances, and dropout of school entirely. Objective: Based on a review of the available literature, the aim of this paper is to describe the current state of research on school refusal, including the role of adolescent substance use, and to discuss treatments for school refusal, including a comprehensive model developed through a collaboration with the New York City Department of Education. Methods: The authors conducted a literature survey using Pub-Med, Google Scholar, JSTOR & Science Direct databases. Key search terms used included: \"absenteeism\", \"attendance\", \"school refusal\", \"school avoidance\", \"truancy\", & \"substance use\". Results: Students who are chronically absent display high rates of psychiatric comorbidities, with anxiety disorders and disruptive behavior disorders being particularly prevalent. Furthermore, substance use and absenteeism have been found to have a relationship of mutual influence with cannabis use showing a strong positive relationship with absenteeism, which in turn entails the need for appropriate screening and referrals for treatment. Current data suggest that behavioral interventions, including social skills training, cognitive behavioral, and dialectical behavioral therapies are the primary treatment modalities, with the addition of pharmacological management when needed. Preliminary data from the Comprehensive Adolescent Rehabilitation and Education Services program in New York City may indicate the pairing of educational and clinical services may improve attendance rates and decrease rates of substance use.",
     "note": "Brief review of chronic absenteeism causes and treatment approaches. Broader than EBSA but commonly used in related synthesis.",
     "tags": [
       "EBSA",
@@ -510,7 +505,7 @@
     "authors": "KING, N., BERNSTEIN, G.",
     "year": "2001",
     "journal": "Journal of the American Academy of Child & Adolescent Psychiatry",
-    "abstract": "<h4>Objective</h4>To critically review the past 10 years of research on school refusal in children and adolescents.<h4>Method</h4>Literature on school refusal published from 1990 onward was reviewed following a systematic search of PsycINFO. The review focuses on definitional issues, epidemiology and school refusal identification, diagnostic considerations, family functioning, assessment, treatment, and follow-up studies.<h4>Results</h4>While definitional and conceptual issues are still evident, promising developments have occurred in relation to assessment and treatment practices and understanding of the family context of school refusal.<h4>Conclusions</h4>From a clinical viewpoint, school refusal cases require comprehensive assessment and treatment. Advances have been made in the treatment of school refusal. However, additional controlled studies evaluating interventions for school refusal are needed.",
+    "abstract": "ObjectiveTo critically review the past 10 years of research on school refusal in children and adolescents.MethodLiterature on school refusal published from 1990 onward was reviewed following a systematic search of PsycINFO. The review focuses on definitional issues, epidemiology and school refusal identification, diagnostic considerations, family functioning, assessment, treatment, and follow-up studies.ResultsWhile definitional and conceptual issues are still evident, promising developments have occurred in relation to assessment and treatment practices and understanding of the family context of school refusal.ConclusionsFrom a clinical viewpoint, school refusal cases require comprehensive assessment and treatment. Advances have been made in the treatment of school refusal. However, additional controlled studies evaluating interventions for school refusal are needed.",
     "note": "Early review of school refusal in child and adolescent psychiatry. Establishes clinical baseline for later intervention literature.",
     "tags": [
       "EBSA",
@@ -551,8 +546,8 @@
     "authors": "Maeda, N., Heyne, D.",
     "year": "2019",
     "journal": "Frontiers in Psychology",
-    "abstract": "This paper explores a school-based approach to address school refusal among Japanese adolescents, focusing on a rapid return strategy. The study aims to improve outcomes for students experiencing school refusal, a significant issue in Japanese education. By examining the effectiveness of this approach, the research contributes to the understanding of school refusal and its treatment.",
-    "note": "Rapid return school-based CBT intervention in adolescent sample. Focus on structured reintegration into school attendance.",
+    "abstract": "Cognitive behavioral therapy (CBT) is often effective in the treatment of school refusal (SR). Its usefulness is limited, however, if youth displaying SR also refuse to attend treatment sessions. In these cases parents and school staff may consider using school-based interventions that do not rely on face-to-face assessment and treatment with the young person. The current study examined the effectiveness of a school-based intervention applied in Japan to achieve rapid return to school among adolescents displaying SR. Between 2009 and 2015, the parents of 62 adolescents displaying SR were invited to implement a school-based rapid return approach. Thirty-nine parents agreed to implement the approach and 23 decided to wait until their child spontaneously attended school. Of the 39 cases in which the approach was implemented, 28 adolescents (72%) resumed attendance at their original school, 2 (5%) transferred to another school, and 9 (23%) did not resume attendance. In contrast, all 23 non-intervention cases continued to refuse to attend school for 3 months or longer, and none of these adolescents returned to regular school attendance within 9 months. This study tentatively suggests that the rapid return approach may be an effective form of intervention for adolescents displaying SR and simultaneously refusing to attend individual therapy. Because this approach is ethically complex, involving forced school attendance in adolescence, it should only be employed under specific circumstances. These circumstances are discussed.",
+    "note": "This paper explores a school-based approach to address school refusal among Japanese adolescents, focusing on a rapid return strategy. The study aims to improve outcomes for students experiencing school refusal, a significant issue in Japanese education. By examining the effectiveness of this approach, the research contributes to the understanding of school refusal and its treatment.",
     "tags": [
       "EBSA",
       "Intervention",
@@ -593,6 +588,7 @@
     "authors": "McKay-Brown, L., McGrath, R., Dalton, L., et al.",
     "year": "2019",
     "journal": "Cognitive and Behavioral Practice",
+    "abstract": "School refusal (SR) can result in decreased academic achievement, impaired social connections, and family stress. Current interventions for SR include behavioral and cognitive-behavioral treatments that are not always effective. Incorporating multidisciplinary work that includes therapeutic and educational interventions may enhance outcomes for youth displaying SR. The In2School program fosters a working partnership between mental health clinicians and teachers. It was designed to meet the needs of young people missing more than 50% of school in the previous 6 weeks due to mental health disorders, including anxiety or depression. This paper reports on an action research study in which the In2School program was piloted. Over a 14-week period, therapeutic and educational interventions were integrated into the learning environment via a transitional classroom to support youths’ return to school. Outcomes of this program are reported for the first cohort of 7 youth. Of these youth, 6 returned to mainstream schooling with attendance levels being maintained for 6 months after completing the intervention. Progress was observed in mental health recovery, quality of life reports, increased social interactions with peers, and positive experiences at school. The preliminary results presented in this paper suggest that a multidisciplinary, home-school-clinic intervention holds promise for helping school-refusing youth to return to school.",
     "note": "Multi-disciplinary home–school–clinic model for school-refusing youth. Focuses on coordinated service delivery across education and clinical systems.",
     "tags": [
       "EBSA",
@@ -620,8 +616,8 @@
     "authors": "Melvin, G., Heyne, D., Gray, K., et al.",
     "year": "2019",
     "journal": "Frontiers in Education",
-    "abstract": "The Kids and Teens at School (KiTeS) Framework is an inclusive bioecological systems approach that aims to understand school absenteeism and attendance problems. This framework considers the complex interplay between individual, family, school, and community factors that influence student attendance. By adopting a comprehensive bioecological perspective, the KiTeS Framework seeks to inform evidence-based interventions and policies to promote healthy school attendance.",
-    "note": "KiTeS bioecological framework for understanding school attendance problems. Positions EBSA within multi-layered environmental systems.",
+    "abstract": "Absence from school jeopardizes children's and adolescents' education and their social and emotional development. Proximal and distal individual, parental, familial, and environmental factors have been linked to absenteeism and the development and maintenance of school attendance problems. The complex interaction among these factors necessitates a multifactorial approach to understanding school absenteeism and attendance problems. The current paper builds on recent calls to apply bioecological systems frameworks when studying risk factors for school absenteeism and attendance problems. The Kids and Teens at School (KiTeS) Framework presented here is an application of Bronfenbrenner's bioecological systems model, incorporating candidate factors of particular relevance to school absenteeism and attendance problems. The current paper is also a response to the Warnock report which highlighted the need to individualize educational supports for children and adolescents with disabilities, to foster optimal educational outcomes. The KiTeS Framework is an inclusive framework, inclusive of students with and without disabilities. It is envisaged that the KiTeS Framework will provide guidance to researchers aiming to improve understanding of the factors influencing absenteeism among all school-aged students, including those from minority or vulnerable populations.",
+    "note": "The Kids and Teens at School (KiTeS) Framework is an inclusive bioecological systems approach that aims to understand school absenteeism and attendance problems. This framework considers the complex interplay between individual, family, school, and community factors that influence student attendance. By adopting a comprehensive bioecological perspective, the KiTeS Framework seeks to inform evidence-based interventions and policies to promote healthy school attendance.",
     "tags": [
       "EBSA",
       "Framework",
@@ -676,8 +672,8 @@
     "authors": "O'Hagan, S., Bond, C., Hebron, J.",
     "year": "2022",
     "journal": "International Journal of Inclusive Education",
-    "abstract": "This paper explores the specific challenges faced by autistic girls in relation to emotionally based school avoidance, and identifies supportive factors that contribute to successful re-engagement in mainstream high school. The study aims to provide insights into the unique needs of autistic girls and inform strategies for improving their educational outcomes. By examining the complex interplay between autism, gender, and emotional experiences, the research seeks to promote more effective support and inclusion.",
-    "note": "Explores supportive factors for autistic girls re-engaging in mainstream schooling. Emphasises contextual and relational supports.",
+    "abstract": "School can be challenging for autistic girls who are at risk of internalised anxiety which can ultimately lead to school avoidance. Low attendance is acknowledged as negatively impacting educational attainment and exacerbating mental health difficulties. Semi-structured interviews were conducted with three autistic girls aged 13–15 years from different high schools, their parent(s) and key adult. Thematic analysis identified the first phase of re-engagement is developing a trusting student–key adult relationship. This provides the foundation for social and emotional intervention. Challenges were also acknowledged and possible improvements reflected upon. These results will aid educators and researchers aiming to support the successful inclusion of autistic girls at risk of experiencing emotionally based school avoidance in mainstream high schools.",
+    "note": "This paper explores the specific challenges faced by autistic girls in relation to emotionally based school avoidance, and identifies supportive factors that contribute to successful re-engagement in mainstream high school. The study aims to provide insights into the unique needs of autistic girls and inform strategies for improving their educational outcomes. By examining the complex interplay between autism, gender, and emotional experiences, the research seeks to promote more effective support and inclusion.",
     "tags": [
       "EBSA",
       "Autism",
@@ -704,6 +700,7 @@
     "authors": "Pérez-Marco, M., Gonzálvez, C., Fuster, A., et al.",
     "year": "2025",
     "journal": "Children and Youth Services Review",
+    "abstract": "School attendance problems (SAPs) refer to a construct that encompasses different manifestations of negative behaviours or persistent difficulties of a student to attend or stay in school for various reasons (anxiety, rejection, fear, etc.). Due to the worldwide concern about the negative repercussions of non-attendance, a deeper understanding of its intervention is essential. For this reason, this study aims to offer a systematic review of the programs designed to reduce or eradicate SAPs in child and adolescent population, differentiating between two main types according to the causal origin of the attendance problem: school refusal or truancy. For this purpose, a systematic process of search was carried out in the databases Web Of Science, Scopus, PsycINFO and Psicodoc with a common search strategy. According to 5 inclusion criteria, the data extracted from each study were analyzed based on 3 levels of effectiveness and the Cochrane’s risk bias tool. Seventy-eight programs aimed at intervening in SAPs in 6–18-year-old population were reviewed. Twenty-nine of the studies showed one of the established levels of effectiveness for the reduction of School Refusal or Truancy, which had similar characteristics in the application of the intervention program. Consequently, the strengths and weaknesses of these programs are discussed in order to provide a source of reference for staff responsible for improving school attendance. This work will contribute to clarifying which types of interventions are the most effective in dealing with SAPs.",
     "note": "Broad review of interventions for school attendance problems. Useful for situating EBSA-specific interventions within wider attendance literature.",
     "tags": [
       "EBSA",
@@ -717,7 +714,7 @@
     "authors": "Reissner, V., Jost, D., Krahn, U., et al.",
     "year": "2015",
     "journal": "Deutsches Ärzteblatt international",
-    "abstract": "<h4>Background</h4>5-10% of schoolchildren in Germany are absent from school without an excuse more than five times per year. We investigate the effectiveness of manual-based, multimodal cognitive behavioral therapy focusing on school-avoidant behavior and on the underlying mental disorders.<h4>Methods</h4>112 school avoiders were recruited from an outpatient child and adolescent psychiatric clinic and adaptively randomized into two treatment groups. The first group received manual-based multimodal treatment (MT), the second group treatment as usual (TAU) in the child and adolescent mental health care system. The primary outcome of the study was the percentage of classes attended in the five days prior to first measurement (before the intervention), as well as 6 and 12 months afterward. In each of these periods, school attendance was characterized as regular, partial, or none. Secondary outcomes were the severity of anxiety and depressive symptoms, self-efficacy, and quality of family life.<h4>Results</h4>In both treatment arms, the percentage of regular school attenders rose to about 60% in 6 months, regardless of the intervention (MT 60.6%, TAU 58.3%; odds ratio [OR] for changes over baseline 6.94, 95% confidence interval [CI] 3.98-12.12, p< 0.001; OR for MT versus TAU 1.05, 95% CI 0.58-1.90, p = 0.875). The improvement persisted 12 months after inclusion.<h4>Conclusion</h4>In accordance with earlier studies, we found that manual-based multimodal treatment did not improve school avoidance to any greater extent than treatment as usual. Future studies should focus on the conditions for successful reintegration in school and on the differential indicators for outpatient versus inpatient treatment.",
+    "abstract": "Background5-10% of schoolchildren in Germany are absent from school without an excuse more than five times per year. We investigate the effectiveness of manual-based, multimodal cognitive behavioral therapy focusing on school-avoidant behavior and on the underlying mental disorders.Methods112 school avoiders were recruited from an outpatient child and adolescent psychiatric clinic and adaptively randomized into two treatment groups. The first group received manual-based multimodal treatment (MT), the second group treatment as usual (TAU) in the child and adolescent mental health care system. The primary outcome of the study was the percentage of classes attended in the five days prior to first measurement (before the intervention), as well as 6 and 12 months afterward. In each of these periods, school attendance was characterized as regular, partial, or none. Secondary outcomes were the severity of anxiety and depressive symptoms, self-efficacy, and quality of family life.ResultsIn both treatment arms, the percentage of regular school attenders rose to about 60% in 6 months, regardless of the intervention (MT 60.6%, TAU 58.3%; odds ratio [OR] for changes over baseline 6.94, 95% confidence interval [CI] 3.98-12.12, pConclusionIn accordance with earlier studies, we found that manual-based multimodal treatment did not improve school avoidance to any greater extent than treatment as usual. Future studies should focus on the conditions for successful reintegration in school and on the differential indicators for outpatient versus inpatient treatment.",
     "note": "Randomised controlled trial of treatment approaches for school avoidance in clinical populations. Early evidence base with limited generalisability.",
     "tags": [
       "EBSA",
@@ -745,8 +742,8 @@
     "authors": "Sawyer, R., Collingwood, N.",
     "year": "2023",
     "journal": "Educational Psychology in Practice",
-    "abstract": "This paper, \"SPIRAL: parents' experiences of emotionally-based school non-attendance (EBSNA) informing a framework for successful reintegration,\" explores the experiences of parents whose children exhibit emotionally-based school non-attendance. The study aims to develop a framework for successful reintegration of these students into the educational system. By examining the complexities of EBSNA, the research seeks to inform evidence-based interventions and support services for families affected by this issue.",
-    "note": "Parent experiences of emotionally based school non-attendance. Develops framework for reintegration based on lived experience.",
+    "abstract": "Emotionally-based school non-attendance (EBSNA) is believed to impact one to two percent of children and young people (CYP): it is understood to present as severe emotional upset at the prospect of attending school. The aim of this study was to further understand parental experiences of EBSNA to enhance professional understanding and support. Adopting a “solution-oriented”, exploratory qualitative design, this phenomenological research gathered retrospective experiences of successful EBSNA support, aiming to uncover “what works” when supporting children and families experiencing this difficulty. Participants completed semi-structured interviews (n = 5), and transcripts were analysed using reflexive thematic analysis. Themes generated provided insights into different forms of support accessed by parents, identifying potential areas for improvement arising from their experiences of challenge and successes, as well as lessons learnt from the COVID-19 pandemic. The themes (Supporting Parents; Promoting CYP’s Sense of Belonging; Including and Informing Parents; Raising Awareness of EBSNA; Accessing External Professionals; Lessons Learnt from Covid-19) are presented as a framework for professional practice (SPIRAL), which has practical implications for schools and local authorities in providing support to families experiencing EBSNA. Recommendations for practice and future research are discussed, informing developments across multiple systems, and highlighting the potential of the EP role.",
+    "note": "This paper, \"SPIRAL: parents' experiences of emotionally-based school non-attendance (EBSNA) informing a framework for successful reintegration,\" explores the experiences of parents whose children exhibit emotionally-based school non-attendance. The study aims to develop a framework for successful reintegration of these students into the educational system. By examining the complexities of EBSNA, the research seeks to inform evidence-based interventions and support services for families affected by this issue.",
     "tags": [
       "EBSA",
       "Intervention",
@@ -759,8 +756,8 @@
     "authors": "Shayganfard, M., Kaboudi, B., Arabsheibani, K., et al.",
     "year": "2024",
     "journal": "Archives of Psychiatric Nursing",
-    "abstract": "This study investigates the effectiveness of cognitive-behavioral group play therapy in addressing anxiety-based school refusal and behavioral problems in elementary school boys. A preliminary randomized controlled trial was conducted to evaluate the intervention's impact. Results are expected to provide insights into the therapeutic potential of this approach for this specific population.",
-    "note": "Preliminary RCT of CBT-based group play therapy for anxiety-related school refusal. Early evidence, limited sample and scope.",
+    "abstract": "Emotionally-based school non-attendance (EBSNA) is believed to impact one to two percent of children and young people (CYP): it is understood to present as severe emotional upset at the prospect of attending school. The aim of this study was to further understand parental experiences of EBSNA to enhance professional understanding and support. Adopting a “solution-oriented”, exploratory qualitative design, this phenomenological research gathered retrospective experiences of successful EBSNA support, aiming to uncover “what works” when supporting children and families experiencing this difficulty. Participants completed semi-structured interviews (n = 5), and transcripts were analysed using reflexive thematic analysis. Themes generated provided insights into different forms of support accessed by parents, identifying potential areas for improvement arising from their experiences of challenge and successes, as well as lessons learnt from the COVID-19 pandemic. The themes (Supporting Parents; Promoting CYP’s Sense of Belonging; Including and Informing Parents; Raising Awareness of EBSNA; Accessing External Professionals; Lessons Learnt from Covid-19) are presented as a framework for professional practice (SPIRAL), which has practical implications for schools and local authorities in providing support to families experiencing EBSNA. Recommendations for practice and future research are discussed, informing developments across multiple systems, and highlighting the potential of the EP role.",
+    "note": "This study investigates the effectiveness of cognitive-behavioral group play therapy in addressing anxiety-based school refusal and behavioral problems in elementary school boys. A preliminary randomized controlled trial was conducted to evaluate the intervention's impact. Results are expected to provide insights into the therapeutic potential of this approach for this specific population.",
     "tags": [
       "EBSA",
       "Intervention",
@@ -793,32 +790,6 @@
       "EBSA",
       "Intervention",
       "Multifamily therapy"
-    ]
-  },
-  {
-    "doi": "10.1136/bmj.i4919",
-    "title": "ROBINS-I: a tool for assessing risk of bias in non-randomised studies of interventions",
-    "authors": "Sterne, J., Hernán, M., Reeves, B., et al.",
-    "year": "2016",
-    "journal": "BMJ",
-    "note": "ROBINS-I tool for assessing bias in non-randomised intervention studies. Methodological standard rather than substantive EBSA content.",
-    "tags": [
-      "EBSA",
-      "Methods",
-      "Risk of bias"
-    ]
-  },
-  {
-    "doi": "10.1136/bmj.l4898",
-    "title": "RoB 2: a revised tool for assessing risk of bias in randomised trials",
-    "authors": "Sterne, J., Savović, J., Page, M., et al.",
-    "year": "2019",
-    "journal": "BMJ",
-    "note": "RoB 2 tool for assessing bias in randomised trials. Key methodological reference for intervention evaluation.",
-    "tags": [
-      "EBSA",
-      "Methods",
-      "Risk of bias"
     ]
   },
   {
@@ -869,6 +840,7 @@
     "authors": "Tobias, A.",
     "year": "2018",
     "journal": "Educational Psychology in Practice",
+    "abstract": "Persistent school non-attendance (PSNA) is a widely acknowledged problem. Family coaches work intensively with families where a child or young person (CYP) has persistently poor or no school attendance and there is unemployment or anti-social behaviour. Their work extends across different systems, which gives them a unique, multi-factored understanding of the phenomenon of PSNA in coaching families. The aim of this grounded theory (GT) study was to draw upon the experiences and perspectives of coaches in one UK local authority, to understand what helps and hinders successful intervention. A GT emerged, in which PSNA in coaching families was a red flag, occurring when CYP felt unsafe. This was a product of the home environment not providing a secure base, parents having a diminished capacity and the CYP feeling that their situation was invisible. Successful intervention was relationship-based; improved the visibility of CYP; and increased parenting capacity. Intervention was constrained by conflicting systems that resisted or sabotaged change.",
     "note": "Grounded theory study of family coach interventions for persistent non-attendance. Focus on process rather than outcomes.",
     "tags": [
       "EBSA",
@@ -895,6 +867,8 @@
     "authors": "Hammond-Price, C., Bond, C.",
     "year": "2026",
     "journal": "Educational Psychology in Practice",
+    "abstract": "School absence is a growing concern, particularly absence related to emotional factors. This small-scale, preliminary research explored perspectives on approaches taken by a social, emotional and mental health (SEMH) school to support young people experiencing emotionally based school avoidance (EBSA). The educational psychology service (EPS) provided a whole school pilot programme consisting of a training webinar and three, termly, bespoke, solution-focused coaching sessions delivered to teachers and teaching assistants. Six staff and one student participated in semi-structured interviews following programme completion to understand the impact of developments in the school’s approach. The interview data were analysed using conventional content analysis and the researcher’s research journal, a record kept throughout the research process, informed the analysis. Seven overarching themes were identified which highlighted the importance of the shift in whole school attendance culture, a holistic approach and the flexibility of response afforded within this specialist setting. Limitations of the research are discussed; and tentative implications for future research and practice are suggested.",
+    "note": "This paper's focus on SEMH schools is notable given the specialized nature of these settings, but the exploration of approaches to EBSA feels somewhat general. It raises questions about the applicability of these findings to non-SEMH schools, where EBSA may be a more pressing concern.",
     "tags": [
       "EBSA",
       "Digital",
@@ -907,6 +881,8 @@
     "authors": "Anderson, J., Havik, T., Gonzálvez, C.",
     "year": "2026",
     "journal": "Frontiers in Child and Adolescent Psychiatry",
+    "abstract": "School absence is a growing concern, particularly absence related to emotional factors. This small-scale, preliminary research explored perspectives on approaches taken by a social, emotional and mental health (SEMH) school to support young people experiencing emotionally based school avoidance (EBSA). The educational psychology service (EPS) provided a whole school pilot programme consisting of a training webinar and three, termly, bespoke, solution-focused coaching sessions delivered to teachers and teaching assistants. Six staff and one student participated in semi-structured interviews following programme completion to understand the impact of developments in the school’s approach. The interview data were analysed using conventional content analysis and the researcher’s research journal, a record kept throughout the research process, informed the analysis. Seven overarching themes were identified which highlighted the importance of the shift in whole school attendance culture, a holistic approach and the flexibility of response afforded within this specialist setting. Limitations of the research are discussed; and tentative implications for future research and practice are suggested.",
+    "note": "This editorial provides a comprehensive overview of the complex issue of emotionally based school avoidance, highlighting the need for a multi-faceted approach that goes beyond traditional interventions. What's notable is the emphasis on the role of systemic and societal factors in perpetuating school avoidance, raising questions about the responsibility of broader systems in addressing this issue.",
     "tags": [
       "EBSA",
       "Intervention"
@@ -918,9 +894,25 @@
     "authors": "Nathwani, G., Shoaib, A., Shafi, A., et al.",
     "year": "2021",
     "journal": "Journal of Global Health",
+    "abstract": "Disputed education and school attendance problems (SAPs) during the Coronavirus Disease 2019 (COVID-19) pandemic may tremendously impact child health and education. Limited studies evaluate the socioeconomic and personal factors behind SAPs associated with the COVID-19 pandemic. School refusal, truancy, school withdrawal and school exclusion are considered SAPs [1]. Prior to the COVID-19 pandemic, self-reported school absences in a population of 4344 Belgian students found that of those with one unauthorized absence from school: 49.4% were categorized as truant, 17.4% as school refusal and 33.2% as school withdrawal [2]. There are four types of SAPs: school refusal, truancy, school withdrawal and school exclusion. Currently, some studies are being conducted that analyze transmission and attendance rates in children returning to school, in-person or online, after periods of abrupt closure [3,4]. Additionally, school refusal can be attributed to parental fear of their children being susceptible to COVID-19 associated multisystem inflammatory syndrome [5]. Currently, no studies exist that directly address the effect of COVID-19 on SAPs, academic performance, or child mental health and functioning. We aim to review and categorize these four SAPs, associated factors of decreased student attendance, and the impact of this disruption amidst the COVID-19 pandemic. We hypothesize that COVID-19 related SAPs will increase compared to pre-pandemic levels as mental health issues rise and virtual classes hinder academic performance",
+    "note": "The study found that COVID-19 had a significant impact on school attendance problems, with a notable increase in students experiencing difficulties. This raises questions about the long-term effects of the pandemic on educational systems and the potential for lasting changes in student behavior and academic outcomes.",
     "tags": [
       "EBSA",
       "Methods"
+    ]
+  },
+  {
+    "doi": "10.47485/2693-2490.1143",
+    "title": "The Treatment Hypothesis of Yoga for Children with School Refusal, and Attempt to Building a Comprehensive Support Network Led by Family Doctors",
+    "authors": "Katsumi Kobayashi",
+    "year": "2026",
+    "journal": "Journal of Psychology and Neuroscience",
+    "abstract": "School refusal is defined as child-motivated non-attendance related to emotional distress experienced in connection with academic or social situations in school or home. Even though school refusal is not a formal psychiatric diagnosis, children has several somatic and psychological problems such as abdominal pain, headache, nausea. In the case of school refusal, it is suggested that interpersonal problems (e.g., violence, bullying) that have occurred school or home are triggered chronic stress. Under the chronic stress condition, abnormal activity of hypothalamic-pituitary-adrenal axis, autonomic nervous, enteric nervous system, and increases in blood cortisol level were reported. These abnormality lead to abdominal pain, headache, nausea. The practice of yoga with a focus on the unification of the mind, body, and spirit through the practice of physical movements, meditation and breathing exercises. During yoga practices, it can also regulate physiological stress responses. Especially, yoga has beneficial effects on the autonomic nervous system and enteric nervous system though hormonal changes associated with stress in children with school refusal is suggested. It will be possible to work with relevant institutions to develop specific therapeutic programs for children whose health has improved.",
+    "note": "The paper presents a treatment hypothesis for yoga in children with school refusal, proposing that it can regulate physiological stress responses and improve symptoms by targeting the autonomic and enteric nervous systems. This approach raises questions about the potential for non-pharmacological interventions to address the complex physical and psychological comorbidities associated with school refusal, and whether family doctors could play a key role in developing comprehensive support networks for affected children.",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Parent"
     ]
   }
 ]
