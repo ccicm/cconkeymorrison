@@ -70,8 +70,7 @@ const TAG_KEYWORDS = {
   'Gender':              ['girl','gender','female','sex difference'],
 };
 
-// Sheet column layout (1-indexed):
-// DOI(1) | Title(2) | Authors(3) | Year(4) | Journal(5) | Tag1(6) | Tag2(7) | Tag3(8) | Note(9) | Abstract(10)
+// Column order is detected by header name — reorder freely in the sheet.
 
 // ── Menu ─────────────────────────────────────────────────────
 function onOpen() {
@@ -149,9 +148,12 @@ function applyTagValidation_(rlSheet) {
     .requireValueInRange(tagsRange, true)
     .setAllowInvalid(true)
     .build();
-  for (let col = 6; col <= 8; col++) {
-    rlSheet.getRange(2, col, lastRow - 1, 1).setDataValidation(rule);
-  }
+  const headers = rlSheet.getRange(1, 1, 1, rlSheet.getLastColumn()).getValues()[0]
+    .map(h => String(h).trim().toLowerCase());
+  ['tag 1','tag 2','tag 3'].forEach(name => {
+    const c = headers.indexOf(name);
+    if (c !== -1) rlSheet.getRange(2, c + 1, lastRow - 1, 1).setDataValidation(rule);
+  });
 }
 
 // ── Migration (one-time) ──────────────────────────────────────
@@ -248,21 +250,25 @@ function onApaEdit(e) {
   const meta      = fetchMetaFromCrossRef_(doi);
   const suggested = suggestTags_(meta.title || input, meta.abstract);
 
-  rlSheet.appendRow([
-    doi, meta.title||'', meta.authors||'',
-    meta.year ? String(meta.year) : '', meta.journal||'',
-    suggested[0]||'', suggested[1]||'', suggested[2]||'',
-    '', meta.abstract||''
-  ]);
+  const headers = rlSheet.getRange(1, 1, 1, rlSheet.getLastColumn()).getValues()[0]
+    .map(h => String(h).trim().toLowerCase());
+  const newRow  = rlSheet.getLastRow() + 1;
+  const set = (name, val) => {
+    const c = headers.indexOf(name);
+    if (c !== -1) rlSheet.getRange(newRow, c + 1).setValue(val);
+  };
+  set('doi',      doi);
+  set('title',    meta.title    || '');
+  set('authors',  meta.authors  || '');
+  set('year',     meta.year ? String(meta.year) : '');
+  set('journal',  meta.journal  || '');
+  set('abstract', meta.abstract || '');
+  set('tag 1',    suggested[0]  || '');
+  set('tag 2',    suggested[1]  || '');
+  set('tag 3',    suggested[2]  || '');
+  set('note',     '');
 
-  const newRow    = rlSheet.getLastRow();
-  const tagsSheet = ss.getSheetByName(CONFIG.TAGS_SHEET_NAME);
-  if (tagsSheet) {
-    const rule = SpreadsheetApp.newDataValidation()
-      .requireValueInRange(tagsSheet.getRange(2, 1, DEFAULT_TAGS.length + 50, 1), true)
-      .setAllowInvalid(true).build();
-    for (let col = 6; col <= 8; col++) rlSheet.getRange(newRow, col).setDataValidation(rule);
-  }
+  applyTagValidation_(rlSheet);
 
   statusCell.setValue('✅ Added');
 }
