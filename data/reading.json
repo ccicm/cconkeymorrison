@@ -413,7 +413,7 @@
   },
   {
     "doi": "10.1024/1422-4917/a000881",
-    "title": "Developmental Issues Associated with Adolescent School Refusal and                     Cognitive-Behavioral Therapy Manuals",
+    "title": "Developmental Issues Associated with Adolescent School Refusal and Cognitive-Behavioral Therapy Manuals",
     "authors": "Heyne, D.",
     "year": "2022",
     "journal": "Zeitschrift für Kinder- und Jugendpsychiatrie und Psychotherapie",
@@ -510,7 +510,7 @@
     "authors": "KING, N., BERNSTEIN, G.",
     "year": "2001",
     "journal": "Journal of the American Academy of Child & Adolescent Psychiatry",
-    "abstract": "<h4>Objective</h4>To critically review the past 10 years of research on school refusal in children and adolescents.<h4>Method</h4>Literature on school refusal published from 1990 onward was reviewed following a systematic search of PsycINFO. The review focuses on definitional issues, epidemiology and school refusal identification, diagnostic considerations, family functioning, assessment, treatment, and follow-up studies.<h4>Results</h4>While definitional and conceptual issues are still evident, promising developments have occurred in relation to assessment and treatment practices and understanding of the family context of school refusal.<h4>Conclusions</h4>From a clinical viewpoint, school refusal cases require comprehensive assessment and treatment. Advances have been made in the treatment of school refusal. However, additional controlled studies evaluating interventions for school refusal are needed.",
+    "abstract": "ObjectiveTo critically review the past 10 years of research on school refusal in children and adolescents.MethodLiterature on school refusal published from 1990 onward was reviewed following a systematic search of PsycINFO. The review focuses on definitional issues, epidemiology and school refusal identification, diagnostic considerations, family functioning, assessment, treatment, and follow-up studies.ResultsWhile definitional and conceptual issues are still evident, promising developments have occurred in relation to assessment and treatment practices and understanding of the family context of school refusal.ConclusionsFrom a clinical viewpoint, school refusal cases require comprehensive assessment and treatment. Advances have been made in the treatment of school refusal. However, additional controlled studies evaluating interventions for school refusal are needed.",
     "note": "Early review of school refusal in child and adolescent psychiatry. Establishes clinical baseline for later intervention literature.",
     "tags": [
       "EBSA",
@@ -717,7 +717,7 @@
     "authors": "Reissner, V., Jost, D., Krahn, U., et al.",
     "year": "2015",
     "journal": "Deutsches Ärzteblatt international",
-    "abstract": "<h4>Background</h4>5-10% of schoolchildren in Germany are absent from school without an excuse more than five times per year. We investigate the effectiveness of manual-based, multimodal cognitive behavioral therapy focusing on school-avoidant behavior and on the underlying mental disorders.<h4>Methods</h4>112 school avoiders were recruited from an outpatient child and adolescent psychiatric clinic and adaptively randomized into two treatment groups. The first group received manual-based multimodal treatment (MT), the second group treatment as usual (TAU) in the child and adolescent mental health care system. The primary outcome of the study was the percentage of classes attended in the five days prior to first measurement (before the intervention), as well as 6 and 12 months afterward. In each of these periods, school attendance was characterized as regular, partial, or none. Secondary outcomes were the severity of anxiety and depressive symptoms, self-efficacy, and quality of family life.<h4>Results</h4>In both treatment arms, the percentage of regular school attenders rose to about 60% in 6 months, regardless of the intervention (MT 60.6%, TAU 58.3%; odds ratio [OR] for changes over baseline 6.94, 95% confidence interval [CI] 3.98-12.12, p< 0.001; OR for MT versus TAU 1.05, 95% CI 0.58-1.90, p = 0.875). The improvement persisted 12 months after inclusion.<h4>Conclusion</h4>In accordance with earlier studies, we found that manual-based multimodal treatment did not improve school avoidance to any greater extent than treatment as usual. Future studies should focus on the conditions for successful reintegration in school and on the differential indicators for outpatient versus inpatient treatment.",
+    "abstract": "Background5-10% of schoolchildren in Germany are absent from school without an excuse more than five times per year. We investigate the effectiveness of manual-based, multimodal cognitive behavioral therapy focusing on school-avoidant behavior and on the underlying mental disorders.Methods112 school avoiders were recruited from an outpatient child and adolescent psychiatric clinic and adaptively randomized into two treatment groups. The first group received manual-based multimodal treatment (MT), the second group treatment as usual (TAU) in the child and adolescent mental health care system. The primary outcome of the study was the percentage of classes attended in the five days prior to first measurement (before the intervention), as well as 6 and 12 months afterward. In each of these periods, school attendance was characterized as regular, partial, or none. Secondary outcomes were the severity of anxiety and depressive symptoms, self-efficacy, and quality of family life.ResultsIn both treatment arms, the percentage of regular school attenders rose to about 60% in 6 months, regardless of the intervention (MT 60.6%, TAU 58.3%; odds ratio [OR] for changes over baseline 6.94, 95% confidence interval [CI] 3.98-12.12, pConclusionIn accordance with earlier studies, we found that manual-based multimodal treatment did not improve school avoidance to any greater extent than treatment as usual. Future studies should focus on the conditions for successful reintegration in school and on the differential indicators for outpatient versus inpatient treatment.",
     "note": "Randomised controlled trial of treatment approaches for school avoidance in clinical populations. Early evidence base with limited generalisability.",
     "tags": [
       "EBSA",
@@ -895,6 +895,7 @@
     "authors": "Hammond-Price, C., Bond, C.",
     "year": "2026",
     "journal": "Educational Psychology in Practice",
+    "note": "This paper's focus on SEMH schools is notable given the specialized nature of these settings, but the exploration of approaches to EBSA feels somewhat general. It raises questions about the applicability of these findings to non-SEMH schools, where EBSA may be a more pressing concern.",
     "tags": [
       "EBSA",
       "Digital",
@@ -907,6 +908,7 @@
     "authors": "Anderson, J., Havik, T., Gonzálvez, C.",
     "year": "2026",
     "journal": "Frontiers in Child and Adolescent Psychiatry",
+    "note": "This editorial provides a comprehensive overview of the complex issue of emotionally based school avoidance, highlighting the need for a multi-faceted approach that goes beyond traditional interventions. What's notable is the emphasis on the role of systemic and societal factors in perpetuating school avoidance, raising questions about the responsibility of broader systems in addressing this issue.",
     "tags": [
       "EBSA",
       "Intervention"
@@ -918,9 +920,24 @@
     "authors": "Nathwani, G., Shoaib, A., Shafi, A., et al.",
     "year": "2021",
     "journal": "Journal of Global Health",
+    "note": "The study found that COVID-19 had a significant impact on school attendance problems, with a notable increase in students experiencing difficulties. This raises questions about the long-term effects of the pandemic on educational systems and the potential for lasting changes in student behavior and academic outcomes.",
     "tags": [
       "EBSA",
       "Methods"
+    ]
+  },
+  {
+    "doi": "10.47485/2693-2490.1143",
+    "title": "The Treatment Hypothesis of Yoga for Children with School Refusal, and Attempt to Building a Comprehensive Support Network Led by Family Doctors",
+    "authors": "Katsumi Kobayashi",
+    "year": "2026",
+    "journal": "Journal of Psychology and Neuroscience",
+    "abstract": "School refusal is defined as child-motivated non-attendance related to emotional distress experienced in connection with academic or social situations in school or home. Even though school refusal is not a formal psychiatric diagnosis, children has several somatic and psychological problems such as abdominal pain, headache, nausea. In the case of school refusal, it is suggested that interpersonal problems (e.g., violence, bullying) that have occurred school or home are triggered chronic stress. Under the chronic stress condition, abnormal activity of hypothalamic-pituitary-adrenal axis, autonomic nervous, enteric nervous system, and increases in blood cortisol level were reported. These abnormality lead to abdominal pain, headache, nausea. The practice of yoga with a focus on the unification of the mind, body, and spirit through the practice of physical movements, meditation and breathing exercises. During yoga practices, it can also regulate physiological stress responses. Especially, yoga has beneficial effects on the autonomic nervous system and enteric nervous system though hormonal changes associated with stress in children with school refusal is suggested. It will be possible to work with relevant institutions to develop specific therapeutic programs for children whose health has improved.",
+    "note": "The paper presents a treatment hypothesis for yoga in children with school refusal, proposing that it can regulate physiological stress responses and improve symptoms by targeting the autonomic and enteric nervous systems. This approach raises questions about the potential for non-pharmacological interventions to address the complex physical and psychological comorbidities associated with school refusal, and whether family doctors could play a key role in developing comprehensive support networks for affected children.",
+    "tags": [
+      "EBSA",
+      "Intervention",
+      "Parent"
     ]
   }
 ]
