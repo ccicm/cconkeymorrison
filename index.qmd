@@ -12,7 +12,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I'm a PhD candidate at RMIT University and a provisional psychologist working with children, adolescents, and families. My research focuses on emotionally based school avoidance — why kids disengage from school and what actually helps. The clinical and research work feed each other in ways that are usually productive and occasionally maddening.
+I'm a PhD candidate at RMIT University and a provisional psychologist working with children, adolescents, and families. My research focuses on emotionally based school avoidance (why kids disengage from school and what actually helps). The clinical and research work feed each other in ways that are usually productive and occasionally maddening.
 :::
 
 ::: hero-links
@@ -52,7 +52,7 @@ Systematic review registered
 ::: about-section
 ## Current focus
 
-I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data. It is grounded in an industry partnership with CatholicCare Victoria, where I also work as a school counsellor — which gives me a front-row seat to the gap between what the research recommends and what schools and families are actually dealing with.
+I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data. It is grounded in an industry partnership with CatholicCare Victoria, where I also work as a school counsellor, which gives me a front-row seat to the gap between what the research recommends and what schools and families are actually dealing with.
 
 [Read more →](research/index.qmd){.about-link}
 :::
