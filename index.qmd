@@ -12,7 +12,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I'm a PhD candidate at RMIT University and a provisional psychologist working with children, adolescents, and families. My research focuses on emotionally based school avoidance (why kids disengage from school and what actually helps). The clinical and research work feed each other in ways that are usually productive and occasionally maddening.
+I'm a PhD candidate at RMIT University and a provisional psychologist working with children, adolescents, and families. My research focuses on emotionally based school avoidance in the digital age. My clinical and research work feed each other in ways that are generally complementary, though the gap between what the evidence recommends and what families can actually do is always on my mind. Both involve a similar amount of paperwork, just in completely different ways.
 :::
 
 ::: hero-links
