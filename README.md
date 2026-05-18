@@ -29,9 +29,6 @@ cconkeymorrison/
 │   └── *.qmd                  # Individual posts
 ├── cv/
 │   └── index.qmd              # Curriculum vitae
-├── clinical/
-│   ├── index.qmd              # Clinical overview
-│   └── resources.qmd          # NPE Study Club resources
 ├── data/
 │   ├── timeline.json          # PhD timeline data (read by research/index.qmd)
 │   └── reading.json           # Reading list entries (synced from Google Sheet)
