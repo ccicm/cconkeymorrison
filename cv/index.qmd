@@ -139,6 +139,11 @@ A PDF version of this CV will be available here shortly.
 [Australian Psychological Society (APS)]{.role-title}
 [Student member]{.role-desc}
 :::
+
+::: role-block
+[RMIT AI Student Advisory Board (AISAB)]{.role-title}
+[Founding member]{.role-desc}
+:::
 :::
 :::
 
@@ -147,7 +152,7 @@ A PDF version of this CV will be available here shortly.
 
 ::: role-section
 ::: role-block
-[Research software]{.role-title} [R (RStudio), Jamovi, SPSS, Excel, Colab]{.role-desc}
+[Research software]{.role-title} [R (RStudio/Positron), Jamovi, SPSS, Excel, Colab/Python, Power BI, Covidence, Endnote, GitHub, VS Code]{.role-desc}
 :::
 
 ::: role-block
@@ -158,8 +163,8 @@ analysis]{.role-desc}
 
 ::: role-block
 [Clinical]{.role-title} [Psychoeducation, CBT-informed approaches, ACT-informed approaches,
-emotional regulation, school refusal intervention, student wellbeing,
-family consultation]{.role-desc}
+emotional regulation, school refusal intervention, psychological assessment,
+trauma-informed practice, student wellbeing, family consultation]{.role-desc}
 :::
 
 ::: role-block
