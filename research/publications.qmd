@@ -59,6 +59,7 @@ engine: markdown
     <div class="peer-review-section">
       <h2 id="peer-review">Peer review</h2>
       <p>I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for <em>Behaviour &amp; Information Technology</em> and <em>Scientific Reports</em>.</p>
+      <div id="pr-badge"></div>
     </div>
   </div>
 
@@ -323,5 +324,23 @@ async function loadOrcidPublications() {
 }
 
 loadOrcidPublications();
+
+async function loadPeerReviewCount() {
+  try {
+    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/peer-reviews`, { headers: { Accept: 'application/json' } });
+    if (!res.ok) return;
+    const data = await res.json();
+    let count = 0;
+    for (const g of (data.group || []))
+      for (const prg of (g['peer-review-group'] || []))
+        count += (prg['peer-review-summary'] || []).length;
+    if (count > 0) {
+      document.getElementById('pr-badge').innerHTML =
+        `<a href="https://orcid.org/${ORCID_ID}" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--navy);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:0.28rem 0.75rem;margin-top:0.65rem;transition:background 0.15s,border-color 0.15s;" onmouseover="this.style.background='var(--tag-bg)';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='';this.style.borderColor='var(--border)'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>${count} verified reviews · ORCID ↗</a>`;
+    }
+  } catch {}
+}
+
+loadPeerReviewCount();
 </script>
 ```
