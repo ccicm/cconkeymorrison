@@ -35,7 +35,7 @@ An open-source Quarto template for building a professional academic website — 
 
 ### Truly Systematic Review
 
-A Shiny app for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](research.qmd) of my PhD.
+A Shiny app for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](index.qmd) of my PhD.
 
 ::: project-tags
 [Sys review]{.project-tag} [RStudio]{.project-tag} [Shiny]{.project-tag}

@@ -18,6 +18,7 @@ cconkeymorrison/
 ├── _quarto.yml                # Site configuration (navbar, theme, fonts, resources)
 ├── styles.css                 # All visual styling (CSS variables at top)
 ├── contact.qmd                # Contact form (Web3Forms)
+├── template.qmd               # Public setup guide for the academic website template
 ├── research/
 │   ├── index.qmd              # Research overview + interactive PhD timeline
 │   ├── publications.qmd       # Publications (ORCID + Crossref API)
@@ -28,9 +29,14 @@ cconkeymorrison/
 │   └── *.qmd                  # Individual posts
 ├── cv/
 │   └── index.qmd              # Curriculum vitae
+├── clinical/
+│   ├── index.qmd              # Clinical overview
+│   └── resources.qmd          # NPE Study Club resources
 ├── data/
 │   ├── timeline.json          # PhD timeline data (read by research/index.qmd)
-│   └── reading.json           # Reading list entries (DOIs + notes)
+│   └── reading.json           # Reading list entries (synced from Google Sheet)
+├── _scripts/
+│   └── readinglist_appscript.gs  # Google Apps Script for reading list → GitHub sync
 ├── images/                    # Profile photo and other images
 ├── favicon.*                  # Favicon files
 ├── CNAME                      # Custom domain — do not delete
@@ -87,15 +93,24 @@ const MAX_PUBS    = 6;
 
 ## Reading list
 
-Reading list entries live in `data/reading.json` — a simple array of DOIs with optional notes:
+Reading list entries live in `data/reading.json`, synced automatically from a Google Sheet via the Apps Script in `_scripts/readinglist_appscript.gs`. Each entry stores full metadata:
 
 ```json
 [
-  { "doi": "10.1000/xyz123", "note": "Why this paper is worth reading." }
+  {
+    "doi": "10.1000/xyz123",
+    "title": "Paper title",
+    "authors": "Last, F., et al.",
+    "year": "2024",
+    "journal": "Journal Name",
+    "abstract": "...",
+    "note": "Why this paper is worth reading.",
+    "tags": ["EBSA", "Intervention"]
+  }
 ]
 ```
 
-The homepage shows the first 3 entries; the reading list page shows all of them with filtering. Metadata (title, authors, journal, year) is fetched automatically from Crossref using the DOI.
+The homepage shows the first 3 entries; the reading list page shows all with tag filtering and search. To add entries, paste a DOI, PMID, or APA citation into the APA Input sheet — metadata is fetched automatically from Crossref. Run **Sync to website now** from the Reading List menu to push to GitHub.
 
 ---
 
