@@ -6,6 +6,7 @@
     "year": "2025",
     "journal": "Frontiers in Psychology",
     "abstract": "Emotion-related school attendance challenges (ER-SAC) among neurodiverse adolescents are a growing concern due to their impact on both academic and social–emotional development. Despite the prevalence of ER-SAC, few school-based interventions specifically addressing this challenge have been evaluated in real-world settings. The current effectiveness study examined outcomes of the @School intervention, a modular, developmentally sensitive cognitive behavioral intervention that had previously only been evaluated in a research context. In this study, it was delivered by school-based psychologists in a specialized educational setting. Nineteen neurodiverse adolescents aged 12–17 years, all experiencing ER-SAC, participated in the study along with their parents. @School comprises individualized modules for adolescents and parents, as well as structured collaboration with school staff. Outcomes were assessed at pre-, post-, and five-month follow-up, and included adolescents’ school attendance, anxiety, school-related fear, depression, and self-efficacy, together with parent self-efficacy. Results revealed significant improvements in school attendance, adolescent anxiety (reported by both adolescents and parents), adolescent depression (reported by parents), and school-related fear. No significant changes were observed in adolescent or parent self-efficacy. Post-hoc analyses indicated significant reductions in social anxiety symptoms, although these reductions did not predict school attendance outcomes. Findings support the effectiveness of the @School intervention, delivered in a real-world setting, for improving school attendance and reducing emotional distress among neurodiverse adolescents. The results also highlight the value of school-based interventions that integrate support across multiple levels—addressing the needs of adolescents, their parents, and the school environment—to respond to the complex emotional and contextual factors contributing to ER-SAC.",
+    "note": "The @School intervention, a modular cognitive behavioral program, showed significant improvements in school attendance and emotional distress among neurodiverse adolescents when delivered by school-based psychologists in a real-world setting. This finding highlights the potential for school-based interventions to address complex emotional and contextual factors contributing to ER-SAC, but raises questions about the specific components of @School that drove these outcomes, and whether they could be replicated in other settings.",
     "tags": [
       "EBSA",
       "Intervention",
@@ -780,6 +781,7 @@
   },
   {
     "doi": "10.3390/ijerph191811564",
+    "title": "Adverse Childhood Experiences and Education Outcomes among Adolescents: Linking Survey and Administrative Data",
     "authors": "Stewart-Tufescu, A., Struck, S., Taillieu, T., et al.",
     "year": "2022",
     "journal": "International Journal of Environmental Research and Public Health",
@@ -793,6 +795,7 @@
   },
   {
     "doi": "10.1177/2333794X211002952",
+    "title": "Outcome of a Multi-modal CBT-based Treatment Program for Chronic School Refusal",
     "authors": "Strömbeck, J., Palmér, R., Sundberg Lax, I., et al.",
     "year": "2021",
     "journal": "Global Pediatric Health",
@@ -806,6 +809,7 @@
   },
   {
     "doi": "10.1002/cad.20484",
+    "title": "Outcome of a Multi-modal CBT-based Treatment Program for Chronic School Refusal",
     "authors": "Tekin, I., Aydın, S.",
     "year": "2022",
     "journal": "New Directions for Child and Adolescent Development",
@@ -819,6 +823,7 @@
   },
   {
     "doi": "10.1080/02667363.2018.1518215",
+    "title": "A grounded theory study of family coach intervention with persistent school non-attenders",
     "authors": "Tobias, A.",
     "year": "2018",
     "journal": "Educational Psychology in Practice",
@@ -832,6 +837,7 @@
   },
   {
     "doi": "10.1007/s12144-024-05742-x",
+    "title": "A systematic review of school refusal",
     "authors": "Ulaş, S., Seçer, İ.",
     "year": "2024",
     "journal": "Current Psychology",
@@ -844,6 +850,7 @@
   },
   {
     "doi": "10.1080/02667363.2026.2613688",
+    "title": "An exploration of approaches to supporting young people experiencing emotionally based school avoidance (EBSA) in a social, emotional and mental health (SEMH) school",
     "authors": "Hammond-Price, C., Bond, C.",
     "year": "2026",
     "journal": "Educational Psychology in Practice",
@@ -857,6 +864,7 @@
   },
   {
     "doi": "10.3389/frcha.2026.1802875",
+    "title": "Editorial: Addressing emotionally based school avoidance: causes, consequences, and interventions",
     "authors": "Anderson, J., Havik, T., Gonzálvez, C.",
     "year": "2026",
     "journal": "Frontiers in Child and Adolescent Psychiatry",
@@ -869,6 +877,7 @@
   },
   {
     "doi": "10.7189/jogh.11.03084",
+    "title": "Impact of COVID-2019 on school attendance problems",
     "authors": "Nathwani, G., Shoaib, A., Shafi, A., et al.",
     "year": "2021",
     "journal": "Journal of Global Health",
@@ -881,6 +890,7 @@
   },
   {
     "doi": "10.47485/2693-2490.1143",
+    "title": "The Treatment Hypothesis of Yoga for Children with School Refusal, and Attempt to Building a Comprehensive Support Network Led by Family Doctors",
     "authors": "Katsumi Kobayashi",
     "year": "2026",
     "journal": "Journal of Psychology and Neuroscience",
@@ -890,6 +900,20 @@
       "EBSA",
       "Intervention",
       "Parent"
+    ]
+  },
+  {
+    "doi": "10.1007/s12144-025-07831-x",
+    "title": "Motivational profiles in problematic social media use: a latent profile analysis",
+    "authors": "Halaris, N., Hunt, B., Stavropoulos, V., et al.",
+    "year": "2025",
+    "journal": "Current Psychology",
+    "abstract": "Abstract Problematic Social Media Use (PSMU), an experience associated with symptoms replicable to those of addiction, has become increasingly prevalent worldwide. Previous literature suggested that social media subgroups convey varying risks with PSMU behaviours. Theoretically prompted by the Self-Determination Theory (SDT), this study aimed to (i) identify homogenous profiles of users based on their amotivation, external regulation, identified regulation and intrinsic motivation; (ii) examine the differences in levels of PSMU amongst motivational profiles and (iii) investigate potential differences in PSMU levels for different motivation styles. 276 social media users (18–62 years, Mage = 31.90, SD = 9.94) were assessed using the Situational Motivation Scale (SIMS) and the Bergen Social Media Addiction Scale (BSMAS) at three-time points, one year apart. Latent profile analysis (LPA) identified two motivational profiles: the ‘Low-Risk Motivation’ (LRM; 77.2%) and the ‘High-Risk Motivation’ profile (HRM; 22.8%). As hypothesised, the HRM profile exhibited higher levels of PSMU across waves. However, PSMU levels did not increase across waves. Findings suggest that users endorsing higher levels of amotivation and external regulation (i.e., HRM) convey a greater prevalence of developing PSMU behaviours. Findings indicate that PSMU may pertain as a maladaptive coping mechanism to manage psychosocial deficiencies. As such, these findings provide significant implications for the intervention, prevention and treatment of PSMU.",
+    "note": "This study identifies two distinct motivational profiles among social media users, one with low risk and the other with high risk for problematic social media use, with the latter characterized by higher levels of amotivation and external regulation. Notably, the study finds that PSMU levels did not increase over time, suggesting that these maladaptive coping mechanisms may be a stable aspect of users' psychosocial deficiencies, raising questions about the potential for long-term interventions to address underlying issues.",
+    "tags": [
+      "Digital",
+      "Methods",
+      "Social Media"
     ]
   }
 ]
