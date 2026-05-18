@@ -12,7 +12,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I'm a PhD candidate at RMIT University and a provisional psychologist working with children, adolescents, and families. My research focuses on emotionally based school avoidance in the digital age. My clinical and research work feed each other in ways that are generally complementary, though the gap between what the evidence recommends and what families can actually do is always on my mind. Both involve a similar amount of paperwork, just in completely different ways.
+I'm a <b>PhD candidate at RMIT University</b> and a <b>provisional psychologist</b> working with children, schools, and families. My research focuses on emotionally based school avoidance in the digital age. Although the roles complement each other, the gap between what the evidence recommends and what families are able to do keeps me up at night (legitimately - both involve more paperwork than any one person should commit to).
 :::
 
 ::: hero-links
@@ -52,7 +52,7 @@ Systematic review registered
 ::: about-section
 ## Current focus
 
-I research school attendance problems and emotionally based school avoidance (EBSA) — why children disengage from school, what interventions work, and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data. It is grounded in an industry partnership with CatholicCare Victoria, where I also work as a school counsellor, which gives me a front-row seat to the gap between what the research recommends and what schools and families are actually dealing with.
+I research school attendance problems and emotionally based school avoidance (EBSA): why children disengage from school, what interventions work (or why interventions <i>don't</i> work), and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data. My research is grounded in an industry partnership with CatholicCare Victoria, where working as a school counsellor means the research problems are rarely hypothetical.
 
 [Read more →](research/index.qmd){.about-link}
 :::
