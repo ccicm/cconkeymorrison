@@ -17,7 +17,7 @@ listing:
 # Writing
 :::
 
-<p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">Sporadic commentary on research, policy, and practice. Clinical resources for children, young people, and the adults around them coming soon.</p>
+<p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">Sporadic commentary on research, policy, and practice.</p>
 
 <hr style="border:none;border-top:1px solid var(--border);margin:0 0 1.5rem 0;">
 

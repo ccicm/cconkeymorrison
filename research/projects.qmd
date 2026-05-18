@@ -66,7 +66,19 @@ An interactive evidence map for the systematic review of emotionally based schoo
 A quick-reference guide for common statistical procedures in psychology research — aimed at honours and postgraduate students. Covering assumption testing, effect sizes, and reporting conventions in APA style.
 
 ::: project-tags
-[Jamovi]{.project-tag} [R]{.project-tag} [Statistics]{.project-tag} [Teaching]{.project-tag} 
+[Jamovi]{.project-tag} [R]{.project-tag} [Statistics]{.project-tag} [Teaching]{.project-tag}
+:::
+:::
+
+::: project-card
+[Planned]{.project-status .status-planned}
+
+### Clinical Resources
+
+A collection of practical resources for children, young people, and the adults supporting them. Topics will include emotional regulation, challenging unhelpful thoughts, PMR, and body safety. Aimed at families and school-based practitioners.
+
+::: project-tags
+[Children]{.project-tag} [Parents]{.project-tag} [Clinical]{.project-tag} [Schools]{.project-tag}
 :::
 :::
 
