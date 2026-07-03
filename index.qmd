@@ -34,7 +34,7 @@ Papers in progress
 :::
 
 ::: stat-item
-**4**\
+**5**\
 Peer-reviewed publications
 :::
 
@@ -44,8 +44,8 @@ Active PhD period
 :::
 
 ::: stat-item
-**PROSPERO**\
-Systematic review registered
+**Citations**\
+22
 :::
 :::
 
