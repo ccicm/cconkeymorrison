@@ -1,13 +1,13 @@
 ---
-title: "Research"
-description: "Research by Connor Conkey-Morrison on school attendance problems, emotionally based school avoidance, and system-held education data."
+title: "School Attendance Research"
+description: "School attendance research by Connor Conkey-Morrison on emotionally based school avoidance, school refusal, attendance measurement, longitudinal cohorts, and education-system data."
 page-layout: full
 engine: markdown
 ---
 
 ::: hero-wrapper
 ::: hero-text
-# Research
+# School Attendance Research
 
 ::: hero-bio
 Research on how school attendance problems are defined, measured, and recorded — and what those systems miss when they record how much school a child misses but rarely why.

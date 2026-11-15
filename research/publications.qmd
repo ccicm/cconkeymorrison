@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-description: "Published and accepted publications and peer-review service by Connor Conkey-Morrison."
+description: "Publications by Connor Conkey-Morrison across psychology, behavioural addiction, digital health, school attendance, measurement, and education, with peer-review work and citation metrics."
 page-layout: full
 engine: markdown
 ---
@@ -38,7 +38,7 @@ Published research across psychology, behavioural science, digital health, and e
 </div>
 </div>
 <div class="pub-metrics-intro">
-<span class="pub-metrics-kicker">Live profile snapshot</span>
+<span class="pub-metrics-kicker">Live profile snapshot:</span>
 <span id="pub-metrics-updated">Metrics sync from Google Scholar and ORCID</span>
 </div>
 
@@ -74,7 +74,7 @@ Published research across psychology, behavioural science, digital health, and e
 .pub-synced-note a { color: var(--text-muted); text-decoration: underline; }
 .pub-scholar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.85rem; border: 1px solid var(--border); border-radius: 999px; transition: background 0.18s, border-color 0.18s; }
 .pub-scholar-link:hover { background: var(--tag-bg); border-color: var(--navy); }
-.pub-metrics-intro { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin:1rem 0 0.65rem; color:var(--text-muted); font-family:inherit; font-size:0.75rem; }
+.pub-metrics-intro { display:flex; align-items:baseline; justify-content:flex-end; gap:0.3rem; margin:0.55rem 0 0.65rem; color:var(--text-muted); font-family:'Plus Jakarta Sans',sans-serif; font-size:0.72rem; letter-spacing:0.02em; }
 .pub-metrics-kicker { color:inherit; font:inherit; letter-spacing:normal; }
 .pub-stats-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:0.7rem; margin-bottom:2rem; }
 .pub-stats-grid > p { display:contents; }
@@ -91,7 +91,7 @@ Published research across psychology, behavioural science, digital health, and e
 .pub-stat-pipeline { border-top-color:#c05a4a; }
 @media (max-width: 860px) { .pub-layout { grid-template-columns: 1fr; } .pub-sidebar { display: none; } }
 @media (max-width: 1100px) { .pub-stats-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .pub-metrics-intro { align-items:flex-start; flex-direction:column; gap:0.25rem; } .pub-stats-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .pub-metrics-intro { align-items:baseline; } .pub-stats-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
 </style>
 
 <div class="pub-layout">
@@ -300,3 +300,7 @@ loadPeerReviewCount();
 ## Where I’m getting ideas
 
 The [Reading List](reading-list.qmd) is a brief, evolving record of the papers shaping how I think about attendance, avoidance, intervention, and education systems.
+
+::: about-section
+[Projects →](projects.qmd){.about-link} [Contact →](/contact.html){.about-link}
+:::

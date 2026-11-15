@@ -1,6 +1,6 @@
 ---
 title: "Projects"
-description: "Research tools, open-source software, and data projects by Connor Conkey-Morrison."
+description: "Research tools, open-source software, data projects, and practical resources by Connor Conkey-Morrison across psychology, education, digital health, and school attendance."
 page-layout: full
 ---
 

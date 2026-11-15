@@ -1,6 +1,6 @@
 ---
 title: "Connor Conkey-Morrison"
-description: "Connor Conkey-Morrison studies school attendance problems, emotionally based school avoidance, and the education systems that record absence."
+description: "Connor Conkey-Morrison is a psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
 page-layout: full
 ---
 
@@ -17,7 +17,7 @@ I work across psychology, education, and digital health, with a particular inter
 :::
 
 ::: hero-links
-[Research →](research/index.qmd){.hero-btn .btn-primary} [Publications →](research/publications.qmd){.hero-btn .btn-secondary} [Get in touch →](contact.qmd){.hero-btn .btn-secondary}
+[School Attendance Research →](research/index.qmd){.hero-btn .btn-primary} [Publications →](research/publications.qmd){.hero-btn .btn-secondary} [Get in touch →](contact.qmd){.hero-btn .btn-secondary}
 :::
 :::
 
@@ -28,57 +28,32 @@ I work across psychology, education, and digital health, with a particular inter
 
 ---
 
-::: {.stats-strip .home-stats}
-<a href="research/publications.html" class="stat-item stat-item-link">
-<strong id="metric-publications">7</strong>\
-Publications
-</a>
-<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en" class="stat-item stat-item-link">
-<strong id="metric-citations">36</strong>\
-Citations (Google Scholar)
-</a>
-<a href="https://orcid.org/0009-0000-1020-2333" class="stat-item stat-item-link">
-<strong id="metric-peer-reviews">18</strong>\
-Verified peer reviews
-</a>
-<div class="stat-item">
-<strong id="metric-under-review">5</strong>\
-Under peer review
-</div>
-:::
-
-::: about-section
 ## Featured & upcoming
 
-[ATN National Symposium 2026](https://events.humanitix.com/atn-national-symposium-2026){.about-link}
+::: {.homepage-feature-grid}
+::: {.homepage-feature .homepage-feature-event}
+<a href="https://events.humanitix.com/atn-national-symposium-2026" class="homepage-feature-image">![The stubborn art of being human symposium](images/Symposium%20Poster%20Horizontal.png)</a>
+
+::: homepage-feature-content
+[Upcoming event]{.feature-label}
 
 ### The stubborn art of being human
 
-I’ll be speaking on the student panel, **[Re]claiming the art of learning in an AI-enabled world**, at the free ATN Universities symposium on Thursday 19 November. Join online or in person at RMIT University, Melbourne, from 11:00 am to 4:30 pm AEDT.
+I’ll be speaking on the student panel, **[Re]claiming the art of learning in an AI-enabled world**, at the free ATN Universities symposium on Thursday 19 November. Join online or in person at RMIT University, Melbourne.
 
-[Register for free →](https://events.humanitix.com/atn-national-symposium-2026){.about-link}
+[Event details and registration →](https://events.humanitix.com/atn-national-symposium-2026){.about-link}
+:::
 :::
 
-::: about-section
-## Current focus
+::: {.homepage-feature .homepage-feature-paper}
+[Latest publication]{.feature-label}
 
-My current research connects intervention evidence, longitudinal modelling, and population-level education data. The wider portfolio also includes behavioural addiction, digital health, measurement, and applied psychology.
+### Beyond screen time
 
-[Research overview →](research/index.qmd){.about-link} [Publications →](research/publications.qmd){.about-link} [Projects →](research/projects.qmd){.about-link} [Reading List →](research/reading-list.qmd){.about-link}
+**Evidence-based assessment and early intervention for problematic digital use in young people**. This Australian Journal of General Practice article considers how clinicians can assess problematic digital use and respond early, without reducing the problem to screen time alone.
+
+*Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D. (2026).* *Australian Journal of General Practice*.
+
+[View at journal website →](https://doi.org/10.31128/AJGP-11-25-7903){.about-link} [All publications →](research/publications.qmd){.about-link}
 :::
-
-```{=html}
-<script>
-(async function() {
-  try {
-    const response = await fetch('/data/metrics.json');
-    if (!response.ok) return;
-    const metrics = await response.json();
-    if (metrics.publications) document.getElementById('metric-publications').textContent = metrics.publications;
-    if (metrics.citations) document.getElementById('metric-citations').textContent = metrics.citations;
-    if (metrics.peer_reviews) document.getElementById('metric-peer-reviews').textContent = metrics.peer_reviews;
-    if (metrics.under_review) document.getElementById('metric-under-review').textContent = metrics.under_review;
-  } catch (_) {}
-})();
-</script>
-```
+:::

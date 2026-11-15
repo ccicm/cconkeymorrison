@@ -20,7 +20,7 @@ cconkeymorrison/
 ├── contact.qmd                # Contact form (Web3Forms)
 ├── template.qmd               # Public setup guide for the academic website template
 ├── research/
-│   ├── index.qmd              # Research overview + interactive PhD timeline
+│   ├── index.qmd              # School attendance research + interactive PhD timeline
 │   ├── publications.qmd       # Publications (ORCID + Crossref API)
 │   ├── reading-list.qmd       # Reading list (from data/reading.json)
 │   └── projects.qmd           # Research projects
