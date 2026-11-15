@@ -4,6 +4,10 @@ project:
   resources:
     - data/
 
+site-url: https://connorconkeymorrison.com
+description: "Connor Conkey-Morrison studies school attendance problems, emotionally based school avoidance, and education systems."
+lang: en-AU
+
 execute:
   engine: markdown
 
@@ -12,34 +16,48 @@ website:
   favicon: favicon.ico
   navbar:
     left:
-      - text: Research
-        menu:
-          - href: research/index.qmd
-            text: Overview
-          - href: research/publications.qmd
-            text: Publications
-          - href: research/reading-list.qmd
-            text: Reading List
-          - href: research/projects.qmd
-            text: Projects
-          - href: posts/index.qmd
-            text: Writing
-      - href: cv/index.qmd
-        text: CV
+      - href: research/index.qmd
+        text: Research
+      - href: research/publications.qmd
+        text: Publications
+      - href: research/projects.qmd
+        text: Projects
       - href: contact.qmd
         text: Contact
+      - text: More
+        menu:
+          - href: cv/index.qmd
+            text: CV
+          - href: teaching.qmd
+            text: Teaching
+          - href: research/resources.qmd
+            text: Resources (in development)
+          - href: research/reading-list.qmd
+            text: Reading List
+          - href: posts/index.qmd
+            text: Writing
     right:
+      - text: ORCID
+        href: https://orcid.org/0009-0000-1020-2333
+      - text: Google Scholar
+        href: https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en
+      - text: GitHub
+        href: https://github.com/ccicm
       - text: LinkedIn
         href: https://www.linkedin.com/in/connorconkeymorrison
 
 format:
   html:
+    open-graph: true
+    twitter-card: true
+    link-external-newwindow: true
     theme: cosmo
     css: styles.css
     toc: false
     smooth-scroll: true
     include-in-header:
       text: |
+        <meta name="author" content="Connor Conkey-Morrison">
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -59,4 +77,43 @@ format:
             radius:    s.getPropertyValue('--radius').trim()     || '12px',
           };
         });
+        </script>
+    include-after-body:
+      text: |
+        <div class="site-last-updated">Last updated <time id="site-last-updated">15 November 2026</time></div>
+        <div class="site-accessibility">This site aims to meet WCAG 2.2 AA. <a href="/contact.html?type=bug">Report an accessibility or website problem.</a></div>
+        <script>
+        (async function() {
+          try {
+            const response = await fetch('/data/metrics.json');
+            if (!response.ok) return;
+            const metrics = await response.json();
+            if (metrics.updated) document.getElementById('site-last-updated').textContent = new Date(metrics.updated).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+          } catch (_) {}
+        })();
+        </script>
+        <script>
+        (function() {
+          function markExternalLinks(root) {
+            root.querySelectorAll('a[href]').forEach(function(link) {
+              var url;
+              try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+              var sameSite = url.hostname === window.location.hostname ||
+                url.hostname === 'connorconkeymorrison.com' ||
+                url.hostname === 'www.connorconkeymorrison.com';
+              if (sameSite || !/^https?:$/.test(url.protocol)) return;
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+              if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim()) {
+                var marker = document.createElement('span');
+                marker.className = 'external-link-icon';
+                marker.setAttribute('aria-hidden', 'true');
+                marker.textContent = ' ↗';
+                link.appendChild(marker);
+              }
+            });
+          }
+          markExternalLinks(document);
+          new MutationObserver(function() { markExternalLinks(document); }).observe(document.body, { childList: true, subtree: true });
+        })();
         </script>

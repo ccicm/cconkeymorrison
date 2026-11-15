@@ -1,22 +1,57 @@
 ---
-title: ""
+title: "Research"
+description: "Research by Connor Conkey-Morrison on school attendance problems, emotionally based school avoidance, and system-held education data."
 page-layout: full
 engine: markdown
 ---
 
-::: page-header
+::: hero-wrapper
+::: hero-text
 # Research
-:::
 
-::: jump-nav
-[Current focus](#current-research-focus){.jump-link} [PhD papers](#phd-papers){.jump-link} [Supervisory team](#supervisory-team){.jump-link}
+::: hero-bio
+Research on how school attendance problems are defined, measured, and recorded — and what those systems miss when they record how much school a child misses but rarely why.
+:::
+:::
 :::
 
 ------------------------------------------------------------------------
 
 ## Current research focus {#current-research-focus}
 
-My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
+I study school attendance problems: how research defines them, how they unfold across childhood, and how education systems record them. My PhD follows the problem across three levels, from the intervention evidence, to two national cohorts of Australian children, to the attendance data schools and governments already hold. The same gap appears at each level. Systems count how much school a child misses and rarely why, so absence driven by distress is easy to miss. My aim is evidence that helps policy see the difference earlier.
+
+## PhD papers {#phd-papers}
+
+:::::: paper-grid
+::: paper-card
+[Paper 1]{.paper-label} [Under review]{.project-status .status-wip}
+
+### Systematic review
+
+A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918){.prospero-badge} systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets. Intervention effects can only be interpreted when the definition, target, and attendance measure line up.
+:::
+
+::: paper-card
+[Paper 2]{.paper-label} [Preparing for submission]{.project-status .status-wip}
+
+### Longitudinal modelling
+
+Examining emotional symptom courses from school entry to adolescence in two Australian cohorts, alongside how much school children miss and the stated reasons. Recording why a child is absent adds information that the amount of absence does not.
+:::
+
+::: paper-card
+[Paper 3]{.paper-label} [Data preparation]{.project-status .status-planned}
+
+### Population-level attendance
+
+Exploring which school characteristics predict attendance and post-pandemic recovery, and what system-held data can predict about which children are absent. The work estimates what attendance systems can already see and what they miss.
+:::
+::::::
+
+## PhD framework
+
+**School Attendance Problems: Definitions, Patterns, and System-Level Implications** is organised using KiTeS (Melvin et al., 2019), applying Bronfenbrenner's bioecological model to attendance: evidence -> population -> system.
 
 ```{=html}
 <!-- PhD Timeline — reads from /data/timeline.json -->
@@ -128,8 +163,11 @@ My present research centres on school attendance problems and emotionally based 
       section.className = 'tl-paper';
 
       // Header
-      const header = document.createElement('div');
+      const header = document.createElement('button');
       header.className = 'tl-paper-header';
+      header.type = 'button';
+      header.setAttribute('aria-expanded', 'false');
+      header.setAttribute('aria-controls', `tl-activities-${paper.id}`);
       header.innerHTML = `
         <div class="tl-paper-info">
           <div class="tl-paper-bar" style="background:${color};"></div>
@@ -169,6 +207,7 @@ My present research centres on school attendance problems and emotionally based 
       // Activities (hidden by default)
       const activitiesDiv = document.createElement('div');
       activitiesDiv.className = 'tl-activities';
+      activitiesDiv.id = `tl-activities-${paper.id}`;
       activitiesDiv.style.display = 'none';
 
       paper.activities.forEach(act => {
@@ -211,6 +250,7 @@ My present research centres on school attendance problems and emotionally based 
       header.addEventListener('click', () => {
         const open = activitiesDiv.style.display !== 'none';
         activitiesDiv.style.display = open ? 'none' : 'block';
+        header.setAttribute('aria-expanded', String(!open));
         header.classList.toggle('expanded', !open);
         header.querySelector('.tl-chevron').classList.toggle('open', !open);
       });
@@ -233,44 +273,26 @@ My present research centres on school attendance problems and emotionally based 
 
 ------------------------------------------------------------------------
 
-## PhD papers {#phd-papers}
+## Related research
 
-:::::: paper-grid
-::: paper-card
-[Paper 1]{.paper-label}
+My cyberpsychology, behavioural addiction, and psychometric work shares a focus on avoidance and escape as ways of coping, and on data-driven methods for finding at-risk groups early. See the [publications page](publications.qmd).
 
-### Systematic review
+## Policy and practice
 
-A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918){.prospero-badge} systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
-:::
+School attendance systems usually record how much school a child misses, but not consistently why. A policy response should make the reason for absence easier to record and use alongside attendance totals. This work sits alongside Australian attention to school refusal and attendance policy, including the 2023 Senate inquiry, the Australian Education Research Organisation's attendance work, and state attendance policies.
 
-::: paper-card
-[Paper 2]{.paper-label}
-
-### Longitudinal modelling
-
-Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
-:::
-
-::: paper-card
-[Paper 3]{.paper-label}
-
-### Population-level attendance
-
-Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
-:::
-::::::
+Departments, sector bodies, schools, and researchers working on attendance are welcome to get in touch about evidence, data definitions, or policy implications. [Contact me](/contact.html).
 
 ------------------------------------------------------------------------
 
 ## Supervisory team {#supervisory-team}
 
 ::: supervisor-row
-[Dr Daniel Zarate]{.supervisor-link} [Dr Vasileios Stavropoulos]{.supervisor-link} [Dr Taylor Brown]{.supervisor-link}
+[Dr Daniel Zarate](https://scholar.google.com/scholar?q=Daniel+Zarate){.supervisor-link} [A/Prof Vasileios Stavropoulos](https://scholar.google.com/scholar?q=Vasileios+Stavropoulos){.supervisor-link} [Dr Taylor Brown](https://scholar.google.com/scholar?q=Taylor+Brown+psychology){.supervisor-link}
 :::
 
 ------------------------------------------------------------------------
 
 ::: about-section
-[Publications →](publications.qmd){.about-link} [Reading List →](reading-list.qmd){.about-link} [Projects →](projects.qmd){.about-link}
+[Publications →](publications.qmd){.about-link} [Projects →](projects.qmd){.about-link} [Contact →](/contact.html){.about-link}
 :::

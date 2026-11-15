@@ -1,5 +1,6 @@
 ---
-title: ""
+title: "Contact"
+description: "Contact Connor Conkey-Morrison about research, collaboration, teaching, or the website."
 page-layout: full
 ---
 
@@ -116,9 +117,10 @@ page-layout: full
 
 <span class="ccm-type-label">What are you getting in touch about?</span>
 <div class="ccm-type-row">
-  <button type="button" class="ccm-type-btn" onclick="setType('research')">Research & collaboration</button>
-  <button type="button" class="ccm-type-btn" onclick="setType('general')">General</button>
-  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" onclick="setType('bug')">Report a website bug</button>
+  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('research')">Research & collaboration</button>
+  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('policy')">Policy and sector</button>
+  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('general')">General</button>
+  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" aria-pressed="false" onclick="setType('bug')">Report a website bug</button>
 </div>
 
 <div class="ccm-form-wrap" id="ccm-form-wrap">
@@ -126,6 +128,7 @@ page-layout: full
   <form id="contact-form" onsubmit="handleSubmit(event)">
     <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
     <input type="hidden" id="ccm-subject" name="subject" value="">
+    <input type="checkbox" name="botcheck" class="hidden" style="display:none">
 
     <div class="ccm-form-group">
       <label class="ccm-label" for="f-name">Name</label>
@@ -144,20 +147,25 @@ page-layout: full
       <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
       <button type="button" class="ccm-clear" onclick="clearForm()">Clear</button>
     </div>
-    <p id="ccm-status" class="ccm-status"></p>
+    <p id="ccm-status" class="ccm-status" role="status" aria-live="polite"></p>
   </form>
 </div>
 
 <script>
 const config = {
   research: { label: 'Research & collaboration', subject: 'Research enquiry — connorconkeymorrison.com', placeholder: 'Briefly describe your research interest or proposed collaboration...' },
+  policy:   { label: 'Policy and sector',         subject: 'Policy and sector enquiry — connorconkeymorrison.com', placeholder: 'Briefly describe the policy or sector question...' },
   general:  { label: 'General',                  subject: 'General enquiry — connorconkeymorrison.com',   placeholder: 'Your message...' },
   bug:      { label: 'Report a website bug',      subject: 'Bug report — connorconkeymorrison.com',        placeholder: 'Describe the bug — what page, what happened, and what you expected...' },
 };
 
 function setType(type) {
   const c = config[type];
-  document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('onclick') === `setType('${type}')`));
+  document.querySelectorAll('.ccm-type-btn').forEach(btn => {
+    const active = btn.getAttribute('onclick') === `setType('${type}')`;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
   document.getElementById('ccm-subject').value = c.subject;
   document.getElementById('f-message').placeholder = c.placeholder;
   document.getElementById('ccm-selected-label').textContent = c.label;
@@ -170,7 +178,7 @@ function clearForm() {
   document.getElementById('ccm-subject').value = '';
   document.getElementById('ccm-selected-label').textContent = '';
   document.getElementById('ccm-form-wrap').classList.remove('visible');
-  document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.ccm-type-btn').forEach(btn => { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); });
   document.getElementById('ccm-status').textContent = '';
   document.getElementById('ccm-status').className = 'ccm-status';
 }
@@ -201,11 +209,6 @@ async function handleSubmit(e) {
     return;
   }
 
-  const ref = document.referrer || "";
-
-  if (ref.includes("template")) {
-    setType("bug");
-  }
 })();
 </script>
 ```

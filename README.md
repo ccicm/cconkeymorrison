@@ -31,6 +31,8 @@ cconkeymorrison/
 │   └── index.qmd              # Curriculum vitae
 ├── data/
 │   ├── timeline.json          # PhD timeline data (read by research/index.qmd)
+│   ├── metrics.json           # Scholar and ORCID metrics (updated weekly)
+│   ├── publications.json      # ORCID journal articles (updated weekly)
 │   └── reading.json           # Reading list entries (synced from Google Sheet)
 ├── _scripts/
 │   └── readinglist_appscript.gs  # Google Apps Script for reading list → GitHub sync
@@ -67,16 +69,16 @@ Everything else updates automatically — including the publications block and r
 
 ---
 
-## Publications (ORCID + Crossref)
+## Publications and metrics
 
-Publications load automatically from two APIs on page load:
+The deployment workflow runs `_scripts/fetch_metrics.py` weekly before rendering:
 
-- **ORCID** (`pub.orcid.org`) — works summary list, then full per-paper records for author data
-- **Crossref** (`api.crossref.org`) — journal-level URLs derived from each DOI
+- **Google Scholar via SerpApi** — citation, h-index, and i10-index values
+- **ORCID** (`pub.orcid.org`) — public journal articles and verified peer reviews
 
-The research page shows the 6 most recent publications, each with a journal favicon, APA 7 citation copy button, and RIS download.
+The script keeps the previous value when a source fails. The site reads the resulting local JSON files at runtime, so visitors make no profile API calls. The research page shows the most recent publications, each with APA 7 citation copy and RIS download controls.
 
-**To update:** Add the paper to your ORCID profile and set it to public. It appears automatically on the next page load.
+**To update:** Add the paper to your ORCID profile and set it to public. It appears after the next scheduled or manually dispatched workflow run. Set the repository secret `SERPAPI_KEY` to enable Scholar metrics.
 
 **Key constants** in `research/publications.qmd`:
 
@@ -119,7 +121,7 @@ The interactive Gantt timeline on `research/index.qmd` reads from `data/timeline
 
 ## Contact form (Web3Forms)
 
-The contact page uses [Web3Forms](https://web3forms.com) — no backend needed. Access key is in `contact.qmd` in the hidden input field. Submissions go to `connorconkeymorrison@gmail.com`.
+The contact page uses [Web3Forms](https://web3forms.com) — no backend needed. The access key is in `contact.qmd` in the hidden input field.
 
 ---
 

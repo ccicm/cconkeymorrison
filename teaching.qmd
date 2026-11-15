@@ -1,0 +1,38 @@
+---
+title: "Teaching"
+description: "Teaching experience, psychology units, and statistics support by Connor Conkey-Morrison."
+page-layout: full
+---
+
+::: page-header
+# Teaching
+:::
+
+I teach psychology as a practical discipline: concepts first, then the tools that let students test and communicate them. My teaching includes tutorials, marking, assessment support, and statistics across undergraduate and postgraduate settings.
+
+## Units
+
+### RMIT University
+
+Undergraduate and postgraduate psychology units:
+
+- BESC1433 Psychological Assessment and Individual Differences
+- BESC1437 Philosophy and Methodology of Psychology
+- BESC1571 Counselling and Virtual Care
+- BESC1514 Counselling and Professional Practices (Graduate Diploma)
+- BESC1071 Psychology of Everyday Thinking
+- BESC1512 Organisational and Motivational Psychology
+- BESC1575 Thesis 1 (Honours thesis proposal)
+- BESC1182 Developmental Psychology
+- BESC1492 Field Placement (marking only)
+
+### Cairnmillar Institute
+
+- HON402 Research Methods
+- HON401 Ethical Practice
+- HON404 Evidence-based Practice and Practice-based Evidence
+- HON405 Neuropsychology (marking only)
+
+## Statistics and methods
+
+I teach statistics conceptually before introducing software. Students use Jamovi and R to understand the question a method answers, inspect assumptions, interpret uncertainty, and report results clearly rather than treating an analysis as a sequence of clicks. My research methods experience includes systematic review, longitudinal modelling, measurement invariance, latent profile analysis, and machine learning.

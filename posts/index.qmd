@@ -1,5 +1,6 @@
 ---
-title: ""
+title: "Writing"
+description: "Plain-language writing and commentary on research, policy, and practice by Connor Conkey-Morrison."
 page-layout: full
 engine: markdown
 listing:

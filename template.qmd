@@ -1,5 +1,6 @@
 ---
-title: ""
+title: "Academic Website Template"
+description: "A guide to the open-source Quarto academic website template used by Connor Conkey-Morrison."
 page-layout: full
 editor: 
   markdown: 

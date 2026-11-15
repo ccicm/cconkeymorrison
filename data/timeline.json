@@ -1,10 +1,10 @@
 {
-  "currentQuarter": 5,
+  "currentQuarter": 8,
   "estimatedCompletion": "2027",
   "milestones": [
-    { "quarter": 1,  "label": "M1", "full": "Confirmation of Candidature" },
-    { "quarter": 5,  "label": "M2", "full": "Milestone 2" },
-    { "quarter": 9,  "label": "M3", "full": "Milestone 3" },
+    { "quarter": 5,  "label": "M1", "full": "Confirmation of Candidature" },
+    { "quarter": 8,  "label": "M2", "full": "Milestone 2" },
+    { "quarter": 12, "label": "M3", "full": "Milestone 3" },
     { "quarter": 13, "label": "4Y", "full": "4th Year — Maximum Submission" }
   ],
   "papers": [
@@ -24,7 +24,7 @@
         { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "5": "done" } },
         { "desc": "Draft systematic review manuscript",                        "statuses": { "5": "done" } },
         { "desc": "Submit manuscript to journal for review",                   "statuses": { "6": "done" } },
-        { "desc": "Respond to peer review",                                    "statuses": { "7": "todo", "8": "goal" } }
+        { "desc": "Revise and progress to acceptance",                         "statuses": { "7": "wip", "8": "goal" } }
       ]
     },
     {
@@ -33,13 +33,12 @@
       "title": "Longitudinal modelling (LSAC)",
       "activities": [
         { "desc": "Secured LSAC data access & governance",                     "statuses": { "2": "done" } },
-        { "desc": "Methodological specification and code development",         "statuses": { "2": "wip" , "5": "goal" } },
-        { "desc": "Confirm data availability and consistency across waves",    "statuses": { "3": "done" } },
-        { "desc": "Exploratory clustering of attendance patterns",             "statuses": { "4": "wip",  "6": "goal" } },
-        { "desc": "Estimation of LCGA developmental trajectories",             "statuses": { "6": "wip",  "8": "goal" } },
-        { "desc": "Modelling internalising symptom trajectories",              "statuses": { "8": "todo", "9": "goal" } },
-        { "desc": "Draft manuscript",                                          "statuses": { "9": "wip", "10": "goal" } },
-        { "desc": "Submit manuscript",                                         "statuses": { "9": "todo", "10": "goal" } }
+        { "desc": "Emotional symptom courses in two cohorts",                 "statuses": { "3": "done" } },
+        { "desc": "Absence and reasons-for-absence models",                    "statuses": { "4": "done" } },
+        { "desc": "Sensitivity analyses: count, pseudo-class, weighted, health-adjusted", "statuses": { "5": "done" } },
+        { "desc": "Supervisory review",                                        "statuses": { "7": "wip", "8": "done" } },
+        { "desc": "Submit manuscript",                                         "statuses": { "8": "goal" } },
+        { "desc": "Peer review and revision",                                  "statuses": { "9": "todo", "10": "goal" } }
       ]
     },
     {
@@ -47,11 +46,12 @@
       "label": "Paper 3",
       "title": "Population-level attendance (ACARA)",
       "activities": [
-        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "done" } },
-        { "desc": "Develop analysis syntax for attendance trajectories",       "statuses": { "3": "wip",  "7": "goal" } },
-        { "desc": "Code administrative attendance definitions",                "statuses": { "7": "todo", "8": "goal" } },
-        { "desc": "Growth model for academic achievement",                     "statuses": { "8": "todo", "9": "goal" } },
-        { "desc": "Draft & submit manuscript, peer review",                    "statuses": { "9": "todo", "10": "goal" } }
+        { "desc": "ACARA data preparation and outcome definitions",             "statuses": { "6": "wip", "7": "goal" } },
+        { "desc": "Stage 1: train, validate and interpret ACARA models",        "statuses": { "8": "todo", "9": "goal" } },
+        { "desc": "Stage 2: school-held vs child-level prediction in LSAC",     "statuses": { "9": "todo", "10": "goal" } },
+        { "desc": "Sensitivity analyses",                                      "statuses": { "10": "todo", "11": "goal" } },
+        { "desc": "Draft and submit",                                          "statuses": { "11": "todo", "12": "goal" } },
+        { "desc": "Peer review and revision",                                  "statuses": { "12": "todo", "13": "goal" } }
       ]
     },
     {
@@ -59,7 +59,8 @@
       "label": "Thesis",
       "title": "Integration & submission",
       "activities": [
-        { "desc": "Integrate findings into thesis by publication",             "statuses": { "11": "todo", "12": "goal" } }
+        { "desc": "Introduction and conclusion",                               "statuses": { "10": "todo", "11": "goal" } },
+        { "desc": "Revision, formatting and submission",                       "statuses": { "11": "todo", "12": "goal" } }
       ]
     }
   ]

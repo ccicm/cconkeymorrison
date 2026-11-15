@@ -1,0 +1,1426 @@
+diff --git a/.github/workflows/Deploy Quarto site to GitHub Pages.yml b/.github/workflows/Deploy Quarto site to GitHub Pages.yml
+index f512837..d57f976 100644
+--- a/.github/workflows/Deploy Quarto site to GitHub Pages.yml	
++++ b/.github/workflows/Deploy Quarto site to GitHub Pages.yml	
+@@ -1,10 +1,12 @@
+ on:
+   push:
+     branches: ["main"]
++  schedule:
++    - cron: "0 20 * * 0"
+   workflow_dispatch:
+ 
+ permissions:
+-  contents: read
++  contents: write
+   pages: write
+   id-token: write
+ 
+@@ -22,6 +24,19 @@ jobs:
+       - name: Install Quarto
+         uses: quarto-dev/quarto-actions/setup@v2
+ 
++      - name: Fetch profile metrics and publications
++        run: |
++          python -m pip install requests
++          python _scripts/fetch_metrics.py
++        env:
++          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
++
++      - name: Commit refreshed data
++        uses: stefanzweifel/git-auto-commit-action@v5
++        with:
++          commit_message: "Update profile metrics [skip ci]"
++          file_pattern: data/*.json
++
+       - name: Render Quarto site
+         run: quarto render
+ 
+diff --git a/.gitignore b/.gitignore
+index fd59e2b..3c893f6 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -6,3 +6,5 @@ _site/
+ /.quarto/
+ pages/
+ .claude/
++
++**/*.quarto_ipynb
+diff --git a/README.md b/README.md
+index effd186..90a5885 100644
+--- a/README.md
++++ b/README.md
+@@ -31,6 +31,8 @@ cconkeymorrison/
+ │   └── index.qmd              # Curriculum vitae
+ ├── data/
+ │   ├── timeline.json          # PhD timeline data (read by research/index.qmd)
++│   ├── metrics.json           # Scholar and ORCID metrics (updated weekly)
++│   ├── publications.json      # ORCID journal articles (updated weekly)
+ │   └── reading.json           # Reading list entries (synced from Google Sheet)
+ ├── _scripts/
+ │   └── readinglist_appscript.gs  # Google Apps Script for reading list → GitHub sync
+@@ -67,16 +69,16 @@ Everything else updates automatically — including the publications block and r
+ 
+ ---
+ 
+-## Publications (ORCID + Crossref)
++## Publications and metrics
+ 
+-Publications load automatically from two APIs on page load:
++The deployment workflow runs `_scripts/fetch_metrics.py` weekly before rendering:
+ 
+-- **ORCID** (`pub.orcid.org`) — works summary list, then full per-paper records for author data
+-- **Crossref** (`api.crossref.org`) — journal-level URLs derived from each DOI
++- **Google Scholar via SerpApi** — citation, h-index, and i10-index values
++- **ORCID** (`pub.orcid.org`) — public journal articles and verified peer reviews
+ 
+-The research page shows the 6 most recent publications, each with a journal favicon, APA 7 citation copy button, and RIS download.
++The script keeps the previous value when a source fails. The site reads the resulting local JSON files at runtime, so visitors make no profile API calls. The research page shows the 6 most recent publications, each with APA 7 citation copy and RIS download controls.
+ 
+-**To update:** Add the paper to your ORCID profile and set it to public. It appears automatically on the next page load.
++**To update:** Add the paper to your ORCID profile and set it to public. It appears after the next scheduled or manually dispatched workflow run. Set the repository secret `SERPAPI_KEY` to enable Scholar metrics.
+ 
+ **Key constants** in `research/publications.qmd`:
+ 
+@@ -119,7 +121,7 @@ The interactive Gantt timeline on `research/index.qmd` reads from `data/timeline
+ 
+ ## Contact form (Web3Forms)
+ 
+-The contact page uses [Web3Forms](https://web3forms.com) — no backend needed. Access key is in `contact.qmd` in the hidden input field. Submissions go to `connorconkeymorrison@gmail.com`.
++The contact page uses [Web3Forms](https://web3forms.com) — no backend needed. The access key is in `contact.qmd` in the hidden input field.
+ 
+ ---
+ 
+diff --git a/_quarto.yml b/_quarto.yml
+index 79f7d26..db63df5 100644
+--- a/_quarto.yml
++++ b/_quarto.yml
+@@ -4,6 +4,10 @@ project:
+   resources:
+     - data/
+ 
++site-url: https://connorconkeymorrison.com
++description: "Connor Conkey-Morrison studies school attendance problems, emotionally based school avoidance, and education systems."
++lang: en-AU
++
+ execute:
+   engine: markdown
+ 
+@@ -16,24 +20,32 @@ website:
+         menu:
+           - href: research/index.qmd
+             text: Overview
+-          - href: research/publications.qmd
+-            text: Publications
+-          - href: research/reading-list.qmd
+-            text: Reading List
+-          - href: research/projects.qmd
+-            text: Projects
+-          - href: posts/index.qmd
+-            text: Writing
++          - href: research/policy.qmd
++            text: Policy
++      - href: research/publications.qmd
++        text: Publications
++      - href: research/projects.qmd
++        text: Projects
++      - href: teaching.qmd
++        text: Teaching
+       - href: cv/index.qmd
+         text: CV
+       - href: contact.qmd
+         text: Contact
+     right:
++      - text: ORCID
++        href: https://orcid.org/0009-0000-1020-2333
++      - text: Google Scholar
++        href: https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en
++      - text: GitHub
++        href: https://github.com/ccicm
+       - text: LinkedIn
+         href: https://www.linkedin.com/in/connorconkeymorrison
+ 
+ format:
+   html:
++    open-graph: true
++    twitter-card: true
+     theme: cosmo
+     css: styles.css
+     toc: false
+@@ -60,3 +72,16 @@ format:
+           };
+         });
+         </script>
++    include-after-body:
++      text: |
++        <div class="site-last-updated">Last updated <time id="site-last-updated">October 2026</time></div>
++        <script>
++        (async function() {
++          try {
++            const response = await fetch('/data/metrics.json');
++            if (!response.ok) return;
++            const metrics = await response.json();
++            if (metrics.updated) document.getElementById('site-last-updated').textContent = new Date(metrics.updated).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
++          } catch (_) {}
++        })();
++        </script>
+diff --git a/_scripts/fetch_metrics.py b/_scripts/fetch_metrics.py
+new file mode 100644
+index 0000000..c01ac0d
+--- /dev/null
++++ b/_scripts/fetch_metrics.py
+@@ -0,0 +1,136 @@
++"""Fetch public profile metrics and publications for the Quarto build."""
++from __future__ import annotations
++
++import json
++import logging
++import os
++from datetime import datetime, timezone
++from pathlib import Path
++from typing import Any
++
++import requests
++
++ROOT = Path(__file__).resolve().parents[1]
++DATA_DIR = ROOT / "data"
++METRICS_PATH = DATA_DIR / "metrics.json"
++PUBLICATIONS_PATH = DATA_DIR / "publications.json"
++ORCID_ID = "0009-0000-1020-2333"
++SCHOLAR_ID = "ZEvUL_kAAAAJ"
++TIMEOUT = 30
++
++logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
++
++
++def read_json(path: Path, default: Any) -> Any:
++    if not path.exists():
++        return default
++    try:
++        return json.loads(path.read_text(encoding="utf-8"))
++    except (OSError, json.JSONDecodeError) as exc:
++        logging.warning("Could not read %s: %s", path, exc)
++        return default
++
++
++def write_json(path: Path, value: Any) -> None:
++    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
++
++
++def get_json(url: str, **kwargs: Any) -> dict[str, Any]:
++    response = requests.get(url, timeout=TIMEOUT, **kwargs)
++    response.raise_for_status()
++    return response.json()
++
++
++def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
++    metrics = dict(previous)
++    metrics["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
++
++    scholar_key = os.environ.get("SERPAPI_KEY")
++    if scholar_key:
++        try:
++            data = get_json(
++                "https://serpapi.com/search.json",
++                params={"engine": "google_scholar_author", "author_id": SCHOLAR_ID, "api_key": scholar_key},
++            )
++            table = data["cited_by"]["table"]
++            metrics.update({
++                "citations": table[0]["citations"]["all"],
++                "h_index": table[1]["h_index"]["all"],
++                "i10_index": table[2]["i10_index"]["all"],
++            })
++        except (KeyError, requests.RequestException, ValueError) as exc:
++            logging.warning("Google Scholar metrics unavailable; keeping previous values: %s", exc)
++    else:
++        logging.warning("SERPAPI_KEY is not set; keeping previous Scholar metrics")
++
++    try:
++        data = get_json(f"https://pub.orcid.org/v3.0/{ORCID_ID}/peer-reviews", headers={"Accept": "application/json"})
++        metrics["peer_reviews"] = sum(
++            len(group.get("peer-review-summary", []))
++            for item in data.get("group", [])
++            for group in item.get("peer-review-group", [])
++        )
++    except (requests.RequestException, ValueError) as exc:
++        logging.warning("ORCID peer-review metrics unavailable; keeping previous value: %s", exc)
++
++    return metrics
++
++
++def format_authors(contributors: list[dict[str, Any]]) -> str | None:
++    names = []
++    for contributor in contributors:
++        name = contributor.get("credit-name", {}).get("value")
++        if name:
++            names.append(name)
++    unique_names = list(dict.fromkeys(names))
++    return ", ".join(unique_names) if unique_names else None
++
++
++def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
++    try:
++        data = get_json(f"https://pub.orcid.org/v3.0/{ORCID_ID}/works", headers={"Accept": "application/json"})
++        works = []
++        for group in data.get("group", []):
++            summary = group.get("work-summary", [{}])[0]
++            if summary.get("type") != "journal-article":
++                continue
++            external_ids = summary.get("external-ids", {}).get("external-id", [])
++            doi = next((item.get("external-id-value") for item in external_ids if item.get("external-id-type") == "doi"), None)
++            if doi:
++                doi = doi.removeprefix("https://doi.org/").removeprefix("http://doi.org/")
++            work = {
++                "title": summary.get("title", {}).get("title", {}).get("value", "Untitled"),
++                "year": int(summary.get("publication-date", {}).get("year", {}).get("value") or 0),
++                "journal": summary.get("journal-title", {}).get("value", ""),
++                "doi": doi,
++                "putCode": summary.get("put-code"),
++            }
++            if work["putCode"]:
++                detail = get_json(
++                    f"https://pub.orcid.org/v3.0/{ORCID_ID}/work/{work['putCode']}",
++                    headers={"Accept": "application/json"},
++                )
++                work["authors"] = format_authors(detail.get("contributors", {}).get("contributor", []))
++                work["volume"] = detail.get("volume", {}).get("value")
++                work["issue"] = detail.get("journal-issue", {}).get("issue-number", {}).get("value")
++                work["pages"] = detail.get("pages", {}).get("start", {}).get("value")
++            works.append(work)
++        if not works:
++            raise ValueError("ORCID returned no journal articles")
++        return sorted(works, key=lambda item: item.get("year", 0), reverse=True)
++    except (KeyError, requests.RequestException, ValueError) as exc:
++        logging.warning("ORCID publications unavailable; keeping previous list: %s", exc)
++        return previous
++
++
++def main() -> None:
++    DATA_DIR.mkdir(exist_ok=True)
++    previous_metrics = read_json(METRICS_PATH, {"citations": 36, "h_index": 3, "i10_index": 2, "peer_reviews": 18})
++    previous_publications = read_json(PUBLICATIONS_PATH, [])
++    write_json(METRICS_PATH, fetch_metrics(previous_metrics))
++    write_json(PUBLICATIONS_PATH, fetch_publications(previous_publications))
++    logging.info("Wrote %s and %s", METRICS_PATH, PUBLICATIONS_PATH)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/contact.qmd b/contact.qmd
+index 7f04bbe..03bf6c6 100644
+--- a/contact.qmd
++++ b/contact.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Contact"
++description: "Contact Connor Conkey-Morrison about research, collaboration, teaching, or the website."
+ page-layout: full
+ ---
+ 
+@@ -116,9 +117,9 @@ page-layout: full
+ 
+ <span class="ccm-type-label">What are you getting in touch about?</span>
+ <div class="ccm-type-row">
+-  <button type="button" class="ccm-type-btn" onclick="setType('research')">Research & collaboration</button>
+-  <button type="button" class="ccm-type-btn" onclick="setType('general')">General</button>
+-  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" onclick="setType('bug')">Report a website bug</button>
++  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('research')">Research & collaboration</button>
++  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('general')">General</button>
++  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" aria-pressed="false" onclick="setType('bug')">Report a website bug</button>
+ </div>
+ 
+ <div class="ccm-form-wrap" id="ccm-form-wrap">
+@@ -144,7 +145,7 @@ page-layout: full
+       <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
+       <button type="button" class="ccm-clear" onclick="clearForm()">Clear</button>
+     </div>
+-    <p id="ccm-status" class="ccm-status"></p>
++    <p id="ccm-status" class="ccm-status" role="status" aria-live="polite"></p>
+   </form>
+ </div>
+ 
+@@ -157,7 +158,11 @@ const config = {
+ 
+ function setType(type) {
+   const c = config[type];
+-  document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('onclick') === `setType('${type}')`));
++  document.querySelectorAll('.ccm-type-btn').forEach(btn => {
++    const active = btn.getAttribute('onclick') === `setType('${type}')`;
++    btn.classList.toggle('active', active);
++    btn.setAttribute('aria-pressed', String(active));
++  });
+   document.getElementById('ccm-subject').value = c.subject;
+   document.getElementById('f-message').placeholder = c.placeholder;
+   document.getElementById('ccm-selected-label').textContent = c.label;
+@@ -170,7 +175,7 @@ function clearForm() {
+   document.getElementById('ccm-subject').value = '';
+   document.getElementById('ccm-selected-label').textContent = '';
+   document.getElementById('ccm-form-wrap').classList.remove('visible');
+-  document.querySelectorAll('.ccm-type-btn').forEach(btn => btn.classList.remove('active'));
++  document.querySelectorAll('.ccm-type-btn').forEach(btn => { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); });
+   document.getElementById('ccm-status').textContent = '';
+   document.getElementById('ccm-status').className = 'ccm-status';
+ }
+diff --git a/cv/index.qmd b/cv/index.qmd
+index a3522af..af20610 100644
+--- a/cv/index.qmd
++++ b/cv/index.qmd
+@@ -1,8 +1,9 @@
+ ---
+-title: ""
++title: "Curriculum Vitae"
++description: "Curriculum vitae for Connor Conkey-Morrison, including research, academic, clinical, and professional experience."
+ page-layout: full
+-editor: 
+-  markdown: 
++editor:
++  markdown:
+     wrap: 72
+ ---
+ 
+@@ -13,10 +14,10 @@ editor:
+ ::: jump-nav
+ [Education](#education){.jump-link}
+ [Academic appointments](#academic-appointments){.jump-link}
+-[Clinical roles](#clinical-and-school-based-roles){.jump-link}
+-[Memberships & registrations](#professional-memberships){.jump-link}
+-[Skills & tools](#skills-and-tools){.jump-link}
+-[Prior experience](#prior-experience){.jump-link}
++[Clinical experience](#clinical-experience){.jump-link}
++[Publications](#peer-reviewed-publications){.jump-link}
++[Skills](#methods-and-technical-skills){.jump-link}
++[Memberships and service](#professional-development-memberships-and-service){.jump-link}
+ :::
+ 
+ ------------------------------------------------------------------------
+@@ -26,11 +27,11 @@ editor:
+ ::: role-section
+ ::: role-block
+ ::: role-header
+-[Doctor of Philosophy (Psychology)]{.role-title} [2025 -- ongoing]{.role-date}
++[Doctor of Philosophy - Psychology (by publication)]{.role-title} [Feb 2025 -- present]{.role-date}
+ :::
+ 
+-[RMIT University --- School of Health and Biomedical Sciences]{.role-org}
+-[Supervised by Dr Daniel Zarate, Dr Vasileios Stavropoulos, and Dr Taylor Brown. Research focus on school attendance, intervention evidence, longitudinal modelling, and population-level attendance data.]{.role-desc}
++[RMIT University, School of Health and Biomedical Sciences]{.role-org}
++[Supervised by A/Prof Vasileios Stavropoulos, Dr Daniel Zarate, and Dr Taylor Brown. Three-paper format: systematic review (PROSPERO CRD420251089918), longitudinal modelling using LSAC, and population-level analysis using ACARA data. Confirmation of Candidature conferred April 2026.]{.role-desc}
+ :::
+ 
+ ::: role-block
+@@ -38,17 +39,17 @@ editor:
+ [Master of Professional Psychology]{.role-title} [2024 -- 2025]{.role-date}
+ :::
+ 
+-[Victoria University]{.role-org}
+-[Provisional registration with the Psychology Board of Australia.]{.role-desc}
++[Victoria University, Melbourne]{.role-org}
++[GPA 6.50; WAM 81.17.]{.role-desc}
+ :::
+ 
+ ::: role-block
+ ::: role-header
+-[Bachelor of Psychology (Honours)]{.role-title} [2020 -- 2023]{.role-date}
++[Bachelor of Psychology (Honours, First Class)]{.role-title} [2020 -- 2023]{.role-date}
+ :::
+ 
+-[Victoria University]{.role-org}
+-[First Class Honours.]{.role-desc}
++[Victoria University, Melbourne]{.role-org}
++[GPA 6.75; WAM 84.07.]{.role-desc}
+ :::
+ :::
+ 
+@@ -59,118 +60,103 @@ editor:
+ ::: role-section
+ ::: role-block
+ ::: role-header
+-[Sessional Academic]{.role-title} [2024 -- present]{.role-date}
++[Sessional Tutor]{.role-title} [Jul 2024 -- present]{.role-date}
+ :::
+ 
+ [RMIT University]{.role-org}
+-[Tutorial delivery, marking, and student support across undergraduate and postgraduate psychology units. Units have included Counselling and Virtual Care, Psychological Assessment and Individual Differences, Philosophy and Methodology of Psychology, Organisational and Motivational Psychology, and Counselling and Professional Practices.]{.role-desc}
++[Tutorial delivery, marking, and student support across undergraduate and postgraduate psychology units, including psychological assessment, counselling, methodology, organisational psychology, developmental psychology, honours thesis preparation, and field placement marking.]{.role-desc}
+ :::
+ 
+ ::: role-block
+ ::: role-header
+-[Associate Lecturer]{.role-title} [Feb -- Dec 2025]{.role-date}
++[Sessional Lecturer/Tutor]{.role-title} [Feb 2025 -- present]{.role-date}
+ :::
+ 
+-[Cairnmillar Institute]{.role-org}
+-[Honours-level tutorial support and marking for Research Methods and Ethical Practice units. Assistance with statistical analysis in Jamovi, conceptual clarification, and assessment support.]{.role-desc}
++[The Cairnmillar Institute]{.role-org}
++[HON402 Research Methods, including regression models with mediation and moderation and reflexive thematic analysis; HON401 Ethical Practice; HON404 Evidence-based Practice and Practice-based Evidence; HON405 Neuropsychology (marking only).]{.role-desc}
+ :::
+ 
+ ::: role-block
+ ::: role-header
+-[Research Assistant --- Cyberpsychology]{.role-title} [Oct 2023 -- Jan 2024]{.role-date}
++[Research Assistant]{.role-title} [Oct 2023 -- Jan 2024]{.role-date}
+ :::
+ 
+-[RMIT University]{.role-org}
+-[Research support within the cyberpsychology research group, contributing to data management and research activities.]{.role-desc}
++[Digital Minds Research Group, RMIT University]{.role-org}
++[Project support including participant liaison and follow-up, data hygiene, and reconciliation.]{.role-desc}
+ :::
+ :::
+ 
+ ------------------------------------------------------------------------
+ 
+-## Clinical and school-based roles
++## Clinical experience
+ 
+ ::: role-section
+ ::: role-block
+ ::: role-header
+-[School Counsellor]{.role-title} [2026 -- present]{.role-date}
++[School Counsellor]{.role-title} [Jan 2026 -- present]{.role-date}
+ :::
+ 
+-[CatholicCare Victoria / Sacred Heart Primary School, Kew]{.role-org}
+-[Current school counselling placement within the CatholicCare Victoria
+-industry partnership. Work spans student wellbeing, emotional
+-regulation, attendance concerns, and family liaison, alongside
+-supervised practice toward general registration.]{.role-desc}
++[Sacred Heart Primary School, Kew - CatholicCare Victoria]{.role-org}
++[Provisional psychologist placement involving assessment and intervention, CBT-informed and systemic approaches, and family and staff consultation.]{.role-desc}
+ :::
+ 
+ ::: role-block
+ ::: role-header
+-[School Counsellor]{.role-title} [2025]{.role-date}
++[School Counsellor]{.role-title} [Jan -- Dec 2025]{.role-date}
+ :::
+ 
+-[CatholicCare Victoria / St. Mark's Catholic Parish Primary
+-School]{.role-org} [School counselling placement as part of the
+-CatholicCare Victoria industry partnership for the PhD program. Student
+-wellbeing, early intervention, and family support within a Catholic
+-primary school setting.]{.role-desc}
++[St Mark's Catholic Parish Primary School - CatholicCare Victoria]{.role-org}
++[Provisional psychologist placement involving direct clinical work with children presenting with anxiety, school avoidance, and social-emotional difficulties.]{.role-desc}
+ :::
+ :::
+ 
+ ------------------------------------------------------------------------
+ 
+-::: cv-placeholder
+-**Downloadable CV**
++## Peer-reviewed publications
+ 
+-A PDF version of this CV will be available here shortly.
+-:::
++Four published peer-reviewed articles are listed on the [publications page](../research/publications.qmd). Manuscripts under review and in preparation are not listed on this public CV.
+ 
+ ------------------------------------------------------------------------
+ 
+-::: history-two-col
+-::: history-col
+-## Professional memberships
++## Methods and technical skills
+ 
+ ::: role-section
+ ::: role-block
+-[Psychology Board of Australia]{.role-title}
+-[Provisional registration]{.role-desc}
++[Software]{.role-title} [R (including lavaan, hlme, and qgraph), SPSS, Jamovi, Excel, GitHub, and reproducible analysis pipelines.]{.role-desc}
+ :::
+ 
+ ::: role-block
+-[Australian Psychological Society (APS)]{.role-title}
+-[Student member]{.role-desc}
++[Methods]{.role-title} [Item response theory, confirmatory factor analysis, network analysis, latent profile analysis, latent class growth analysis, linear mixed-effects modelling, measurement invariance, machine learning, longitudinal cohort analysis, and systematic review using PRISMA.]{.role-desc}
+ :::
+ 
+ ::: role-block
+-[RMIT AI Student Advisory Board (AISAB)]{.role-title}
+-[Founding member]{.role-desc}
+-:::
++[Clinical]{.role-title} [ACT-based frameworks, CBT-informed intervention, child psychological assessment, emotional regulation, school attendance concerns, and family consultation.]{.role-desc}
+ :::
+ :::
+ 
+-::: history-col
+-## Skills and tools
++------------------------------------------------------------------------
++
++## Professional development, memberships and service
+ 
+ ::: role-section
+ ::: role-block
+-[Research software]{.role-title} [R (RStudio/Positron), Jamovi, SPSS, Excel, Colab/Python, Power BI, Covidence, Endnote, GitHub, VS Code]{.role-desc}
++[Mental Health First Aid]{.role-title} [Certified]{.role-desc}
+ :::
+ 
+ ::: role-block
+-[Methods]{.role-title} [Systematic review, network analysis, latent
+-growth modelling, growth mixture modelling, longitudinal cohort
+-analysis]{.role-desc}
++[Health and safety]{.role-title} [Certified Health and Safety Representative]{.role-desc}
+ :::
+ 
+ ::: role-block
+-[Clinical]{.role-title} [Psychoeducation, CBT-informed approaches, ACT-informed approaches,
+-emotional regulation, school refusal intervention, psychological assessment,
+-trauma-informed practice, student wellbeing, family consultation]{.role-desc}
++[Research and leadership]{.role-title} [ATN courses on data and leadership; HDR course on AI for research; research integrity training (2025)]{.role-desc}
+ :::
+ 
+ ::: role-block
+-[Other]{.role-title} [Academic peer review, research supervision support, peer mentoring]{.role-desc}
+-:::
++[Registrations and memberships]{.role-title} [Provisional registration with the Psychology Board of Australia; Associate member of the Australian Psychological Society; member of the Deakin School Attendance Research Group; founding member of the RMIT AI Student Advisory Board (AISAB), 2026.]{.role-desc}
+ :::
++
++::: role-block
++[Peer review]{.role-title} [Behaviour & Information Technology; Scientific Reports; Current Psychology; Acta Psychologica; Discover Psychology; BMC Psychology; BMC Public Health; Journal of Rational-Emotive & Cognitive-Behavior Therapy.]{.role-desc}
+ :::
+ :::
+ 
+@@ -181,14 +167,11 @@ trauma-informed practice, student wellbeing, family consultation]{.role-desc}
+ ::: role-section
+ ::: role-block
+ ::: role-header
+-[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 --
+-2025]{.role-date}
++[Health, Safety & Wellbeing Support Officer]{.role-title} [2022 -- 2025]{.role-date}
+ :::
+ 
+-[State Library Victoria]{.role-org} [Worked within the People &
+-HSW policy, incident investigation, psychosocial
+-risk, and the implementation of a new health and safety management
+-system aligned to ISO 45001.]{.role-desc}
++[State Library Victoria]{.role-org}
++[Worked across health and safety policy development, incident investigation, workplace psychosocial risk, legislative understanding, and implementation of a new WHS management system.]{.role-desc}
+ :::
+ 
+ ::: role-block
+@@ -196,24 +179,16 @@ system aligned to ISO 45001.]{.role-desc}
+ [Student Library Assistant]{.role-title} [2021 -- 2023]{.role-date}
+ :::
+ 
+-[Victoria University]{.role-org} [Assisted students across VU campus
+-libraries with research queries, resource location, and online support.
+-Developed and delivered an internal educational seminar on captioning,
+-transcription, and accessibility in Teams and Zoom as part of the
+-Library's monthly DigiBytes series.]{.role-desc}
++[Victoria University]{.role-org}
++[Supported students with research queries, resource location, and online assistance. Developed and delivered an internal seminar on captioning, transcription, and accessibility in Teams and Zoom.]{.role-desc}
+ :::
+ 
+ ::: role-block
+ ::: role-header
+-[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 --
+-2021]{.role-date}
++[Live Captioner, Coordinator & Supervisor]{.role-title} [2016 -- 2021]{.role-date}
+ :::
+ 
+-[Ai-Media]{.role-org} [Provided live verbatim captioning for broadcast,
+-government, and education clients globally, including major Australian
+-TV networks, federal royal commissions, and Ivy League institutions.
+-Progressed to supervisory and operations coordination roles, managing
+-teams of 100+ casual and freelance staff during the 2020 transition to
+-online learning.]{.role-desc}
++[Ai-Media]{.role-org}
++[Provided live verbatim captioning for broadcast, government, and education clients globally. Progressed to supervisory and operations coordination roles, managing teams of more than 100 casual and freelance staff during the 2020 transition to online learning.]{.role-desc}
+ :::
+ :::
+diff --git a/data/metrics.json b/data/metrics.json
+new file mode 100644
+index 0000000..35070e3
+--- /dev/null
++++ b/data/metrics.json
+@@ -0,0 +1,7 @@
++{
++  "citations": 36,
++  "h_index": 3,
++  "i10_index": 2,
++  "peer_reviews": 18,
++  "updated": "2026-10-18T01:58:06+00:00"
++}
+diff --git a/data/publications.json b/data/publications.json
+new file mode 100644
+index 0000000..a7b438f
+--- /dev/null
++++ b/data/publications.json
+@@ -0,0 +1,57 @@
++[
++  {
++    "title": "Mental health, personality, and cross-addictions as predictors of social media addiction: a machine learning longitudinal study",
++    "year": 2026,
++    "journal": "Addictive Behaviors Reports",
++    "doi": "10.1016/j.abrep.2026.100718",
++    "putCode": 218167485,
++    "authors": "Daniel Zarate, James Jarrad, Vasileios Stavropoulos, Connor Conkey-Morrison, Brian Hunt",
++    "volume": null,
++    "issue": null,
++    "pages": null
++  },
++  {
++    "title": "Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults",
++    "year": 2025,
++    "journal": "Journal of Psychopathology and Behavioral Assessment",
++    "doi": "10.1007/s10862-025-10252-6",
++    "putCode": 192092136,
++    "authors": "Rapson Gomez, Brian Hunt, Connor Conkey-Morrison",
++    "volume": null,
++    "issue": null,
++    "pages": null
++  },
++  {
++    "title": "Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women",
++    "year": 2025,
++    "journal": "Computers in Human Behavior Reports",
++    "doi": "10.1016/j.chbr.2025.100848",
++    "putCode": 195755080,
++    "authors": "Connor Conkey-Morrison, Daniel Zarate, Evita March, Brian Hunt, Vasileios Stavropoulos",
++    "volume": null,
++    "issue": null,
++    "pages": null
++  },
++  {
++    "title": "Flowing in the net of disordered gaming: A network analysis approach",
++    "year": 2025,
++    "journal": "Addictive Behaviors Reports",
++    "doi": "10.1016/j.abrep.2025.100606",
++    "putCode": 182251090,
++    "authors": "Tyrone L. Burleigh, Trent Footitt, Michelle Colder Carras, Connor Conkey-Morrison, Dylan R. Poulus, Vasileios Stavropoulos",
++    "volume": null,
++    "issue": null,
++    "pages": null
++  },
++  {
++    "title": "Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach",
++    "year": 2024,
++    "journal": "Acta Psychologica",
++    "doi": "10.1016/j.actpsy.2024.104298",
++    "putCode": 158890053,
++    "authors": "Kaiden Hein, Connor Conkey-Morrison, Tyrone L. Burleigh, Dylan Poulus, Vasileios Stavropoulos",
++    "volume": null,
++    "issue": null,
++    "pages": null
++  }
++]
+diff --git a/data/timeline.json b/data/timeline.json
+index 192994b..27784a3 100644
+--- a/data/timeline.json
++++ b/data/timeline.json
+@@ -1,10 +1,10 @@
+ {
+-  "currentQuarter": 5,
++  "currentQuarter": 7,
+   "estimatedCompletion": "2027",
+   "milestones": [
+-    { "quarter": 1,  "label": "M1", "full": "Confirmation of Candidature" },
+-    { "quarter": 5,  "label": "M2", "full": "Milestone 2" },
+-    { "quarter": 9,  "label": "M3", "full": "Milestone 3" },
++    { "quarter": 5,  "label": "M1", "full": "Confirmation of Candidature" },
++    { "quarter": 7,  "label": "M2", "full": "Milestone 2" },
++    { "quarter": 11, "label": "M3", "full": "Milestone 3" },
+     { "quarter": 13, "label": "4Y", "full": "4th Year — Maximum Submission" }
+   ],
+   "papers": [
+@@ -24,7 +24,7 @@
+         { "desc": "Synthesise evidence on definitions & outcomes",             "statuses": { "5": "done" } },
+         { "desc": "Draft systematic review manuscript",                        "statuses": { "5": "done" } },
+         { "desc": "Submit manuscript to journal for review",                   "statuses": { "6": "done" } },
+-        { "desc": "Respond to peer review",                                    "statuses": { "7": "todo", "8": "goal" } }
++        { "desc": "Revise and progress to acceptance",                        "statuses": { "7": "wip", "8": "goal" } }
+       ]
+     },
+     {
+@@ -33,13 +33,12 @@
+       "title": "Longitudinal modelling (LSAC)",
+       "activities": [
+         { "desc": "Secured LSAC data access & governance",                     "statuses": { "2": "done" } },
+-        { "desc": "Methodological specification and code development",         "statuses": { "2": "wip" , "5": "goal" } },
+-        { "desc": "Confirm data availability and consistency across waves",    "statuses": { "3": "done" } },
+-        { "desc": "Exploratory clustering of attendance patterns",             "statuses": { "4": "wip",  "6": "goal" } },
+-        { "desc": "Estimation of LCGA developmental trajectories",             "statuses": { "6": "wip",  "8": "goal" } },
+-        { "desc": "Modelling internalising symptom trajectories",              "statuses": { "8": "todo", "9": "goal" } },
+-        { "desc": "Draft manuscript",                                          "statuses": { "9": "wip", "10": "goal" } },
+-        { "desc": "Submit manuscript",                                         "statuses": { "9": "todo", "10": "goal" } }
++        { "desc": "Emotional symptom courses in two cohorts",                 "statuses": { "3": "done" } },
++        { "desc": "Absence and reasons-for-absence models",                    "statuses": { "4": "done" } },
++        { "desc": "Sensitivity analyses: count, pseudo-class, weighted, health-adjusted", "statuses": { "5": "done" } },
++        { "desc": "Supervisory review",                                        "statuses": { "7": "wip", "8": "goal" } },
++        { "desc": "Submit manuscript",                                         "statuses": { "8": "goal" } },
++        { "desc": "Peer review and revision",                                  "statuses": { "9": "todo", "10": "goal" } }
+       ]
+     },
+     {
+@@ -47,11 +46,12 @@
+       "label": "Paper 3",
+       "title": "Population-level attendance (ACARA)",
+       "activities": [
+-        { "desc": "Obtain ACARA data access approval",                         "statuses": { "1": "done" } },
+-        { "desc": "Develop analysis syntax for attendance trajectories",       "statuses": { "3": "wip",  "7": "goal" } },
+-        { "desc": "Code administrative attendance definitions",                "statuses": { "7": "todo", "8": "goal" } },
+-        { "desc": "Growth model for academic achievement",                     "statuses": { "8": "todo", "9": "goal" } },
+-        { "desc": "Draft & submit manuscript, peer review",                    "statuses": { "9": "todo", "10": "goal" } }
++        { "desc": "ACARA data preparation and outcome definitions",             "statuses": { "6": "wip", "7": "goal" } },
++        { "desc": "Stage 1: train, validate and interpret ACARA models",        "statuses": { "8": "todo", "9": "goal" } },
++        { "desc": "Stage 2: school-held vs child-level prediction in LSAC",     "statuses": { "9": "todo", "10": "goal" } },
++        { "desc": "Sensitivity analyses",                                      "statuses": { "10": "todo", "11": "goal" } },
++        { "desc": "Draft and submit",                                          "statuses": { "11": "todo", "12": "goal" } },
++        { "desc": "Peer review and revision",                                  "statuses": { "12": "todo", "13": "goal" } }
+       ]
+     },
+     {
+@@ -59,7 +59,8 @@
+       "label": "Thesis",
+       "title": "Integration & submission",
+       "activities": [
+-        { "desc": "Integrate findings into thesis by publication",             "statuses": { "11": "todo", "12": "goal" } }
++        { "desc": "Introduction and conclusion",                               "statuses": { "10": "todo", "11": "goal" } },
++        { "desc": "Revision, formatting and submission",                       "statuses": { "11": "todo", "12": "goal" } }
+       ]
+     }
+   ]
+diff --git a/index.qmd b/index.qmd
+index 112162b..6bd4e55 100644
+--- a/index.qmd
++++ b/index.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Connor Conkey-Morrison"
++description: "Connor Conkey-Morrison studies school attendance problems, emotionally based school avoidance, and the education systems that record absence."
+ page-layout: full
+ ---
+ 
+@@ -12,7 +13,7 @@ page-layout: full
+ :::
+ 
+ ::: hero-bio
+-I'm a <b>PhD candidate at RMIT University</b> and a <b>provisional psychologist</b> working with children, schools, and families. My research focuses on emotionally based school avoidance in the digital age. Although the roles complement each other, the gap between what the evidence recommends and what families are able to do keeps me up at night (legitimately - both involve more paperwork than any one person should commit to). My current research aims to close that gap.
++I'm a <b>PhD candidate at RMIT University</b> and a <b>provisional psychologist</b> working with children, schools, and families. My research focuses on emotionally based school avoidance. Although the roles complement each other, the gap between what the evidence recommends and what families are able to do keeps me up at night (legitimately - both involve more paperwork than any one person should commit to). My current research aims to close that gap.
+ :::
+ 
+ ::: hero-links
+@@ -29,8 +30,8 @@ I'm a <b>PhD candidate at RMIT University</b> and a <b>provisional psychologist<
+ 
+ ::: stats-strip
+ ::: stat-item
+-**6**\
+-Papers in progress
++<strong id="metric-citations">36</strong>\
++Citations (Google Scholar)
+ :::
+ 
+ ::: stat-item
+@@ -39,24 +40,38 @@ Peer-reviewed publications
+ :::
+ 
+ ::: stat-item
+-**2024–2027**\
++**2025–2027**\
+ Active PhD period
+ :::
+ 
+ ::: stat-item
+-**Citations**\
+-22
++<strong id="metric-peer-reviews">18</strong>\
++Verified peer reviews
+ :::
+ :::
+ 
+ ::: about-section
+ ## Current focus
+ 
+-I research school attendance problems and emotionally based school avoidance (EBSA): why children disengage from school, what interventions work (or why interventions <i>don't</i> work), and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data — developed through an industry partnership with CatholicCare Victoria, giving me direct access to the schools, families, and practitioners this work is meant to serve.
++I research school attendance problems and emotionally based school avoidance (EBSA): why children disengage from school, what interventions work (or why interventions <i>don't</i> work), and how disengagement develops across childhood and adolescence. My work combines systematic review methods, longitudinal cohort modelling, and population-level education data. The PhD is co-funded by CatholicCare Victoria as an industry PhD.
+ 
+ [Read more →](research/index.qmd){.about-link}
+ :::
+ 
++```{=html}
++<script>
++(async function() {
++  try {
++    const response = await fetch('/data/metrics.json');
++    if (!response.ok) return;
++    const metrics = await response.json();
++    if (metrics.citations) document.getElementById('metric-citations').textContent = metrics.citations;
++    if (metrics.peer_reviews) document.getElementById('metric-peer-reviews').textContent = metrics.peer_reviews;
++  } catch (_) {}
++})();
++</script>
++```
++
+ ---
+ 
+ ## Recent reading
+@@ -95,7 +110,7 @@ I research school attendance problems and emotionally based school avoidance (EB
+   async function fetchMeta(e) {
+     if (e.title) return { title: e.title, journal: e.journal || '', year: e.year || '', authors: e.authors || '', url: `https://doi.org/${e.doi}` };
+     try {
+-      const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(e.doi)}?mailto=connorconkeymorrison@gmail.com`);
++      const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(e.doi)}`);
+       if (!res.ok) return null;
+       const data = await res.json();
+       const w = data.message;
+diff --git a/posts/index.qmd b/posts/index.qmd
+index fe91a9b..0f57f1a 100644
+--- a/posts/index.qmd
++++ b/posts/index.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Writing"
++description: "Plain-language writing and commentary on research, policy, and practice by Connor Conkey-Morrison."
+ page-layout: full
+ engine: markdown
+ listing:
+diff --git a/research/index.qmd b/research/index.qmd
+index b3d7db3..ac29c0b 100644
+--- a/research/index.qmd
++++ b/research/index.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Research"
++description: "Research by Connor Conkey-Morrison on school attendance problems, emotionally based school avoidance, and system-held education data."
+ page-layout: full
+ engine: markdown
+ ---
+@@ -16,7 +17,11 @@ engine: markdown
+ 
+ ## Current research focus {#current-research-focus}
+ 
+-My present research centres on school attendance problems and emotionally based school avoidance (EBSA) — the subset of school non-attendance driven by emotional distress. This forms the basis of my PhD by publication, which comprises three interlinked empirical papers.
++My research centres on school attendance problems: how research defines them, how they unfold across childhood, and how education systems record them. My PhD follows the problem across three levels, from intervention evidence, to two national cohorts of Australian children, to the attendance data schools and governments already hold. Systems count how much school a child misses and rarely why, so absence driven by distress is easy to miss.
++
++## PhD framework
++
++**School Attendance Problems: Definitions, Patterns, and System-Level Implications** is organised using KiTeS (Melvin et al., 2019), applying Bronfenbrenner's bioecological model to attendance: evidence -> population -> system.
+ 
+ ```{=html}
+ <!-- PhD Timeline — reads from /data/timeline.json -->
+@@ -128,8 +133,11 @@ My present research centres on school attendance problems and emotionally based
+       section.className = 'tl-paper';
+ 
+       // Header
+-      const header = document.createElement('div');
++      const header = document.createElement('button');
+       header.className = 'tl-paper-header';
++      header.type = 'button';
++      header.setAttribute('aria-expanded', 'false');
++      header.setAttribute('aria-controls', `tl-activities-${paper.id}`);
+       header.innerHTML = `
+         <div class="tl-paper-info">
+           <div class="tl-paper-bar" style="background:${color};"></div>
+@@ -169,6 +177,7 @@ My present research centres on school attendance problems and emotionally based
+       // Activities (hidden by default)
+       const activitiesDiv = document.createElement('div');
+       activitiesDiv.className = 'tl-activities';
++      activitiesDiv.id = `tl-activities-${paper.id}`;
+       activitiesDiv.style.display = 'none';
+ 
+       paper.activities.forEach(act => {
+@@ -211,6 +220,7 @@ My present research centres on school attendance problems and emotionally based
+       header.addEventListener('click', () => {
+         const open = activitiesDiv.style.display !== 'none';
+         activitiesDiv.style.display = open ? 'none' : 'block';
++        header.setAttribute('aria-expanded', String(!open));
+         header.classList.toggle('expanded', !open);
+         header.querySelector('.tl-chevron').classList.toggle('open', !open);
+       });
+@@ -237,11 +247,11 @@ My present research centres on school attendance problems and emotionally based
+ 
+ :::::: paper-grid
+ ::: paper-card
+-[Paper 1]{.paper-label}
++[Paper 1]{.paper-label} [Under review]{.project-status .status-wip}
+ 
+ ### Systematic review
+ 
+-A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918){.prospero-badge} systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets.
++A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918){.prospero-badge} systematic review and narrative synthesis of interventions for emotionally based school avoidance, examining construct definitions, outcome operationalisation, and intervention targets. Intervention effects can only be interpreted when the definition, target, and attendance measure line up.
+ :::
+ 
+ ::: paper-card
+@@ -249,7 +259,7 @@ A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918
+ 
+ ### Longitudinal modelling
+ 
+-Examining how patterns of school attendance develop across childhood and early adolescence using large-scale Australian longitudinal cohort data (LSAC).
++Examining emotional symptom courses from school entry to adolescence in two Australian cohorts, alongside how much school children miss and the stated reasons. Recording why a child is absent adds information that the amount of absence does not.
+ :::
+ 
+ ::: paper-card
+@@ -257,16 +267,30 @@ Examining how patterns of school attendance develop across childhood and early a
+ 
+ ### Population-level attendance
+ 
+-Exploring system-level patterns in school attendance and non-attendance using national education data, with attention to how administrative reporting shapes the visibility of EBSA.
++Exploring which school characteristics predict attendance and post-pandemic recovery, and what system-held data can predict about which children are absent. The work estimates what attendance systems can already see and what they miss.
+ :::
+ ::::::
+ 
++::: paper-card
++[Related paper]{.paper-label}
++
++### School belonging
++
++Examining early peer difficulty and emotional symptoms, belonging at 14-15, and mental health in young adulthood. This remains a related paper while its place in the thesis is settled.
++:::
++
++## Related research
++
++My cyberpsychology, behavioural addiction, and psychometric work shares a focus on avoidance and escape as ways of coping, and on data-driven methods for finding at-risk groups early. See the [publications page](publications.qmd).
++
++Every analysis is scripted in R, and code is deposited with a DOI on publication.
++
+ ------------------------------------------------------------------------
+ 
+ ## Supervisory team {#supervisory-team}
+ 
+ ::: supervisor-row
+-[Dr Daniel Zarate]{.supervisor-link} [Dr Vasileios Stavropoulos]{.supervisor-link} [Dr Taylor Brown]{.supervisor-link}
++[Dr Daniel Zarate](https://scholar.google.com/scholar?q=Daniel+Zarate){.supervisor-link} [A/Prof Vasileios Stavropoulos](https://scholar.google.com/scholar?q=Vasileios+Stavropoulos){.supervisor-link} [Dr Taylor Brown](https://scholar.google.com/scholar?q=Taylor+Brown+psychology){.supervisor-link}
+ :::
+ 
+ ------------------------------------------------------------------------
+diff --git a/research/policy.qmd b/research/policy.qmd
+new file mode 100644
+index 0000000..b36e8e1
+--- /dev/null
++++ b/research/policy.qmd
+@@ -0,0 +1,47 @@
++---
++title: "Policy"
++description: "Policy implications of research on school attendance problems and emotionally based school avoidance."
++page-layout: full
++---
++
++::: page-header
++# Policy
++:::
++
++School attendance systems usually record how much school a child misses, but not consistently why. A policy response should make the reason for absence easier to record and use alongside attendance totals. That distinction can help schools identify distress-related absence earlier and match support to the problem being reported.
++
++## The research in brief
++
++::: paper-grid
++::: paper-card
++[Evidence]{.paper-label}
++
++### Intervention definitions
++
++The systematic review examines how intervention studies define attendance problems, identify targets, and measure success. Effects are easier to interpret when those three elements align.
++:::
++
++::: paper-card
++[Population]{.paper-label}
++
++### Reasons for absence
++
++The LSAC paper examines emotional symptom courses, school absence, and stated reasons across two Australian cohorts. The policy question is what is lost when systems record absence without its reason.
++:::
++
++::: paper-card
++[System]{.paper-label}
++
++### What existing data can see
++
++The third paper examines what school-held and child-level data can predict about attendance, and where those data remain unable to distinguish absence driven by distress.
++:::
++:::
++
++## Australian context
++
++This work sits alongside Australian attention to school refusal and attendance policy, including the [2023 Senate inquiry into school refusal](https://www.aph.gov.au/Parliamentary_Business/Committees/Senate/Education_and_Employment/SchoolRefusal) and the Australian Education Research Organisation's work on [school attendance](https://www.edresearch.edu.au/research/projects/school-attendance). The [Victorian attendance policy](https://www2.education.vic.gov.au/pal/attendance/policy) illustrates how state policy defines attendance responsibilities and responses. State and territory policies differ, which makes clear operational definitions important for comparison and early support.
++
++## Work with me
++
++Departments, sector bodies, schools, and researchers working on attendance are welcome to get in touch about the evidence, data definitions, or policy implications of this work. [Contact me](/contact.html).
+diff --git a/research/projects.qmd b/research/projects.qmd
+index 2883410..f25c2a9 100644
+--- a/research/projects.qmd
++++ b/research/projects.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Projects"
++description: "Research tools, open-source software, and data projects by Connor Conkey-Morrison."
+ page-layout: full
+ ---
+ 
+@@ -14,71 +15,52 @@ Research tools, open-source work, and things built along the way. Some are live;
+ ::: project-grid
+ 
+ ::: project-card
+-[Live]{.project-status .status-live}
++[Released]{.project-status .status-live}
+ 
+-### Academic Website Template
++### LSAC Variable Explorer
+ 
+-An open-source Quarto template for building a professional academic website — free, no coding experience required, and deployable to GitHub Pages in under an hour. This site was built with it!
++Open software and a reshaped variable index for exploring the Longitudinal Study of Australian Children.
+ 
+ ::: project-tags
+-[Quarto]{.project-tag} [GitHub Pages]{.project-tag} [CSS]{.project-tag} [Open source]{.project-tag}
++[LSAC]{.project-tag} [R]{.project-tag} [Open data]{.project-tag}
+ :::
+ 
+ ::: project-links
+-[Setup & walkthrough](https://connorconkeymorrison.com/template){.project-link}
+-[Download GitHub repo](https://github.com/ccicm/academic-website-template){.project-link-secondary}
++[Software DOI](https://doi.org/10.5281/zenodo.22707559){.project-link}
++[Variable index DOI](https://doi.org/10.5281/zenodo.22707557){.project-link-secondary}
+ :::
+ :::
+ 
+ ::: project-card
+-[Under testing]{.project-status .status-wip}
++[Live]{.project-status .status-live}
+ 
+-### Truly Systematic Review
++### Academic Website Template
+ 
+-A Shiny app for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](index.qmd) of my PhD.
++An open-source Quarto template for building a professional academic website — free, no coding experience required, and deployable to GitHub Pages in under an hour. This site was built with it!
+ 
+ ::: project-tags
+-[Sys review]{.project-tag} [RStudio]{.project-tag} [Shiny]{.project-tag}
++[Quarto]{.project-tag} [GitHub Pages]{.project-tag} [CSS]{.project-tag} [Open source]{.project-tag}
+ :::
+ 
+ ::: project-links
+-[View on GitHub](https://github.com/ccicm/TrulySystematicReview){.project-link-secondary}
+-:::
+-:::
+-
+-::: project-card
+-[Planned]{.project-status .status-planned}
+-
+-### EBSA Intervention Evidence Map
+-
+-An interactive evidence map for the systematic review of emotionally based school avoidance interventions. Planned as a living document updated alongside the review.
+-
+-::: project-tags
+-[R]{.project-tag} [Systematic review]{.project-tag} [EBSA]{.project-tag} [Visualisation]{.project-tag}
++[Setup & walkthrough](https://connorconkeymorrison.com/template){.project-link}
++[Download GitHub repo](https://github.com/ccicm/academic-website-template){.project-link-secondary}
+ :::
+ :::
+ 
+ ::: project-card
+-[Planned]{.project-status .status-planned}
++[Beta]{.project-status .status-wip}
+ 
+-### Psychology Stats Reference
++### Truly Systematic Review
+ 
+-A quick-reference guide for common statistical procedures in psychology research — aimed at honours and postgraduate students. Covering assumption testing, effect sizes, and reporting conventions in APA style.
++A Shiny app for developing, pulling, and testing search strings in PubMed data. Built to support [Paper 1](index.qmd) of my PhD.
+ 
+ ::: project-tags
+-[Jamovi]{.project-tag} [R]{.project-tag} [Statistics]{.project-tag} [Teaching]{.project-tag}
+-:::
++[Sys review]{.project-tag} [RStudio]{.project-tag} [Shiny]{.project-tag}
+ :::
+ 
+-::: project-card
+-[Planned]{.project-status .status-planned}
+-
+-### Clinical Resources
+-
+-A collection of practical resources for children, young people, and the adults supporting them. Topics will include emotional regulation, challenging unhelpful thoughts, PMR, and body safety. Aimed at families and school-based practitioners.
+-
+-::: project-tags
+-[Children]{.project-tag} [Parents]{.project-tag} [Clinical]{.project-tag} [Schools]{.project-tag}
++::: project-links
++[View on GitHub](https://github.com/ccicm/TrulySystematicReview){.project-link-secondary}
+ :::
+ :::
+ 
+@@ -87,5 +69,5 @@ A collection of practical resources for children, young people, and the adults s
+ ------------------------------------------------------------------------
+ 
+ ::: about-section
+-Have a question about any of these, or interested in collaborating? [Get in touch →](contact.qmd)
++Have a question about any of these, or interested in collaborating? [Get in touch →](/contact.html)
+ :::
+diff --git a/research/publications.qmd b/research/publications.qmd
+index 83bcf04..0a80552 100644
+--- a/research/publications.qmd
++++ b/research/publications.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Publications"
++description: "Published and accepted publications, software, data, and peer-review service by Connor Conkey-Morrison."
+ page-layout: full
+ engine: markdown
+ ---
+@@ -56,6 +57,11 @@ engine: markdown
+   <div class="pub-main">
+     <h2 id="publications" class="pub-section-heading">Publications</h2>
+     <div id="orcid-pubs"><p class="pub-loading">Loading publications from ORCID…</p></div>
++    <div class="peer-review-section">
++      <h2 id="software-data">Software and data</h2>
++      <p>Conkey-Morrison, C., Prokofieva, M., Zarate, D., Hein, K., Brown, T., &amp; Stavropoulos, V. (2026). <em>LSAC Variable Explorer</em> (Version 1.0.0) [Computer software]. <a href="https://doi.org/10.5281/zenodo.22707559">https://doi.org/10.5281/zenodo.22707559</a></p>
++      <p>Conkey-Morrison, C., Prokofieva, M., Zarate, D., Hein, K., Brown, T., &amp; Stavropoulos, V. (2026). <em>LSAC variable index (Release 10.0), reshaped for the LSAC Variable Explorer</em> (Version 1.0.0) [Dataset]. <a href="https://doi.org/10.5281/zenodo.22707557">https://doi.org/10.5281/zenodo.22707557</a></p>
++    </div>
+     <div class="peer-review-section">
+       <h2 id="peer-review">Peer review</h2>
+       <p>I contribute to peer review for journals in psychology, behavioural science, and digital health. Recent reviews include work for <em>Behaviour &amp; Information Technology</em> and <em>Scientific Reports</em>.</p>
+@@ -108,63 +114,6 @@ function pubIconHtml(doi) {
+   return `<div class="pub-favicon-fallback">${getBookSvg()}</div>`;
+ }
+ 
+-// Build a journal-level URL from Crossref metadata + publisher heuristics
+-async function fetchJournalUrl(doi) {
+-  if (!doi) return null;
+-  try {
+-    const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}?mailto=connorconkeymorrison@gmail.com`);
+-    if (!res.ok) return null;
+-    const work = (await res.json()).message;
+-    if (!work) return null;
+-    const issns     = work.ISSN || [];
+-    const publisher = (work.publisher || '').toLowerCase();
+-    const title     = work['container-title']?.[0] || '';
+-    const issn      = issns[0] || '';
+-    // Canonical article URL from Crossref — reliable fallback
+-    const articleUrl = work?.resource?.primary?.URL || work?.URL || `https://doi.org/${doi}`;
+-
+-    if (publisher.includes('elsevier') || publisher.includes('sciencedirect')) {
+-      // ScienceDirect journal URLs use the full journal name slug
+-      if (title) {
+-        const slug = title.toLowerCase()
+-          .replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+-        return `https://www.sciencedirect.com/journal/${slug}`;
+-      }
+-      return articleUrl;
+-    }
+-    if (publisher.includes('springer') || publisher.includes('nature')) {
+-      // Springer journal IDs are numeric — extract from DOI
+-      const m = doi.match(/10\.1007\/s?(\d+)-/);
+-      if (m) return `https://link.springer.com/journal/${m[1]}`;
+-      return issn ? `https://link.springer.com/search?query=&search-within=Journal&facet-journal-id=${issn}` : articleUrl;
+-    }
+-    if (publisher.includes('wiley')) {
+-      return issn ? `https://onlinelibrary.wiley.com/journal/${issn.replace('-','')}` : articleUrl;
+-    }
+-    if (publisher.includes('taylor') || publisher.includes('routledge') || publisher.includes('informa')) {
+-      return issn ? `https://www.tandfonline.com/journals/${issn}` : articleUrl;
+-    }
+-    if (publisher.includes('sage')) {
+-      return issn ? `https://journals.sagepub.com/home/${issn}` : articleUrl;
+-    }
+-    if (publisher.includes('oxford') || publisher.includes('oup')) {
+-      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g,'');
+-      return `https://academic.oup.com/${slug}`;
+-    }
+-    if (publisher.includes('american psychological') || publisher.includes('apa')) {
+-      return issn ? `https://www.apa.org/pubs/journals/${issn}` : articleUrl;
+-    }
+-    if (publisher.includes('frontiers')) {
+-      const slug = title.toLowerCase().replace('frontiers in ','').replace(/\s+/g,'-');
+-      return `https://www.frontiersin.org/journals/${slug}`;
+-    }
+-    if (publisher.includes('plos')) return 'https://journals.plos.org/plosone/';
+-
+-    // Generic fallback: use Crossref article URL
+-    return articleUrl;
+-  } catch { return null; }
+-}
+-
+ function formatAuthors(contributors) {
+   if (!contributors || contributors.length === 0) return null;
+   const names = contributors
+@@ -264,56 +213,25 @@ function renderWorks(works, fromOrcid) {
+   return { html, footer };
+ }
+ 
+-async function fetchFullWork(putCode, doi) {
+-  const [orcidData, jUrl] = await Promise.all([
+-    (async () => {
+-      try {
+-        const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/work/${putCode}`, { headers: { Accept: 'application/json' } });
+-        if (!res.ok) return null;
+-        const data = await res.json();
+-        const contributors = data?.contributors?.contributor || data['bulk']?.[0]?.work?.contributors?.contributor || [];
+-        return {
+-          authors: formatAuthors(contributors),
+-          volume:  data?.volume?.value || null,
+-          issue:   data?.['journal-issue']?.['issue-number']?.value || null,
+-          pages:   data?.pages?.start?.value ? (data.pages.end?.value ? `${data.pages.start.value}–${data.pages.end.value}` : data.pages.start.value) : null,
+-        };
+-      } catch { return null; }
+-    })(),
+-    fetchJournalUrl(doi),
+-  ]);
+-  return { authors: orcidData?.authors||null, volume: orcidData?.volume||null, issue: orcidData?.issue||null, pages: orcidData?.pages||null, journalUrl: jUrl||null };
+-}
+-
+ async function loadOrcidPublications() {
+   const container = document.getElementById('orcid-pubs');
+   try {
+-    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/works`, { headers: { Accept: 'application/json' } });
++    const res = await fetch('/data/publications.json');
+     if (!res.ok) throw new Error();
+-    const data = await res.json();
+-    const summaries = [];
+-    for (const g of (data.group || [])) {
+-      const s = g['work-summary']?.[0]; if (!s) continue;
+-      const title   = s.title?.title?.value || 'Untitled';
+-      const year    = parseInt(s['publication-date']?.year?.value) || 0;
+-      const journal = s['journal-title']?.value || '';
+-      let doi = null;
+-      for (const eid of s['external-ids']?.['external-id'] || []) { if (eid['external-id-type'] === 'doi') { doi = eid['external-id-value']; break; } }
+-      summaries.push({ title, year, journal, doi, putCode: s['put-code'] });
+-    }
+-    if (!summaries.length) throw new Error('empty');
+-    summaries.sort((a,b) => b.year - a.year);
+-    const top = summaries.slice(0, MAX_PUBS);
+-    const full = await Promise.all(top.map(s => fetchFullWork(s.putCode, s.doi)));
+-    const works = top.map((s,i) => ({ ...s, authors: full[i]?.authors||null, volume: full[i]?.volume||null, issue: full[i]?.issue||null, pages: full[i]?.pages||null, journalUrl: full[i]?.journalUrl||(s.doi?`https://doi.org/${s.doi}`:null) }));
++    const works = (await res.json()).slice(0, MAX_PUBS).map(work => ({
++      ...work,
++      journalUrl: work.doi ? `https://doi.org/${work.doi}` : null,
++    }));
++    if (!works.length) throw new Error('empty');
+     const { html, footer } = renderWorks(works, true);
+     container.innerHTML = html;
+     container.appendChild(footer);
+   } catch {
+     // Fallback to known publications
+     const fallback = [
+-      { title: 'Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Stavropoulos, V., Conkey-Morrison, C., Gomez, R., Griffiths, M. D.', journalUrl: 'https://link.springer.com/journal/10862' },
+-      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/computers-in-human-behavior-reports' },
++      { title: 'Mental health, personality, and cross-addictions as predictors of social media addiction: A machine learning longitudinal study', year: 2026, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2026.100718', authors: 'Zarate, D., Jarrad, J., Stavropoulos, V., Conkey-Morrison, C., & Hunt, B.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
++      { title: 'Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Gomez, R., Hunt, B., & Conkey-Morrison, C.', journalUrl: 'https://link.springer.com/journal/10862' },
++      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Zarate, D., March, E., Hunt, B., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/computers-in-human-behavior-reports' },
+       { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
+       { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/acta-psychologica' },
+     ];
+@@ -327,13 +245,10 @@ loadOrcidPublications();
+ 
+ async function loadPeerReviewCount() {
+   try {
+-    const res = await fetch(`https://pub.orcid.org/v3.0/${ORCID_ID}/peer-reviews`, { headers: { Accept: 'application/json' } });
++    const res = await fetch('/data/metrics.json');
+     if (!res.ok) return;
+     const data = await res.json();
+-    let count = 0;
+-    for (const g of (data.group || []))
+-      for (const prg of (g['peer-review-group'] || []))
+-        count += (prg['peer-review-summary'] || []).length;
++    const count = data.peer_reviews || 0;
+     if (count > 0) {
+       document.getElementById('pr-badge').innerHTML =
+         `<a href="https://orcid.org/${ORCID_ID}" target="_blank" style="display:inline-flex;align-items:center;gap:0.35rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;color:var(--navy);text-decoration:none;border:1px solid var(--border);border-radius:999px;padding:0.28rem 0.75rem;margin-top:0.65rem;transition:background 0.15s,border-color 0.15s;" onmouseover="this.style.background='var(--tag-bg)';this.style.borderColor='var(--navy)'" onmouseout="this.style.background='';this.style.borderColor='var(--border)'"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>${count} verified reviews · ORCID ↗</a>`;
+diff --git a/research/reading-list.qmd b/research/reading-list.qmd
+index 424c32d..87df442 100644
+--- a/research/reading-list.qmd
++++ b/research/reading-list.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Reading List"
++description: "A reading list on school attendance, emotionally based school avoidance, psychology, and related research."
+ page-layout: full
+ engine: markdown
+ ---
+diff --git a/styles.css b/styles.css
+index efa082c..28297fe 100644
+--- a/styles.css
++++ b/styles.css
+@@ -26,6 +26,13 @@
+ 
+ ::selection { background: var(--accent); color: #fff; }
+ html { scroll-behavior: smooth; }
++#title-block-header { display: none !important; }
++:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
++
++@media (prefers-reduced-motion: reduce) {
++  html { scroll-behavior: auto; }
++  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
++}
+ 
+ /* ============================================
+    ANIMATIONS
+@@ -53,6 +60,7 @@ p, li { font-size: 1rem; color: #2a2a2a; }
+ a { color: var(--navy); transition: color 0.18s; }
+ a:hover { color: var(--accent); }
+ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
++.site-last-updated { max-width: 1020px; margin: 2rem auto 1rem; padding: 0 1rem; color: var(--text-muted); font-size: 0.72rem; text-align: center; }
+ 
+ /* ============================================
+    NAVBAR
+@@ -528,7 +536,8 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+ /* Paper header (clickable) */
+ .tl-paper-header {
+   display: grid; grid-template-columns: minmax(200px, 260px) 1fr;
+-  cursor: pointer; transition: background 0.15s;
++  width: 100%; padding: 0; border: 0; text-align: left; color: inherit;
++  background: transparent; cursor: pointer; transition: background 0.15s;
+ }
+ .tl-paper-header:hover { background: color-mix(in srgb, var(--navy) 4%, transparent); }
+ .tl-paper-header.expanded { background: color-mix(in srgb, var(--navy) 3%, transparent); }
+diff --git a/teaching.qmd b/teaching.qmd
+new file mode 100644
+index 0000000..d1256a2
+--- /dev/null
++++ b/teaching.qmd
+@@ -0,0 +1,38 @@
++---
++title: "Teaching"
++description: "Teaching experience, psychology units, and statistics support by Connor Conkey-Morrison."
++page-layout: full
++---
++
++::: page-header
++# Teaching
++:::
++
++I teach psychology as a practical discipline: concepts first, then the tools that let students test and communicate them. My teaching includes tutorials, marking, assessment support, and statistics across undergraduate and postgraduate settings.
++
++## Units
++
++### RMIT University
++
++Undergraduate and postgraduate psychology units:
++
++- BESC1433 Psychological Assessment and Individual Differences
++- BESC1437 Philosophy and Methodology of Psychology
++- BESC1571 Counselling and Virtual Care
++- BESC1514 Counselling and Professional Practices (Graduate Diploma)
++- BESC1071 Psychology of Everyday Thinking
++- BESC1512 Organisational and Motivational Psychology
++- BESC1575 Thesis 1 (Honours thesis proposal)
++- BESC1182 Developmental Psychology
++- BESC1492 Field Placement (marking only)
++
++### Cairnmillar Institute
++
++- HON402 Research Methods
++- HON401 Ethical Practice
++- HON404 Evidence-based Practice and Practice-based Evidence
++- HON405 Neuropsychology (marking only)
++
++## Statistics and methods
++
++I teach statistics conceptually before introducing software. Students use Jamovi and R to understand the question a method answers, inspect assumptions, interpret uncertainty, and report results clearly rather than treating an analysis as a sequence of clicks. My research methods experience includes systematic review, longitudinal modelling, measurement invariance, latent profile analysis, and machine learning.
+diff --git a/template.qmd b/template.qmd
+index 4b41a84..51ded06 100644
+--- a/template.qmd
++++ b/template.qmd
+@@ -1,5 +1,6 @@
+ ---
+-title: ""
++title: "Academic Website Template"
++description: "A guide to the open-source Quarto academic website template used by Connor Conkey-Morrison."
+ page-layout: full
+ editor: 
+   markdown: 
