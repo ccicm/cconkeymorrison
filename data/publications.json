@@ -1,21 +1,10 @@
 [
   {
-    "title": "Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people",
-    "year": 2026,
-    "journal": "Australian Journal of General Practice",
-    "doi": "10.31128/AJGP-11-25-7903",
-    "putCode": null,
-    "authors": "Taylor Brown, Brian Hunt, Connor Conkey-Morrison, Tyrone L. Burleigh, Vasileios Stavropoulos, Dusan Lubman",
-    "volume": null,
-    "issue": null,
-    "pages": null
-  },
-  {
-    "title": "The CBCL DSM-oriented somatic problems scale: Measurement invariance across sex, informant, ethnicity, and time",
+    "title": "The CBCL DSM-oriented somatic problems scale: measurement invariance across sex, informant, ethnicity, and time",
     "year": 2026,
     "journal": "BMC Psychology",
     "doi": "10.1186/s40359-026-05842-2",
-    "putCode": null,
+    "putCode": 230896567,
     "authors": "Rapson Gomez, Kaiden Hein, Connor Conkey-Morrison, Vasileios Stavropoulos, Daniel Zarate",
     "volume": null,
     "issue": null,
@@ -28,6 +17,17 @@
     "doi": "10.1016/j.abrep.2026.100718",
     "putCode": 218167485,
     "authors": "Daniel Zarate, James Jarrad, Vasileios Stavropoulos, Connor Conkey-Morrison, Brian Hunt",
+    "volume": null,
+    "issue": null,
+    "pages": null
+  },
+  {
+    "title": "Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people",
+    "year": 2026,
+    "journal": "Australian Journal of General Practice",
+    "doi": "10.31128/AJGP-11-25-7903",
+    "putCode": null,
+    "authors": "Taylor Brown, Brian Hunt, Connor Conkey-Morrison, Tyrone L. Burleigh, Vasileios Stavropoulos, Dusan Lubman",
     "volume": null,
     "issue": null,
     "pages": null
