@@ -10,7 +10,7 @@ engine: markdown
 # Publications {#publications}
 
 ::: hero-bio
-Published research across psychology, behavioural science, digital health, and education. Browse the articles, accepted work, and peer-review record below.
+Published research across psychology, behavioural science, digital health, and education. Browse the articles and peer-review record below.
 :::
 :::
 :::
@@ -256,10 +256,11 @@ async function loadOrcidPublications() {
     const fallback = [
       { title: 'The CBCL DSM-oriented somatic problems scale: Measurement invariance across sex, informant, ethnicity, and time', year: 2026, journal: 'BMC Psychology', doi: '10.1186/s40359-026-05842-2', authors: 'Gomez, R., Hein, K., Conkey-Morrison, C., Stavropoulos, V., & Zarate', journalUrl: 'https://link.springer.com/journal/40359' },
       { title: 'Mental health, personality, and cross-addictions as predictors of social media addiction: A machine learning longitudinal study', year: 2026, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2026.100718', authors: 'Zarate, D., Jarrad, J., Stavropoulos, V., Conkey-Morrison, C., & Hunt, B.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
+      { title: 'Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people', year: 2026, journal: 'Australian Journal of General Practice', doi: '10.31128/AJGP-11-25-7903', authors: 'Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D.', journalUrl: 'https://doi.org/10.31128/AJGP-11-25-7903' },
       { title: 'Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Gomez, R., Hunt, B., & Conkey-Morrison, C.', journalUrl: 'https://link.springer.com/journal/10862' },
       { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Zarate, D., March, E., Hunt, B., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/computers-in-human-behavior-reports' },
-      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
-      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Stavropoulos, V., Conkey-Morrison, C., Griffiths, M. D.', journalUrl: 'https://www.sciencedirect.com/journal/acta-psychologica' },
+      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Burleigh, T. L., Footitt, T., Carras, M. C., Conkey-Morrison, C., Poulus, D. R., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
+      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Hein, K., Conkey-Morrison, C., Burleigh, T. L., Poulus, D., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/acta-psychologica' },
     ];
     container.innerHTML = renderWorks(fallback, false);
   }

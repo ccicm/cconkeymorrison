@@ -62,7 +62,7 @@ These selected papers from the [reading list](reading-list.qmd) are useful start
 </article>
 
 <article class="resource-card">
-<h3><a href="https://doi.org/10.1136/bmjment-2023-300944">The Kids and Teens at School (KiTeS) Framework</a></h3>
+<h3><a href="https://doi.org/10.3389/feduc.2019.00061">The Kids and Teens at School (KiTeS) Framework</a></h3>
 <div class="resource-meta">Melvin, G. A., Heyne, D., Gray, K. M., Hastings, R. P., Totsika, V., Tonge, B. J., &amp; Freeman, M. M. (2019). <em>Frontiers in Education</em>.</div>
 <p>Offers an inclusive bioecological framework for understanding school absenteeism across young people, families, schools, and wider systems.</p>
 <div class="resource-tags"><span class="resource-tag">EBSA</span><span class="resource-tag">Systems framework</span><span class="resource-tag">Inclusion</span></div>

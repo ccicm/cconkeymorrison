@@ -82,9 +82,19 @@ def format_authors(contributors: list[dict[str, Any]]) -> str | None:
     for contributor in contributors:
         name = contributor.get("credit-name", {}).get("value")
         if name:
-            names.append(name)
+            parts = name.strip().split()
+            if len(parts) == 1:
+                names.append(parts[0])
+                continue
+            family = parts[-1]
+            initials = " ".join(f"{part[0].upper()}." for part in parts[:-1] if part)
+            names.append(f"{family}, {initials}")
     unique_names = list(dict.fromkeys(names))
-    return ", ".join(unique_names) if unique_names else None
+    if not unique_names:
+        return None
+    if len(unique_names) == 1:
+        return unique_names[0]
+    return ", ".join(unique_names[:-1]) + f", & {unique_names[-1]}"
 
 
 def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
