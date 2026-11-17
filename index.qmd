@@ -1,6 +1,9 @@
 ---
 title: "Connor Conkey-Morrison"
-description: "Connor Conkey-Morrison is a psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+aliases:
+  - /cv/index.html
+  - /cv/
 page-layout: full
 ---
 

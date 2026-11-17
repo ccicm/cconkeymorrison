@@ -5,7 +5,7 @@ project:
     - data/
 
 site-url: https://connorconkeymorrison.com
-description: "Connor Conkey-Morrison is a psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
 lang: en-AU
 
 execute:
@@ -25,8 +25,6 @@ website:
         text: Projects
       - text: More
         menu:
-          - href: cv/index.qmd
-            text: CV
           - href: teaching.qmd
             text: Teaching
           - href: research/resources.qmd
@@ -66,7 +64,7 @@ format:
           "name": "Connor Conkey-Morrison",
           "url": "https://connorconkeymorrison.com",
           "jobTitle": "PhD Candidate, Provisional Psychologist, Sessional Academic",
-          "description": "Researcher working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems.",
+          "description": "Provisional psychologist and researcher working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems.",
           "sameAs": [
             "https://orcid.org/0009-0000-1020-2333",
             "https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en",

@@ -32,10 +32,6 @@ Published research across psychology, behavioural science, digital health, and e
 <div class="pub-stat-pair"><strong id="pub-metric-peer-reviews">18</strong><span>Verified reviews</span></div>
 <span class="pub-stat-note">Linked to ORCID</span>
 </a>
-<div class="pub-stat-card pub-stat-pipeline">
-<span class="pub-stat-heading">In the pipeline</span>
-<div class="pub-stat-pair"><strong id="pub-metric-under-review">5</strong><span>Under peer review</span></div>
-</div>
 </div>
 <div class="pub-metrics-intro">
 <span class="pub-metrics-kicker">Live profile snapshot:</span>
@@ -289,7 +285,6 @@ async function loadPeerReviewCount() {
     }
     const count = data.peer_reviews || 0;
     if (count > 0) document.getElementById('pub-metric-peer-reviews').textContent = count;
-    if (data.under_review) document.getElementById('pub-metric-under-review').textContent = data.under_review;
   } catch {}
 }
 

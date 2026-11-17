@@ -43,6 +43,7 @@ def get_json(url: str, **kwargs: Any) -> dict[str, Any]:
 
 def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
     metrics = dict(previous)
+    metrics.pop("under_review", None)
     metrics["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     scholar_key = os.environ.get("SERPAPI_KEY")
@@ -130,7 +131,7 @@ def main() -> None:
     DATA_DIR.mkdir(exist_ok=True)
     previous_metrics = read_json(
         METRICS_PATH,
-        {"publications": 7, "citations": 36, "h_index": 3, "i10_index": 2, "peer_reviews": 18, "under_review": 5},
+        {"publications": 7, "citations": 36, "h_index": 3, "i10_index": 2, "peer_reviews": 18},
     )
     previous_publications = read_json(PUBLICATIONS_PATH, [])
     publications = fetch_publications(previous_publications)

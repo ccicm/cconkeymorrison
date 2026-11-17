@@ -27,8 +27,6 @@ cconkeymorrison/
 ├── posts/
 │   ├── index.qmd              # Writing index
 │   └── *.qmd                  # Individual posts
-├── cv/
-│   └── index.qmd              # Curriculum vitae
 ├── data/
 │   ├── timeline.json          # PhD timeline data (read by research/index.qmd)
 │   ├── metrics.json           # Scholar and ORCID metrics (updated weekly)

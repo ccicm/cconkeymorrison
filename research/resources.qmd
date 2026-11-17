@@ -12,6 +12,8 @@ page-layout: full
 
 These public resources may help parents, schools, and children understand school attendance problems, emotional distress, and available support. This is a starting point for information, not a substitute for individual clinical or emergency advice.
 
+In an emergency, call 000. Lifeline: 13 11 14 (24/7). Kids Helpline: 1800 55 1800 (ages 5–25, 24/7).
+
 ## For parents and carers
 
 - [ReachOut Parents](https://parents.au.reachout.com/) — practical information for supporting young people.
@@ -37,10 +39,10 @@ These selected papers from the [reading list](reading-list.qmd) are useful start
 <div class="resource-grid">
 <article class="resource-card">
 <h3><a href="https://doi.org/10.1016/j.cbpra.2018.03.006">Differentiation Between School Attendance Problems: Why and How?</a></h3>
-<div class="resource-meta">Heyne, D., Gren-Landell, M., Melvin, G., et al. (2019). <em>Cognitive and Behavioral Practice</em>.</div>
+<div class="resource-meta">Heyne, D., Gren-Landell, M., Melvin, G., &amp; Gentle-Genitty, C. (2019). <em>Cognitive and Behavioral Practice</em>.</div>
 <p>Clarifies distinctions between types of school attendance problems and why classification affects assessment, intervention, and evaluation.</p>
 <div class="resource-tags"><span class="resource-tag">EBSA</span><span class="resource-tag">Conceptual</span><span class="resource-tag">Differentiation</span></div>
-<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Heyne, D., Gren-Landell, M., Melvin, G., et al. (2019). Differentiation between school attendance problems: Why and how? Cognitive and Behavioral Practice. https://doi.org/10.1016/j.cbpra.2018.03.006')">Copy APA 7</button>
+<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Heyne, D., Gren-Landell, M., Melvin, G., & Gentle-Genitty, C. (2019). Differentiation between school attendance problems: Why and how? Cognitive and Behavioral Practice, 26(1), 8-34. https://doi.org/10.1016/j.cbpra.2018.03.006')">Copy APA 7</button>
 </article>
 
 <article class="resource-card">
@@ -53,18 +55,18 @@ These selected papers from the [reading list](reading-list.qmd) are useful start
 
 <article class="resource-card">
 <h3><a href="https://doi.org/10.1016/j.childyouth.2024.108091">A systematic review of intervention programs for school attendance problems</a></h3>
-<div class="resource-meta">Pérez-Marco, M., Gonzálvez, C., Fuster, A., et al. (2025). <em>Children and Youth Services Review</em>.</div>
+<div class="resource-meta">Pérez-Marco, M., Gonzálvez, C., Fuster, A., &amp; Vicent, M. (2025). <em>Children and Youth Services Review</em>.</div>
 <p>Places emotionally based school avoidance interventions within the broader evidence base on programmes designed to improve attendance.</p>
 <div class="resource-tags"><span class="resource-tag">EBSA</span><span class="resource-tag">Systematic review</span><span class="resource-tag">Intervention</span></div>
-<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Pérez-Marco, M., Gonzálvez, C., Fuster, A., et al. (2025). A systematic review of intervention programs for school attendance problems. Children and Youth Services Review. https://doi.org/10.1016/j.childyouth.2024.108091')">Copy APA 7</button>
+<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Pérez-Marco, M., Gonzálvez, C., Fuster, A., & Vicent, M. (2025). A systematic review of intervention programs for school attendance problems. Children and Youth Services Review, 169, 108091. https://doi.org/10.1016/j.childyouth.2024.108091')">Copy APA 7</button>
 </article>
 
 <article class="resource-card">
 <h3><a href="https://doi.org/10.1136/bmjment-2023-300944">The Kids and Teens at School (KiTeS) Framework</a></h3>
-<div class="resource-meta">Lester, K., &amp; Michelson, D. (2024). <em>BMJ Mental Health</em>.</div>
+<div class="resource-meta">Melvin, G. A., Heyne, D., Gray, K. M., Hastings, R. P., Totsika, V., Tonge, B. J., &amp; Freeman, M. M. (2019). <em>Frontiers in Education</em>.</div>
 <p>Offers an inclusive bioecological framework for understanding school absenteeism across young people, families, schools, and wider systems.</p>
 <div class="resource-tags"><span class="resource-tag">EBSA</span><span class="resource-tag">Systems framework</span><span class="resource-tag">Inclusion</span></div>
-<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Lester, K., & Michelson, D. (2024). The Kids and Teens at School (KiTeS) Framework: An inclusive bioecological systems approach to understanding school absenteeism and school attendance problems. BMJ Mental Health. https://doi.org/10.1136/bmjment-2023-300944')">Copy APA 7</button>
+<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Melvin, G. A., Heyne, D., Gray, K. M., Hastings, R. P., Totsika, V., Tonge, B. J., & Freeman, M. M. (2019). The Kids and Teens at School (KiTeS) Framework: An inclusive bioecological systems approach to understanding school absenteeism and school attendance problems. Frontiers in Education, 4. https://doi.org/10.3389/feduc.2019.00061')">Copy APA 7</button>
 </article>
 </div>
 
