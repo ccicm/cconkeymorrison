@@ -113,7 +113,7 @@ The homepage shows the first 3 entries; the reading list page shows all with tag
 
 ## PhD timeline
 
-The interactive Gantt timeline on `research/index.qmd` reads from `data/timeline.json`. Update `currentQuarter` and activity statuses (`done`, `wip`, `todo`, `goal`) there.
+The interactive Gantt timeline on `research/index.qmd` reads from `data/timeline.json`. Update `startDate` and activity statuses (`done`, `wip`, `todo`, `goal`) there; the current quarter is calculated automatically.
 
 ---
 

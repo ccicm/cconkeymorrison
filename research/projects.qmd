@@ -26,8 +26,8 @@ Open software and a reshaped variable index for exploring the Longitudinal Study
 :::
 
 ::: project-links
-[Software DOI](https://doi.org/10.5281/zenodo.22707559){.project-link}
-[Variable index DOI](https://doi.org/10.5281/zenodo.22707557){.project-link-secondary}
+[Software DOI](https://doi.org/10.5281/zenodo.22707558){.project-link}
+[Variable index DOI](https://doi.org/10.5281/zenodo.22707556){.project-link-secondary}
 :::
 :::
 

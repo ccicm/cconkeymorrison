@@ -43,7 +43,7 @@ Examining emotional symptom courses from school entry to adolescence in two Aust
 ::: paper-card
 [Paper 3]{.paper-label} [Data preparation]{.project-status .status-planned}
 
-### Population-level attendance
+### System-level attendance
 
 Exploring which school characteristics predict attendance and post-pandemic recovery, and what system-held data can predict about which children are absent. The work estimates what attendance systems can already see and what they miss.
 :::
@@ -130,7 +130,11 @@ Exploring which school characteristics predict attendance and post-pandemic reco
       return;
     }
 
-    const currentQ = data.currentQuarter;
+    const startDate = new Date(`${data.startDate}T00:00:00Z`);
+    const now = new Date();
+    const wholeMonths = (now.getUTCFullYear() - startDate.getUTCFullYear()) * 12
+      + now.getUTCMonth() - startDate.getUTCMonth();
+    const currentQ = Math.floor(wholeMonths / 3) + 1;
     document.getElementById('tl-est-year').textContent = 'Est. ' + data.estimatedCompletion;
 
     // Build milestone lookup

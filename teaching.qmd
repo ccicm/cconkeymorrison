@@ -17,6 +17,7 @@ I teach psychology as a practical discipline: concepts first, then the tools tha
 Undergraduate and postgraduate psychology units:
 
 - BESC1433 Psychological Assessment and Individual Differences
+- BESC1403 Personal Identity and Community
 - BESC1437 Philosophy and Methodology of Psychology
 - BESC1571 Counselling and Virtual Care
 - BESC1514 Counselling and Professional Practices (Graduate Diploma)
