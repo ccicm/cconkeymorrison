@@ -55,7 +55,7 @@ page-layout: full
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 1rem;
 }
 .ccm-form-group { margin-bottom: 1rem; }
@@ -112,7 +112,7 @@ page-layout: full
 .ccm-clear:hover { color: var(--navy); background: var(--tag-bg); }
 .ccm-status { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; margin-top: 0.75rem; }
 .ccm-status.success { color: #2a7a4a; }
-.ccm-status.error { color: var(--accent); }
+.ccm-status.error { color: var(--accent-text); }
 </style>
 
 <span class="ccm-type-label">What are you getting in touch about?</span>

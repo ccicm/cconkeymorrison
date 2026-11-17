@@ -10,7 +10,7 @@ Loose ends from the plan. Keep the "Settled on purpose" list in `00-start-here.m
 - [ ] **Contact page (`contact.qmd`).** Show an email address on the page, obfuscated against bots (for example assembled in JavaScript). The form's error message already tells people to email. Address: needs Connor (ask which address to show).
 - [x] **Teaching page (`teaching.qmd`).** Add "BESC1403 Personal Identity and Community" to the RMIT list. The page is currently hidden from the navbar at Connor's request.
 - [x] **Zenodo concept DOIs.** Query `https://zenodo.org/api/records/22707559` and `.../22707557`, read the `conceptdoi` field, and use the concept DOIs on `research/projects.qmd` and the Publications page.
-- [ ] **Talks data.** Create `data/talks.yml` with the two talks from Reference facts (date, title, event, role, link). On the home page, make the feature card read it: before an event's date it says "Upcoming event"; after, "Recent talk". (There is no CV page, so the home card is the only place talks appear.)
+- [x] **Talks data.** Create `data/talks.yml` with the two talks from Reference facts (date, title, event, role, link). On the home page, make the feature card read it: before an event's date it says "Upcoming event"; after, "Recent talk". (There is no CV page, so the home card is the only place talks appear.)
 
 ## Done when
 

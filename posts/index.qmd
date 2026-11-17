@@ -63,7 +63,7 @@ listing:
   color: var(--navy) !important;
   text-decoration: none !important;
 }
-.quarto-listing .listing-title a:hover { color: var(--accent) !important; }
+.quarto-listing .listing-title a:hover { color: var(--accent-text) !important; }
 
 .quarto-listing .listing-description {
   font-size: 0.88rem !important;
@@ -73,7 +73,7 @@ listing:
 .quarto-listing .listing-date {
   font-size: 0.75rem !important;
   font-weight: 600;
-  color: var(--accent) !important;
+  color: var(--accent-text) !important;
   letter-spacing: 0.02em;
   margin-bottom: 0.4rem;
 }

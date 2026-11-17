@@ -4,7 +4,6 @@ project:
   resources:
     - data/
 
-site-url: https://connorconkeymorrison.com
 description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
 lang: en-AU
 
@@ -12,6 +11,7 @@ execute:
   engine: markdown
 
 website:
+  site-url: https://connorconkeymorrison.com
   title: "Connor Conkey-Morrison"
   search: false
   favicon: favicon.ico
@@ -120,8 +120,7 @@ format:
               if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim() && !/[↗→]\s*$/.test(link.textContent.trim())) {
                 var marker = document.createElement('span');
                 marker.className = 'external-link-icon';
-                marker.setAttribute('aria-hidden', 'true');
-                marker.textContent = ' ↗';
+                marker.innerHTML = '<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span>';
                 link.appendChild(marker);
               }
             });

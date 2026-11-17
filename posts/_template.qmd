@@ -11,7 +11,7 @@ engine: markdown
 <div class="page-header">
   <h1>Post title here</h1>
 </div>
-<p style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0 2rem 0;font-weight:500;">1 January 2026 &nbsp;·&nbsp; <span style="color:var(--accent);">Category &nbsp;·&nbsp; Category</span></p>
+<p style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0 2rem 0;font-weight:500;">1 January 2026 &nbsp;·&nbsp; <span style="color:var(--accent-text);">Category &nbsp;·&nbsp; Category</span></p>
 <hr style="border:none;border-top:1px solid var(--border);margin:0 0 2rem 0;">
 ```
 
