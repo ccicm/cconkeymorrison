@@ -31,10 +31,12 @@ cconkeymorrison/
 │   ├── timeline.json          # PhD timeline data (read by research/index.qmd)
 │   ├── metrics.json           # Scholar and ORCID metrics (updated weekly)
 │   ├── publications.json      # ORCID journal articles (updated weekly)
-│   └── reading.json           # Reading list entries (synced from Google Sheet)
+│   ├── reading.json           # Reading list entries (synced from Google Sheet)
+│   └── talks.yml              # Homepage talks and events
 ├── _scripts/
 │   └── readinglist_appscript.gs  # Google Apps Script for reading list → GitHub sync
 ├── images/                    # Profile photo and other images
+├── robots.txt                 # Crawler instructions and sitemap URL
 ├── favicon.*                  # Favicon files
 ├── CNAME                      # Custom domain — do not delete
 └── .github/workflows/         # GitHub Actions — handles automatic deployment
@@ -47,6 +49,14 @@ cconkeymorrison/
 1. Edit the relevant `.qmd` file
 2. Preview locally: run `quarto preview` in the Terminal
 3. Commit and push — GitHub Actions deploys automatically within ~2 minutes
+
+If GitHub's weekly metrics workflow has committed since your last pull, sync
+before pushing your work:
+
+```bash
+git pull --rebase origin main
+git push origin main
+```
 
 No R packages are needed. All pages use `engine: markdown`.
 
@@ -74,6 +84,10 @@ The deployment workflow runs `_scripts/fetch_metrics.py` weekly before rendering
 - **Google Scholar via SerpApi** — citation, h-index, and i10-index values
 - **ORCID** (`pub.orcid.org`) — public journal articles and verified peer reviews
 
+The scheduled run is every Sunday and can also be started manually from the
+repository's Actions tab. It may create an `Update profile metrics [skip ci]`
+commit on `main`; this is why pulling with `--rebase` before pushing matters.
+
 The script keeps the previous value when a source fails. The site reads the resulting local JSON files at runtime, so visitors make no profile API calls. The research page shows the most recent publications, each with APA 7 citation copy and RIS download controls.
 
 **To update:** Add the paper to your ORCID profile and set it to public. It appears after the next scheduled or manually dispatched workflow run. Set the repository secret `SERPAPI_KEY` to enable Scholar metrics.
@@ -83,7 +97,7 @@ The script keeps the previous value when a source fails. The site reads the resu
 ```js
 const ORCID_ID    = '0009-0000-1020-2333';
 const SCHOLAR_URL = 'https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en';
-const MAX_PUBS    = 6;
+const MAX_PUBS    = 7;
 ```
 
 ---
