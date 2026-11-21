@@ -32,7 +32,7 @@ jobs:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
 
       - name: Commit refreshed data
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update profile metrics [skip ci]"
           file_pattern: data/*.json
