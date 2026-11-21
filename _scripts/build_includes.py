@@ -314,7 +314,7 @@ document.querySelectorAll('.pub-cite-btn[data-ris-idx]').forEach(function(btn) {
 </script>"""
 
 
-def gen_publications(works: list) -> str:
+def gen_publications(works: list, updated_str: str = "") -> str:
     pub_works_data = [
         {
             "title": w.get("title"),
@@ -385,12 +385,26 @@ def gen_publications(works: list) -> str:
                 f"</div>"
             )
 
+    footer = ""
+    if updated_str:
+        footer = (
+            '\n<div class="pub-footer-row">\n'
+            '<span class="pub-synced-note">Synced from '
+            '<a href="https://orcid.org/0009-0000-1020-2333"'
+            ' target="_blank" rel="noopener noreferrer">ORCID</a>'
+            f" · {e(updated_str)}</span>\n"
+            '<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"'
+            ' target="_blank" rel="noopener noreferrer" class="pub-scholar-link">'
+            "View all on Google Scholar</a>\n"
+            "</div>"
+        )
     pub_works_json = json.dumps(pub_works_data, ensure_ascii=False)
     return (
         f"<script>const PUB_WORKS = {pub_works_json};</script>\n"
         + "\n".join(rows)
         + "\n"
         + _COPY_DOWNLOAD_JS
+        + footer
     )
 
 
@@ -425,16 +439,22 @@ def gen_metrics(metrics: dict) -> str:
         f'<div class="pub-stat-pair"><strong>{h_idx}</strong><span>h-index</span></div>\n'
         f'<div class="pub-stat-pair"><strong>{i10}</strong><span>i10-index</span></div>\n'
         "</a>\n"
-        '<a href="https://orcid.org/0009-0000-1020-2333"'
-        ' class="pub-stat-card pub-stat-service">\n'
+        '<div class="pub-stat-card pub-stat-service">\n'
         '<span class="pub-stat-heading">Peer review</span>\n'
         f'<div class="pub-stat-pair"><strong>{reviews}</strong><span>Verified reviews</span></div>\n'
-        '<span class="pub-stat-note">Linked to ORCID</span>\n'
-        "</a>\n"
+        '<span class="pub-stat-note">'
+        '<a href="https://orcid.org/0009-0000-1020-2333" target="_blank"'
+        ' rel="noopener noreferrer"'
+        ' style="color:inherit;text-decoration:underline dotted;">'
+        "Verify on ORCID</a></span>\n"
         "</div>\n"
-        '<div class="pub-metrics-intro">\n'
-        '<span class="pub-metrics-kicker">Metrics updated:</span>\n'
-        f"<span>{e(updated_str)}</span>\n"
+        "</div>\n"
+        '<div class="pub-footer-row">\n'
+        '<span class="pub-synced-note">Scholar data · '
+        f"updated {e(updated_str)}</span>\n"
+        '<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"'
+        ' target="_blank" rel="noopener noreferrer" class="pub-scholar-link">'
+        "View Google Scholar profile</a>\n"
         "</div>"
     )
 
@@ -828,8 +848,16 @@ def main() -> None:
     timeline = read_json(DATA_DIR / "timeline.json")
     entries = read_json(DATA_DIR / "reading.json")
 
+    metrics_updated_raw = (metrics or {}).get("updated", "")
+    metrics_updated_str = ""
+    if metrics_updated_raw:
+        try:
+            metrics_updated_str = format_date_au(datetime.fromisoformat(metrics_updated_raw))
+        except ValueError:
+            metrics_updated_str = metrics_updated_raw
+
     writes = {
-        "publications.html": gen_publications(works),
+        "publications.html": gen_publications(works, metrics_updated_str),
         "pub-metrics.html": gen_metrics(metrics),
         "software.html": gen_software(software),
         "talk-card.html": gen_talk_card(talks),
