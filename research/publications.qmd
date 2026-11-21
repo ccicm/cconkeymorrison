@@ -16,31 +16,10 @@ Published research across psychology, behavioural science, digital health, and e
 
 ## Software and data
 
-- <span id="software-record-links">Loading software and data records...</span>
+{{< include /_includes/software.html >}}
 :::
 
-<div class="pub-stats-grid">
-<div class="pub-stat-card pub-stat-publications">
-<span class="pub-stat-heading">Research output</span>
-<div class="pub-stat-pair"><strong id="pub-metric-publications">7</strong><span>Publications</span></div>
-<div class="pub-stat-pair"><strong id="pub-metric-citation-rate">5.1</strong><span>Citations per publication</span></div>
-</div>
-<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en" class="pub-stat-card pub-stat-profile">
-<span class="pub-stat-heading">Scholar profile</span>
-<div class="pub-stat-pair"><strong id="pub-metric-citations">36</strong><span>Citations</span></div>
-<div class="pub-stat-pair"><strong id="pub-metric-h-index">3</strong><span>h-index</span></div>
-<div class="pub-stat-pair"><strong id="pub-metric-i10-index">2</strong><span>i10-index</span></div>
-</a>
-<a href="https://orcid.org/0009-0000-1020-2333" class="pub-stat-card pub-stat-service">
-<span class="pub-stat-heading">Peer review</span>
-<div class="pub-stat-pair"><strong id="pub-metric-peer-reviews">18</strong><span>Verified reviews</span></div>
-<span class="pub-stat-note">Linked to ORCID</span>
-</a>
-</div>
-<div class="pub-metrics-intro">
-<span class="pub-metrics-kicker">Live profile snapshot:</span>
-<span id="pub-metrics-updated">Metrics sync from Google Scholar and ORCID</span>
-</div>
+{{< include /_includes/pub-metrics.html >}}
 
 ```{=html}
 <style>
@@ -88,23 +67,20 @@ Published research across psychology, behavioural science, digital health, and e
 .pub-stat-publications { border-top-color:#2d7a4f; }
 .pub-stat-profile { border-top-color:#7b4f9e; }
 .pub-stat-service { border-top-color:#2c6e8a; }
-.pub-stat-pipeline { border-top-color:#c05a4a; }
 @media (max-width: 860px) { .pub-layout { grid-template-columns: 1fr; } .pub-sidebar { display: none; } }
 @media (max-width: 1100px) { .pub-stats-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .pub-metrics-intro { align-items:baseline; } .pub-stats-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
 </style>
 
 <div class="pub-layout">
-
   <div class="pub-main">
     <h2 id="publication-list" class="pub-section-heading">Publications</h2>
-    <div id="orcid-pubs"><p class="pub-loading">Loading publications from ORCID…</p></div>
-    <div class="pub-footer-row">
-      <span class="pub-synced-note">Synced from <a href="https://orcid.org/0009-0000-1020-2333" target="_blank">ORCID</a> · <span id="pub-sync-date">15 November 2026</span></span>
-      <a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en" target="_blank" class="pub-scholar-link">View all on Google Scholar</a>
-    </div>
-  </div>
+```
 
+{{< include /_includes/publications.html >}}
+
+```{=html}
+  </div>
   <div class="pub-sidebar">
     <div class="sidebar-section">
       <span class="sidebar-label">Find me online</span>
@@ -117,202 +93,7 @@ Published research across psychology, behavioural science, digital health, and e
       </div>
     </div>
   </div>
-
 </div>
-
-<script>
-const ORCID_ID    = '0009-0000-1020-2333';
-const SCHOLAR_URL = 'https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&hl=en';
-const MAX_PUBS    = 7;
-
-// DOI prefix → publisher domain for favicon lookup
-const DOI_DOMAINS = {
-  '10.1016': 'sciencedirect.com', '10.1007': 'springer.com', '10.1038': 'nature.com',
-  '10.1186': 'biomedcentral.com', '10.1002': 'wiley.com',    '10.1111': 'wiley.com',
-  '10.1080': 'tandfonline.com',   '10.4324': 'routledge.com','10.1037': 'apa.org',
-  '10.1027': 'hogrefe.com',       '10.1177': 'sagepub.com',  '10.1093': 'oup.com',
-  '10.1017': 'cambridge.org',     '10.1371': 'plos.org',     '10.1136': 'bmj.com',
-  '10.3389': 'frontiersin.org',   '10.3390': 'mdpi.com',     '10.1521': 'guilford.com',
-  '10.1159': 'karger.com',        '10.1515': 'degruyter.com','10.1108': 'emerald.com',
-};
-
-function getBookSvg() {
-  const c = (window.CCM_COLORS && window.CCM_COLORS.accent) || '#c05a4a';
-  return `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
-}
-
-function pubIconHtml(doi) {
-  const prefix = doi ? doi.split('/')[0] : null;
-  const domain = prefix ? (DOI_DOMAINS[prefix] || null) : null;
-  if (domain) {
-    return `<img class="pub-favicon" src="https://www.google.com/s2/favicons?domain=${domain}&sz=64" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="pub-favicon-fallback" style="display:none;">${getBookSvg()}</div>`;
-  }
-  return `<div class="pub-favicon-fallback">${getBookSvg()}</div>`;
-}
-
-function formatAuthors(contributors) {
-  if (!contributors || contributors.length === 0) return null;
-  const names = contributors
-    .filter(c => (c['contributor-attributes']?.['contributor-role'] || 'author').toLowerCase() === 'author')
-    .map(c => {
-      const credit = c['credit-name']?.value || '';
-      if (!credit) return null;
-      const parts = credit.trim().split(/\s+/);
-      if (parts.length >= 2) {
-        const last = parts[parts.length - 1];
-        const inits = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
-        return `${last}, ${inits}`;
-      }
-      return credit;
-    }).filter(Boolean);
-  if (!names.length) return null;
-  if (names.length <= 20) return names.join(', ');
-  return names.slice(0, 19).join(', ') + ', … ' + names[names.length - 1];
-}
-
-function buildAPA(w) {
-  const authors = w.authors || 'Conkey-Morrison, C.';
-  const journal = w.journal ? `${w.journal}` : '';
-  const vol     = w.volume  ? `, ${w.volume}` : '';
-  const issue   = w.issue   ? `(${w.issue})`  : '';
-  const pages   = w.pages   ? `, ${w.pages}`  : '';
-  const doi     = w.doi     ? ` https://doi.org/${w.doi}` : '';
-  return `${authors} (${w.year || 'n.d.'}). ${w.title}.${journal ? ' ' + journal + vol + issue + pages + '.' : ''}${doi}`;
-}
-
-function buildRIS(w) {
-  const lines = ['TY  - JOUR'];
-  (w.authors || 'Conkey-Morrison, Connor').split(', ').filter(Boolean).forEach(a => lines.push(`AU  - ${a}`));
-  lines.push(`TI  - ${w.title || ''}`);
-  if (w.journal) lines.push(`JO  - ${w.journal}`);
-  if (w.year)    lines.push(`PY  - ${w.year}`);
-  if (w.volume)  lines.push(`VL  - ${w.volume}`);
-  if (w.issue)   lines.push(`IS  - ${w.issue}`);
-  if (w.pages)   lines.push(`SP  - ${w.pages}`);
-  if (w.doi)     lines.push(`DO  - ${w.doi}`, `UR  - https://doi.org/${w.doi}`);
-  lines.push('ER  - ');
-  return lines.join('\r\n');
-}
-
-// Global store for cite/download handlers
-const PUB_WORKS = [];
-function copyApa(idx) {
-  navigator.clipboard.writeText(buildAPA(PUB_WORKS[idx])).then(() => {
-    const btn = document.getElementById(`cite-btn-${idx}`);
-    if (btn) { btn.textContent = 'Copied!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy APA 7'; btn.classList.remove('copied'); }, 2000); }
-  });
-}
-function downloadRisById(idx) {
-  const w = PUB_WORKS[idx];
-  const blob = new Blob([buildRIS(w)], { type: 'application/x-research-info-systems' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = (w.title||'reference').slice(0,40).replace(/[^a-z0-9]/gi,'_').toLowerCase() + '.ris';
-  a.click(); URL.revokeObjectURL(url);
-}
-
-function renderWorks(works, fromOrcid) {
-  PUB_WORKS.length = 0;
-  works.forEach(w => PUB_WORKS.push(w));
-  const byYear = {};
-  works.forEach(w => { const y = w.year || 'n.d.'; if (!byYear[y]) byYear[y] = []; byYear[y].push(w); });
-  let html = ''; let idx = 0;
-  for (const year of Object.keys(byYear).sort((a,b) => b - a)) {
-    html += `<span class="pub-year-head">${year}</span>`;
-    for (const w of byYear[year]) {
-      const i = idx++;
-      const articleHref = w.doi ? `https://doi.org/${w.doi}` : '#';
-      const jUrl = w.journalUrl || articleHref;
-      const authorText = w.authors ? w.authors.replace(/Connor Conkey-Morrison|Conkey-Morrison,\s*(?:C\.|Connor)/g, '<span class="pub-author-name">$&</span>') : '';
-      const authorsLine = authorText ? `<div style="font-size:0.82rem;color:var(--text-muted);margin-top:0.15rem;">${authorText}</div>` : '';
-      const journalLine = w.journal ? `<div style="margin-top:0.15rem;"><a href="${jUrl}" target="_blank" class="pub-journal-link">${w.journal}</a></div>` : '';
-      html += `<div class="pub-entry-block">
-        ${pubIconHtml(w.doi)}
-        <div class="pub-entry-text">
-          <a href="${articleHref}" target="_blank" class="pub-title-link">${w.title}</a>
-          ${authorsLine}
-          ${journalLine}
-          <div class="pub-actions" style="display:flex;gap:0.4rem;margin-top:0.45rem;flex-wrap:wrap;">
-            ${w.doi ? `<a href="https://doi.org/${w.doi}" target="_blank" class="pub-cite-btn">View at journal website</a>` : ''}
-            <button id="cite-btn-${i}" class="pub-cite-btn" onclick="copyApa(${i})">Copy APA 7</button>
-            <button class="pub-cite-btn" onclick="downloadRisById(${i})">Download RIS</button>
-          </div>
-        </div>
-      </div>`;
-    }
-  }
-  return html;
-}
-
-async function loadOrcidPublications() {
-  const container = document.getElementById('orcid-pubs');
-  try {
-    const res = await fetch('/data/publications.json');
-    if (!res.ok) throw new Error();
-    const works = (await res.json()).slice(0, MAX_PUBS).map(work => ({
-      ...work,
-      journalUrl: work.doi ? `https://doi.org/${work.doi}` : null,
-    }));
-    if (!works.length) throw new Error('empty');
-    container.innerHTML = renderWorks(works, true);
-  } catch {
-    // Fallback to known publications
-    const fallback = [
-      { title: 'The CBCL DSM-oriented somatic problems scale: Measurement invariance across sex, informant, ethnicity, and time', year: 2026, journal: 'BMC Psychology', doi: '10.1186/s40359-026-05842-2', authors: 'Gomez, R., Hein, K., Conkey-Morrison, C., Stavropoulos, V., & Zarate', journalUrl: 'https://link.springer.com/journal/40359' },
-      { title: 'Mental health, personality, and cross-addictions as predictors of social media addiction: A machine learning longitudinal study', year: 2026, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2026.100718', authors: 'Zarate, D., Jarrad, J., Stavropoulos, V., Conkey-Morrison, C., & Hunt, B.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
-      { title: 'Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people', year: 2026, journal: 'Australian Journal of General Practice', doi: '10.31128/AJGP-11-25-7903', authors: 'Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D.', journalUrl: 'https://doi.org/10.31128/AJGP-11-25-7903' },
-      { title: 'Incremental validity of cognitive impulsivity, emotional impulsivity, and sensation seeking in the predictions of ADHD inattention and hyperactivity/impulsivity symptoms in adults', year: 2025, journal: 'Journal of Psychopathology and Behavioral Assessment', doi: '10.1007/s10862-025-10252-6', authors: 'Gomez, R., Hunt, B., & Conkey-Morrison, C.', journalUrl: 'https://link.springer.com/journal/10862' },
-      { title: 'Stress-coping mechanisms and problematic social media use: A network analysis and differences across men and women', year: 2025, journal: 'Computers in Human Behavior Reports', doi: '10.1016/j.chbr.2025.100848', authors: 'Conkey-Morrison, C., Zarate, D., March, E., Hunt, B., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/computers-in-human-behavior-reports' },
-      { title: 'Flowing in the net of disordered gaming: A network analysis approach', year: 2025, journal: 'Addictive Behaviors Reports', doi: '10.1016/j.abrep.2025.100606', authors: 'Burleigh, T. L., Footitt, T., Carras, M. C., Conkey-Morrison, C., Poulus, D. R., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/addictive-behaviors-reports' },
-      { title: 'Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach', year: 2024, journal: 'Acta Psychologica', doi: '10.1016/j.actpsy.2024.104298', authors: 'Hein, K., Conkey-Morrison, C., Burleigh, T. L., Poulus, D., & Stavropoulos, V.', journalUrl: 'https://www.sciencedirect.com/journal/acta-psychologica' },
-    ];
-    container.innerHTML = renderWorks(fallback, false);
-  }
-}
-
-loadOrcidPublications();
-
-async function loadSoftwareRecords() {
-  const container = document.getElementById('software-record-links');
-  if (!container) return;
-  try {
-    const response = await fetch('/data/software.json?v=20261121');
-    if (!response.ok) throw new Error();
-    const records = await response.json();
-    container.innerHTML = records.map(record => {
-      const href = record.doi ? `https://doi.org/${record.doi}` : record.record_url;
-      return href ? `<a href="${href}" target="_blank">${record.title}</a>` : record.title;
-    }).join('<br>');
-  } catch {
-    container.textContent = '';
-  }
-}
-
-loadSoftwareRecords();
-
-async function loadPeerReviewCount() {
-  try {
-    const res = await fetch('/data/metrics.json');
-    if (!res.ok) return;
-    const data = await res.json();
-    if (data.publications) document.getElementById('pub-metric-publications').textContent = data.publications;
-    if (data.citations) document.getElementById('pub-metric-citations').textContent = data.citations;
-    if (data.h_index) document.getElementById('pub-metric-h-index').textContent = data.h_index;
-    if (data.i10_index) document.getElementById('pub-metric-i10-index').textContent = data.i10_index;
-    if (data.citations && data.publications) {
-      document.getElementById('pub-metric-citation-rate').textContent = (data.citations / data.publications).toFixed(1);
-    }
-    if (data.updated) {
-      document.getElementById('pub-metrics-updated').textContent = 'Updated ' + new Date(data.updated).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-      document.getElementById('pub-sync-date').textContent = new Date(data.updated).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-    }
-    const count = data.peer_reviews || 0;
-    if (count > 0) document.getElementById('pub-metric-peer-reviews').textContent = count;
-  } catch {}
-}
-
-loadPeerReviewCount();
-</script>
 ```
 
 ## Where I’m getting ideas

@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: _site
+  pre-render: python3 _scripts/build_includes.py
   resources:
     - data/
   render:
@@ -110,74 +111,64 @@ format:
         });
         </script>
     include-after-body:
-      text: |
-        <script data-goatcounter="https://conkeymorrison.goatcounter.com/count"
-                async src="//gc.zgo.at/count.js"></script>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          function count(path, title) {
-            if (!window.goatcounter || !window.goatcounter.count) return;
-            window.goatcounter.count({ path: path, title: title, event: true });
-          }
-          document.querySelectorAll('a[href*="doi.org"]').forEach(function(link) {
-            link.addEventListener('click', function() { count('/event/doi-click', 'DOI link click'); });
-          });
-          document.querySelectorAll('a[href*="orcid.org"], a[href*="scholar.google.com"], a[href*="linkedin.com"]').forEach(function(link) {
-            link.addEventListener('click', function() { count('/event/profile-click', 'External profile link click'); });
-          });
-          var contactForm = document.getElementById('contact-form');
-          if (contactForm) {
-            contactForm.addEventListener('submit', function() {
-              count('/event/contact-submit', 'Contact form submission');
+      - text: |
+          <script data-goatcounter="https://conkeymorrison.goatcounter.com/count"
+                  async src="//gc.zgo.at/count.js"></script>
+          <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            function count(path, title) {
+              if (!window.goatcounter || !window.goatcounter.count) return;
+              window.goatcounter.count({ path: path, title: title, event: true });
+            }
+            document.querySelectorAll('a[href*="doi.org"]').forEach(function(link) {
+              link.addEventListener('click', function() { count('/event/doi-click', 'DOI link click'); });
             });
-          }
-        });
-        </script>
-        <div class="site-last-updated">Last updated <time id="site-last-updated">15 November 2026</time></div>
-        <div class="site-accessibility">This site aims to meet WCAG 2.2 AA. <a href="/contact.html?type=bug">Report an accessibility or website problem.</a></div>
-        <script>
-        (async function() {
-          try {
-            const response = await fetch('/data/metrics.json');
-            if (!response.ok) return;
-            const metrics = await response.json();
-            if (metrics.updated) document.getElementById('site-last-updated').textContent = new Date(metrics.updated).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-          } catch (_) {}
-        })();
-        </script>
-        <script>
-        (function() {
-          function markExternalLinks(root) {
-            root.querySelectorAll('a[href]').forEach(function(link) {
-              var url;
-              try { url = new URL(link.href, window.location.href); } catch (_) { return; }
-              var sameSite = url.hostname === window.location.hostname ||
-                url.hostname === 'connorconkeymorrison.com' ||
-                url.hostname === 'www.connorconkeymorrison.com';
-              if (sameSite || !/^https?:$/.test(url.protocol)) {
-                if (link.target === '_blank') link.removeAttribute('target');
-                if (link.rel) {
-                  var rel = link.rel.split(/\s+/).filter(function(value) {
-                    return value !== 'noopener' && value !== 'noreferrer';
-                  }).join(' ');
-                  if (rel) link.rel = rel;
-                  else link.removeAttribute('rel');
+            document.querySelectorAll('a[href*="orcid.org"], a[href*="scholar.google.com"], a[href*="linkedin.com"]').forEach(function(link) {
+              link.addEventListener('click', function() { count('/event/profile-click', 'External profile link click'); });
+            });
+            var contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+              contactForm.addEventListener('submit', function() {
+                count('/event/contact-submit', 'Contact form submission');
+              });
+            }
+          });
+          </script>
+          <script>
+          (function() {
+            function markExternalLinks(root) {
+              root.querySelectorAll('a[href]').forEach(function(link) {
+                var url;
+                try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+                var sameSite = url.hostname === window.location.hostname ||
+                  url.hostname === 'connorconkeymorrison.com' ||
+                  url.hostname === 'www.connorconkeymorrison.com';
+                if (sameSite || !/^https?:$/.test(url.protocol)) {
+                  if (link.target === '_blank') link.removeAttribute('target');
+                  if (link.rel) {
+                    var rel = link.rel.split(/\s+/).filter(function(value) {
+                      return value !== 'noopener' && value !== 'noreferrer';
+                    }).join(' ');
+                    if (rel) link.rel = rel;
+                    else link.removeAttribute('rel');
+                  }
+                  var marker = link.querySelector('.external-link-icon');
+                  if (marker) marker.remove();
+                  return;
                 }
-                var marker = link.querySelector('.external-link-icon');
-                if (marker) marker.remove();
-                return;
-              }
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim() && !/[↗→]\s*$/.test(link.textContent.trim())) {
-                var marker = document.createElement('span');
-                marker.className = 'external-link-icon';
-                marker.innerHTML = '<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span>';
-                link.appendChild(marker);
-              }
-            });
-          }
-          markExternalLinks(document);
-          new MutationObserver(function() { markExternalLinks(document); }).observe(document.body, { childList: true, subtree: true });
-        })();
-        </script>
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim() && !/[↗→]\s*$/.test(link.textContent.trim())) {
+                  var marker = document.createElement('span');
+                  marker.className = 'external-link-icon';
+                  marker.innerHTML = '<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span>';
+                  link.appendChild(marker);
+                }
+              });
+            }
+            markExternalLinks(document);
+            new MutationObserver(function() { markExternalLinks(document); }).observe(document.body, { childList: true, subtree: true });
+          })();
+          </script>
+          <div class="site-accessibility">This site aims to meet WCAG 2.2 AA. <a href="/contact.html?type=bug">Report an accessibility or website problem.</a></div>
+      - file: _includes/last-updated.html

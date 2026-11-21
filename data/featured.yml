@@ -1,0 +1,9 @@
+# Featured publication blurbs for the home page.
+# doi:   must match a doi in publications.json.
+# title: short display title shown as the card heading.
+# blurb: raw HTML body text (not escaped — use HTML markup as needed).
+# cta:   plain text for the call-to-action link (will be HTML-escaped).
+- doi: 10.31128/AJGP-11-25-7903
+  title: "Beyond screen time"
+  blurb: "<strong>Evidence-based assessment and early intervention for problematic digital use in young people</strong>. This Australian Journal of General Practice article considers how clinicians can assess problematic digital use and respond early, without reducing the problem to screen time alone."
+  cta: "View the Australian Journal of General Practice article about problematic digital use →"

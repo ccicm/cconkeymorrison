@@ -6,5 +6,6 @@ _site/
 /.quarto/
 pages/
 .claude/
+_includes/
 
 **/*.quarto_ipynb
