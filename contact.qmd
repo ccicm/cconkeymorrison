@@ -112,6 +112,7 @@ page-layout: full
 .ccm-status { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; margin-top: 0.75rem; }
 .ccm-status.success { color: #2a7a4a; }
 .ccm-status.error { color: var(--accent-text); }
+.ccm-privacy-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; }
 </style>
 
 <span class="ccm-type-label">What are you getting in touch about?</span>
