@@ -61,7 +61,7 @@ Exploring which school characteristics predict attendance and post-pandemic reco
   <div class="tl-legend-item"><span class="tl-legend-dot todo"></span> Not started</div>
   <div class="tl-legend-item"><span class="tl-legend-dot goal"></span> Goal</div>
   <div class="tl-est-badge" id="tl-est-badge">
-    <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.5v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.5v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
     <span id="tl-est-year"></span>
   </div>
 </div>
@@ -75,7 +75,7 @@ Exploring which school characteristics predict attendance and post-pandemic reco
 <script>
 (function() {
   const TOTAL_QS = 16;
-  const PAPER_COLORS = { 1: '#2d7a4f', 2: 'var(--accent)', 3: 'var(--navy)', 0: 'var(--text-muted)' };
+  const PAPER_COLORS = { 1: '#2d7a4f', 2: 'var(--accent-text)', 3: 'var(--navy)', 0: 'var(--text-muted)' };
   const STATUS_COLORS = { done: '#2d7a4f', wip: '#8a8786', todo: '#6b6560', goal: '#c8922a' };
   const STATUS_LABELS = { done: 'completed', wip: 'in progress', todo: 'to do', goal: 'goal' };
 
@@ -187,7 +187,7 @@ Exploring which school characteristics predict attendance and post-pandemic reco
             <div class="tl-paper-progress" style="background:color-mix(in srgb, ${color} 15%, transparent);">
               <div class="tl-paper-progress-fill" style="width:${pct}%;background:${color};"></div>
             </div>
-            <svg class="tl-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg aria-hidden="true" class="tl-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
         </div>
         <div class="tl-gantt-summary"></div>
@@ -301,5 +301,5 @@ Departments, sector bodies, schools, and researchers working on attendance are w
 ------------------------------------------------------------------------
 
 ::: about-section
-[Publications →](publications.qmd){.about-link} [Projects →](projects.qmd){.about-link} [Contact →](/contact.html){.about-link}
+[Explore Connor's publications →](publications.qmd){.about-link} [Explore Connor's projects →](projects.qmd){.about-link} [Contact Connor →](/contact.html){.about-link}
 :::

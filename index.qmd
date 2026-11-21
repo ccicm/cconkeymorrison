@@ -25,7 +25,7 @@ I work across psychology, education, and digital health, with a particular inter
 :::
 
 ::: hero-photo
-![Connor Conkey-Morrison](images/headshot.webp){.profile-img}
+<img src="images/headshot.webp" class="profile-img" alt="Portrait of Connor Conkey-Morrison" width="600" height="574" loading="eager">
 :::
 :::
 
@@ -57,7 +57,7 @@ I work across psychology, education, and digital health, with a particular inter
 
 *Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D. (2026).* *Australian Journal of General Practice*.
 
-[View at journal website →](https://doi.org/10.31128/AJGP-11-25-7903){.about-link} [All publications →](research/publications.qmd){.about-link}
+[View the Australian Journal of General Practice article about problematic digital use →](https://doi.org/10.31128/AJGP-11-25-7903){.about-link} [View all publications →](research/publications.qmd){.about-link}
 :::
 :::
 

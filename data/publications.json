@@ -17,9 +17,9 @@
     "doi": "10.1016/j.abrep.2026.100718",
     "putCode": 218167485,
     "authors": "Zarate, D., Jarrad, J., Stavropoulos, V., Conkey-Morrison, C., & Hunt, B.",
-    "volume": null,
+    "volume": "24",
     "issue": null,
-    "pages": null
+    "pages": "100718"
   },
   {
     "title": "Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people",
@@ -39,8 +39,8 @@
     "doi": "10.1007/s10862-025-10252-6",
     "putCode": 192092136,
     "authors": "Gomez, R., Hunt, B., & Conkey-Morrison, C.",
-    "volume": null,
-    "issue": null,
+    "volume": "47",
+    "issue": "4",
     "pages": null
   },
   {
@@ -50,9 +50,9 @@
     "doi": "10.1016/j.chbr.2025.100848",
     "putCode": 195755080,
     "authors": "Conkey-Morrison, C., Zarate, D., March, E., Hunt, B., & Stavropoulos, V.",
-    "volume": null,
+    "volume": "20",
     "issue": null,
-    "pages": null
+    "pages": "100848"
   },
   {
     "title": "Flowing in the net of disordered gaming: A network analysis approach",
@@ -61,9 +61,9 @@
     "doi": "10.1016/j.abrep.2025.100606",
     "putCode": 182251090,
     "authors": "Burleigh, T. L., Footitt, T., Carras, M. C., Conkey-Morrison, C., Poulus, D. R., & Stavropoulos, V.",
-    "volume": null,
+    "volume": "21",
     "issue": null,
-    "pages": null
+    "pages": "100606"
   },
   {
     "title": "Examining how gamers connect with their avatars to assess their anxiety: A novel artificial intelligence approach",
@@ -72,8 +72,8 @@
     "doi": "10.1016/j.actpsy.2024.104298",
     "putCode": 158890053,
     "authors": "Hein, K., Conkey-Morrison, C., Burleigh, T. L., Poulus, D., & Stavropoulos, V.",
-    "volume": null,
+    "volume": "246",
     "issue": null,
-    "pages": null
+    "pages": "104298"
   }
 ]

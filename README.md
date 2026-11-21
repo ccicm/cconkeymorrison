@@ -83,6 +83,8 @@ The deployment workflow runs `_scripts/fetch_metrics.py` weekly before rendering
 
 - **Google Scholar via SerpApi** — citation, h-index, and i10-index values
 - **ORCID** (`pub.orcid.org`) — public journal articles and verified peer reviews
+- **Crossref** (`api.crossref.org`) — publication volume, issue, pages, and container title
+- **Zenodo** (`zenodo.org/api`) — software and data records
 
 The scheduled run is every Sunday and can also be started manually from the
 repository's Actions tab. It may create an `Update profile metrics [skip ci]`
@@ -91,6 +93,21 @@ commit on `main`; this is why pulling with `--rebase` before pushing matters.
 The script keeps the previous value when a source fails. The site reads the resulting local JSON files at runtime, so visitors make no profile API calls. The research page shows the most recent publications, each with APA 7 citation copy and RIS download controls.
 
 **To update:** Add the paper to your ORCID profile and set it to public. It appears after the next scheduled or manually dispatched workflow run. Set the repository secret `SERPAPI_KEY` to enable Scholar metrics.
+
+The script writes `data/publications.json`, `data/software.json`, and `data/metrics.json`. It keeps previous values when an external source fails. The site fetches these local JSON files at runtime rather than calling APIs in visitors' browsers.
+
+## Automated checks
+
+Pull requests render the Quarto site and run:
+
+- **Lychee** for broken internal and external links
+- **pa11y-ci** with the WCAG 2.2 AA ruleset for accessibility errors
+
+GitHub Actions dependencies are kept current through Dependabot. Scheduled workflows open quarterly analytics-review issues and a site-review issue before the 2027 job search.
+
+## Visibility and accessibility validation
+
+Local Lighthouse validation results: home (accessibility 100, SEO 100, performance 56), school attendance research (accessibility 100, SEO 92, performance 63), publications (accessibility 100, SEO 100, performance 62), and resources (accessibility 100, SEO 100, performance 57). Automated pa11y checks pass across the key pages, and 360 px and 640 px viewport checks show no horizontal overflow.
 
 **Key constants** in `research/publications.qmd`:
 

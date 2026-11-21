@@ -1,7 +1,7 @@
 /* ============================================
    FONTS
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 
 /* ============================================
    BASE — edit --navy and --accent to retheme the whole site
@@ -421,7 +421,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 .project-card:hover::after { transform: scaleX(1); }
 .project-status { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; width: fit-content; }
 .status-live    { background: #e8f5ee; color: #2d7a4f; }
-.status-wip     { background: #fef3e2; color: #c8922a; }
+.status-wip     { background: #fef3e2; color: #805300; }
 .status-planned { background: var(--tag-bg); color: var(--text-muted); }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .project-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; background: var(--tag-bg); color: var(--tag-color); padding: 0.15rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); }
@@ -528,7 +528,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 .tl-est-badge {
   margin-left: auto;
   display: flex; align-items: center; gap: 5px;
-  font-size: 0.72rem; font-weight: 700; color: #c8922a;
+  font-size: 0.72rem; font-weight: 700; color: var(--accent-text);
   letter-spacing: 0.04em; text-transform: uppercase;
 }
 

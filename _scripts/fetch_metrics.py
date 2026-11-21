@@ -14,9 +14,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 METRICS_PATH = DATA_DIR / "metrics.json"
 PUBLICATIONS_PATH = DATA_DIR / "publications.json"
+SOFTWARE_PATH = DATA_DIR / "software.json"
 ORCID_ID = "0009-0000-1020-2333"
 SCHOLAR_ID = "ZEvUL_kAAAAJ"
 TIMEOUT = 30
+CONTACT_ADDRESS = "connorconkeymorrison@gmail.com"
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
@@ -125,6 +127,30 @@ def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 work["volume"] = detail.get("volume", {}).get("value")
                 work["issue"] = detail.get("journal-issue", {}).get("issue-number", {}).get("value")
                 work["pages"] = detail.get("pages", {}).get("start", {}).get("value")
+            if doi:
+                try:
+                    crossref = get_json(
+                        f"https://api.crossref.org/works/{doi}",
+                        headers={
+                            "User-Agent": f"connorconkeymorrison.com/1.0 (mailto:{CONTACT_ADDRESS})",
+                            "Accept": "application/json",
+                        },
+                    )
+                    message = crossref["message"]
+                    if not work["journal"]:
+                        work["journal"] = next(iter(message.get("container-title", [])), "")
+                    if not work.get("volume"):
+                        work["volume"] = message.get("volume")
+                    if not work.get("issue"):
+                        work["issue"] = message.get("issue")
+                    if not work.get("pages"):
+                        work["pages"] = message.get("page")
+                except (KeyError, requests.RequestException, ValueError) as exc:
+                    previous_work = next((item for item in previous if item.get("doi") == doi), {})
+                    for field in ("journal", "volume", "issue", "pages"):
+                        if not work.get(field) and previous_work.get(field):
+                            work[field] = previous_work[field]
+                    logging.warning("Crossref enrichment unavailable for %s; keeping previous values: %s", doi, exc)
             works.append(work)
         existing_by_doi = {item.get("doi"): item for item in previous if item.get("doi")}
         fetched_dois = {item.get("doi") for item in works if item.get("doi")}
@@ -137,6 +163,37 @@ def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
         return previous
 
 
+def fetch_software(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    try:
+        data = get_json(
+            "https://zenodo.org/api/records?q=creators.orcid%3A0009-0000-1020-2333",
+            headers={"User-Agent": f"connorconkeymorrison.com/1.0 (mailto:{CONTACT_ADDRESS})"},
+        )
+        published_concept_dois = {
+            "10.5281/zenodo.22707558",
+            "10.5281/zenodo.22707556",
+        }
+        software = []
+        for record in data.get("hits", {}).get("hits", []):
+            metadata = record.get("metadata", {})
+            doi = record.get("conceptdoi") or record.get("doi")
+            if doi not in published_concept_dois:
+                continue
+            software.append({
+                "title": metadata.get("title", ""),
+                "doi": doi,
+                "record_url": record.get("links", {}).get("html", ""),
+                "type": metadata.get("resource_type", {}).get("type", ""),
+                "year": metadata.get("publication_date", "")[:4],
+            })
+        if not software:
+            raise ValueError("Zenodo returned no records")
+        return software
+    except (KeyError, requests.RequestException, ValueError) as exc:
+        logging.warning("Zenodo software records unavailable; keeping previous list: %s", exc)
+        return previous
+
+
 def main() -> None:
     DATA_DIR.mkdir(exist_ok=True)
     previous_metrics = read_json(
@@ -144,12 +201,15 @@ def main() -> None:
         {"publications": 7, "citations": 36, "h_index": 3, "i10_index": 2, "peer_reviews": 18},
     )
     previous_publications = read_json(PUBLICATIONS_PATH, [])
+    previous_software = read_json(SOFTWARE_PATH, [])
     publications = fetch_publications(previous_publications)
+    software = fetch_software(previous_software)
     metrics = fetch_metrics(previous_metrics)
     metrics["publications"] = len(publications)
     write_json(METRICS_PATH, metrics)
     write_json(PUBLICATIONS_PATH, publications)
-    logging.info("Wrote %s and %s", METRICS_PATH, PUBLICATIONS_PATH)
+    write_json(SOFTWARE_PATH, software)
+    logging.info("Wrote %s, %s and %s", METRICS_PATH, PUBLICATIONS_PATH, SOFTWARE_PATH)
 
 
 if __name__ == "__main__":
