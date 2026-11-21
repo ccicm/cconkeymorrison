@@ -1,6 +1,7 @@
 {
   "defaults": {
     "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
     "timeout": 30000
   },
   "urls": [
@@ -9,6 +10,9 @@
     "http://127.0.0.1:4173/research/publications.html",
     "http://127.0.0.1:4173/research/projects.html",
     "http://127.0.0.1:4173/research/resources.html",
-    "http://127.0.0.1:4173/contact.html"
+    "http://127.0.0.1:4173/research/reading-list.html",
+    "http://127.0.0.1:4173/contact.html",
+    "http://127.0.0.1:4173/posts/index.html",
+    "http://127.0.0.1:4173/teaching.html"
   ]
 }

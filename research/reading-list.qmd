@@ -8,6 +8,7 @@ engine: markdown
 ```{=html}
 <div class="page-header"><h1>Reading List</h1></div>
 <p style="margin:0 0 1.5rem 0;font-size:1rem;line-height:1.75;color:var(--text-muted);">An evolving collection of papers shaping how I think — across school attendance and emotionally based school avoidance, but also psychology, behavioural addiction, digital health, measurement, and education systems.</p>
+<label for="reading-search" class="sr-only">Search reading list titles, authors, and notes</label>
 <input id="reading-search" type="text" placeholder="Search titles, authors, notes…" style="width:100%;box-sizing:border-box;padding:0.5rem 0.85rem;font-size:0.9rem;font-family:inherit;border:1.5px solid var(--border,#ddd);border-radius:8px;margin-bottom:0.85rem;outline:none;background:transparent;color:inherit;">
 <div id="reading-filter-row" style="display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;margin-bottom:1.1rem;">
   <div id="reading-filter-bar" style="display:contents;"></div>
@@ -36,7 +37,7 @@ engine: markdown
         'Definitions','Framework','Differentiation'])
     },
     'Interventions': {
-      color: '#c05a4a',
+      color: '#b04e3f',
       tags: new Set(['Intervention','CBT','DBT','Mindfulness','VR','Pharmacology',
         'Multifamily therapy','Family coaching','RCT','Feasibility','Treatment outcomes',
         'Rehabilitation','Intervention development','Intervention outcomes',
@@ -57,7 +58,7 @@ engine: markdown
         'Editorial','Clinical synthesis','Conceptual'])
     },
     'Digital & AI': {
-      color: '#b07d2e',
+      color: '#8a5c1a',
       tags: new Set(['Digital','AI','Machine learning','Creativity','Digital feasibility'])
     }
   };
@@ -81,12 +82,31 @@ engine: markdown
   let activeDropdownName = null;
   let activeDropdownEl   = null;
 
+  var activeDropdownTrigger = null;
+
   function removeDropdown() {
     if (activeDropdownEl) { activeDropdownEl.remove(); activeDropdownEl = null; }
     activeDropdownName = null;
+    activeDropdownTrigger = null;
   }
 
   document.addEventListener('click', () => { if (activeDropdownEl) { removeDropdown(); renderFilterBar(); } });
+
+  document.addEventListener('keydown', function(e) {
+    if (!activeDropdownEl) return;
+    if (e.key === 'Escape') {
+      var trigger = activeDropdownTrigger;
+      removeDropdown(); renderFilterBar();
+      if (trigger) trigger.focus();
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      var btns = Array.from(activeDropdownEl.querySelectorAll('button'));
+      var idx = btns.indexOf(document.activeElement);
+      var next = e.key === 'ArrowDown' ? idx + 1 : idx - 1;
+      if (next >= 0 && next < btns.length) btns[next].focus();
+      e.preventDefault();
+    }
+  });
 
   searchEl.addEventListener('input', () => {
     searchQuery = searchEl.value.trim().toLowerCase();
@@ -129,11 +149,14 @@ engine: markdown
     return false;
   }
 
-  function openDropdownFor(name, g, anchorEl) {
+  function openDropdownFor(name, g, anchorEl, triggerBtn) {
     removeDropdown();
     activeDropdownName = name;
+    activeDropdownTrigger = triggerBtn || null;
     const rect = anchorEl.getBoundingClientRect();
     const dd   = document.createElement('div');
+    dd.setAttribute('role', 'listbox');
+    dd.setAttribute('aria-label', name + ' tag filters');
     dd.style.cssText = [
       'position:fixed',
       `top:${rect.bottom + 6}px`,
@@ -153,6 +176,8 @@ engine: markdown
     [...g.tags].filter(t => usedTags.has(t)).sort().forEach(tag => {
       const on = activeFilters.has(tag);
       const tb = document.createElement('button');
+      tb.setAttribute('role', 'option');
+      tb.setAttribute('aria-selected', on ? 'true' : 'false');
       tb.textContent = tag;
       tb.style.cssText = [
         `background:${on ? g.color : 'transparent'}`,
@@ -207,7 +232,10 @@ engine: markdown
       });
 
       const chevBtn = document.createElement('button');
-      chevBtn.innerHTML = '&#9660;';
+      chevBtn.setAttribute('aria-label', `Show ${name} tag filters`);
+      chevBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      chevBtn.setAttribute('aria-haspopup', 'listbox');
+      chevBtn.innerHTML = '<span aria-hidden="true">&#9660;</span>';
       chevBtn.style.cssText = [
         `background:${isOpen || state !== 'off' ? `color-mix(in srgb,${g.color} 22%,transparent)` : 'transparent'}`,
         `color:${g.color}`,'padding:0.25rem 0.55rem','border:none',
@@ -217,7 +245,7 @@ engine: markdown
       chevBtn.addEventListener('click', e => {
         e.stopPropagation();
         if (isOpen) { removeDropdown(); renderFilterBar(); }
-        else        { openDropdownFor(name, g, wrap); renderFilterBar(); }
+        else        { openDropdownFor(name, g, wrap, chevBtn); renderFilterBar(); }
       });
 
       wrap.appendChild(labelBtn);

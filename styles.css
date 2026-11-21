@@ -522,7 +522,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   width: 7px; height: 7px; border-radius: 50%; display: inline-block;
 }
 .tl-legend-dot.done  { background: #2d7a4f; }
-.tl-legend-dot.wip   { background: #8a8786; box-shadow: 0 0 0 3px rgba(138,135,134,0.12); }
+.tl-legend-dot.wip   { background: #767372; box-shadow: 0 0 0 3px rgba(118,115,114,0.15); }
 .tl-legend-dot.todo  { border: 1.5px solid var(--text-muted); background: transparent; opacity: 0.5; }
 .tl-legend-dot.goal  { border: 1.5px dashed #c8922a; background: transparent; }
 .tl-est-badge {

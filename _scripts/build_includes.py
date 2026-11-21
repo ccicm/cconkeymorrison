@@ -28,7 +28,7 @@ PAPER_COLORS: dict[int, str] = {
     3: "var(--navy)",
     0: "var(--text-muted)",
 }
-STATUS_COLORS = {"done": "#2d7a4f", "wip": "#8a8786", "todo": "#6b6560", "goal": "#c8922a"}
+STATUS_COLORS = {"done": "#2d7a4f", "wip": "#767372", "todo": "#6b6560", "goal": "#c8922a"}
 
 DOI_DOMAINS = {
     "10.1016": "sciencedirect.com", "10.1007": "springer.com",  "10.1038": "nature.com",
@@ -52,7 +52,7 @@ TAG_GROUPS: dict[str, dict] = {
         },
     },
     "Interventions": {
-        "color": "#c05a4a",
+        "color": "#b04e3f",
         "tags": {
             "Intervention", "CBT", "DBT", "Mindfulness", "VR", "Pharmacology",
             "Multifamily therapy", "Family coaching", "RCT", "Feasibility",
@@ -80,7 +80,7 @@ TAG_GROUPS: dict[str, dict] = {
         },
     },
     "Digital & AI": {
-        "color": "#b07d2e",
+        "color": "#8a5c1a",
         "tags": {"Digital", "AI", "Machine learning", "Creativity", "Digital feasibility"},
     },
 }
@@ -116,7 +116,7 @@ def tag_color(tag: str) -> str:
 def book_svg() -> str:
     return (
         '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18"'
-        ' viewBox="0 0 24 24" fill="none" stroke="#c05a4a" stroke-width="1.75"'
+        ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"'
         ' stroke-linecap="round" stroke-linejoin="round">'
         '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>'
         '<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'

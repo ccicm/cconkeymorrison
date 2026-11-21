@@ -158,16 +158,16 @@ format:
                 }
                 link.target = '_blank';
                 link.rel = 'noopener noreferrer';
-                if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim() && !/[↗→]\s*$/.test(link.textContent.trim())) {
+                if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim()) {
+                  var hasArrow = /[↗→]\s*$/.test(link.textContent.trim());
                   var marker = document.createElement('span');
                   marker.className = 'external-link-icon';
-                  marker.innerHTML = '<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span>';
+                  marker.innerHTML = (hasArrow ? '' : '<span aria-hidden="true"> ↗</span>') + '<span class="sr-only"> (opens in a new tab)</span>';
                   link.appendChild(marker);
                 }
               });
             }
             markExternalLinks(document);
-            new MutationObserver(function() { markExternalLinks(document); }).observe(document.body, { childList: true, subtree: true });
           })();
           </script>
           <div class="site-accessibility">This site aims to meet WCAG 2.2 AA. <a href="/contact.html?type=bug">Report an accessibility or website problem.</a></div>
