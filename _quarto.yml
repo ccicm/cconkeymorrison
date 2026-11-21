@@ -3,6 +3,10 @@ project:
   output-dir: _site
   resources:
     - data/
+  render:
+    - "*.qmd"
+    - "**/*.qmd"
+    - "!posts/_template.qmd"
 
 description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
 lang: en-AU

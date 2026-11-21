@@ -30,6 +30,7 @@ jobs:
           python _scripts/fetch_metrics.py
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
 
       - name: Commit refreshed data
         uses: stefanzweifel/git-auto-commit-action@v5
