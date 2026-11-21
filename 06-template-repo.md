@@ -2,6 +2,8 @@
 
 Do this in the **ccicm/academic-website-template** repo, not the website repo. Open a separate Codespace for it.
 
+**Status: not started/verified in this workspace.** This checklist remains to be performed in the separate repository.
+
 ## Fix now
 
 - [ ] Add `LICENSE` (MIT) for the code, and state in the README that the guide text is CC BY 4.0

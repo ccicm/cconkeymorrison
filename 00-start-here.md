@@ -12,6 +12,14 @@ These files are a chain. Work through them in order, one per Copilot session (or
 | 5 | `05-visibility-accessibility.md` | Agent | Medium |
 | 6 | `06-template-repo.md` | Agent, in the template repo | Medium |
 
+## Current status
+
+Steps 1–5 are implemented in this repository and have passed `quarto render` where applicable. The remaining work is limited to account verification, manual Google Search Console setup, and the separate template-repository task in step 6.
+
+Step 2's contact decision is settled: **do not show a public email address**. The contact form remains the only contact method.
+
+Step 6 is outside this workspace and has not been started or verified here.
+
 ## How to hand each file to the agent
 
 Paste this, changing the file name each time:
@@ -22,12 +30,12 @@ Then check the agent's list against the file's "Done when" section before you me
 
 ## Your own steps (the agent can't do these)
 
-- [ ] **GoatCounter:** sign up at goatcounter.com (free for personal sites), choose a site code, and note it for step 4
-- [ ] **SerpApi:** in the repo, go to Settings → Secrets and variables → Actions and confirm a secret named `SERPAPI_KEY` exists. Then open the latest Actions run: if the log says "SERPAPI_KEY is not set", the citation number on the site is a placeholder, not a live count.
-- [ ] **ORCID:** in your ORCID account, switch on Crossref auto-update, so new papers arrive without manual entry
-- [ ] **Google Search Console:** add `connorconkeymorrison.com` as a domain property and verify it with the DNS TXT record at Namecheap (do this after step 5 adds the sitemap)
-- [ ] **Web3Forms:** in the dashboard, restrict your access key to your domain
-- [ ] **Reading list:** check the expiry date of the GitHub token the Apps Script uses, and diarise its renewal
+- [ ] **Needs Connor — SerpApi:** confirm a repository secret named `SERPAPI_KEY` exists and that the latest Actions run reports a live citation count.
+- [ ] **Needs Connor — ORCID:** switch on Crossref auto-update in your ORCID account.
+- [ ] **Needs Connor — Google Search Console:** verify `connorconkeymorrison.com` and submit the sitemap after step 5 is complete.
+- [ ] **Needs Connor — Web3Forms:** restrict the access key to your domain.
+- [ ] **Needs Connor — Reading list:** check and diarise renewal of the GitHub token used by the Apps Script.
+- [ ] **Needs Connor — RMIT profile:** confirm the RMIT profile URL to use in JSON-LD `sameAs`, if a different URL is required.
 
 ## Settled on purpose (no agent changes these)
 
