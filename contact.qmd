@@ -45,9 +45,8 @@ page-layout: full
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.22s ease, transform 0.22s ease;
-  pointer-events: none;
 }
-.ccm-form-wrap.visible { opacity: 1; transform: none; pointer-events: auto; }
+.ccm-form-wrap.visible { opacity: 1; transform: none; }
 .ccm-selected-type {
   display: block;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -117,13 +116,13 @@ page-layout: full
 
 <span class="ccm-type-label">What are you getting in touch about?</span>
 <div class="ccm-type-row">
-  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('research')">Research & collaboration</button>
-  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('policy')">Policy and sector</button>
-  <button type="button" class="ccm-type-btn" aria-pressed="false" onclick="setType('general')">General</button>
-  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" aria-pressed="false" onclick="setType('bug')">Report a website bug</button>
+  <button type="button" class="ccm-type-btn" data-type="research" aria-pressed="false">Research & collaboration</button>
+  <button type="button" class="ccm-type-btn" data-type="policy" aria-pressed="false">Policy and sector</button>
+  <button type="button" class="ccm-type-btn" data-type="general" aria-pressed="false">General</button>
+  <button type="button" class="ccm-type-btn bug-btn" id="bug-btn" data-type="bug" aria-pressed="false">Report a website bug</button>
 </div>
 
-<div class="ccm-form-wrap" id="ccm-form-wrap">
+<div class="ccm-form-wrap" id="ccm-form-wrap" hidden>
   <span class="ccm-selected-type" id="ccm-selected-label"></span>
   <form id="contact-form" onsubmit="handleSubmit(event)">
     <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
@@ -145,24 +144,25 @@ page-layout: full
 
     <div class="ccm-footer-row">
       <button type="submit" class="ccm-submit" id="submit-btn">Send message</button>
-      <button type="button" class="ccm-clear" onclick="clearForm()">Clear</button>
+      <button type="button" class="ccm-clear" id="ccm-clear-btn">Clear</button>
     </div>
     <p id="ccm-status" class="ccm-status" role="status" aria-live="polite"></p>
   </form>
+  <p class="ccm-privacy-note">Sent via <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer">Web3Forms</a>. Your message is used only to respond to your enquiry.</p>
 </div>
 
 <script>
 const config = {
   research: { label: 'Research & collaboration', subject: 'Research enquiry — connorconkeymorrison.com', placeholder: 'Briefly describe your research interest or proposed collaboration...' },
   policy:   { label: 'Policy and sector',         subject: 'Policy and sector enquiry — connorconkeymorrison.com', placeholder: 'Briefly describe the policy or sector question...' },
-  general:  { label: 'General',                  subject: 'General enquiry — connorconkeymorrison.com',   placeholder: 'Your message...' },
-  bug:      { label: 'Report a website bug',      subject: 'Bug report — connorconkeymorrison.com',        placeholder: 'Describe the bug — what page, what happened, and what you expected...' },
+  general:  { label: 'General',                   subject: 'General enquiry — connorconkeymorrison.com',           placeholder: 'Your message...' },
+  bug:      { label: 'Report a website bug',       subject: 'Bug report — connorconkeymorrison.com',               placeholder: 'Describe the bug — what page, what happened, and what you expected...' },
 };
 
 function setType(type) {
   const c = config[type];
   document.querySelectorAll('.ccm-type-btn').forEach(btn => {
-    const active = btn.getAttribute('onclick') === `setType('${type}')`;
+    const active = btn.dataset.type === type;
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-pressed', String(active));
   });
@@ -170,15 +170,24 @@ function setType(type) {
   document.getElementById('f-message').placeholder = c.placeholder;
   document.getElementById('ccm-selected-label').textContent = c.label;
   const wrap = document.getElementById('ccm-form-wrap');
-  wrap.classList.remove('visible'); void wrap.offsetWidth; wrap.classList.add('visible');
+  wrap.classList.remove('visible');
+  wrap.removeAttribute('hidden');
+  void wrap.offsetWidth;
+  wrap.classList.add('visible');
+  document.getElementById('f-name').focus();
 }
 
 function clearForm() {
   document.getElementById('contact-form').reset();
   document.getElementById('ccm-subject').value = '';
   document.getElementById('ccm-selected-label').textContent = '';
-  document.getElementById('ccm-form-wrap').classList.remove('visible');
-  document.querySelectorAll('.ccm-type-btn').forEach(btn => { btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); });
+  const wrap = document.getElementById('ccm-form-wrap');
+  wrap.classList.remove('visible');
+  wrap.setAttribute('hidden', '');
+  document.querySelectorAll('.ccm-type-btn').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-pressed', 'false');
+  });
   document.getElementById('ccm-status').textContent = '';
   document.getElementById('ccm-status').className = 'ccm-status';
 }
@@ -187,28 +196,41 @@ async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('ccm-status');
-  btn.textContent = 'Sending...'; btn.disabled = true;
-  status.textContent = ''; status.className = 'ccm-status';
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  status.textContent = '';
+  status.className = 'ccm-status';
   try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(document.getElementById('contact-form')) });
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(document.getElementById('contact-form')),
+    });
     const result = await res.json();
-    if (result.success) { status.textContent = 'Message sent — thanks!'; status.className = 'ccm-status success'; clearForm(); }
-    else throw new Error();
+    if (result.success) {
+      status.textContent = 'Message sent — thanks!';
+      status.className = 'ccm-status success';
+      ['f-name', 'f-email', 'f-message'].forEach(id => { document.getElementById(id).value = ''; });
+    } else {
+      throw new Error();
+    }
   } catch {
-    status.textContent = 'Something went wrong. Try emailing directly.';
+    status.innerHTML = 'Your message wasn\'t sent. Please try again, or reach Connor on <a href="https://www.linkedin.com/in/connorconkeymorrison" target="_blank" rel="noopener noreferrer">LinkedIn</a> if it keeps happening.';
     status.className = 'ccm-status error';
+  } finally {
+    btn.textContent = 'Send message';
+    btn.disabled = false;
   }
-  btn.textContent = 'Send message'; btn.disabled = false;
 }
+
+document.querySelectorAll('.ccm-type-btn[data-type]').forEach(btn => {
+  btn.addEventListener('click', () => setType(btn.dataset.type));
+});
+document.getElementById('ccm-clear-btn').addEventListener('click', clearForm);
+document.getElementById('contact-form').addEventListener('submit', handleSubmit);
 
 (function () {
   const params = new URLSearchParams(window.location.search);
-
-  if (params.get('type') === 'bug') {
-    setType('bug');
-    return;
-  }
-
+  if (params.get('type') === 'bug') setType('bug');
 })();
 </script>
 ```
