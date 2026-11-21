@@ -13,11 +13,11 @@ engine: markdown
 Published research across psychology, behavioural science, digital health, and education. Browse the articles and peer-review record below.
 :::
 :::
+:::
 
 ## Software and data
 
 {{< include /_includes/software.html >}}
-:::
 
 {{< include /_includes/pub-metrics.html >}}
 
@@ -74,7 +74,7 @@ Published research across psychology, behavioural science, digital health, and e
 
 <div class="pub-layout">
   <div class="pub-main">
-    <h2 id="publication-list" class="pub-section-heading">Publications</h2>
+    <h2 id="publication-list" class="pub-section-heading">Journal articles</h2>
 ```
 
 {{< include /_includes/publications.html >}}

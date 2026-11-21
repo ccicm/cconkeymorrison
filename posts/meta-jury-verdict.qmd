@@ -11,8 +11,8 @@ engine: markdown
 <div class="page-header">
   <h1>Meta, malice, and the patience of all involved</h1>
 </div>
-<p style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0 2rem 0;font-weight:500;">26 March 2026 &nbsp;·&nbsp; <span style="color:var(--accent-text);">Social media &nbsp;·&nbsp; Mental health &nbsp;·&nbsp; Children &nbsp;·&nbsp; Policy</span></p>
-<hr style="border:none;border-top:1px solid var(--border);margin:0 0 2rem 0;">
+<p class="post-meta-line">26 March 2026 &nbsp;·&nbsp; <span class="post-categories">Social media &nbsp;·&nbsp; Mental health &nbsp;·&nbsp; Children &nbsp;·&nbsp; Policy</span></p>
+<hr class="post-rule">
 ```
 
 A Los Angeles jury found this week that Meta and Google acted not with negligence or recklessness but <b>malice</b> in building platforms that a young woman, who started using YouTube at six and Instagram at nine, argues were central to her developing anxiety, depression, and body dysmorphia.^1^

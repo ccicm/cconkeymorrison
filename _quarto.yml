@@ -54,21 +54,10 @@ format:
     css: styles.css
     toc: false
     smooth-scroll: true
+    canonical-url: true
     include-in-header:
       text: |
         <meta name="author" content="Connor Conkey-Morrison">
-        <meta name="keywords" content="Connor Conkey-Morrison, school attendance problems, emotionally based school avoidance, EBSA, school refusal, psychology, behavioural addiction, digital health, measurement, education systems">
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" id="ccm-canonical" href="https://connorconkeymorrison.com/">
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var canonical = document.querySelector('#ccm-canonical');
-          if (!canonical) return;
-          var pathname = window.location.pathname;
-          if (pathname === '/index.html') pathname = '/';
-          canonical.href = 'https://connorconkeymorrison.com' + pathname;
-        });
-        </script>
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -90,6 +79,8 @@ format:
           ]
         }
         </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">

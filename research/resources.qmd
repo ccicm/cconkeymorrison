@@ -47,10 +47,10 @@ These selected papers from the [reading list](reading-list.qmd) are useful start
 
 <article class="resource-card">
 <h3><a href="https://doi.org/10.1111/jcpp.12848">Practitioner Review: School refusal: developments in conceptualisation and treatment since 2000</a></h3>
-<div class="resource-meta">Elliott, J. G., &amp; Place, M. (2019). <em>Journal of Child Psychology and Psychiatry</em>.</div>
+<div class="resource-meta">Elliott, J. G., &amp; Place, M. (2019). <em>Journal of Child Psychology and Psychiatry</em>, 60(1), 4–15.</div>
 <p>A clear clinical overview of how school refusal has been conceptualised and treated, and why definitions shape the interventions we study.</p>
 <div class="resource-tags"><span class="resource-tag">EBSA</span><span class="resource-tag">Definitions</span><span class="resource-tag">Review</span></div>
-<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Elliott, J. G., & Place, M. (2019). Practitioner review: School refusal: Developments in conceptualisation and treatment since 2000. Journal of Child Psychology and Psychiatry. https://doi.org/10.1111/jcpp.12848')">Copy APA 7</button>
+<button class="resource-apa" type="button" onclick="copyResourceApa(this, 'Elliott, J. G., & Place, M. (2019). Practitioner review: School refusal: Developments in conceptualisation and treatment since 2000. Journal of Child Psychology and Psychiatry, 60(1), 4-15. https://doi.org/10.1111/jcpp.12848')">Copy APA 7</button>
 </article>
 
 <article class="resource-card">

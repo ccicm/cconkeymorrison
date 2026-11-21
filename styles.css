@@ -663,3 +663,8 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .tl-header-label { display: none; }
   .tl-activity-label { padding-left: 1rem; }
 }
+
+/* ── Post pages ────────────────────────────── */
+.post-meta-line { font-size: 0.82rem; color: var(--text-muted); margin: 0.5rem 0 2rem 0; font-weight: 500; }
+.post-categories { color: var(--accent-text); }
+.post-rule { border: none; border-top: 1px solid var(--border); margin: 0 0 2rem 0; }

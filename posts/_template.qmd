@@ -9,10 +9,23 @@ engine: markdown
 ```{=html}
 <style>#title-block-header { display: none !important; }</style>
 <div class="page-header">
-  <h1>Post title here</h1>
+  <h1>{{< meta title >}}</h1>
 </div>
-<p style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0 2rem 0;font-weight:500;">1 January 2026 &nbsp;·&nbsp; <span style="color:var(--accent-text);">Category &nbsp;·&nbsp; Category</span></p>
-<hr style="border:none;border-top:1px solid var(--border);margin:0 0 2rem 0;">
+<p class="post-meta-line">
+  <time class="post-date" id="post-date-raw" datetime="{{< meta date >}}">{{< meta date >}}</time>
+  &nbsp;·&nbsp;
+  <span class="post-categories">Category &nbsp;·&nbsp; Category</span>
+</p>
+<hr class="post-rule">
+<script>
+(function() {
+  var el = document.getElementById('post-date-raw');
+  if (!el || !el.dateTime) return;
+  var d = new Date(el.dateTime + 'T00:00:00');
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  el.textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+})();
+</script>
 ```
 
 Opening paragraph here.

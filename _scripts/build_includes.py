@@ -415,8 +415,6 @@ def gen_metrics(metrics: dict) -> str:
     i10 = metrics.get("i10_index", 0)
     reviews = metrics.get("peer_reviews", 0)
     updated_raw = metrics.get("updated", "")
-    citation_rate = round(citations / pubs, 1) if pubs else 0.0
-
     updated_str = ""
     if updated_raw:
         try:
@@ -430,7 +428,7 @@ def gen_metrics(metrics: dict) -> str:
         '<div class="pub-stat-card pub-stat-publications">\n'
         '<span class="pub-stat-heading">Research output</span>\n'
         f'<div class="pub-stat-pair"><strong>{pubs}</strong><span>Publications</span></div>\n'
-        f'<div class="pub-stat-pair"><strong>{citation_rate}</strong><span>Citations per publication</span></div>\n'
+        '<p class="pub-stat-note">Source: ORCID</p>\n'
         "</div>\n"
         '<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"'
         ' class="pub-stat-card pub-stat-profile">\n'

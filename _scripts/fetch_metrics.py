@@ -152,9 +152,6 @@ def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
                             work[field] = previous_work[field]
                     logging.warning("Crossref enrichment unavailable for %s; keeping previous values: %s", doi, exc)
             works.append(work)
-        existing_by_doi = {item.get("doi"): item for item in previous if item.get("doi")}
-        fetched_dois = {item.get("doi") for item in works if item.get("doi")}
-        works.extend(item for doi, item in existing_by_doi.items() if doi not in fetched_dois)
         if not works:
             raise ValueError("ORCID returned no journal articles")
         return sorted(works, key=lambda item: item.get("year", 0), reverse=True)
