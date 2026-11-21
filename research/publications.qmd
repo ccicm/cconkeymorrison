@@ -101,5 +101,5 @@ Published research across psychology, behavioural science, digital health, and e
 The [Reading List](reading-list.qmd) is a brief, evolving record of the papers shaping how I think about attendance, avoidance, intervention, and education systems.
 
 ::: about-section
-[Projects →](projects.qmd){.about-link} [Contact →](/contact.html){.about-link}
+[Research projects →](projects.qmd){.about-link} [Get in touch →](/contact.html){.about-link}
 :::

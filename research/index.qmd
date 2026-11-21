@@ -37,7 +37,7 @@ A [PROSPERO-registered](https://www.crd.york.ac.uk/PROSPERO/view/CRD420251089918
 
 ### Longitudinal modelling
 
-Examining emotional symptom courses from school entry to adolescence in two Australian cohorts, alongside how much school children miss and the stated reasons. Recording why a child is absent adds information that the amount of absence does not.
+Examining emotional symptom courses from school entry to adolescence in two Australian cohorts, alongside how much school children miss and the stated reasons. The paper asks whether the reason a child is absent carries information about risk that attendance totals alone do not.
 :::
 
 ::: paper-card
@@ -72,7 +72,7 @@ Key reports, instruments, and policy documents are on the [Resources page](resou
 ## Supervisory team {#supervisory-team}
 
 ::: supervisor-row
-[Dr Daniel Zarate](https://scholar.google.com/scholar?q=Daniel+Zarate){.supervisor-link} [A/Prof Vasileios Stavropoulos](https://scholar.google.com/scholar?q=Vasileios+Stavropoulos){.supervisor-link} [Dr Taylor Brown](https://scholar.google.com/scholar?q=Taylor+Brown+psychology){.supervisor-link}
+[Dr Daniel Zarate](https://scholar.google.com/citations?hl=en&user=kz4obg8AAAAJ){.supervisor-link} [A/Prof Vasileios Stavropoulos](https://scholar.google.com/citations?user=7z7JqgkAAAAJ&hl=en){.supervisor-link} [Dr Taylor Brown](https://scholar.google.com/citations?user=MN9lvNQAAAAJ&hl=en){.supervisor-link}
 :::
 
 ------------------------------------------------------------------------

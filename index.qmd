@@ -1,6 +1,6 @@
 ---
 title: "Connor Conkey-Morrison"
-description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate researching school attendance problems, emotionally based school avoidance, and the data systems that record attendance."
 aliases:
   - /cv/index.html
   - /cv/
@@ -16,7 +16,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I work across psychology, education, and digital health, with a particular interest in how evidence becomes useful to people and systems. My PhD examines school attendance problems from intervention research through to Australian cohort and education-system data.
+I'm a provisional psychologist and PhD candidate studying school attendance problems — specifically the emotionally based school avoidance that sits behind a substantial share of unexplained absence.
 :::
 
 ::: hero-links

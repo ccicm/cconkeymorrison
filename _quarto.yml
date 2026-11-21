@@ -9,7 +9,7 @@ project:
     - "**/*.qmd"
     - "!posts/_template.qmd"
 
-description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate researching school attendance problems, emotionally based school avoidance, and the data systems that record attendance."
 lang: en-AU
 
 execute:
@@ -65,7 +65,7 @@ format:
           "name": "Connor Conkey-Morrison",
           "url": "https://connorconkeymorrison.com",
           "jobTitle": "PhD Candidate, Provisional Psychologist, Sessional Academic",
-          "description": "Provisional psychologist and researcher working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems.",
+          "description": "Provisional psychologist and PhD candidate researching school attendance problems, emotionally based school avoidance, and the data systems that record attendance.",
           "affiliation": {
             "@type": "CollegeOrUniversity",
             "name": "RMIT University"
