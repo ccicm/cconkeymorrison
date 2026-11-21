@@ -125,7 +125,7 @@ page-layout: full
 
 <div class="ccm-form-wrap" id="ccm-form-wrap" hidden>
   <span class="ccm-selected-type" id="ccm-selected-label"></span>
-  <form id="contact-form" onsubmit="handleSubmit(event)">
+  <form id="contact-form">
     <input type="hidden" name="access_key" value="03b4348e-774c-4e7b-9300-f9f602cecc75">
     <input type="hidden" id="ccm-subject" name="subject" value="">
     <input type="checkbox" name="botcheck" class="hidden" aria-label="Leave unchecked" style="display:none">
