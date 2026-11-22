@@ -57,6 +57,7 @@ engine: markdown
 
 ```{=html}
 </div>
+<p id="reading-no-results" class="reading-status" hidden>No entries match your filters.</p>
 <nav id="reading-pagination" class="reading-pagination" aria-label="Reading list pages"></nav>
 <script>
 (function() {
