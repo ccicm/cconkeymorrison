@@ -1,11 +1,11 @@
 {
   "startDate": "2025-01-01",
-  "estimatedCompletion": "2027",
+  "estimatedCompletion": "",
   "milestones": [
     { "quarter": 5,  "label": "M1", "full": "Confirmation of Candidature" },
     { "quarter": 8,  "label": "M2", "full": "Milestone 2" },
     { "quarter": 12, "label": "M3", "full": "Milestone 3" },
-    { "quarter": 13, "label": "4Y", "full": "Year 4 begins" }
+    { "quarter": 13, "label": "4Y", "full": "4th year (max. Feb 2029)" }
   ],
   "papers": [
     {

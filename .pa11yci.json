@@ -1,7 +1,10 @@
 {
   "defaults": {
     "standard": "WCAG2AA",
-    "runners": ["axe", "htmlcs"],
+    "runners": [
+      "axe",
+      "htmlcs"
+    ],
     "timeout": 30000
   },
   "urls": [
@@ -13,6 +16,9 @@
     "http://127.0.0.1:4173/research/reading-list.html",
     "http://127.0.0.1:4173/contact.html",
     "http://127.0.0.1:4173/posts/index.html",
-    "http://127.0.0.1:4173/teaching.html"
+    "http://127.0.0.1:4173/teaching.html",
+    "http://127.0.0.1:4173/posts/meta-jury-verdict.html",
+    "http://127.0.0.1:4173/posts/ai-prove-your-worth.html",
+    "http://127.0.0.1:4173/template.html"
   ]
 }

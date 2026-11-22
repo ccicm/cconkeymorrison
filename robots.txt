@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://connorconkeymorrison.com/sitemap.xml
+Sitemap: https://www.connorconkeymorrison.com/sitemap.xml

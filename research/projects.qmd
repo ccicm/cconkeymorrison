@@ -43,7 +43,7 @@ An open-source Quarto template for building a professional academic website — 
 :::
 
 ::: project-links
-[Setup & walkthrough](https://connorconkeymorrison.com/template){.project-link}
+[Setup & walkthrough](/template.html){.project-link}
 [Download GitHub repo](https://github.com/ccicm/academic-website-template){.project-link-secondary}
 :::
 :::
@@ -87,17 +87,3 @@ A curated collection of practical support, attendance guidance, and research-inf
 ::: about-section
 Have a question about any of these, or interested in collaborating? [Contact Connor about a project or collaboration →](/contact.html)
 :::
-
-<script>
-(async function() {
-  try {
-    const response = await fetch('/data/software.json?v=20261121');
-    if (!response.ok) return;
-    const records = await response.json();
-    const software = records.find(record => /Variable Explorer$/i.test(record.title));
-    const index = records.find(record => /variable index/i.test(record.title));
-    if (software) document.querySelector('#software-doi')?.setAttribute('href', `https://doi.org/${software.doi}`);
-    if (index) document.querySelector('#variable-index-doi')?.setAttribute('href', `https://doi.org/${index.doi}`);
-  } catch (_) {}
-})();
-</script>

@@ -3,7 +3,7 @@ title: "AI, prove your worth: reflections from a benevolent adversary"
 date: 2026-11-21
 categories: [AI, higher education]
 description: "I couldn't fit my reflections on ATN Universities' AI Symposium into LinkedIn's post word count, so here's an article!"
-image: /images/posts/ai-cover.webp
+image: /images/posts/ai-cover.jpg
 engine: markdown
 ---
 

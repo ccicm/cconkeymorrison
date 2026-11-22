@@ -5,6 +5,7 @@ aliases:
   - /cv/index.html
   - /cv/
 page-layout: full
+image: /images/og-default.jpg
 ---
 
 ::: hero-wrapper

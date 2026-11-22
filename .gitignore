@@ -4,7 +4,6 @@
 .quarto/
 _site/
 /.quarto/
-pages/
 .claude/
 _includes/
 
