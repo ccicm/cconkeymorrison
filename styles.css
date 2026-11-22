@@ -387,8 +387,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 .pub-year-head { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-text); margin: 2rem 0 0.75rem 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
 .pub-synced-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
 .pub-synced-note a { color: var(--text-muted); text-decoration: underline; }
-.pub-scholar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.85rem; border: 1px solid var(--border); border-radius: 999px; transition: background 0.18s, border-color 0.18s; }
-.pub-scholar-link:hover { background: var(--tag-bg); border-color: var(--navy); }
 .peer-review-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 .peer-review-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 0.75rem; }
 .peer-review-section p { font-size: 1rem; color: #2a2a2a; line-height: 1.75; }
@@ -875,8 +873,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
 .pub-footer-row { margin-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; padding: 0.85rem 0; }
 .pub-synced-note { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.02em; }
 .pub-synced-note a { color: var(--text-muted); text-decoration: underline; }
-.pub-scholar-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--navy) !important; text-decoration: none !important; padding: 0.3rem 0.85rem; border: 1px solid var(--border); border-radius: 999px; transition: background 0.18s, border-color 0.18s; }
-.pub-scholar-link:hover { background: var(--tag-bg); border-color: var(--navy); }
 .pub-metrics-intro { display:flex; align-items:baseline; justify-content:flex-end; gap:0.3rem; margin:0.55rem 0 0.65rem; color:var(--text-muted); font-family:'Plus Jakarta Sans',sans-serif; font-size:0.72rem; letter-spacing:0.02em; }
 .pub-metrics-kicker { color:inherit; font:inherit; letter-spacing:normal; }
 .pub-stats-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:0.7rem; margin-bottom:2rem; }

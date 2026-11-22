@@ -444,35 +444,39 @@ def gen_metrics(metrics: dict) -> str:
     if scholar_str:
         sync_line += f" · Citations from Google Scholar, last synced {e(scholar_str)}"
 
+    def _tile_link(url: str, label: str) -> str:
+        return (
+            '<span class="pub-stat-note">'
+            f'<a href="{url}" target="_blank" rel="noopener noreferrer"'
+            ' style="color:inherit;text-decoration:underline dotted;">'
+            f"{label}</a></span>\n"
+        )
+
+    orcid_url = "https://orcid.org/0009-0000-1020-2333"
+    scholar_url = "https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"
+
     return (
         '<div class="pub-stats-grid">\n'
         '<div class="pub-stat-card pub-stat-publications">\n'
         '<span class="pub-stat-heading">Research output</span>\n'
         f'<div class="pub-stat-pair"><strong>{pubs}</strong><span>Publications</span></div>\n'
-        '<p class="pub-stat-note">Source: ORCID</p>\n'
-        "</div>\n"
-        '<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"'
-        ' class="pub-stat-card pub-stat-profile">\n'
+        + _tile_link(orcid_url, "View on ORCID")
+        + "</div>\n"
+        '<div class="pub-stat-card pub-stat-profile">\n'
         '<span class="pub-stat-heading">Scholar profile</span>\n'
         f'<div class="pub-stat-pair"><strong>{citations}</strong><span>Citations</span></div>\n'
         f'<div class="pub-stat-pair"><strong>{h_idx}</strong><span>h-index</span></div>\n'
         f'<div class="pub-stat-pair"><strong>{i10}</strong><span>i10-index</span></div>\n'
-        "</a>\n"
+        + _tile_link(scholar_url, "View on Google Scholar")
+        + "</div>\n"
         '<div class="pub-stat-card pub-stat-service">\n'
         '<span class="pub-stat-heading">Peer review</span>\n'
         f'<div class="pub-stat-pair"><strong>{reviews}</strong><span>Verified reviews</span></div>\n'
-        '<span class="pub-stat-note">'
-        '<a href="https://orcid.org/0009-0000-1020-2333" target="_blank"'
-        ' rel="noopener noreferrer"'
-        ' style="color:inherit;text-decoration:underline dotted;">'
-        "Verify on ORCID</a></span>\n"
-        "</div>\n"
+        + _tile_link(orcid_url, "Verify on ORCID")
+        + "</div>\n"
         "</div>\n"
         '<div class="pub-footer-row">\n'
         f'<span class="pub-synced-note">{sync_line}</span>\n'
-        '<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"'
-        ' target="_blank" rel="noopener noreferrer" class="pub-scholar-link">'
-        "View Google Scholar profile</a>\n"
         "</div>"
     )
 
