@@ -1,18 +1,25 @@
 project:
   type: website
   output-dir: _site
+  pre-render: python3 _scripts/build_includes.py
   resources:
     - data/
+  render:
+    - "*.qmd"
+    - "**/*.qmd"
+    - "!posts/_template.qmd"
 
-description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate researching school attendance problems, emotionally based school avoidance, and the data systems that record attendance."
 lang: en-AU
 
 execute:
   engine: markdown
 
 website:
-  site-url: https://connorconkeymorrison.com
+  site-url: https://www.connorconkeymorrison.com
   title: "Connor Conkey-Morrison"
+  image: /images/og-default.jpg
+  image-alt: "Connor Conkey-Morrison: PhD candidate and provisional psychologist, school attendance research"
   search: false
   favicon: favicon.ico
   navbar:
@@ -26,9 +33,11 @@ website:
       - text: More
         menu:
           - href: research/resources.qmd
-            text: Resources (in development)
+            text: Resources
           - href: research/reading-list.qmd
             text: Reading List
+          - href: posts/index.qmd
+            text: Writing
     right:
       - text: ORCID
         href: https://orcid.org/0009-0000-1020-2333
@@ -49,29 +58,18 @@ format:
     css: styles.css
     toc: false
     smooth-scroll: true
+    canonical-url: true
     include-in-header:
       text: |
         <meta name="author" content="Connor Conkey-Morrison">
-        <meta name="keywords" content="Connor Conkey-Morrison, school attendance problems, emotionally based school avoidance, EBSA, school refusal, psychology, behavioural addiction, digital health, measurement, education systems">
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" id="ccm-canonical" href="https://connorconkeymorrison.com/">
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var canonical = document.querySelector('#ccm-canonical');
-          if (!canonical) return;
-          var pathname = window.location.pathname;
-          if (pathname === '/index.html') pathname = '/';
-          canonical.href = 'https://connorconkeymorrison.com' + pathname;
-        });
-        </script>
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
           "@type": "Person",
           "name": "Connor Conkey-Morrison",
-          "url": "https://connorconkeymorrison.com",
+          "url": "https://www.connorconkeymorrison.com",
           "jobTitle": "PhD Candidate, Provisional Psychologist, Sessional Academic",
-          "description": "Provisional psychologist and researcher working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems.",
+          "description": "Provisional psychologist and PhD candidate researching school attendance problems, emotionally based school avoidance, and the data systems that record attendance.",
           "affiliation": {
             "@type": "CollegeOrUniversity",
             "name": "RMIT University"
@@ -85,95 +83,71 @@ format:
           ]
         }
         </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var s = getComputedStyle(document.documentElement);
-          window.CCM_COLORS = {
-            navy:      s.getPropertyValue('--navy').trim()       || '#1a2e4a',
-            navyLight: s.getPropertyValue('--navy-light').trim() || '#2a4a6a',
-            accent:    s.getPropertyValue('--accent').trim()     || '#c8922a',
-            bg:        s.getPropertyValue('--bg').trim()         || '#f8f7f5',
-            bgCard:    s.getPropertyValue('--bg-card').trim()    || '#ffffff',
-            textMuted: s.getPropertyValue('--text-muted').trim() || '#5c5c5c',
-            border:    s.getPropertyValue('--border').trim()     || '#e4e1da',
-            tagBg:     s.getPropertyValue('--tag-bg').trim()     || '#eef2f8',
-            radius:    s.getPropertyValue('--radius').trim()     || '12px',
-          };
-        });
-        </script>
     include-after-body:
-      text: |
-        <script data-goatcounter="https://conkeymorrison.goatcounter.com/count"
-                async src="//gc.zgo.at/count.js"></script>
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          function count(path, title) {
-            if (!window.goatcounter || !window.goatcounter.count) return;
-            window.goatcounter.count({ path: path, title: title, event: true });
-          }
-          document.querySelectorAll('a[href*="doi.org"]').forEach(function(link) {
-            link.addEventListener('click', function() { count('/event/doi-click', 'DOI link click'); });
-          });
-          document.querySelectorAll('a[href*="orcid.org"], a[href*="scholar.google.com"], a[href*="linkedin.com"]').forEach(function(link) {
-            link.addEventListener('click', function() { count('/event/profile-click', 'External profile link click'); });
-          });
-          var contactForm = document.getElementById('contact-form');
-          if (contactForm) {
-            contactForm.addEventListener('submit', function() {
-              count('/event/contact-submit', 'Contact form submission');
+      - text: |
+          <script data-goatcounter="https://conkeymorrison.goatcounter.com/count"
+                  async src="//gc.zgo.at/count.js"></script>
+          <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            function count(path, title) {
+              if (!window.goatcounter || !window.goatcounter.count) return;
+              window.goatcounter.count({ path: path, title: title, event: true });
+            }
+            document.querySelectorAll('a[href*="doi.org"]').forEach(function(link) {
+              link.addEventListener('click', function() { count('/event/doi-click', 'DOI link click'); });
             });
-          }
-        });
-        </script>
-        <div class="site-last-updated">Last updated <time id="site-last-updated">15 November 2026</time></div>
-        <div class="site-accessibility">This site aims to meet WCAG 2.2 AA. <a href="/contact.html?type=bug">Report an accessibility or website problem.</a></div>
-        <script>
-        (async function() {
-          try {
-            const response = await fetch('/data/metrics.json');
-            if (!response.ok) return;
-            const metrics = await response.json();
-            if (metrics.updated) document.getElementById('site-last-updated').textContent = new Date(metrics.updated).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-          } catch (_) {}
-        })();
-        </script>
-        <script>
-        (function() {
-          function markExternalLinks(root) {
-            root.querySelectorAll('a[href]').forEach(function(link) {
-              var url;
-              try { url = new URL(link.href, window.location.href); } catch (_) { return; }
-              var sameSite = url.hostname === window.location.hostname ||
-                url.hostname === 'connorconkeymorrison.com' ||
-                url.hostname === 'www.connorconkeymorrison.com';
-              if (sameSite || !/^https?:$/.test(url.protocol)) {
-                if (link.target === '_blank') link.removeAttribute('target');
-                if (link.rel) {
-                  var rel = link.rel.split(/\s+/).filter(function(value) {
-                    return value !== 'noopener' && value !== 'noreferrer';
-                  }).join(' ');
-                  if (rel) link.rel = rel;
-                  else link.removeAttribute('rel');
+            document.querySelectorAll('a[href*="orcid.org"], a[href*="scholar.google.com"], a[href*="linkedin.com"]').forEach(function(link) {
+              link.addEventListener('click', function() { count('/event/profile-click', 'External profile link click'); });
+            });
+            var contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+              contactForm.addEventListener('submit', function() {
+                count('/event/contact-submit', 'Contact form submission');
+              });
+            }
+          });
+          </script>
+          <script>
+          (function() {
+            function markExternalLinks(root) {
+              root.querySelectorAll('a[href]').forEach(function(link) {
+                var url;
+                try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+                var sameSite = url.hostname === window.location.hostname ||
+                  url.hostname === 'connorconkeymorrison.com' ||
+                  url.hostname === 'www.connorconkeymorrison.com';
+                if (sameSite || !/^https?:$/.test(url.protocol)) {
+                  if (link.target === '_blank') link.removeAttribute('target');
+                  if (link.rel) {
+                    var rel = link.rel.split(/\s+/).filter(function(value) {
+                      return value !== 'noopener' && value !== 'noreferrer';
+                    }).join(' ');
+                    if (rel) link.rel = rel;
+                    else link.removeAttribute('rel');
+                  }
+                  var marker = link.querySelector('.external-link-icon');
+                  if (marker) marker.remove();
+                  return;
                 }
-                var marker = link.querySelector('.external-link-icon');
-                if (marker) marker.remove();
-                return;
-              }
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim() && !/[↗→]\s*$/.test(link.textContent.trim())) {
-                var marker = document.createElement('span');
-                marker.className = 'external-link-icon';
-                marker.innerHTML = '<span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span>';
-                link.appendChild(marker);
-              }
-            });
-          }
-          markExternalLinks(document);
-          new MutationObserver(function() { markExternalLinks(document); }).observe(document.body, { childList: true, subtree: true });
-        })();
-        </script>
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                if (!link.querySelector('img') && !link.querySelector('.external-link-icon') && link.textContent.trim()) {
+                  var hasArrow = /[↗→]\s*$/.test(link.textContent.trim());
+                  var marker = document.createElement('span');
+                  marker.className = 'external-link-icon';
+                  marker.innerHTML = (hasArrow ? '' : '<span aria-hidden="true"> ↗</span>') + '<span class="sr-only"> (opens in a new tab)</span>';
+                  link.appendChild(marker);
+                }
+              });
+            }
+            markExternalLinks(document);
+          })();
+          </script>
+          <div class="site-accessibility">This site aims to meet WCAG 2.2 AA. <a href="/contact.html?type=bug">Report an accessibility or website problem.</a></div>
+      - file: _includes/last-updated.html

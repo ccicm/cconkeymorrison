@@ -1,10 +1,11 @@
 ---
 title: "Connor Conkey-Morrison"
-description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate working across school attendance problems, emotionally based school avoidance, psychology, behavioural addiction, digital health, measurement, and education systems."
+description: "Connor Conkey-Morrison is a provisional psychologist and PhD candidate researching school attendance problems, emotionally based school avoidance, and the data systems that record attendance."
 aliases:
   - /cv/index.html
   - /cv/
 page-layout: full
+image: /images/og-default.jpg
 ---
 
 ::: hero-wrapper
@@ -16,7 +17,7 @@ page-layout: full
 :::
 
 ::: hero-bio
-I work across psychology, education, and digital health, with a particular interest in how evidence becomes useful to people and systems. My PhD examines school attendance problems from intervention research through to Australian cohort and education-system data.
+I'm a provisional psychologist and PhD candidate studying school attendance problems — specifically the emotionally based school avoidance that sits behind a substantial share of unexplained absence.
 :::
 
 ::: hero-links
@@ -31,84 +32,22 @@ I work across psychology, education, and digital health, with a particular inter
 
 ---
 
-## Featured & upcoming
+```{=html}
+{{< include /_includes/featured-heading.html >}}
+```
 
 ::: {.homepage-feature-grid}
-::: {.homepage-feature .homepage-feature-event#homepage-talk-card}
-<a id="homepage-talk-link" href="https://events.humanitix.com/atn-national-symposium-2026" class="homepage-feature-image">![The stubborn art of being human symposium](images/symposium-poster.webp){loading="lazy"}</a>
 
-::: homepage-feature-content
-<span id="homepage-talk-label" class="feature-label">Upcoming event</span>
+```{=html}
+{{< include /_includes/talk-card.html >}}
+```
 
-### <span id="homepage-talk-title">The stubborn art of being human</span>
+```{=html}
+{{< include /_includes/latest-writing.html >}}
+```
 
-<p id="homepage-talk-description">I’ll be speaking on the student panel, <strong>[Re]claiming the art of learning in an AI-enabled world</strong>, at the free ATN Universities symposium on Thursday 19 November. Join online or in person at RMIT University, Melbourne.</p>
+```{=html}
+{{< include /_includes/latest-pub.html >}}
+```
 
-<a id="homepage-talk-cta" href="https://events.humanitix.com/atn-national-symposium-2026" class="about-link">Event details and registration →</a>
 :::
-:::
-
-::: {.homepage-feature .homepage-feature-paper}
-[Latest publication]{.feature-label}
-
-### Beyond screen time
-
-**Evidence-based assessment and early intervention for problematic digital use in young people**. This Australian Journal of General Practice article considers how clinicians can assess problematic digital use and respond early, without reducing the problem to screen time alone.
-
-*Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D. (2026).* *Australian Journal of General Practice*.
-
-[View the Australian Journal of General Practice article about problematic digital use →](https://doi.org/10.31128/AJGP-11-25-7903){.about-link} [View all publications →](research/publications.qmd){.about-link}
-:::
-:::
-
-<script>
-(function() {
-  const card = document.getElementById('homepage-talk-card');
-  if (!card) return;
-
-  function parseTalks(yaml) {
-    return yaml.trim().split(/\n\s*\n/).map(block => {
-      const talk = {};
-      block.split('\n').forEach(line => {
-        const match = line.match(/^\s*(date|title|event|role|link):\s*(.*)$/);
-        if (match) talk[match[1]] = match[2].trim();
-      });
-      return talk;
-    }).filter(talk => talk.date && talk.title);
-  }
-
-  function updateTalkCard(talk) {
-    const eventDate = new Date(`${talk.date}T23:59:59`);
-    const upcoming = eventDate >= new Date();
-    const label = upcoming ? 'Upcoming event' : 'Recent talk';
-    const link = talk.link || '#';
-    const title = document.getElementById('homepage-talk-title');
-    const talkLink = document.getElementById('homepage-talk-link');
-    const cta = document.getElementById('homepage-talk-cta');
-
-    document.getElementById('homepage-talk-label').textContent = label;
-    title.textContent = talk.title;
-    document.getElementById('homepage-talk-description').textContent =
-      `${talk.role} at ${talk.event} on ${new Date(`${talk.date}T12:00:00`).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}.`;
-    talkLink.href = link;
-    cta.href = link;
-    cta.textContent = talk.link ? (upcoming ? 'Event details and registration →' : 'Event details →') : '';
-    cta.hidden = !talk.link;
-  }
-
-  fetch('/data/talks.yml')
-    .then(response => {
-      if (!response.ok) throw new Error('Could not load talks');
-      return response.text();
-    })
-    .then(parseTalks)
-    .then(talks => {
-      if (!talks.length) throw new Error('No talks found');
-      const now = new Date();
-      const upcoming = talks.filter(talk => new Date(`${talk.date}T23:59:59`) >= now)
-        .sort((a, b) => a.date.localeCompare(b.date));
-      updateTalkCard(upcoming[0] || talks.sort((a, b) => b.date.localeCompare(a.date))[0]);
-    })
-    .catch(() => {});
-})();
-</script>

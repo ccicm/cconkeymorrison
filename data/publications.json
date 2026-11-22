@@ -1,5 +1,16 @@
 [
   {
+    "title": "Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people",
+    "year": 2026,
+    "journal": "Australian Journal of General Practice",
+    "doi": "10.31128/ajgp-11-25-7903",
+    "putCode": 234220507,
+    "authors": "Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D. I.",
+    "volume": "55",
+    "issue": "11",
+    "pages": "779-784"
+  },
+  {
     "title": "The CBCL DSM-oriented somatic problems scale: measurement invariance across sex, informant, ethnicity, and time",
     "year": 2026,
     "journal": "BMC Psychology",
@@ -20,17 +31,6 @@
     "volume": "24",
     "issue": null,
     "pages": "100718"
-  },
-  {
-    "title": "Beyond screen time: Evidence-based assessment and early intervention for problematic digital use in young people",
-    "year": 2026,
-    "journal": "Australian Journal of General Practice",
-    "doi": "10.31128/AJGP-11-25-7903",
-    "putCode": null,
-    "authors": "Brown, T., Hunt, B., Conkey-Morrison, C., Burleigh, T. L., Stavropoulos, V., & Lubman, D.",
-    "volume": null,
-    "issue": null,
-    "pages": null
   },
   {
     "title": "Incremental Validity of Cognitive Impulsivity, Emotional Impulsivity, and Sensation Seeking in the Predictions of ADHD Inattention and Hyperactivity/Impulsivity Symptoms in Adults",

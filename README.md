@@ -1,12 +1,12 @@
 # cconkeymorrison — Academic Website
 
-A Quarto-based academic website deployed to GitHub Pages at [connorconkeymorrison.com](https://connorconkeymorrison.com).
+A Quarto-based academic website deployed to GitHub Pages at [www.connorconkeymorrison.com](https://www.connorconkeymorrison.com).
 
 ---
 
 ## What this is
 
-A static website built with [Quarto](https://quarto.org), version-controlled with Git, and automatically deployed to GitHub Pages on every push to `main`. No R execution required — all content is plain Quarto markdown with raw HTML/JS blocks handling live data fetching. A custom domain (`connorconkeymorrison.com`) is configured via Namecheap DNS.
+A static website built with [Quarto](https://quarto.org), version-controlled with Git, and automatically deployed to GitHub Pages on every push to `main`. No R execution required — all content is plain Quarto markdown with raw HTML blocks. Publications, metrics, the timeline, talk card and reading list are generated at build time by `_scripts/build_includes.py`, so visitors' browsers fetch nothing. A custom domain is configured via Namecheap DNS; the site is served at `www.connorconkeymorrison.com` (the bare domain redirects there).
 
 ---
 
@@ -69,11 +69,11 @@ No R packages are needed. All pages use `engine: markdown`.
 Open `styles.css` and edit the two variables at the top:
 
 ```css
---navy:   #1a2e4a;   /* headings, buttons, navbar */
---accent: #c8922a;   /* highlights, labels, hover states */
+--navy:   #1e3a2a;   /* green: headings, buttons, navbar */
+--accent: #c05a4a;   /* red: highlights, labels, hover states */
 ```
 
-Everything else updates automatically — including the publications block and reading list, which read these values at runtime via `window.CCM_COLORS`.
+Everything else updates automatically. (Check text contrast still meets WCAG AA if you change them.)
 
 ---
 
@@ -90,11 +90,11 @@ The scheduled run is every Sunday and can also be started manually from the
 repository's Actions tab. It may create an `Update profile metrics [skip ci]`
 commit on `main`; this is why pulling with `--rebase` before pushing matters.
 
-The script keeps the previous value when a source fails. The site reads the resulting local JSON files at runtime, so visitors make no profile API calls. The research page shows the most recent publications, each with APA 7 citation copy and RIS download controls.
+The script keeps the previous value when a source fails, and records `orcid_updated` / `scholar_updated` only when that source actually returned data. At render time, `_scripts/build_includes.py` (Quarto pre-render, and a separate workflow step before `quarto render`) turns these files into HTML fragments in `_includes/` (gitignored, regenerated every build). The Publications page lists every paper with APA 7 copy and RIS download controls.
 
-**To update:** Add the paper to your ORCID profile and set it to public. It appears after the next scheduled or manually dispatched workflow run. Set the repository secret `SERPAPI_KEY` to enable Scholar metrics.
+**To update:** Add the paper to your ORCID profile and set it to public. It appears after the next scheduled or manually dispatched workflow run. If a paper can't go on ORCID yet, add it to `data/manual-publications.json`; it is skipped automatically once ORCID lists the same DOI. Set the repository secret `SERPAPI_KEY` to enable Scholar metrics.
 
-The script writes `data/publications.json`, `data/software.json`, and `data/metrics.json`. It keeps previous values when an external source fails. The site fetches these local JSON files at runtime rather than calling APIs in visitors' browsers.
+The script writes `data/publications.json`, `data/software.json`, and `data/metrics.json`. Software and data records are limited to the Zenodo DOIs listed in `fetch_software()`.
 
 ## Automated checks
 

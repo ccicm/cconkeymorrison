@@ -18,7 +18,7 @@ SOFTWARE_PATH = DATA_DIR / "software.json"
 ORCID_ID = "0009-0000-1020-2333"
 SCHOLAR_ID = "ZEvUL_kAAAAJ"
 TIMEOUT = 30
-CONTACT_ADDRESS = "connorconkeymorrison@gmail.com"
+CONTACT_ADDRESS = os.environ.get("CROSSREF_MAILTO", "")
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
@@ -46,7 +46,8 @@ def get_json(url: str, **kwargs: Any) -> dict[str, Any]:
 def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
     metrics = dict(previous)
     metrics.pop("under_review", None)
-    metrics["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    metrics["updated"] = now  # when the check ran (each source has its own date below)
 
     scholar_key = os.environ.get("SERPAPI_KEY")
     if scholar_key:
@@ -61,6 +62,7 @@ def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
                 "h_index": table[1]["h_index"]["all"],
                 "i10_index": table[2]["i10_index"]["all"],
             })
+            metrics["scholar_updated"] = now  # only set when Scholar actually returned data
         except (KeyError, requests.RequestException, ValueError) as exc:
             logging.warning("Google Scholar metrics unavailable; keeping previous values: %s", exc)
     else:
@@ -132,7 +134,7 @@ def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     crossref = get_json(
                         f"https://api.crossref.org/works/{doi}",
                         headers={
-                            "User-Agent": f"connorconkeymorrison.com/1.0 (mailto:{CONTACT_ADDRESS})",
+                            "User-Agent": "connorconkeymorrison.com/1.0" + (f" (mailto:{CONTACT_ADDRESS})" if CONTACT_ADDRESS else ""),
                             "Accept": "application/json",
                         },
                     )
@@ -152,9 +154,6 @@ def fetch_publications(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
                             work[field] = previous_work[field]
                     logging.warning("Crossref enrichment unavailable for %s; keeping previous values: %s", doi, exc)
             works.append(work)
-        existing_by_doi = {item.get("doi"): item for item in previous if item.get("doi")}
-        fetched_dois = {item.get("doi") for item in works if item.get("doi")}
-        works.extend(item for doi, item in existing_by_doi.items() if doi not in fetched_dois)
         if not works:
             raise ValueError("ORCID returned no journal articles")
         return sorted(works, key=lambda item: item.get("year", 0), reverse=True)
@@ -167,7 +166,7 @@ def fetch_software(previous: list[dict[str, Any]]) -> list[dict[str, Any]]:
     try:
         data = get_json(
             "https://zenodo.org/api/records?q=creators.orcid%3A0009-0000-1020-2333",
-            headers={"User-Agent": f"connorconkeymorrison.com/1.0 (mailto:{CONTACT_ADDRESS})"},
+            headers={"User-Agent": "connorconkeymorrison.com/1.0" + (f" (mailto:{CONTACT_ADDRESS})" if CONTACT_ADDRESS else "")},
         )
         published_concept_dois = {
             "10.5281/zenodo.22707558",
@@ -205,6 +204,9 @@ def main() -> None:
     publications = fetch_publications(previous_publications)
     software = fetch_software(previous_software)
     metrics = fetch_metrics(previous_metrics)
+    # fetch_publications returns the previous list object unchanged when ORCID fails
+    if publications is not previous_publications:
+        metrics["orcid_updated"] = metrics["updated"]
     metrics["publications"] = len(publications)
     write_json(METRICS_PATH, metrics)
     write_json(PUBLICATIONS_PATH, publications)

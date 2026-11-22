@@ -1,11 +1,11 @@
 {
   "startDate": "2025-01-01",
-  "estimatedCompletion": "2027",
+  "estimatedCompletion": "",
   "milestones": [
     { "quarter": 5,  "label": "M1", "full": "Confirmation of Candidature" },
     { "quarter": 8,  "label": "M2", "full": "Milestone 2" },
     { "quarter": 12, "label": "M3", "full": "Milestone 3" },
-    { "quarter": 13, "label": "4Y", "full": "4th Year — Maximum Submission" }
+    { "quarter": 13, "label": "4Y", "full": "4th year (max. Feb 2029)" }
   ],
   "papers": [
     {
@@ -36,7 +36,7 @@
         { "desc": "Emotional symptom courses in two cohorts",                 "statuses": { "3": "done" } },
         { "desc": "Absence and reasons-for-absence models",                    "statuses": { "4": "done" } },
         { "desc": "Sensitivity analyses: count, pseudo-class, weighted, health-adjusted", "statuses": { "5": "done" } },
-        { "desc": "Supervisory review",                                        "statuses": { "7": "wip", "8": "done" } },
+        { "desc": "Supervisory review",                                        "statuses": { "7": "done", "8": "done" } },
         { "desc": "Submit manuscript",                                         "statuses": { "8": "goal" } },
         { "desc": "Peer review and revision",                                  "statuses": { "9": "todo", "10": "goal" } }
       ]

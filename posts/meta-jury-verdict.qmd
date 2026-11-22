@@ -11,11 +11,11 @@ engine: markdown
 <div class="page-header">
   <h1>Meta, malice, and the patience of all involved</h1>
 </div>
-<p style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0 2rem 0;font-weight:500;">26 March 2026 &nbsp;·&nbsp; <span style="color:var(--accent-text);">Social media &nbsp;·&nbsp; Mental health &nbsp;·&nbsp; Children &nbsp;·&nbsp; Policy</span></p>
-<hr style="border:none;border-top:1px solid var(--border);margin:0 0 2rem 0;">
+<p class="post-meta-line">26 March 2026 &nbsp;·&nbsp; <span class="post-categories">Social media &nbsp;·&nbsp; Mental health &nbsp;·&nbsp; Children &nbsp;·&nbsp; Policy</span></p>
+<hr class="post-rule">
 ```
 
-A Los Angeles jury found this week that Meta and Google acted not with negligence or recklessness but <b>malice</b> in building platforms that a young woman, who started using YouTube at six and Instagram at nine, argues were central to her developing anxiety, depression, and body dysmorphia.^1^
+A Los Angeles jury found this week that Meta and Google acted not with negligence or recklessness but <b>malice</b> in building platforms that a young woman (identified in court as Kaley), who started using YouTube at six and Instagram at nine, argues were central to her developing anxiety, depression, and body dysmorphia.^1^
 
 She was awarded $6 million in damages, the punitive component reflecting the jury's conclusion that the companies knew what they were doing and did it anyway. Meta disagrees (shocking), noting that teen mental health is "profoundly complex" and not attributable to a single app. It's true — and beside the point.
 
@@ -38,14 +38,14 @@ The trajectory described in Kaley's case (early platform access, progressive wit
 </div>
 ```
 
-Back home, the Australian context is sobering. The eSafety Commissioner's own research found: <b>4 in 5</b> Australian children aged 8–12 were on social media in 2024. <b>3 in 4</b> had been exposed to harmful online content. <b>More than half</b> had experienced cyberbullying. Most platforms were relying on nothing more than a self-declared date of birth to determine whether a child was old enough to sign up.^4^
+Back home, the Australian context is sobering. The eSafety Commissioner's own research found that <b>4 in 5</b> Australian children aged 8–12 were on social media in 2024, and that most platforms were relying on nothing more than a self-declared date of birth to determine whether a child was old enough to sign up.^4^ Among children aged 10–15, <b>more than 7 in 10</b> had encountered content associated with harm online, and <b>more than half</b> had been cyberbullied.^5^
 
 As of December 2025, social media platforms must now prevent under-16s from Australia from holding accounts — a move platforms have variously described as rushed, unworkable, and a threat to free expression.
 
 ```{=html}
 <figure style="margin:2rem 0;padding:1.25rem 1.75rem;background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow-sm);">
   <blockquote style="margin:0 0 0.6rem 0;font-size:1rem;font-style:italic;color:var(--navy);line-height:1.75;">"A person under the age of 16 can be more easily protected from online harm if they have an account, being the very thing that is prohibited."</blockquote>
-  <figcaption style="font-size:0.78rem;font-weight:600;color:var(--text-muted);">— Reddit Inc., High Court filing, December 2025⁵</figcaption>
+  <figcaption style="font-size:0.78rem;font-weight:600;color:var(--text-muted);">— Reddit Inc., High Court filing, December 2025⁶</figcaption>
 </figure>
 ```
 
@@ -65,6 +65,8 @@ That record will be cited in the June federal trial in California. I expect it w
 
 3. Thorisdottir IE, Sigurvinsdottir R, Asgeirsdottir BB, Allegrante JP, Sigfusdottir ID. Active and passive social media use and symptoms of anxiety and depressed mood among Icelandic adolescents. *Cyberpsychol Behav Soc Netw.* 2019;22(8):535–42. [PubMed](https://pubmed.ncbi.nlm.nih.gov/31361508/)
 
-4. eSafety Commissioner. Digital use and risk: Online platform engagement among children aged 10 to 15. Canberra: Australian Government; 2025. [Full report](https://www.esafety.gov.au/research/the-online-experiences-of-children-in-australia/report-digital-use-and-risk-among-children-aged-10-to-15)
+4. eSafety Commissioner. Behind the screen: The reality of age assurance and social media access for young Australians. Canberra: Australian Government; 2025. [Full report](https://www.esafety.gov.au/sites/default/files/2025-02/Behind-the-screen-transparency-report-Feb2025.pdf)
 
-5. Reddit Inc. v Commonwealth of Australia. High Court of Australia, filed 12 December 2025. Reported in: Lowe R. Reddit challenges Australia's social media ban in court. *Information Age.* 12 December 2025. [Australian Computer Society](https://ia.acs.org.au/article/2025/reddit-challenges-social-media-ban-in-court.html)
+5. eSafety Commissioner. Digital use and risk: Online platform engagement among children aged 10 to 15. Canberra: Australian Government; 2025. [Full report](https://www.esafety.gov.au/research/the-online-experiences-of-children-in-australia/report-digital-use-and-risk-among-children-aged-10-to-15)
+
+6. Reddit Inc. v Commonwealth of Australia. High Court of Australia, filed 12 December 2025. Reported in: Lowe R. Reddit challenges Australia's social media ban in court. *Information Age.* 12 December 2025. [Australian Computer Society](https://ia.acs.org.au/article/2025/reddit-challenges-social-media-ban-in-court.html)
