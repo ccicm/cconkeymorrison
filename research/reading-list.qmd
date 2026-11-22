@@ -49,6 +49,7 @@ engine: markdown
     </span>
   </div>
 </div>
+<div id="reading-page-content">
 {{< include /_includes/reading-entries.html >}}
 <p id="reading-status" class="reading-status" role="status" aria-live="polite"></p>
 <p id="reading-no-results" class="reading-status" hidden>No entries match your filters.</p>
@@ -56,15 +57,7 @@ engine: markdown
 <script>
 (function () {
   const status = document.getElementById('reading-status');
-  const listContainer = document.createElement('div');
-  listContainer.id = 'reading-list-container';
-  listContainer.style.width = window.matchMedia('(max-width: 600px)').matches
-    ? 'calc(100% - 2rem)'
-    : 'min(1020px, calc(100% - 2rem))';
-  listContainer.style.marginInline = 'auto';
-  status.before(listContainer);
   const entries = Array.from(document.querySelectorAll('.reading-entry'));
-  entries.forEach(entry => listContainer.appendChild(entry));
   const search = document.getElementById('reading-search');
   const topicButton = document.getElementById('reading-topic-button');
   const topicMenu = document.getElementById('reading-topic-menu');
@@ -281,4 +274,5 @@ engine: markdown
   render();
 })();
 </script>
+</div>
 ```
