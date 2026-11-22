@@ -553,10 +553,17 @@ function sheetToJson_() {
   const col  = name => h.indexOf(name);
   const doiCol = col('doi');
   if (doiCol === -1) throw new Error('Missing "DOI" column.');
+  const seenDois = new Set();
 
   return data.slice(1).reduce((acc, row) => {
-    const doi = String(row[doiCol] || '').trim();
+    const doi = String(row[doiCol] || '')
+      .trim()
+      .replace(/^https?:\/\/(?:dx\.)?doi\.org\//i, '')
+      .replace(/^doi:\s*/i, '')
+      .toLowerCase();
     if (!doi) return acc;
+    if (seenDois.has(doi)) return acc;
+    seenDois.add(doi);
 
     const get  = name => col(name) !== -1 ? String(row[col(name)] || '').trim() : '';
     const clean = val => decodeHtml_(val);
