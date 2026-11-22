@@ -47,14 +47,8 @@ engine: markdown
     </span>
   </div>
 </div>
-<p id="reading-status" class="reading-status" role="status" aria-live="polite"></p>
-```
-
-```{=html}
 {{< include /_includes/reading-entries.html >}}
-```
-
-```{=html}
+<p id="reading-status" class="reading-status" role="status" aria-live="polite"></p>
 <p id="reading-no-results" class="reading-status" hidden>No entries match your filters.</p>
 <nav id="reading-pagination" class="reading-pagination" aria-label="Reading list pages"></nav>
 <script>

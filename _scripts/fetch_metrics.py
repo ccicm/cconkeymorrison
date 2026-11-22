@@ -17,6 +17,7 @@ PUBLICATIONS_PATH = DATA_DIR / "publications.json"
 SOFTWARE_PATH = DATA_DIR / "software.json"
 ORCID_ID = "0009-0000-1020-2333"
 SCHOLAR_ID = "ZEvUL_kAAAAJ"
+MANUAL_CITATIONS = 44
 TIMEOUT = 30
 CONTACT_ADDRESS = os.environ.get("CROSSREF_MAILTO", "")
 
@@ -67,6 +68,7 @@ def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
             logging.warning("Google Scholar metrics unavailable; keeping previous values: %s", exc)
     else:
         logging.warning("SERPAPI_KEY is not set; keeping previous Scholar metrics")
+    metrics["citations"] = MANUAL_CITATIONS
 
     try:
         data = get_json(f"https://pub.orcid.org/v3.0/{ORCID_ID}/peer-reviews", headers={"Accept": "application/json"})
