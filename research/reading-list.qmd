@@ -17,7 +17,9 @@ engine: markdown
 <div id="reading-list">
 ```
 
+```{=html}
 {{< include /_includes/reading-entries.html >}}
+```
 
 ```{=html}
 </div>

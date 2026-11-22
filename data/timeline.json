@@ -36,7 +36,7 @@
         { "desc": "Emotional symptom courses in two cohorts",                 "statuses": { "3": "done" } },
         { "desc": "Absence and reasons-for-absence models",                    "statuses": { "4": "done" } },
         { "desc": "Sensitivity analyses: count, pseudo-class, weighted, health-adjusted", "statuses": { "5": "done" } },
-        { "desc": "Supervisory review",                                        "statuses": { "7": "wip", "8": "done" } },
+        { "desc": "Supervisory review",                                        "statuses": { "7": "done", "8": "done" } },
         { "desc": "Submit manuscript",                                         "statuses": { "8": "goal" } },
         { "desc": "Peer review and revision",                                  "statuses": { "9": "todo", "10": "goal" } }
       ]

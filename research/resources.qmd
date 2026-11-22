@@ -8,8 +8,6 @@ page-layout: full
 # Resources
 :::
 
-<div class="dev-banner">In development</div>
-
 These public resources may help parents, schools, and children understand school attendance problems, emotional distress, and available support. This is a starting point for information, not a substitute for individual clinical or emergency advice.
 
 In an emergency, call 000. Lifeline: 13 11 14 (24/7). Kids Helpline: 1800 55 1800 (ages 5–25, 24/7).

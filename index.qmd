@@ -31,12 +31,22 @@ I'm a provisional psychologist and PhD candidate studying school attendance prob
 
 ---
 
-## Featured & upcoming
+```{=html}
+{{< include /_includes/featured-heading.html >}}
+```
 
 ::: {.homepage-feature-grid}
 
+```{=html}
 {{< include /_includes/talk-card.html >}}
+```
 
+```{=html}
+{{< include /_includes/latest-writing.html >}}
+```
+
+```{=html}
 {{< include /_includes/latest-pub.html >}}
+```
 
 :::

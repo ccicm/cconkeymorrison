@@ -15,11 +15,9 @@ Published research across psychology, behavioural science, digital health, and e
 :::
 :::
 
-## Software and data
-
-{{< include /_includes/software.html >}}
-
+```{=html}
 {{< include /_includes/pub-metrics.html >}}
+```
 
 ```{=html}
 <style>
@@ -77,7 +75,17 @@ Published research across psychology, behavioural science, digital health, and e
     <h2 id="publication-list" class="pub-section-heading">Journal articles</h2>
 ```
 
+```{=html}
 {{< include /_includes/publications.html >}}
+```
+
+```{=html}
+    <h2 id="software-data" class="pub-section-heading">Software and data</h2>
+```
+
+```{=html}
+{{< include /_includes/software.html >}}
+```
 
 ```{=html}
   </div>

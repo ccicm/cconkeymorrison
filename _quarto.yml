@@ -31,9 +31,11 @@ website:
       - text: More
         menu:
           - href: research/resources.qmd
-            text: Resources (in development)
+            text: Resources
           - href: research/reading-list.qmd
             text: Reading List
+          - href: posts/index.qmd
+            text: Writing
     right:
       - text: ORCID
         href: https://orcid.org/0009-0000-1020-2333

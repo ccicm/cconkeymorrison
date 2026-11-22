@@ -53,7 +53,9 @@ Exploring which school characteristics predict attendance and post-pandemic reco
 
 **School Attendance Problems: Definitions, Patterns, and System-Level Implications** is organised using KiTeS (Melvin et al., 2019), applying Bronfenbrenner's bioecological model to attendance: evidence → population → system.
 
+```{=html}
 {{< include /_includes/timeline.html >}}
+```
 
 ------------------------------------------------------------------------
 

@@ -423,6 +423,31 @@ def gen_metrics(metrics: dict) -> str:
         except ValueError:
             updated_str = updated_raw
 
+    def _fmt(raw: str) -> str:
+        try:
+            return format_date_au(datetime.fromisoformat(raw))
+        except (TypeError, ValueError):
+            return ""
+
+    # Each source has its own "last synced" date, recorded only when that
+    # source actually returned data. Older data files only have "updated";
+    # ORCID falls back to it, Scholar shows no date until it is confirmed.
+    orcid_str = _fmt(metrics.get("orcid_updated") or updated_raw)
+    scholar_str = _fmt(metrics.get("scholar_updated", ""))
+    orcid_part = (
+        'Publications and peer reviews from '
+        '<a href="https://orcid.org/0009-0000-1020-2333"'
+        ' target="_blank" rel="noopener noreferrer">ORCID</a>'
+        + (f", last synced {e(orcid_str)}" if orcid_str else "")
+    )
+    scholar_part = "Citations from Google Scholar" + (
+        f", last synced {e(scholar_str)}" if scholar_str else ""
+    )
+    sync_line = (
+        f"{orcid_part} · {scholar_part} · "
+        "Checked weekly and whenever the site is updated"
+    )
+
     return (
         '<div class="pub-stats-grid">\n'
         '<div class="pub-stat-card pub-stat-publications">\n'
@@ -448,8 +473,7 @@ def gen_metrics(metrics: dict) -> str:
         "</div>\n"
         "</div>\n"
         '<div class="pub-footer-row">\n'
-        '<span class="pub-synced-note">Scholar data · '
-        f"updated {e(updated_str)}</span>\n"
+        f'<span class="pub-synced-note">{sync_line}</span>\n'
         '<a href="https://scholar.google.com/citations?user=ZEvUL_kAAAAJ&amp;hl=en"'
         ' target="_blank" rel="noopener noreferrer" class="pub-scholar-link">'
         "View Google Scholar profile</a>\n"
@@ -477,19 +501,17 @@ def gen_talk_card(talks: list) -> str:
     if not talks:
         return ""
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # Only upcoming events are shown. Once an event's date has passed it
+    # disappears from the site; with no upcoming events, no card is shown.
     upcoming = sorted(
         [t for t in talks if t.get("date") and str(t["date"]) >= today_str],
         key=lambda t: str(t["date"]),
     )
-    past = sorted(
-        [t for t in talks if t.get("date") and str(t["date"]) < today_str],
-        key=lambda t: str(t["date"]),
-        reverse=True,
-    )
-    talk = upcoming[0] if upcoming else (past[0] if past else talks[0])
-    is_upcoming = str(talk.get("date", "")) >= today_str
-    label = "Upcoming event" if is_upcoming else "Recent talk"
-    cta_text = "Event details and registration →" if is_upcoming else "Event details →"
+    if not upcoming:
+        return ""
+    talk = upcoming[0]
+    label = "Upcoming event"
+    cta_text = "Event details and registration →"
     link = talk.get("link") or "#"
     title = talk.get("title") or ""
     image = talk.get("image")
@@ -509,13 +531,58 @@ def gen_talk_card(talks: list) -> str:
         else ""
     )
     return (
-        '<div class="homepage-feature homepage-feature-event">\n'
+        f'<div class="homepage-feature homepage-feature-event" data-event-date="{e(str(talk.get("date")))}">\n'
         f"{image_html}"
         '<div class="homepage-feature-content">\n'
         f'<span class="feature-label">{e(label)}</span>\n'
         f"<h3>{e(title)}</h3>\n"
         f"<p>{e(description)}</p>\n"
         f"{cta_html}\n"
+        "</div>\n"
+        "</div>\n"
+        # The site only rebuilds weekly, so also remove the card in the
+        # browser once the event date has passed between rebuilds.
+        "<script>(function(){var c=document.querySelector('[data-event-date]');"
+        "if(!c)return;var d=new Date();var t=d.getFullYear()+'-'+"
+        "String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');"
+        "if(c.dataset.eventDate<t){c.remove();var h=document.querySelector('.featured-heading');"
+        "if(h)h.textContent='Featured';}})();</script>"
+    )
+
+
+def gen_featured_heading(talks: list) -> str:
+    """Home section heading: 'Featured & upcoming' only while an event is coming up."""
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    has_upcoming = any(t.get("date") and str(t["date"]) >= today_str for t in talks)
+    text = "Featured &amp; upcoming" if has_upcoming else "Featured"
+    return f'<h2 id="featured" class="featured-heading">{text}</h2>'
+
+
+def gen_latest_writing() -> str:
+    """Home card for the newest post in posts/ (read from each post's front matter)."""
+    posts = []
+    for p in (ROOT / "posts").glob("*.qmd"):
+        if p.name.startswith("_") or p.name == "index.qmd":
+            continue
+        m = re.match(r"^---\s*\n(.*?)\n---", p.read_text(encoding="utf-8"), re.S)
+        if not m:
+            continue
+        meta = yaml.safe_load(m.group(1)) or {}
+        if meta.get("draft") or not meta.get("date"):
+            continue
+        posts.append((str(meta["date"]), p.stem, meta))
+    if not posts:
+        return ""
+    _, stem, meta = max(posts)
+    title = meta.get("title") or ""
+    description = meta.get("description") or ""
+    return (
+        '<div class="homepage-feature homepage-feature-writing">\n'
+        '<div class="homepage-feature-content">\n'
+        '<span class="feature-label">Latest writing</span>\n'
+        f"<h3>{e(title)}</h3>\n"
+        f"<p>{e(description)}</p>\n"
+        f'<a href="posts/{e(stem)}.html" class="about-link">Read the article →</a>\n'
         "</div>\n"
         "</div>"
     )
@@ -846,7 +913,7 @@ def main() -> None:
     timeline = read_json(DATA_DIR / "timeline.json")
     entries = read_json(DATA_DIR / "reading.json")
 
-    metrics_updated_raw = (metrics or {}).get("updated", "")
+    metrics_updated_raw = (metrics or {}).get("orcid_updated") or (metrics or {}).get("updated", "")
     metrics_updated_str = ""
     if metrics_updated_raw:
         try:
@@ -859,7 +926,9 @@ def main() -> None:
         "pub-metrics.html": gen_metrics(metrics),
         "software.html": gen_software(software),
         "talk-card.html": gen_talk_card(talks),
+        "featured-heading.html": gen_featured_heading(talks),
         "latest-pub.html": gen_latest_pub(works, featured),
+        "latest-writing.html": gen_latest_writing(),
         "timeline.html": gen_timeline(timeline),
         "reading-entries.html": gen_reading_entries(entries),
         "last-updated.html": gen_last_updated(),

@@ -46,7 +46,8 @@ def get_json(url: str, **kwargs: Any) -> dict[str, Any]:
 def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
     metrics = dict(previous)
     metrics.pop("under_review", None)
-    metrics["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    metrics["updated"] = now  # when the check ran (each source has its own date below)
 
     scholar_key = os.environ.get("SERPAPI_KEY")
     if scholar_key:
@@ -61,6 +62,7 @@ def fetch_metrics(previous: dict[str, Any]) -> dict[str, Any]:
                 "h_index": table[1]["h_index"]["all"],
                 "i10_index": table[2]["i10_index"]["all"],
             })
+            metrics["scholar_updated"] = now  # only set when Scholar actually returned data
         except (KeyError, requests.RequestException, ValueError) as exc:
             logging.warning("Google Scholar metrics unavailable; keeping previous values: %s", exc)
     else:
@@ -202,6 +204,9 @@ def main() -> None:
     publications = fetch_publications(previous_publications)
     software = fetch_software(previous_software)
     metrics = fetch_metrics(previous_metrics)
+    # fetch_publications returns the previous list object unchanged when ORCID fails
+    if publications is not previous_publications:
+        metrics["orcid_updated"] = metrics["updated"]
     metrics["publications"] = len(publications)
     write_json(METRICS_PATH, metrics)
     write_json(PUBLICATIONS_PATH, publications)
