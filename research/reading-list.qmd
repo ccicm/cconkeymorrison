@@ -21,6 +21,8 @@ engine: markdown
   const searchEl  = document.getElementById('reading-search');
   const clearBtn  = document.getElementById('reading-clear');
   let entries = [];
+  const PAGE_SIZE = 20;
+  let currentPage = 1;
   try {
     const res = await fetch('/data/reading.json');
     if (!res.ok) throw new Error();
@@ -90,6 +92,7 @@ engine: markdown
   searchEl.addEventListener('input', () => {
     searchQuery = searchEl.value.trim().toLowerCase();
     updateClearBtn();
+    currentPage = 1;
     renderList();
   });
 
@@ -100,6 +103,7 @@ engine: markdown
     removeDropdown();
     updateClearBtn();
     renderFilterBar();
+    currentPage = 1;
     renderList();
   });
 
@@ -167,6 +171,7 @@ engine: markdown
         if (activeFilters.has(tag)) activeFilters.delete(tag); else activeFilters.add(tag);
         removeDropdown();
         updateClearBtn();
+        currentPage = 1;
         renderFilterBar(); renderList();
       });
       dd.appendChild(tb);
@@ -201,6 +206,7 @@ engine: markdown
         if (activeFilters.has(name)) activeFilters.delete(name); else activeFilters.add(name);
         removeDropdown();
         updateClearBtn();
+        currentPage = 1;
         renderFilterBar(); renderList();
       });
 
@@ -248,8 +254,44 @@ engine: markdown
 
   function renderList() {
     const filtered = entries.filter(entryMatches);
-    if (!filtered.length) { container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No entries for this filter.</p>'; return; }
-    container.innerHTML = filtered.map(renderCard).join('');
+    if (!filtered.length) {
+      currentPage = 1;
+      container.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem;">No entries for this filter.</p>';
+      return;
+    }
+
+    const pageCount = Math.ceil(filtered.length / PAGE_SIZE);
+    currentPage = Math.min(Math.max(currentPage, 1), pageCount);
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const pageEntries = filtered.slice(start, start + PAGE_SIZE);
+
+    const buttonStyle = 'border:1.5px solid var(--border,#ddd);border-radius:999px;padding:0.35rem 0.8rem;font-size:0.78rem;font-family:inherit;background:transparent;color:inherit;cursor:pointer;';
+    const pageButtons = [];
+    for (let page = 1; page <= pageCount; page++) {
+      pageButtons.push(
+        `<button type="button" data-reading-page="${page}" aria-label="Go to page ${page}"${page === currentPage ? ' aria-current="page"' : ''} style="${buttonStyle}${page === currentPage ? 'font-weight:700;border-color:var(--accent,#c05a4a);' : ''}">${page}</button>`
+      );
+    }
+
+    container.innerHTML =
+      pageEntries.map(renderCard).join('') +
+      `<nav aria-label="Reading list pagination" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.35rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border,#ddd);">` +
+      `<button type="button" data-reading-page="${currentPage - 1}" aria-label="Previous page" ${currentPage === 1 ? 'disabled' : ''} style="${buttonStyle}${currentPage === 1 ? 'opacity:0.45;cursor:not-allowed;' : ''}">Previous</button>` +
+      pageButtons.join('') +
+      `<button type="button" data-reading-page="${currentPage + 1}" aria-label="Next page" ${currentPage === pageCount ? 'disabled' : ''} style="${buttonStyle}${currentPage === pageCount ? 'opacity:0.45;cursor:not-allowed;' : ''}">Next</button>` +
+      `<span style="flex-basis:100%;text-align:center;font-size:0.78rem;color:var(--text-muted,#888);margin-top:0.25rem;">Showing ${start + 1}–${Math.min(start + PAGE_SIZE, filtered.length)} of ${filtered.length}</span>` +
+      `</nav>`;
+
+    container.querySelectorAll('[data-reading-page]').forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.disabled) return;
+        const page = Number(button.dataset.readingPage);
+        if (!Number.isInteger(page) || page < 1 || page > pageCount) return;
+        currentPage = page;
+        renderList();
+        container.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      });
+    });
   }
 
   renderFilterBar();
