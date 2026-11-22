@@ -440,13 +440,9 @@ def gen_metrics(metrics: dict) -> str:
         ' target="_blank" rel="noopener noreferrer">ORCID</a>'
         + (f", last synced {e(orcid_str)}" if orcid_str else "")
     )
-    scholar_part = "Citations from Google Scholar" + (
-        f", last synced {e(scholar_str)}" if scholar_str else ""
-    )
-    sync_line = (
-        f"{orcid_part} · {scholar_part} · "
-        "Checked weekly and whenever the site is updated"
-    )
+    sync_line = orcid_part
+    if scholar_str:
+        sync_line += f" · Citations from Google Scholar, last synced {e(scholar_str)}"
 
     return (
         '<div class="pub-stats-grid">\n'
@@ -595,7 +591,7 @@ def gen_latest_pub(works: list, featured: list) -> str:
     doi = latest.get("doi")
     feat = None
     if doi and featured:
-        feat = next((f for f in featured if f.get("doi") == doi), None)
+        feat = next((f for f in featured if (f.get("doi") or "").lower() == doi.lower()), None)
     article_url = f"https://doi.org/{doi}" if doi else "#"
     if feat:
         display_title = e(feat.get("title") or latest.get("title", ""))
@@ -902,7 +898,14 @@ def gen_last_updated() -> str:
 def main() -> None:
     INCLUDES_DIR.mkdir(exist_ok=True)
 
-    works = read_json(DATA_DIR / "publications.json")
+    works = read_json(DATA_DIR / "publications.json") or []
+    # Papers missing from ORCID can be listed by hand in manual-publications.json.
+    # Each one is skipped automatically once ORCID has the same DOI.
+    manual_path = DATA_DIR / "manual-publications.json"
+    if manual_path.exists():
+        orcid_dois = {(w.get("doi") or "").lower() for w in works}
+        extra = [m for m in read_json(manual_path) if (m.get("doi") or "").lower() not in orcid_dois]
+        works = sorted(extra + works, key=lambda w: -(w.get("year") or 0))
     metrics = read_json(DATA_DIR / "metrics.json")
     software = read_json(DATA_DIR / "software.json")
     talks_raw = read_yaml(DATA_DIR / "talks.yml")
@@ -923,7 +926,7 @@ def main() -> None:
 
     writes = {
         "publications.html": gen_publications(works, metrics_updated_str),
-        "pub-metrics.html": gen_metrics(metrics),
+        "pub-metrics.html": gen_metrics({**(metrics or {}), "publications": len(works)}),
         "software.html": gen_software(software),
         "talk-card.html": gen_talk_card(talks),
         "featured-heading.html": gen_featured_heading(talks),
