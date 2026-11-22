@@ -38,6 +38,11 @@ jobs:
           commit_message: "Update profile metrics [skip ci]"
           file_pattern: data/*.json
 
+      # Quarto looks for the generated _includes/ files before its
+      # pre-render hook runs, so they must exist before rendering.
+      - name: Build page includes
+        run: python _scripts/build_includes.py
+
       - name: Render Quarto site
         run: quarto render
 
