@@ -9,6 +9,7 @@ featured.yml blurb field:     raw HTML — output as-is (never escape).
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import re
 import subprocess
@@ -800,17 +801,37 @@ def gen_reading_entries(entries: list) -> str:
         note = entry.get("note") or ""
         abstract = entry.get("abstract") or ""
         tags: list[str] = entry.get("tags") or []
+        entry_id = "reading-" + hashlib.sha1(
+            (doi or title).strip().lower().encode("utf-8")
+        ).hexdigest()[:12]
 
         url = f"https://doi.org/{doi}" if doi else "#"
         byline_parts = [p for p in [authors, str(year) if year else "", journal] if p]
         byline = " · ".join(byline_parts)
 
-        # data-search: lowercased title + authors + journal + note (no abstract)
+        # Keep the generated metadata complete and export-safe so the page
+        # does not need to infer citation fields from rendered text.
+        metadata = {
+            "id": entry_id,
+            "title": title,
+            "authors": authors,
+            "year": str(year) if year else "",
+            "journal": journal,
+            "doi": doi,
+            "abstract": abstract,
+            "note": note,
+            "tags": tags,
+            "url": url,
+            "sortYear": int(year) if str(year).isdigit() else 0,
+            "sortTitle": title.casefold(),
+            "sortAuthor": authors.casefold(),
+        }
         search_text = " ".join(
-            p for p in [title, authors, journal, note] if p
+            p for p in [title, authors, journal, note, abstract] if p
         ).lower()
         data_search = e(search_text)
         data_tags = json.dumps(tags).replace("'", "&#39;")
+        data_metadata = e(json.dumps(metadata, ensure_ascii=False, separators=(",", ":")))
 
         tag_pills = ""
         if tags:
@@ -849,18 +870,24 @@ def gen_reading_entries(entries: list) -> str:
         )
 
         rows.append(
-            f'<div class="pub-entry-block reading-entry"'
+            f'<article class="pub-entry-block reading-entry"'
+            f' data-id="{e(entry_id)}"'
             f" data-tags='{data_tags}'"
-            f' data-search="{data_search}">'
+            f' data-search="{data_search}"'
+            f' data-meta="{data_metadata}">'
             f'<div class="pub-favicon-fallback">{book_svg()}</div>'
             f'<div class="pub-entry-text">'
+            f'<div class="reading-entry-heading">'
+            f'<input class="reading-select" type="checkbox"'
+            f' id="reading-select-{e(entry_id)}" aria-label="Select {e(title)}">'
             f'<a href="{e(url)}" target="_blank" rel="noopener noreferrer"'
-            f' class="pub-title-link">{e(title)}</a>'
+            f' class="pub-title-link">{e(title)}</a></div>'
             f"{byline_html}"
             f"{tag_pills}"
             f"{note_html}"
             f"</div>"
             f"</div>"
+            f"</article>"
         )
 
     rows.append(
