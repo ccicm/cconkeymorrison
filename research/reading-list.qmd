@@ -14,12 +14,14 @@ engine: markdown
       <label for="reading-search" class="sr-only">Search reading list</label>
       <input id="reading-search" type="search" placeholder="Search titles, authors, notes…" autocomplete="off">
     </div>
-    <label class="reading-control">Topic
-      <select id="reading-topic"><option value="">All topics</option></select>
-    </label>
-    <label class="reading-control">Year
-      <select id="reading-year"><option value="">All years</option></select>
-    </label>
+    <div class="reading-multi" id="reading-topic-control">
+      <button id="reading-topic-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All topics</button>
+      <div id="reading-topic-menu" class="reading-multi-menu" hidden></div>
+    </div>
+    <div class="reading-multi" id="reading-year-control">
+      <button id="reading-year-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All years</button>
+      <div id="reading-year-menu" class="reading-multi-menu" hidden></div>
+    </div>
     <label class="reading-control">Sort
       <select id="reading-sort">
         <option value="year-desc">Year (newest)</option>
@@ -53,15 +55,25 @@ engine: markdown
 <nav id="reading-pagination" class="reading-pagination" aria-label="Reading list pages"></nav>
 <script>
 (function () {
+  const status = document.getElementById('reading-status');
+  const listContainer = document.createElement('div');
+  listContainer.id = 'reading-list-container';
+  listContainer.style.width = window.matchMedia('(max-width: 600px)').matches
+    ? 'calc(100% - 2rem)'
+    : 'min(1020px, calc(100% - 2rem))';
+  listContainer.style.marginInline = 'auto';
+  status.before(listContainer);
   const entries = Array.from(document.querySelectorAll('.reading-entry'));
+  entries.forEach(entry => listContainer.appendChild(entry));
   const search = document.getElementById('reading-search');
-  const topic = document.getElementById('reading-topic');
-  const year = document.getElementById('reading-year');
+  const topicButton = document.getElementById('reading-topic-button');
+  const topicMenu = document.getElementById('reading-topic-menu');
+  const yearButton = document.getElementById('reading-year-button');
+  const yearMenu = document.getElementById('reading-year-menu');
   const sort = document.getElementById('reading-sort');
   const size = document.getElementById('reading-size');
   const clear = document.getElementById('reading-clear');
   const chips = document.getElementById('reading-chips');
-  const status = document.getElementById('reading-status');
   const pagination = document.getElementById('reading-pagination');
   const noResults = document.getElementById('reading-no-results');
   const items = entries.map(el => {
@@ -75,18 +87,56 @@ engine: markdown
   const topics = [...new Set(items.flatMap(item => item.data.tags || []))].sort();
   const years = [...new Set(items.map(item => item.data.year).filter(Boolean))]
     .sort((a, b) => Number(b) - Number(a));
-  topics.forEach(value => topic.add(new Option(value, value)));
-  years.forEach(value => year.add(new Option(value, value)));
+  function buildMenu(menu, values, type) {
+    menu.innerHTML = '';
+    values.forEach(value => {
+      const label = document.createElement('label');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.value = value;
+      checkbox.dataset.filterType = type;
+      checkbox.addEventListener('change', () => {
+        const selectedValues = [...menu.querySelectorAll('input:checked')].map(input => input.value);
+        setState({ [type]: selectedValues });
+      });
+      label.append(checkbox, document.createTextNode(value));
+      menu.appendChild(label);
+    });
+  }
+  buildMenu(topicMenu, topics, 'topics');
+  buildMenu(yearMenu, years, 'years');
 
-  let state = { q: '', topic: '', year: '', sort: 'year-desc', size: 20, page: 1 };
+  let state = { q: '', topics: [], years: [], sort: 'year-desc', size: 20, page: 1 };
+
+  function toggleMenu(button, menu) {
+    const opening = menu.hidden;
+    topicMenu.hidden = true;
+    yearMenu.hidden = true;
+    topicButton.setAttribute('aria-expanded', 'false');
+    yearButton.setAttribute('aria-expanded', 'false');
+    if (opening) {
+      menu.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+    }
+  }
+  topicButton.onclick = () => toggleMenu(topicButton, topicMenu);
+  yearButton.onclick = () => toggleMenu(yearButton, yearMenu);
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.reading-multi')) {
+      topicMenu.hidden = true;
+      yearMenu.hidden = true;
+      topicButton.setAttribute('aria-expanded', 'false');
+      yearButton.setAttribute('aria-expanded', 'false');
+    }
+  });
 
   function filtered() {
     const query = state.q.toLowerCase();
     const result = items.filter(item => {
       const text = item.el.dataset.search || '';
       return (!query || text.includes(query))
-        && (!state.topic || (item.data.tags || []).includes(state.topic))
-        && (!state.year || item.data.year === state.year);
+        && (!state.topics.length || state.topics.some(topicName => (item.data.tags || []).includes(topicName)))
+        && (!state.years.length || state.years.includes(item.data.year));
     });
     result.sort((a, b) => {
       if (state.sort === 'title-asc') return (a.data.sortTitle || '').localeCompare(b.data.sortTitle || '');
@@ -99,17 +149,33 @@ engine: markdown
 
   function renderChips() {
     chips.innerHTML = '';
-    [['q', state.q ? `Search: ${state.q}` : ''], ['topic', state.topic ? `Topic: ${state.topic}` : ''], ['year', state.year ? `Year: ${state.year}` : '']]
+    const chipFilters = [['q', state.q ? `Search: ${state.q}` : '']];
+    state.topics.forEach(value => chipFilters.push(['topic:' + value, `Topic: ${value}`]));
+    state.years.forEach(value => chipFilters.push(['year:' + value, `Year: ${value}`]));
+    chipFilters
       .forEach(([key, label]) => {
         if (!label) return;
         const chip = document.createElement('button');
         chip.type = 'button';
         chip.className = 'reading-chip';
         chip.textContent = `${label} ×`;
-        chip.onclick = () => setState({ [key]: '' });
+        chip.onclick = () => {
+          if (key === 'q') setState({ q: '' });
+          else if (key.startsWith('topic:')) {
+            const value = key.slice(6);
+            setState({ topics: state.topics.filter(item => item !== value) });
+            topicMenu.querySelectorAll('input').forEach(input => { if (input.value === value) input.checked = false; });
+          } else if (key.startsWith('year:')) {
+            const value = key.slice(5);
+            setState({ years: state.years.filter(item => item !== value) });
+            yearMenu.querySelectorAll('input').forEach(input => { if (input.value === value) input.checked = false; });
+          }
+        };
         chips.appendChild(chip);
       });
-    clear.hidden = !(state.q || state.topic || state.year);
+    clear.hidden = !(state.q || state.topics.length || state.years.length);
+    topicButton.textContent = state.topics.length ? `Topics (${state.topics.length})` : 'All topics';
+    yearButton.textContent = state.years.length ? `Years (${state.years.length})` : 'All years';
   }
 
   function renderPagination(totalPages) {
@@ -160,15 +226,13 @@ engine: markdown
   }
 
   search.oninput = () => setState({ q: search.value.trim() });
-  topic.onchange = () => setState({ topic: topic.value });
-  year.onchange = () => setState({ year: year.value });
   sort.onchange = () => { state.sort = sort.value; state.page = 1; render(); };
   size.onchange = () => { state.size = Number(size.value); state.page = 1; render(); };
   clear.onclick = () => {
     search.value = '';
-    topic.value = '';
-    year.value = '';
-    state = { q: '', topic: '', year: '', sort: 'year-desc', size: 20, page: 1 };
+    topicMenu.querySelectorAll('input').forEach(input => { input.checked = false; });
+    yearMenu.querySelectorAll('input').forEach(input => { input.checked = false; });
+    state = { q: '', topics: [], years: [], sort: 'year-desc', size: 20, page: 1 };
     sort.value = 'year-desc';
     size.value = '20';
     render();
