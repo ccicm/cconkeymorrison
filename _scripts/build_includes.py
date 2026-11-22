@@ -890,10 +890,6 @@ def gen_reading_entries(entries: list) -> str:
             f"</article>"
         )
 
-    rows.append(
-        '<div id="reading-no-results" style="display:none;'
-        'color:var(--text-muted);font-size:0.9rem;">No entries for this filter.</div>'
-    )
     return "\n".join(rows)
 
 

@@ -48,7 +48,6 @@ engine: markdown
   </div>
 </div>
 <p id="reading-status" class="reading-status" role="status" aria-live="polite"></p>
-<div id="reading-list">
 ```
 
 ```{=html}
@@ -56,14 +55,11 @@ engine: markdown
 ```
 
 ```{=html}
-</div>
 <p id="reading-no-results" class="reading-status" hidden>No entries match your filters.</p>
 <nav id="reading-pagination" class="reading-pagination" aria-label="Reading list pages"></nav>
 <script>
-(function() {
-  const root = document.getElementById('reading-list');
-  const entries = Array.from(root.querySelectorAll('.reading-entry'));
-  const noResults = document.getElementById('reading-no-results');
+(function () {
+  const entries = Array.from(document.querySelectorAll('.reading-entry'));
   const search = document.getElementById('reading-search');
   const topic = document.getElementById('reading-topic');
   const year = document.getElementById('reading-year');
@@ -73,152 +69,157 @@ engine: markdown
   const chips = document.getElementById('reading-chips');
   const status = document.getElementById('reading-status');
   const pagination = document.getElementById('reading-pagination');
+  const noResults = document.getElementById('reading-no-results');
+  const items = entries.map(el => {
+    let data = {};
+    try { data = JSON.parse(el.dataset.meta || '{}'); } catch (_) {}
+    return { el, data };
+  });
   const selectionSummary = document.getElementById('reading-selection-summary');
-  const selectedKey = 'reading-list-selection-v1';
-  let savedSelection = [];
-  try { savedSelection = JSON.parse(localStorage.getItem(selectedKey) || '[]'); }
-  catch (error) { savedSelection = []; }
-  const selection = new Set(savedSelection);
-  const params = new URLSearchParams(location.search);
-  const state = {
-    q: params.get('q') || '', topic: params.get('topic') || '',
-    year: params.get('year') || '', sort: params.get('sort') || 'year-desc',
-    size: ['10', '20', '50'].includes(params.get('size')) ? params.get('size') : '20',
-    page: Math.max(1, Number(params.get('page')) || 1)
-  };
-  const metadata = entries.map(el => {
-    try { return { el: el, data: JSON.parse(el.dataset.meta || '{}') }; }
-    catch (error) { return { el: el, data: {} }; }
-  });
-  [...selection].forEach(id => {
-    if (!metadata.some(item => item.data.id === id)) selection.delete(id);
-  });
-  persistSelection();
-  const topics = [...new Set(metadata.flatMap(item => item.data.tags || []))].sort((a, b) => a.localeCompare(b));
-  const years = [...new Set(metadata.map(item => item.data.year).filter(Boolean))].sort((a, b) => Number(b) - Number(a));
+  const selected = new Set();
+
+  const topics = [...new Set(items.flatMap(item => item.data.tags || []))].sort();
+  const years = [...new Set(items.map(item => item.data.year).filter(Boolean))]
+    .sort((a, b) => Number(b) - Number(a));
   topics.forEach(value => topic.add(new Option(value, value)));
   years.forEach(value => year.add(new Option(value, value)));
-  search.value = state.q; topic.value = state.topic; year.value = state.year;
-  sort.value = state.sort; size.value = state.size;
 
-  function persistSelection() {
-    localStorage.setItem(selectedKey, JSON.stringify([...selection]));
-  }
-  function updateUrl() {
-    const next = new URLSearchParams();
-    if (state.q) next.set('q', state.q);
-    if (state.topic) next.set('topic', state.topic);
-    if (state.year) next.set('year', state.year);
-    if (state.sort !== 'year-desc') next.set('sort', state.sort);
-    if (state.size !== '20') next.set('size', state.size);
-    if (state.page > 1) next.set('page', String(state.page));
-    history.replaceState(null, '', `${location.pathname}${next.toString() ? '?' + next : ''}${location.hash}`);
-  }
+  let state = { q: '', topic: '', year: '', sort: 'year-desc', size: 20, page: 1 };
+
   function filtered() {
     const query = state.q.toLowerCase();
-    return metadata.filter(item => {
-      const d = item.data;
-      return (!query || (item.el.dataset.search || '').includes(query)) &&
-        (!state.topic || (d.tags || []).includes(state.topic)) &&
-        (!state.year || d.year === state.year);
-    }).sort((a, b) => {
-      if (state.sort === 'title-asc') return a.data.sortTitle.localeCompare(b.data.sortTitle);
-      if (state.sort === 'author-asc') return a.data.sortAuthor.localeCompare(b.data.sortAuthor);
-      return state.sort === 'year-asc' ? a.data.sortYear - b.data.sortYear : b.data.sortYear - a.data.sortYear;
+    const result = items.filter(item => {
+      const text = item.el.dataset.search || '';
+      return (!query || text.includes(query))
+        && (!state.topic || (item.data.tags || []).includes(state.topic))
+        && (!state.year || item.data.year === state.year);
     });
+    result.sort((a, b) => {
+      if (state.sort === 'title-asc') return (a.data.sortTitle || '').localeCompare(b.data.sortTitle || '');
+      if (state.sort === 'author-asc') return (a.data.sortAuthor || '').localeCompare(b.data.sortAuthor || '');
+      if (state.sort === 'year-asc') return (Number(a.data.sortYear) || 0) - (Number(b.data.sortYear) || 0);
+      return (Number(b.data.sortYear) || 0) - (Number(a.data.sortYear) || 0);
+    });
+    return result;
   }
-  function setState(changes) {
-    Object.assign(state, changes);
-    if (changes.q !== undefined || changes.topic !== undefined || changes.year !== undefined ||
-        changes.sort !== undefined || changes.size !== undefined) state.page = 1;
-    render(); updateUrl();
-  }
+
   function renderChips() {
     chips.innerHTML = '';
-    [['q', state.q ? `Search: ${state.q}` : ''], ['topic', state.topic ? `Topic: ${state.topic}` : ''],
-     ['year', state.year ? `Year: ${state.year}` : '']].forEach(([key, label]) => {
-      if (!label) return;
-      const chip = document.createElement('button');
-      chip.type = 'button'; chip.className = 'reading-chip'; chip.textContent = `${label} ×`;
-      chip.setAttribute('aria-label', `Remove ${label}`);
-      chip.onclick = () => setState({[key]: ''});
-      chips.appendChild(chip);
-    });
+    [['q', state.q ? `Search: ${state.q}` : ''], ['topic', state.topic ? `Topic: ${state.topic}` : ''], ['year', state.year ? `Year: ${state.year}` : '']]
+      .forEach(([key, label]) => {
+        if (!label) return;
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'reading-chip';
+        chip.textContent = `${label} ×`;
+        chip.onclick = () => setState({ [key]: '' });
+        chips.appendChild(chip);
+      });
     clear.hidden = !(state.q || state.topic || state.year);
   }
-  function renderPagination(count, totalPages) {
+
+  function renderPagination(totalPages) {
     pagination.innerHTML = '';
-    if (!count) return;
     const add = (label, page, disabled, current) => {
       const button = document.createElement('button');
-      button.type = 'button'; button.textContent = label; button.disabled = disabled;
+      button.type = 'button';
+      button.textContent = label;
+      button.disabled = disabled;
       if (current) button.setAttribute('aria-current', 'page');
-      button.onclick = () => { state.page = page; render(); updateUrl(); root.scrollIntoView({block: 'start'}); };
+      button.onclick = () => {
+        state.page = page;
+        render();
+        status.scrollIntoView({ block: 'start' });
+      };
       pagination.appendChild(button);
     };
     add('Previous', state.page - 1, state.page === 1, false);
-    for (let p = 1; p <= totalPages; p += 1) add(String(p), p, false, p === state.page);
+    for (let page = 1; page <= totalPages; page++) {
+      add(String(page), page, false, page === state.page);
+    }
     add('Next', state.page + 1, state.page === totalPages, false);
   }
-  function updateSelectionUi() {
-    entries.forEach(el => {
-      const box = el.querySelector('.reading-select');
-      box.checked = selection.has(el.dataset.id);
-    });
-    const count = selection.size;
-    selectionSummary.textContent = `${count} selected`;
-    document.getElementById('reading-export-ris').disabled = count === 0;
-    document.getElementById('reading-export-text').disabled = count === 0;
+
+  function setState(changes) {
+    state = { ...state, ...changes, page: 1 };
+    render();
   }
+
   function render() {
-    const results = filtered();
-    const pageSize = Number(state.size);
-    const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
+    const result = filtered();
+    const totalPages = Math.max(1, Math.ceil(result.length / state.size));
     state.page = Math.min(state.page, totalPages);
-    const visible = new Set(results.slice((state.page - 1) * pageSize, state.page * pageSize).map(item => item.el));
-    entries.forEach(item => item.style.display = visible.has(item) ? '' : 'none');
-    noResults.style.display = results.length ? 'none' : '';
-    renderChips(); renderPagination(results.length, totalPages); updateSelectionUi();
-    status.textContent = `${results.length} ${results.length === 1 ? 'entry' : 'entries'} shown, page ${state.page} of ${totalPages}.`;
+    const start = (state.page - 1) * state.size;
+    const visible = new Set(result.slice(start, start + state.size).map(item => item.el));
+    items.forEach(item => {
+      item.el.style.display = visible.has(item.el) ? '' : 'none';
+      const checkbox = item.el.querySelector('.reading-select');
+      if (checkbox) checkbox.checked = selected.has(item.data.id);
+    });
+    noResults.hidden = result.length !== 0;
+    renderChips();
+    renderPagination(totalPages);
+    selectionSummary.textContent = `${selected.size} selected`;
+    document.getElementById('reading-export-ris').disabled = selected.size === 0;
+    document.getElementById('reading-export-text').disabled = selected.size === 0;
+    status.textContent = `${result.length} ${result.length === 1 ? 'entry' : 'entries'} found, page ${state.page} of ${totalPages}.`;
   }
-  function exportEntries(format) {
-    const selected = metadata.filter(item => selection.has(item.data.id)).map(item => item.data);
-    const content = format === 'ris' ? selected.map(d => {
-      const lines = ['TY  - JOUR'];
-      if (d.authors) lines.push(`AU  - ${d.authors}`);
-      if (d.title) lines.push(`TI  - ${d.title}`);
-      if (d.journal) lines.push(`JO  - ${d.journal}`);
-      if (d.year) lines.push(`PY  - ${d.year}`);
-      if (d.doi) { lines.push(`DO  - ${d.doi}`, `UR  - https://doi.org/${d.doi}`); }
-      if (d.abstract) lines.push(`AB  - ${d.abstract}`);
-      lines.push('ER  - '); return lines.join('\r\n');
-    }).join('\r\n') : selected.map(d =>
-      `${d.title}\n${d.authors}${d.year ? ` (${d.year})` : ''}${d.journal ? `\n${d.journal}` : ''}${d.doi ? `\nhttps://doi.org/${d.doi}` : ''}${d.abstract ? `\n${d.abstract}` : ''}`
-    ).join('\n\n');
-    const blob = new Blob([content], {type: format === 'ris' ? 'application/x-research-info-systems' : 'text/plain'});
-    const link = document.createElement('a'); link.href = URL.createObjectURL(blob);
-    link.download = `reading-list-selected.${format === 'ris' ? 'ris' : 'txt'}`; link.click();
+
+  search.oninput = () => setState({ q: search.value.trim() });
+  topic.onchange = () => setState({ topic: topic.value });
+  year.onchange = () => setState({ year: year.value });
+  sort.onchange = () => { state.sort = sort.value; state.page = 1; render(); };
+  size.onchange = () => { state.size = Number(size.value); state.page = 1; render(); };
+  clear.onclick = () => {
+    search.value = '';
+    topic.value = '';
+    year.value = '';
+    state = { q: '', topic: '', year: '', sort: 'year-desc', size: 20, page: 1 };
+    sort.value = 'year-desc';
+    size.value = '20';
+    render();
+  };
+  document.getElementById('reading-select-shown').onclick = () => {
+    filtered().slice((state.page - 1) * state.size, state.page * state.size)
+      .forEach(item => selected.add(item.data.id));
+    render();
+  };
+  document.getElementById('reading-clear-selection').onclick = () => {
+    selected.clear();
+    render();
+  };
+  items.forEach(item => {
+    const checkbox = item.el.querySelector('.reading-select');
+    if (checkbox) checkbox.onchange = () => {
+      if (checkbox.checked) selected.add(item.data.id); else selected.delete(item.data.id);
+      render();
+    };
+  });
+  function exportSelected(format) {
+    const selectedItems = items.filter(item => selected.has(item.data.id)).map(item => item.data);
+    const content = format === 'ris'
+      ? selectedItems.map(d => [
+          'TY  - JOUR',
+          d.authors ? `AU  - ${d.authors}` : '',
+          d.title ? `TI  - ${d.title}` : '',
+          d.journal ? `JO  - ${d.journal}` : '',
+          d.year ? `PY  - ${d.year}` : '',
+          d.doi ? `DO  - ${d.doi}\nUR  - https://doi.org/${d.doi}` : '',
+          d.abstract ? `AB  - ${d.abstract}` : '',
+          'ER  - '
+        ].filter(Boolean).join('\r\n')).join('\r\n')
+      : selectedItems.map(d =>
+          `${d.title}\n${d.authors}${d.year ? ` (${d.year})` : ''}${d.journal ? `\n${d.journal}` : ''}${d.doi ? `\nhttps://doi.org/${d.doi}` : ''}`
+        ).join('\n\n');
+    const blob = new Blob([content], { type: format === 'ris' ? 'application/x-research-info-systems' : 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `reading-list-selected.${format === 'ris' ? 'ris' : 'txt'}`;
+    link.click();
     URL.revokeObjectURL(link.href);
   }
-  search.oninput = () => setState({q: search.value.trim()});
-  topic.onchange = () => setState({topic: topic.value});
-  year.onchange = () => setState({year: year.value});
-  sort.onchange = () => setState({sort: sort.value});
-  size.onchange = () => setState({size: size.value});
-  clear.onclick = () => { search.value = ''; topic.value = ''; year.value = ''; setState({q: '', topic: '', year: ''}); };
-  document.getElementById('reading-select-shown').onclick = () => {
-    filtered().slice((state.page - 1) * Number(state.size), state.page * Number(state.size))
-      .forEach(item => selection.add(item.data.id)); persistSelection(); render();
-  };
-  document.getElementById('reading-clear-selection').onclick = () => { selection.clear(); persistSelection(); render(); };
-  document.getElementById('reading-export-ris').onclick = () => exportEntries('ris');
-  document.getElementById('reading-export-text').onclick = () => exportEntries('text');
-  entries.forEach(el => el.querySelector('.reading-select').addEventListener('change', event => {
-    event.target.checked ? selection.add(el.dataset.id) : selection.delete(el.dataset.id);
-    persistSelection(); updateSelectionUi();
-    status.textContent = `${selection.size} selected.`;
-  }));
-  window.addEventListener('popstate', () => location.reload());
+  document.getElementById('reading-export-ris').onclick = () => exportSelected('ris');
+  document.getElementById('reading-export-text').onclick = () => exportSelected('text');
   render();
 })();
 </script>
