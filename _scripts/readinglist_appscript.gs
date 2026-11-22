@@ -244,7 +244,12 @@ function onApaEdit(e) {
 
   const existing  = rlSheet.getDataRange().getValues();
   const doiColIdx = existing[0].map(h => String(h).toLowerCase()).indexOf('doi');
-  if (existing.slice(1).some(row => String(row[doiColIdx]).trim() === doi)) {
+  if (doiColIdx === -1) {
+    statusCell.setValue('⚠️ Reading List has no DOI column');
+    return;
+  }
+  const normalizedDoi = normalizeDoi_(doi);
+  if (existing.slice(1).some(row => normalizeDoi_(String(row[doiColIdx] || '').trim()) === normalizedDoi)) {
     statusCell.setValue('⚠️ Already in list'); return;
   }
 
@@ -541,6 +546,14 @@ function generateInsight_(title, abstract) {
 }
 
 // ── Sheet → JSON ──────────────────────────────────────────────
+function normalizeDoi_(value) {
+  return String(value || '')
+    .trim()
+    .replace(/^https?:\/\/(?:dx\.)?doi\.org\//i, '')
+    .replace(/^doi:\s*/i, '')
+    .toLowerCase();
+}
+
 function sheetToJson_() {
   const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
@@ -556,11 +569,7 @@ function sheetToJson_() {
   const seenDois = new Set();
 
   return data.slice(1).reduce((acc, row) => {
-    const doi = String(row[doiCol] || '')
-      .trim()
-      .replace(/^https?:\/\/(?:dx\.)?doi\.org\//i, '')
-      .replace(/^doi:\s*/i, '')
-      .toLowerCase();
+    const doi = normalizeDoi_(row[doiCol]);
     if (!doi) return acc;
     if (seenDois.has(doi)) return acc;
     seenDois.add(doi);
@@ -589,8 +598,22 @@ function sheetToJson_() {
 function getCurrentSha_(token) {
   const res = UrlFetchApp.fetch(
     `https://api.github.com/repos/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}/contents/${CONFIG.FILE_PATH}?ref=${CONFIG.GITHUB_BRANCH}`,
-    { method: 'GET', headers: { Authorization: 'Bearer ' + token }, muteHttpExceptions: true });
-  return res.getResponseCode() === 200 ? JSON.parse(res.getContentText()).sha : null;
+    { method: 'GET',
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' },
+      muteHttpExceptions: true });
+  const code = res.getResponseCode();
+  if (code === 200) return JSON.parse(res.getContentText()).sha;
+  if (code === 404) {
+    throw new Error(
+      `GitHub could not find ${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}:${CONFIG.GITHUB_BRANCH}/${CONFIG.FILE_PATH}. ` +
+      'Check the owner, repository, branch, and file path.'
+    );
+  }
+  if (code === 401) throw new Error('GitHub rejected the token (401). Re-enter the token using “1. Set GitHub token”.');
+  if (code === 403) throw new Error('GitHub denied repository access (403). The token needs Contents: Read and write permission.');
+  let message = res.getContentText();
+  try { message = JSON.parse(message).message || message; } catch (_) {}
+  throw new Error(`Could not read ${CONFIG.FILE_PATH} from GitHub (${code}): ${message}`);
 }
 
 function syncReadingList() {
@@ -598,23 +621,33 @@ function syncReadingList() {
   try {
     const token   = getToken_();
     const entries = sheetToJson_();
-    const sha     = getCurrentSha_(token);
-    const payload = {
-      message: CONFIG.COMMIT_MSG,
-      content: Utilities.base64Encode(JSON.stringify(entries, null, 2) + '\n', Utilities.Charset.UTF_8),
-      branch:  CONFIG.GITHUB_BRANCH,
-      ...(sha ? { sha } : {})
-    };
-    const res = UrlFetchApp.fetch(
-      `https://api.github.com/repos/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}/contents/${CONFIG.FILE_PATH}`,
-      { method: 'PUT', contentType: 'application/json',
-        headers: { Authorization: 'Bearer ' + token },
-        payload: JSON.stringify(payload), muteHttpExceptions: true });
-    const code = res.getResponseCode();
-    if (code === 200 || code === 201) {
-      ui.alert('✅ Synced!', `${entries.length} entries pushed. Site rebuilds in ~2 minutes.`, ui.ButtonSet.OK);
-    } else {
-      throw new Error(`GitHub API ${code}: ${JSON.parse(res.getContentText()).message}`);
+    if (!entries.length) throw new Error('No reading-list entries found in the sheet.');
+
+    let sha = getCurrentSha_(token);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const payload = {
+        message: CONFIG.COMMIT_MSG,
+        content: Utilities.base64Encode(JSON.stringify(entries, null, 2) + '\n', Utilities.Charset.UTF_8),
+        branch: CONFIG.GITHUB_BRANCH,
+        ...(sha ? { sha } : {})
+      };
+      const res = UrlFetchApp.fetch(
+        `https://api.github.com/repos/${CONFIG.GITHUB_OWNER}/${CONFIG.GITHUB_REPO}/contents/${CONFIG.FILE_PATH}`,
+        { method: 'PUT', contentType: 'application/json',
+          headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' },
+          payload: JSON.stringify(payload), muteHttpExceptions: true });
+      const code = res.getResponseCode();
+      if (code === 200 || code === 201) {
+        ui.alert('✅ Synced!', `${entries.length} entries pushed. Site rebuilds in ~2 minutes.`, ui.ButtonSet.OK);
+        return;
+      }
+      let message = res.getContentText();
+      try { message = JSON.parse(message).message || message; } catch (_) {}
+      if ((code === 409 || code === 422) && attempt === 0) {
+        sha = getCurrentSha_(token);
+        continue;
+      }
+      throw new Error(`GitHub API ${code}: ${message}`);
     }
   } catch (e) {
     ui.alert('❌ Sync failed', e.message, ui.ButtonSet.OK);
