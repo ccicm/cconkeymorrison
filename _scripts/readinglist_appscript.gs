@@ -369,11 +369,22 @@ function refreshTagsSheet_(sheet) {
   applyTagValidation_(sheet);
 }
 
+// Pop-up messages when run from the sheet's menu; Execution log when run
+// from the Apps Script editor (where pop-ups aren't available).
+function safeUi_() {
+  try { return SpreadsheetApp.getUi(); } catch (e) {
+    return {
+      alert: (title, msg) => Logger.log(`${title}${msg ? ': ' + msg : ''}`),
+      ButtonSet: { OK: null }
+    };
+  }
+}
+
 // ── Tidy tags ─────────────────────────────────────────────────
 // Renames old tags, moves study types into their own column and fills in
 // themes from topics. Safe to run more than once.
 function tidyTags() {
-  const ui = SpreadsheetApp.getUi();
+  const ui = safeUi_();
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.SHEET_NAME);
   if (!sheet) { ui.alert(`Sheet "${CONFIG.SHEET_NAME}" not found.`); return; }
   let c;
@@ -404,10 +415,43 @@ function tidyTags() {
 // run it again to continue, and it never touches rows you marked "Checked".
 // To redo a row, clear its Tag status. Changed cells are highlighted yellow.
 const AI_TAG_STATUS = 'AI – please check';
-const AI_TAG_MODEL  = 'llama-3.3-70b-versatile';
+// Groq retires models over time, so the script asks Groq which models this
+// key can use and takes the first match from this preference list.
+const AI_TAG_MODEL_PREFERENCES = [
+  'openai/gpt-oss-120b', 'llama-3.3-70b-versatile', 'moonshotai/kimi-k2-instruct',
+  'qwen/qwen3-32b', 'meta-llama/llama-4-maverick-17b-128e-instruct',
+  'openai/gpt-oss-20b', 'llama-3.1-8b-instant'
+];
+let aiTagModel_ = null;
+
+function listGroqModels_() {
+  const key = getGroqKey_();
+  if (!key) return [];
+  try {
+    const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/models', {
+      headers: { 'Authorization': 'Bearer ' + key }, muteHttpExceptions: true });
+    if (res.getResponseCode() !== 200) {
+      Logger.log(`Groq models error ${res.getResponseCode()}: ${res.getContentText().slice(0, 300)}`);
+      return [];
+    }
+    return (JSON.parse(res.getContentText()).data || []).map(m => m.id);
+  } catch (e) {
+    Logger.log('Groq models error: ' + e.message);
+    return [];
+  }
+}
+
+function pickAiTagModel_() {
+  if (aiTagModel_) return aiTagModel_;
+  const available = listGroqModels_();
+  aiTagModel_ = AI_TAG_MODEL_PREFERENCES.find(m => available.indexOf(m) !== -1)
+    || available.find(m => /llama|gpt-oss|qwen/i.test(m) && !/guard|whisper|tts|vision/i.test(m))
+    || 'llama-3.1-8b-instant';
+  return aiTagModel_;
+}
 
 function retagWithAi() {
-  const ui = SpreadsheetApp.getUi();
+  const ui = safeUi_();
   if (!getGroqKey_()) { ui.alert('No Groq key set. Use "2. Set Groq API key" first.'); return; }
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(CONFIG.SHEET_NAME);
   if (!sheet) { ui.alert(`Sheet "${CONFIG.SHEET_NAME}" not found.`); return; }
@@ -422,7 +466,7 @@ function retagWithAi() {
     const row = data[i];
     const title = String(row[c.title] || '').trim();
     if (!title || String(row[c.status] || '').trim()) continue;
-    if (Date.now() - startedAt > 4.5 * 60 * 1000) { remaining++; continue; }
+    if (Date.now() - startedAt > 4 * 60 * 1000) { remaining++; continue; }
 
     const result = aiTag_(title, c.abstract !== -1 ? row[c.abstract] : '', c.note !== -1 ? row[c.note] : '');
     if (!result) { failed++; continue; }
@@ -447,6 +491,16 @@ function retagWithAi() {
   ui.alert('✅ AI re-tag', msg, ui.ButtonSet.OK);
 }
 
+// Run this from the Apps Script editor (select it, click Run) to check the
+// AI tagging works; the result and any Groq error appear in the Execution log.
+function testAiTagging() {
+  Logger.log('Groq key set: ' + !!getGroqKey_());
+  Logger.log('Models available: ' + listGroqModels_().join(', '));
+  Logger.log('Model used for tagging: ' + pickAiTagModel_());
+  Logger.log(JSON.stringify(aiTag_(
+    'A randomised controlled trial of a parent-led online programme for adolescent school refusal', '', '')));
+}
+
 function aiTag_(title, abstract, note) {
   const topicList = Object.keys(TOPIC_GROUPS)
     .map(g => `${g}: ${TOPIC_GROUPS[g].join('; ')}`).join('\n');
@@ -457,10 +511,10 @@ function aiTag_(title, abstract, note) {
     `STUDY TYPES (choose exactly 1, or "" if none fits):\n${STUDY_TYPES.join('; ')}\n` +
     '(Review = narrative or clinical review; Conceptual = theory, framework or definitions paper; Methods = methodological or measurement-development paper.)\n\n' +
     `Paper title: ${title}\n` +
-    (abstract ? `Abstract: ${String(abstract).slice(0, 2500)}\n` : '') +
+    (abstract ? `Abstract: ${String(abstract).slice(0, 1500)}\n` : '') +
     (note ? `Reader's note: ${String(note).slice(0, 600)}\n` : '') +
     '\nReply with JSON only: {"themes": [...], "topics": [...], "studyType": "..."}';
-  const text = callGroq_(prompt, 200, 0, { model: AI_TAG_MODEL, json: true });
+  const text = callGroq_(prompt, 800, 0, { model: pickAiTagModel_(), json: true });
   return parseAiTags_(text);
 }
 
@@ -718,6 +772,7 @@ function callGroq_(prompt, maxTokens, temperature, options) {
   const key = getGroqKey_();
   if (!key) return null;
   try {
+    for (let attempt = 0; attempt < 4; attempt++) {
     const res = UrlFetchApp.fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
@@ -730,7 +785,20 @@ function callGroq_(prompt, maxTokens, temperature, options) {
       }),
       muteHttpExceptions: true
     });
+    // Free-tier rate limit: wait as long as Groq asks, then try again.
+    if (res.getResponseCode() === 429 && attempt < 3) {
+      const m = res.getContentText().match(/try again in ([\d.]+)(ms|s)/);
+      const wait = m ? Number(m[1]) * (m[2] === 'ms' ? 1 : 1000) : 10000;
+      Utilities.sleep(Math.min(wait + 500, 30000));
+      continue;
+    }
+    if (res.getResponseCode() !== 200) {
+      Logger.log(`Groq error ${res.getResponseCode()}: ${res.getContentText().slice(0, 500)}`);
+      return null;
+    }
     return JSON.parse(res.getContentText()).choices?.[0]?.message?.content?.trim() || null;
+    }
+    return null;
   } catch (e) {
     Logger.log('Groq error: ' + e.message);
     return null;
@@ -907,7 +975,8 @@ function sheetToJson_() {
     if (get('title'))    entry.title    = clean(get('title'));
     if (get('authors'))  entry.authors  = get('authors');
     if (get('year'))     entry.year     = get('year');
-    if (get('journal'))  entry.journal  = clean(get('journal'));
+    const journal = get('journal') || get('journal / source');
+    if (journal)         entry.journal  = clean(journal);
     if (get('abstract')) entry.abstract = clean(get('abstract'));
     if (get('note'))     entry.note     = get('note');
 

@@ -89,7 +89,7 @@ engine: markdown
   });
   const byEl = new Map(items.map(item => [item.el, item]));
   const selected = new Set();
-  const defaults = () => ({ q: '', themes: [], topics: [], types: [], yearFrom: '', yearTo: '', sort: 'year-desc', size: 20, page: 1 });
+  const defaults = () => ({ q: '', themes: [], topics: [], types: [], match: { themes: 'any', topics: 'any' }, yearFrom: '', yearTo: '', sort: 'year-desc', size: 20, page: 1 });
   let state = defaults();
 
   // ── Theme, topic and study-type dropdowns ──────────────────
@@ -103,6 +103,24 @@ engine: markdown
     multi.button = $(`reading-${type}-button`);
     multi.menu = $(`reading-${type}-menu`);
     multi.options = new Map();
+    if (type !== 'types') {
+      // "Match any / all" switch, shown once two or more options are ticked.
+      multi.matchBar = document.createElement('div');
+      multi.matchBar.className = 'reading-match';
+      multi.matchBar.setAttribute('role', 'group');
+      multi.matchBar.setAttribute('aria-label', `Match ${multi.label}`);
+      multi.matchBar.append('Show papers with');
+      multi.matchButtons = ['any', 'all'].map(mode => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = mode === 'any' ? 'any ticked' : 'all ticked';
+        b.onclick = () => setState({ match: { ...state.match, [type]: mode } });
+        multi.matchBar.append(b);
+        return [mode, b];
+      });
+      multi.matchBar.hidden = true;
+      multi.menu.appendChild(multi.matchBar);
+    }
     const counts = new Map();
     items.forEach(item => multi.values(item).forEach(v => counts.set(v, (counts.get(v) || 0) + 1)));
     const rank = v => (multi.order || []).indexOf(v);
@@ -174,7 +192,8 @@ engine: markdown
     for (const [type, multi] of Object.entries(multis)) {
       if (type === skip || !state[type].length) continue;
       const values = multi.values(item);
-      if (!state[type].some(v => values.includes(v))) return false;
+      const all = state.match[type] === 'all';
+      if (all ? !state[type].every(v => values.includes(v)) : !state[type].some(v => values.includes(v))) return false;
     }
     if (skip !== 'years' && (state.yearFrom || state.yearTo)) {
       let lo = Number(state.yearFrom) || -Infinity;
@@ -191,7 +210,8 @@ engine: markdown
   function updateFacets() {
     Object.entries(multis).forEach(([type, multi]) => {
       const counts = new Map();
-      items.filter(item => matches(item, type))
+      const all = state.match[type] === 'all' && state[type].length > 0;
+      items.filter(item => matches(item, all ? undefined : type))
         .forEach(item => multi.values(item).forEach(v => counts.set(v, (counts.get(v) || 0) + 1)));
       let shown = 0;
       multi.options.forEach((option, value) => {
@@ -201,6 +221,10 @@ engine: markdown
         if (!option.label.hidden) shown++;
       });
       multi.empty.hidden = shown > 0;
+      if (multi.matchBar) {
+        multi.matchBar.hidden = state[type].length < 2;
+        multi.matchButtons.forEach(([mode, b]) => b.setAttribute('aria-pressed', String(state.match[type] === mode)));
+      }
     });
     const yearCounts = new Map();
     items.filter(item => matches(item, 'years'))
@@ -242,7 +266,7 @@ engine: markdown
         setState({ [type]: state[type].filter(v => v !== value) });
       }));
       multi.button.textContent = state[type].length
-        ? `${multi.label[0].toUpperCase()}${multi.label.slice(1)} (${state[type].length})`
+        ? `${multi.label[0].toUpperCase()}${multi.label.slice(1)} (${state[type].length}${state[type].length > 1 && state.match[type] === 'all' ? ', all' : ''})`
         : multi.all;
     });
     if (state.yearFrom || state.yearTo) {
