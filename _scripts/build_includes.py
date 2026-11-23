@@ -42,51 +42,6 @@ DOI_DOMAINS = {
     "10.31128": "racgp.org.au",
 }
 
-TAG_GROUPS: dict[str, dict] = {
-    "School attendance": {
-        "color": "#2d6a4f",
-        "tags": {
-            "EBSA", "Chronic absenteeism", "Re-engagement", "Transition",
-            "Systems model", "Systems framework", "Systems theory", "Education system",
-            "Education outcomes", "Student voice", "School staff", "Developmental",
-            "Definitions", "Framework", "Differentiation",
-        },
-    },
-    "Interventions": {
-        "color": "#b04e3f",
-        "tags": {
-            "Intervention", "CBT", "DBT", "Mindfulness", "VR", "Pharmacology",
-            "Multifamily therapy", "Family coaching", "RCT", "Feasibility",
-            "Treatment outcomes", "Rehabilitation", "Intervention development",
-            "Intervention outcomes", "CBT play therapy", "CBT programme",
-            "School-based CBT", "Parent program",
-        },
-    },
-    "Population & context": {
-        "color": "#7b4f9e",
-        "tags": {
-            "Autism", "Neurodiversity", "Parent", "Anxiety", "Mental health",
-            "Psychopathology", "Comorbidity", "ACEs", "Gender", "Bullying",
-            "Individual differences", "Parent experience", "Inclusion",
-            "Parent factors", "Personality", "Behavioural addiction",
-        },
-    },
-    "Study design": {
-        "color": "#2c6e8a",
-        "tags": {
-            "Systematic review", "Scoping review", "Meta-analysis", "Qualitative",
-            "RCT", "Methods", "Risk of bias", "Measurement", "Network analysis",
-            "Measurement tool", "Clinical review", "Practitioner review", "Review",
-            "Foundational", "Editorial", "Clinical synthesis", "Conceptual",
-        },
-    },
-    "Digital & AI": {
-        "color": "#8a5c1a",
-        "tags": {"Digital", "AI", "Machine learning", "Creativity", "Digital feasibility"},
-    },
-}
-
-
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def e(text: object) -> str:
@@ -105,13 +60,6 @@ def read_yaml(path: Path) -> object:
 
 def format_date_au(dt: datetime) -> str:
     return f"{dt.day} {dt.strftime('%B %Y')}"
-
-
-def tag_color(tag: str) -> str:
-    for g in TAG_GROUPS.values():
-        if tag in g["tags"]:
-            return g["color"]
-    return "#1a2e4a"
 
 
 def book_svg() -> str:
@@ -801,6 +749,8 @@ def gen_reading_entries(entries: list) -> str:
         note = entry.get("note") or ""
         abstract = entry.get("abstract") or ""
         tags: list[str] = entry.get("tags") or []
+        study_type = entry.get("studyType") or ""
+        themes: list[str] = entry.get("themes") or []
         entry_id = "reading-" + hashlib.sha1(
             (doi or title).strip().lower().encode("utf-8")
         ).hexdigest()[:12]
@@ -821,6 +771,8 @@ def gen_reading_entries(entries: list) -> str:
             "abstract": abstract,
             "note": note,
             "tags": tags,
+            "studyType": study_type,
+            "themes": themes,
             "url": url,
             "sortYear": int(year) if str(year).isdigit() else 0,
             "sortTitle": title.casefold(),
@@ -833,20 +785,31 @@ def gen_reading_entries(entries: list) -> str:
         data_tags = json.dumps(tags).replace("'", "&#39;")
         data_metadata = e(json.dumps(metadata, ensure_ascii=False, separators=(",", ":")))
 
-        tag_pills = ""
-        if tags:
-            pills = []
-            for tag in tags:
-                c = tag_color(tag)
-                pills.append(
-                    f'<span style="display:inline-block;font-size:0.72rem;font-weight:600;'
-                    f"color:{c};background:color-mix(in srgb,{c} 12%,transparent);"
-                    f'border-radius:999px;padding:0.1rem 0.55rem;margin-right:0.3rem;'
-                    f'margin-top:0.35rem;">{e(tag)}</span>'
-                )
-            tag_pills = (
-                f'<div style="margin-top:0.1rem;">{"".join(pills)}</div>'
+        pill_parts = []
+        for theme in themes:
+            slug = re.sub(r"[^a-z]+", "-", theme.lower()).strip("-")
+            pill_parts.append(
+                f'<button type="button" class="reading-tag reading-tag-theme reading-theme-{slug}"'
+                f' data-filter-type="themes" data-filter-value="{e(theme)}"'
+                f' title="Show only: {e(theme)}">{e(theme)}</button>'
             )
+        if study_type:
+            pill_parts.append(
+                f'<button type="button" class="reading-tag reading-tag-type"'
+                f' data-filter-type="types" data-filter-value="{e(study_type)}"'
+                f' title="Show only: {e(study_type)}">{e(study_type)}</button>'
+            )
+        for tag in tags:
+            pill_parts.append(
+                f'<button type="button" class="reading-tag"'
+                f' data-filter-type="topics" data-filter-value="{e(tag)}"'
+                f' title="Show only: {e(tag)}">{e(tag)}</button>'
+            )
+        tag_pills = (
+            f'<div class="reading-tags">{"".join(pill_parts)}</div>'
+            if pill_parts
+            else ""
+        )
 
         note_html = ""
         if note:
@@ -885,6 +848,8 @@ def gen_reading_entries(entries: list) -> str:
             f"{byline_html}"
             f"{tag_pills}"
             f"{note_html}"
+            f'<div class="reading-entry-actions">'
+            f'<button type="button" class="reading-copy-apa">Copy APA</button>'
             f"</div>"
             f"</div>"
             f"</article>"

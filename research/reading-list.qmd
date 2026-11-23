@@ -14,13 +14,24 @@ engine: markdown
       <label for="reading-search" class="sr-only">Search reading list</label>
       <input id="reading-search" type="search" placeholder="Search titles, authors, notes…" autocomplete="off">
     </div>
-    <div class="reading-multi" id="reading-topic-control">
-      <button id="reading-topic-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All topics</button>
-      <div id="reading-topic-menu" class="reading-multi-menu" hidden></div>
+    <div class="reading-multi">
+      <button id="reading-themes-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All themes</button>
+      <div id="reading-themes-menu" class="reading-multi-menu" hidden></div>
     </div>
-    <div class="reading-multi" id="reading-year-control">
-      <button id="reading-year-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All years</button>
-      <div id="reading-year-menu" class="reading-multi-menu" hidden></div>
+    <div class="reading-multi">
+      <button id="reading-topics-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All topics</button>
+      <div id="reading-topics-menu" class="reading-multi-menu" hidden></div>
+    </div>
+    <div class="reading-multi">
+      <button id="reading-types-button" class="reading-multi-button" type="button" aria-haspopup="true" aria-expanded="false">All study types</button>
+      <div id="reading-types-menu" class="reading-multi-menu" hidden></div>
+    </div>
+    <div class="reading-control reading-year-range" role="group" aria-label="Year range">Years
+      <label class="sr-only" for="reading-year-from">From year</label>
+      <select id="reading-year-from"></select>
+      <span aria-hidden="true">–</span>
+      <label class="sr-only" for="reading-year-to">To year</label>
+      <select id="reading-year-to"></select>
     </div>
     <label class="reading-control">Sort
       <select id="reading-sort">
@@ -54,83 +65,156 @@ engine: markdown
 <p id="reading-status" class="reading-status" role="status" aria-live="polite"></p>
 <p id="reading-no-results" class="reading-status" hidden>No entries match your filters.</p>
 <nav id="reading-pagination" class="reading-pagination" aria-label="Reading list pages"></nav>
+<p id="reading-copy-status" class="sr-only" role="status" aria-live="polite"></p>
 <script>
 (function () {
-  const status = document.getElementById('reading-status');
-  const entries = Array.from(document.querySelectorAll('.reading-entry'));
-  const search = document.getElementById('reading-search');
-  const topicButton = document.getElementById('reading-topic-button');
-  const topicMenu = document.getElementById('reading-topic-menu');
-  const yearButton = document.getElementById('reading-year-button');
-  const yearMenu = document.getElementById('reading-year-menu');
-  const sort = document.getElementById('reading-sort');
-  const size = document.getElementById('reading-size');
-  const clear = document.getElementById('reading-clear');
-  const chips = document.getElementById('reading-chips');
-  const pagination = document.getElementById('reading-pagination');
-  const noResults = document.getElementById('reading-no-results');
-  const items = entries.map(el => {
+  const $ = id => document.getElementById(id);
+  const status = $('reading-status');
+  const content = $('reading-page-content');
+  const toolbar = document.querySelector('.reading-toolbar');
+  const search = $('reading-search');
+  const yearFrom = $('reading-year-from');
+  const yearTo = $('reading-year-to');
+  const sort = $('reading-sort');
+  const size = $('reading-size');
+  const clear = $('reading-clear');
+  const chips = $('reading-chips');
+  const pagination = $('reading-pagination');
+  const noResults = $('reading-no-results');
+  const selectionSummary = $('reading-selection-summary');
+  const items = Array.from(document.querySelectorAll('.reading-entry')).map(el => {
     let data = {};
     try { data = JSON.parse(el.dataset.meta || '{}'); } catch (_) {}
     return { el, data };
   });
-  const selectionSummary = document.getElementById('reading-selection-summary');
+  const byEl = new Map(items.map(item => [item.el, item]));
   const selected = new Set();
+  const defaults = () => ({ q: '', themes: [], topics: [], types: [], yearFrom: '', yearTo: '', sort: 'year-desc', size: 20, page: 1 });
+  let state = defaults();
 
-  const topics = [...new Set(items.flatMap(item => item.data.tags || []))].sort();
-  const years = [...new Set(items.map(item => item.data.year).filter(Boolean))]
-    .sort((a, b) => Number(b) - Number(a));
-  function buildMenu(menu, values, type) {
-    menu.innerHTML = '';
-    values.forEach(value => {
+  // ── Theme, topic and study-type dropdowns ──────────────────
+  const THEME_ORDER = ['School attendance', 'Loneliness & connection', 'AI & technology', 'Mental health'];
+  const multis = {
+    themes: { label: 'themes', chip: 'Theme', all: 'All themes', values: item => item.data.themes || [], order: THEME_ORDER },
+    topics: { label: 'topics', chip: 'Topic', all: 'All topics', values: item => item.data.tags || [] },
+    types: { label: 'study types', chip: 'Study type', all: 'All study types', values: item => item.data.studyType ? [item.data.studyType] : [] },
+  };
+  Object.entries(multis).forEach(([type, multi]) => {
+    multi.button = $(`reading-${type}-button`);
+    multi.menu = $(`reading-${type}-menu`);
+    multi.options = new Map();
+    const counts = new Map();
+    items.forEach(item => multi.values(item).forEach(v => counts.set(v, (counts.get(v) || 0) + 1)));
+    const rank = v => (multi.order || []).indexOf(v);
+    [...counts.keys()].sort((a, b) => (rank(a) - rank(b)) || a.localeCompare(b)).forEach(value => {
       const label = document.createElement('label');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.value = value;
-      checkbox.dataset.filterType = type;
       checkbox.addEventListener('change', () => {
-        const selectedValues = [...menu.querySelectorAll('input:checked')].map(input => input.value);
-        setState({ [type]: selectedValues });
+        setState({ [type]: [...multi.menu.querySelectorAll('input:checked')].map(input => input.value) });
       });
-      label.append(checkbox, document.createTextNode(value));
-      menu.appendChild(label);
+      const count = document.createElement('span');
+      count.className = 'reading-multi-count';
+      count.textContent = counts.get(value);
+      label.append(checkbox, document.createTextNode(value), count);
+      multi.menu.appendChild(label);
+      multi.options.set(value, { label, checkbox, count });
+    });
+    multi.empty = document.createElement('p');
+    multi.empty.className = 'reading-multi-empty';
+    multi.empty.textContent = 'Nothing matches your other filters.';
+    multi.empty.hidden = true;
+    multi.menu.appendChild(multi.empty);
+    multi.button.onclick = () => {
+      const opening = multi.menu.hidden;
+      closeMenus();
+      if (opening) {
+        multi.menu.hidden = false;
+        multi.button.setAttribute('aria-expanded', 'true');
+      }
+    };
+  });
+  function closeMenus() {
+    Object.values(multis).forEach(multi => {
+      multi.menu.hidden = true;
+      multi.button.setAttribute('aria-expanded', 'false');
     });
   }
-  buildMenu(topicMenu, topics, 'topics');
-  buildMenu(yearMenu, years, 'years');
-
-  let state = { q: '', topics: [], years: [], sort: 'year-desc', size: 20, page: 1 };
-
-  function toggleMenu(button, menu) {
-    const opening = menu.hidden;
-    topicMenu.hidden = true;
-    yearMenu.hidden = true;
-    topicButton.setAttribute('aria-expanded', 'false');
-    yearButton.setAttribute('aria-expanded', 'false');
-    if (opening) {
-      menu.hidden = false;
-      button.setAttribute('aria-expanded', 'true');
-    }
+  function syncCheckboxes() {
+    Object.entries(multis).forEach(([type, multi]) => {
+      multi.menu.querySelectorAll('input').forEach(input => { input.checked = state[type].includes(input.value); });
+    });
   }
-  topicButton.onclick = () => toggleMenu(topicButton, topicMenu);
-  yearButton.onclick = () => toggleMenu(yearButton, yearMenu);
   document.addEventListener('click', event => {
-    if (!event.target.closest('.reading-multi')) {
-      topicMenu.hidden = true;
-      yearMenu.hidden = true;
-      topicButton.setAttribute('aria-expanded', 'false');
-      yearButton.setAttribute('aria-expanded', 'false');
-    }
+    if (!event.target.closest('.reading-multi')) closeMenus();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenus();
   });
 
-  function filtered() {
+  // ── Year range ─────────────────────────────────────────────
+  const years = [...new Set(items.map(item => Number(item.data.year)).filter(Boolean))].sort((a, b) => a - b);
+  function fillYears(select, anyLabel, list) {
+    select.innerHTML = '';
+    select.add(new Option(anyLabel, ''));
+    list.forEach(y => select.add(new Option(String(y), String(y))));
+  }
+  fillYears(yearFrom, 'Earliest', years);
+  fillYears(yearTo, 'Latest', [...years].reverse());
+  yearFrom.onchange = () => setState({ yearFrom: yearFrom.value });
+  yearTo.onchange = () => setState({ yearTo: yearTo.value });
+
+  // ── Filtering and rendering ────────────────────────────────
+  // Does a paper pass every filter? `skip` leaves one filter out, which is
+  // how each menu works out what is still available given the others.
+  function matches(item, skip) {
     const query = state.q.toLowerCase();
-    const result = items.filter(item => {
-      const text = item.el.dataset.search || '';
-      return (!query || text.includes(query))
-        && (!state.topics.length || state.topics.some(topicName => (item.data.tags || []).includes(topicName)))
-        && (!state.years.length || state.years.includes(item.data.year));
+    if (query && !(item.el.dataset.search || '').includes(query)) return false;
+    for (const [type, multi] of Object.entries(multis)) {
+      if (type === skip || !state[type].length) continue;
+      const values = multi.values(item);
+      if (!state[type].some(v => values.includes(v))) return false;
+    }
+    if (skip !== 'years' && (state.yearFrom || state.yearTo)) {
+      let lo = Number(state.yearFrom) || -Infinity;
+      let hi = Number(state.yearTo) || Infinity;
+      if (lo > hi) [lo, hi] = [hi, lo];
+      const year = Number(item.data.year);
+      if (!(year >= lo && year <= hi)) return false;
+    }
+    return true;
+  }
+
+  // Each menu only offers options that would still return papers, with
+  // counts that reflect the other filters. Ticked options always stay.
+  function updateFacets() {
+    Object.entries(multis).forEach(([type, multi]) => {
+      const counts = new Map();
+      items.filter(item => matches(item, type))
+        .forEach(item => multi.values(item).forEach(v => counts.set(v, (counts.get(v) || 0) + 1)));
+      let shown = 0;
+      multi.options.forEach((option, value) => {
+        const n = counts.get(value) || 0;
+        option.count.textContent = n;
+        option.label.hidden = n === 0 && !state[type].includes(value);
+        if (!option.label.hidden) shown++;
+      });
+      multi.empty.hidden = shown > 0;
     });
+    const yearCounts = new Map();
+    items.filter(item => matches(item, 'years'))
+      .forEach(item => yearCounts.set(String(item.data.year), (yearCounts.get(String(item.data.year)) || 0) + 1));
+    [yearFrom, yearTo].forEach(select => {
+      [...select.options].forEach(option => {
+        if (!option.value) return;
+        option.disabled = !yearCounts.get(option.value) && option.value !== select.value;
+      });
+    });
+  }
+
+  function filtered() {
+    const result = items.filter(item => matches(item));
     result.sort((a, b) => {
       if (state.sort === 'title-asc') return (a.data.sortTitle || '').localeCompare(b.data.sortTitle || '');
       if (state.sort === 'author-asc') return (a.data.sortAuthor || '').localeCompare(b.data.sortAuthor || '');
@@ -140,35 +224,35 @@ engine: markdown
     return result;
   }
 
+  function addChip(label, onRemove) {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'reading-chip';
+    chip.textContent = `${label} ×`;
+    chip.setAttribute('aria-label', `Remove filter: ${label}`);
+    chip.onclick = onRemove;
+    chips.appendChild(chip);
+  }
+
   function renderChips() {
     chips.innerHTML = '';
-    const chipFilters = [['q', state.q ? `Search: ${state.q}` : '']];
-    state.topics.forEach(value => chipFilters.push(['topic:' + value, `Topic: ${value}`]));
-    state.years.forEach(value => chipFilters.push(['year:' + value, `Year: ${value}`]));
-    chipFilters
-      .forEach(([key, label]) => {
-        if (!label) return;
-        const chip = document.createElement('button');
-        chip.type = 'button';
-        chip.className = 'reading-chip';
-        chip.textContent = `${label} ×`;
-        chip.onclick = () => {
-          if (key === 'q') setState({ q: '' });
-          else if (key.startsWith('topic:')) {
-            const value = key.slice(6);
-            setState({ topics: state.topics.filter(item => item !== value) });
-            topicMenu.querySelectorAll('input').forEach(input => { if (input.value === value) input.checked = false; });
-          } else if (key.startsWith('year:')) {
-            const value = key.slice(5);
-            setState({ years: state.years.filter(item => item !== value) });
-            yearMenu.querySelectorAll('input').forEach(input => { if (input.value === value) input.checked = false; });
-          }
-        };
-        chips.appendChild(chip);
+    if (state.q) addChip(`Search: ${state.q}`, () => { search.value = ''; setState({ q: '' }); });
+    Object.entries(multis).forEach(([type, multi]) => {
+      state[type].forEach(value => addChip(`${multi.chip}: ${value}`, () => {
+        setState({ [type]: state[type].filter(v => v !== value) });
+      }));
+      multi.button.textContent = state[type].length
+        ? `${multi.label[0].toUpperCase()}${multi.label.slice(1)} (${state[type].length})`
+        : multi.all;
+    });
+    if (state.yearFrom || state.yearTo) {
+      addChip(`Years: ${state.yearFrom || 'earliest'}–${state.yearTo || 'latest'}`, () => {
+        yearFrom.value = '';
+        yearTo.value = '';
+        setState({ yearFrom: '', yearTo: '' });
       });
-    clear.hidden = !(state.q || state.topics.length || state.years.length);
-    topicButton.textContent = state.topics.length ? `Topics (${state.topics.length})` : 'All topics';
-    yearButton.textContent = state.years.length ? `Years (${state.years.length})` : 'All years';
+    }
+    clear.hidden = !chips.children.length;
   }
 
   function renderPagination(totalPages) {
@@ -187,9 +271,7 @@ engine: markdown
       pagination.appendChild(button);
     };
     add('Previous', state.page - 1, state.page === 1, false);
-    for (let page = 1; page <= totalPages; page++) {
-      add(String(page), page, false, page === state.page);
-    }
+    for (let page = 1; page <= totalPages; page++) add(String(page), page, false, page === state.page);
     add('Next', state.page + 1, state.page === totalPages, false);
   }
 
@@ -208,13 +290,18 @@ engine: markdown
       item.el.style.display = visible.has(item.el) ? '' : 'none';
       const checkbox = item.el.querySelector('.reading-select');
       if (checkbox) checkbox.checked = selected.has(item.data.id);
+      item.el.querySelectorAll('.reading-tag').forEach(tag => {
+        tag.classList.toggle('is-active', state[tag.dataset.filterType].includes(tag.dataset.filterValue));
+      });
     });
     noResults.hidden = result.length !== 0;
+    syncCheckboxes();
+    updateFacets();
     renderChips();
     renderPagination(totalPages);
     selectionSummary.textContent = `${selected.size} selected`;
-    document.getElementById('reading-export-ris').disabled = selected.size === 0;
-    document.getElementById('reading-export-text').disabled = selected.size === 0;
+    $('reading-export-ris').disabled = selected.size === 0;
+    $('reading-export-text').disabled = selected.size === 0;
     status.textContent = `${result.length} ${result.length === 1 ? 'entry' : 'entries'} found, page ${state.page} of ${totalPages}.`;
   }
 
@@ -223,19 +310,102 @@ engine: markdown
   size.onchange = () => { state.size = Number(size.value); state.page = 1; render(); };
   clear.onclick = () => {
     search.value = '';
-    topicMenu.querySelectorAll('input').forEach(input => { input.checked = false; });
-    yearMenu.querySelectorAll('input').forEach(input => { input.checked = false; });
-    state = { q: '', topics: [], years: [], sort: 'year-desc', size: 20, page: 1 };
+    yearFrom.value = '';
+    yearTo.value = '';
     sort.value = 'year-desc';
     size.value = '20';
+    state = defaults();
     render();
   };
-  document.getElementById('reading-select-shown').onclick = () => {
+
+  // ── Clicking a tag on an entry filters by it ───────────────
+  content.addEventListener('click', event => {
+    const tag = event.target.closest('.reading-tag');
+    if (!tag) return;
+    const type = tag.dataset.filterType;
+    const value = tag.dataset.filterValue;
+    const active = state[type].includes(value);
+    setState({ [type]: active ? state[type].filter(v => v !== value) : [...state[type], value] });
+    if (!active) toolbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ── Copy APA ───────────────────────────────────────────────
+  // Asks doi.org for the official APA 7 reference (full author list, journal,
+  // volume). Falls back to one built from the saved fields if that fails.
+  const apaCache = new Map();
+  function localApa(d) {
+    let authors = (d.authors || '').trim();
+    const parts = authors.split(/,\s*(?=[^,]+,\s*[A-Z]\.)/);
+    if (parts.length > 1 && !/et al\.?$/.test(authors)) {
+      authors = parts.slice(0, -1).join(', ') + ', & ' + parts[parts.length - 1];
+    }
+    const title = (d.title || '').replace(/\.*$/, '');
+    return [
+      authors ? `${authors.replace(/\.*$/, '')}.` : '',
+      `(${d.year || 'n.d.'}).`,
+      `${title}.`,
+      d.journal ? `${d.journal}.` : '',
+      d.doi ? `https://doi.org/${d.doi}` : ''
+    ].filter(Boolean).join(' ');
+  }
+  async function getApa(d) {
+    if (apaCache.has(d.id)) return apaCache.get(d.id);
+    let apa = '';
+    if (d.doi) {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 6000);
+        const res = await fetch(`https://doi.org/${encodeURI(d.doi)}`, {
+          headers: { Accept: 'text/x-bibliography; style=apa' },
+          signal: controller.signal
+        });
+        clearTimeout(timer);
+        if (res.ok) apa = (await res.text()).replace(/\s+/g, ' ').trim();
+      } catch (_) {}
+    }
+    if (!apa || apa.startsWith('<')) apa = localApa(d);
+    apaCache.set(d.id, apa);
+    return apa;
+  }
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (_) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand('copy');
+      area.remove();
+      return ok;
+    }
+  }
+  content.addEventListener('click', async event => {
+    const button = event.target.closest('.reading-copy-apa');
+    if (!button || button.disabled) return;
+    const item = byEl.get(button.closest('.reading-entry'));
+    if (!item) return;
+    button.disabled = true;
+    button.textContent = 'Copying…';
+    const apa = await getApa(item.data);
+    const ok = await copyText(apa);
+    button.textContent = ok ? 'Copied ✓' : 'Copy failed';
+    button.title = apa;
+    $('reading-copy-status').textContent = ok ? 'APA reference copied.' : 'Could not copy the reference.';
+    setTimeout(() => { button.textContent = 'Copy APA'; button.disabled = false; }, 2000);
+  });
+
+  // ── Selection and export ───────────────────────────────────
+  $('reading-select-shown').onclick = () => {
     filtered().slice((state.page - 1) * state.size, state.page * state.size)
       .forEach(item => selected.add(item.data.id));
     render();
   };
-  document.getElementById('reading-clear-selection').onclick = () => {
+  $('reading-clear-selection').onclick = () => {
     selected.clear();
     render();
   };
@@ -269,8 +439,8 @@ engine: markdown
     link.click();
     URL.revokeObjectURL(link.href);
   }
-  document.getElementById('reading-export-ris').onclick = () => exportSelected('ris');
-  document.getElementById('reading-export-text').onclick = () => exportSelected('text');
+  $('reading-export-ris').onclick = () => exportSelected('ris');
+  $('reading-export-text').onclick = () => exportSelected('text');
   render();
 })();
 </script>
